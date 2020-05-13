@@ -23,6 +23,6 @@
 
 ## 订阅
 
-欢迎 Star, Watch 本仓库，或订阅下方微信公众号及时交流。
+本项目文档内容均采用 [CC-BY-SA-4.0] 协议进行共享，欢迎 Star, Watch 本仓库，或订阅下方微信公众号及时交流。
 
 ![](http://qiniu.ningo.cloud/official-qrcode.png)
