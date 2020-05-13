@@ -17,6 +17,15 @@
 
 ## 文章
 
+《Deno 钻研之术》文章内容重点维护在该项目中，同时更新在如下第三方平台：
+
+* 微信：公众号 @ningowood
+* [知乎](https://zhuanlan.zhihu.com/ningowood)
+* [语雀](https://www.yuque.com/ningowood/beginning)
+* [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)
+* [简书](https://www.jianshu.com/u/ecbf49bf207b)
+* [SegmentFault](https://segmentfault.com/blog/ningowood)
+
 |序号|文章名|发布时间|备注|
 |-|-|-|-|
 |01|[Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|Deno v1.0 正式发布之日|
