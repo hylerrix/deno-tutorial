@@ -1,4 +1,4 @@
-# (1) Hello, 从多样化安装到简单实战
+# (1) Hello，从多样化安装到简单实战
 
 > 《Deno 钻研之术》系列于 Deno v1 正式发售之日全新推出，每周不定期更新在 Github 中（[https://github.com/hylerrix/deno-tutorial](https://github.com/hylerrix/deno-tutorial)）。让我们一起循序渐进学 Deno，先易后难补 Node，面向未来开发属于自己的 Deno Web App。欢迎订阅，欢迎交流。
 
@@ -274,32 +274,32 @@ for await (const req of s) {
 
 ```bash
 $ deno-tutorial git:(master) deno run --allow-net demos/welcome.ts
-Compile file:///Users/${USER_NAME}/WorkSpace/Hylerrix/deno-tutorial/demos/welcome.ts
-Download https://deno.land/std@0.50.0/http/server.ts
-Download https://deno.land/std@0.50.0/encoding/utf8.ts
-Download https://deno.land/std@0.50.0/io/bufio.ts
-Download https://deno.land/std@0.50.0/testing/asserts.ts
-Download https://deno.land/std@0.50.0/async/mod.ts
-Download https://deno.land/std@0.50.0/http/_io.ts
-Download https://deno.land/std@0.50.0/io/util.ts
-Download https://deno.land/std@0.50.0/path/mod.ts
-Download https://deno.land/std@0.50.0/path/win32.ts
-Download https://deno.land/std@0.50.0/path/posix.ts
-Download https://deno.land/std@0.50.0/path/common.ts
-Download https://deno.land/std@0.50.0/path/separator.ts
-Download https://deno.land/std@0.50.0/path/interface.ts
-Download https://deno.land/std@0.50.0/path/glob.ts
-Download https://deno.land/std@0.50.0/path/_constants.ts
-Download https://deno.land/std@0.50.0/path/_util.ts
-Download https://deno.land/std@0.50.0/fmt/colors.ts
-Download https://deno.land/std@0.50.0/testing/diff.ts
-Download https://deno.land/std@0.50.0/path/_globrex.ts
-Download https://deno.land/std@0.50.0/async/deferred.ts
-Download https://deno.land/std@0.50.0/async/delay.ts
-Download https://deno.land/std@0.50.0/async/mux_async_iterator.ts
-Download https://deno.land/std@0.50.0/textproto/mod.ts
-Download https://deno.land/std@0.50.0/http/http_status.ts
-Download https://deno.land/std@0.50.0/bytes/mod.ts
+# Compile file:///Users/${USER_NAME}/WorkSpace/Hylerrix/deno-tutorial/demos/welcome.ts
+# Download https://deno.land/std@0.50.0/http/server.ts
+# Download https://deno.land/std@0.50.0/encoding/utf8.ts
+# Download https://deno.land/std@0.50.0/io/bufio.ts
+# Download https://deno.land/std@0.50.0/testing/asserts.ts
+# Download https://deno.land/std@0.50.0/async/mod.ts
+# Download https://deno.land/std@0.50.0/http/_io.ts
+# Download https://deno.land/std@0.50.0/io/util.ts
+# Download https://deno.land/std@0.50.0/path/mod.ts
+# Download https://deno.land/std@0.50.0/path/win32.ts
+# Download https://deno.land/std@0.50.0/path/posix.ts
+# Download https://deno.land/std@0.50.0/path/common.ts
+# Download https://deno.land/std@0.50.0/path/separator.ts
+# Download https://deno.land/std@0.50.0/path/interface.ts
+# Download https://deno.land/std@0.50.0/path/glob.ts
+# Download https://deno.land/std@0.50.0/path/_constants.ts
+# Download https://deno.land/std@0.50.0/path/_util.ts
+# Download https://deno.land/std@0.50.0/fmt/colors.ts
+# Download https://deno.land/std@0.50.0/testing/diff.ts
+# Download https://deno.land/std@0.50.0/path/_globrex.ts
+# Download https://deno.land/std@0.50.0/async/deferred.ts
+# Download https://deno.land/std@0.50.0/async/delay.ts
+# Download https://deno.land/std@0.50.0/async/mux_async_iterator.ts
+# Download https://deno.land/std@0.50.0/textproto/mod.ts
+# Download https://deno.land/std@0.50.0/http/http_status.ts
+# Download https://deno.land/std@0.50.0/bytes/mod.ts
 ```
 
 此时打开 localhost:8000 提示成功。
