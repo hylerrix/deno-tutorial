@@ -8,7 +8,7 @@
 
 ## 目录
 
-目前规划的章节目录如下
+目前规划的章节目录如下。
 
 * 基础篇：循序渐进学 Deno 基础知识；
 * 标准库篇：深入标准库的内部世界；
@@ -19,23 +19,50 @@
 * 前端篇：探索 Deno Web 前端应用开发的方式；
 * 后端篇：探索 Deno Web 后端应用开发的方式；
 * 架构篇：深入到 Deno 底层读 v8，学架构；
+* 生态篇：介绍 Deno 生态的相关内容；
 * 翻译篇：翻译优质的、授权的英文一手博文。
+
+目前本仓库的文件结构如下。
+
+```
+.
+├── LICENSE
+├── README.md
+├── articles # 按照发布顺序进行编号，防止文章
+│   └── ... 
+└── demos # 对 Demo 逐行注释
+    └── ...
+```
 
 ## 文章
 
-《Deno 钻研之术》文章内容重点维护在该项目中，同时更新在如下第三方平台：
-
-* 微信：公众号 @ningowood
-* [知乎](https://zhuanlan.zhihu.com/ningowood)
-* [语雀](https://www.yuque.com/ningowood/beginning)
-* [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)
-* [简书](https://www.jianshu.com/u/ecbf49bf207b)
-* [SegmentFault](https://segmentfault.com/blog/ningowood)
+《Deno 钻研之术》文章内容重点维护在该项目中，以下列表内容根据发布时间排序。写作序号思路为：随心而动！
 
 |序号|文章名|发布时间|所属章节|备注|
 |-|-|-|-|-|
 |01|:heart: [Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
 |02|...|...|...|...|
+
+同时更新在如下第三方平台：
+
+* [微信](https://mp.weixin.qq.com/s/Eg2atcxZPpIfgqdAd73imQ)：公众号 @ningowood。
+* [知乎](https://zhuanlan.zhihu.com/ningowood)。
+* [语雀](https://www.yuque.com/ningowood/beginning)。
+* [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
+* [简书](https://www.jianshu.com/u/ecbf49bf207b)
+* [SegmentFault](https://segmentfault.com/blog/ningowood)。
+
+## 写作路线图
+
+也欢迎你的建议。你想了解什么？一起来学。
+
+**202005 写作关键词**
+
+- [x] 简介、安装、Demo
+- [ ] Awesome Deno！
+- [ ] 参数列表、1.0 特性
+- [ ] 深入安装、deno_install
+- [ ] 授权翻译：Deno 手册
 
 ## 订阅
 
