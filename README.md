@@ -28,9 +28,9 @@
 .
 ├── LICENSE
 ├── README.md
-├── articles # 按照发布顺序进行编号，防止文章
+├── articles # 按照发布顺序进行编号
 │   └── ... 
-└── demos # 对 Demo 逐行注释，来源不止于官方
+└── demos # 收录各大优良 Demo，来源不止于官方
     └── ...
 ```
 
