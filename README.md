@@ -40,8 +40,14 @@
 
 |序号|文章名|发布时间|所属章节|备注|
 |-|-|-|-|-|
-|01|:heart: [Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
-|02|...|...|...|...|
+|001|:heart: [Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
+|002|...|...|...|...|
+
+这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
+
+|序号|文章名|发布时间|所属章节|备注|
+|-|-|-|-|-|
+|001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-18|翻译篇|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
 
 同时更新在如下第三方平台：
 
@@ -62,7 +68,8 @@
 - [ ] Awesome Deno！
 - [ ] 参数列表、1.0 特性
 - [ ] 深入安装、deno_install
-- [ ] 授权翻译、Deno 手册
+- [x] 授权翻译、Deno 手册
+- [ ] 授权翻译、Deno 缺点
 
 **202006 写作关键词**
 
