@@ -8,7 +8,7 @@
 
 时隔 Deno 开源两年整，万众期待的 Deno v1 正式版今日正式登场。或许你已经听过 Deno 的大名、或许你在项目中已经大量使用 Deno 作者的上一个明星项目 Node.js，亦或许今天才刚刚接触这一切...总之现在上车，背后是业界多年 Web App 开发经验的累加，面前是一片充满未知与惊喜的 Deno 蓝海。
 
-### 简单的介绍 Deno？
+### 简单地介绍一下 Deno？
 
 Deno 是一个基于 Chrome V8 引擎开发的一个安全的 JavaScript 和 TypeScript 运行时，底层由 Rust 语言编写（最初选型为 Go），发起人是 Ryan Dahl。Ry 也是 Node.js 的发起人，当 Ry 将 Node 交付给社区一段时间后回看 Node 的现状，提出了很多无法忽视的缺陷，于是带来了全新的项目，Deno。
 
@@ -141,7 +141,7 @@ $ deno upgrade
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-现在我们来使用 MacOS 上最知名的包管理器之一 Homebrew 来安装 Deno。由于 Homebrew 默认每次执行都会自动检查更新，显示超慢的 Updating Homebrew...，还不显示具体进度，需要先临时关闭 Homebrew 自动更新后正式安装 Deno。
+现在我们来使用 MacOS 上最知名的包管理器之一 Homebrew 来安装 Deno。由于 Homebrew 默认每次执行都会自动检查更新，显示超慢的 Updating Homebrew...，而且还不显示具体进度，需要先临时关闭 Homebrew 自动更新后正式安装 Deno。
 
 ```bash
 $ export HOMEBREW_NO_AUTO_UPDATE=true
@@ -194,7 +194,7 @@ $ brew install asdf
 # 🍺  /usr/local/Cellar/asdf/0.7.8: 104 files, 219.6KB, built in 18 seconds
 ```
 
-以上需要安装 Deno 前先配置 deno 的 asdf 地址。ASDF 可以很方便的进行 Deno 多版本控制。
+以上需要安装 Deno 前先配置 Deno 的 ASDF 地址。ASDF 可以很方便的进行 Deno 多版本控制。
 
 ```bash
 $ asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
@@ -270,7 +270,7 @@ for await (const req of s) {
 
 ### Hello World
 
-现在来执行 welcome.ts，由于代码中引入了远程的 server.ts，server.ts 由引入了其它文件，deno 现在会统一下载到全局目录上并执行文件。
+现在来执行 welcome.ts，由于代码中引入了远程的 server.ts，server.ts 又引入了其它文件，deno 现在会统一下载到全局目录上并执行文件。
 
 ```bash
 $ deno-tutorial git:(master) deno run --allow-net demos/welcome.ts
@@ -331,7 +331,7 @@ $ deno-tutorial git:(master) deno run --allow-net demos/welcome.ts
 - Rust 篇：探索 Deno 底层有关 Rust 的更多知识；
 - 前端篇：探索 Deno Web 前端应用开发的方式；
 - 后端篇：探索 Deno Web 后端应用开发的方式；
-- 架构篇：深入到 Deno 底层读 v8，学架构。
+- 架构篇：深入到 Deno 底层读 V8，学架构。
 
 欢迎订阅，一起成长，敬请 Star, Watch & Issue 开源仓库[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial/)！三连一下。
 
