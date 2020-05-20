@@ -31,8 +31,8 @@
 ├── articles # 按照发布顺序进行编号
 │   └── ... 
 │   demos # 收录各大优良 Demo，来源不止于官方
-│   ├── official-examples #从官网长期更新 Demo 至本仓库
-│   └── the-deno-handbook #收录了 [《Deno 入门手册》](https://www.freecodecamp.org/news/the-deno-handbook/)文章中的相关代码
+│   ├── official-examples # 从官网长期更新 Demo 至本仓库
+│   └── the-deno-handbook # 收录了《Deno 入门手册》文章中的相关代码
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
 ```
 
@@ -77,6 +77,8 @@
 
 - [ ] OAK、入门
 - [ ] 源码、安装
+- [ ] 深入、HTTP
+- [ ] 深入、IO
 
 ## 订阅
 
