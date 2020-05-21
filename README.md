@@ -34,7 +34,18 @@
 │   ├── official-examples # 从官网长期更新 Demo 至本仓库
 │   └── the-deno-handbook # 收录了《Deno 入门手册》文章中的相关代码
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
+    ├── authorization-required # 暂未得到授权，一般不会跟踪在 Git 上
+    └── work-in-progress # 翻译进行中
 ```
+
+本仓库工作流大致如下。
+
+* `master` 分支：作为核心提供稳定版本，我直接工作在这里；
+* `Git Flow`: 开放权限给和我一起翻译、一起写作（大部分在语雀上）的小伙伴；
+  * `develop` 分支：用来对整个子分支进行统一管理；
+  * `trans/${name}-${user}` 分支： 某 user 用来翻译某篇授权 name文章；
+  * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
+* `Github Flow`：有兴趣的开发者 fork 后一起来 PR。
 
 ## 文章
 
@@ -50,6 +61,7 @@
 |序号|文章名|原文发布时间|翻译完成时间|备注|
 |-|-|-|-|-|
 |001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
+|002|...|...|...|...|
 
 同时更新在如下第三方平台：
 
@@ -57,7 +69,7 @@
 * [知乎](https://zhuanlan.zhihu.com/ningowood)。
 * [语雀](https://www.yuque.com/ningowood/beginning)。
 * [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
-* [简书](https://www.jianshu.com/u/ecbf49bf207b)
+* [简书](https://www.jianshu.com/u/ecbf49bf207b)。
 * [SegmentFault](https://segmentfault.com/blog/ningowood)。
 
 ## 写作路线图
@@ -69,16 +81,28 @@
 - [x] 简介、安装、Demo
 - [ ] Awesome Deno！
 - [ ] 参数列表、1.0 特性
+- [ ] Deno、React
+- [x] 授权翻译、[The Deno Handbook: ...](https://www.freecodecamp.org/news/the-deno-handbook/)
+- [ ] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+
+**未来写作关键词**
+
+- [ ] 运行时
 - [ ] 深入安装、deno_install
-- [x] 授权翻译、Deno 手册
-- [ ] 授权翻译、Deno 缺点
-
-**202006 写作关键词**
-
-- [ ] OAK、入门
+- [ ] OAK、ABC 入门 & 简易对比
 - [ ] 源码、安装
 - [ ] 深入、HTTP
 - [ ] 深入、IO
+- [ ] 深入、beats
+- [ ] Node 篇：再谈、十大缺陷
+- [ ] Node 篇：EventEmmiter
+- [ ] 精读、采访 Ry
+- [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
+- [ ] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+
+**其他待做**
+
+- [ ] 寻找好看的 UI 生成器搭建 Github Pages 部署网站
 
 ## 订阅
 
