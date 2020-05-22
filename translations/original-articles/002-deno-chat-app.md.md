@@ -9,26 +9,29 @@ cover_image_vert: /images/cover-images/8_cover_image_vert.jpg
 cover_color: '#6A6A6C'
 ---
 
+# [Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+
 Node.js was writtern initially by [Ryan Dahl](https://en.wikipedia.org/wiki/Ryan_Dahl) on 2009 (in C++). Ryan left Node.js in 2012, as at this point he felt he had more or less fulfilled his goals.
 
 His goals are now different. After realizing that there were some design errors impossible to fix in Node.js, he decided to create another JavaScript (also TypeScript) runtime built with V8: Deno (in Rust). Deno 1.0.0 will be finally released on 13th May 2020.
 
-<img src="/images/blog-images/38.svg" width="100" alt="Deno logo" class="center transparent" />
+![](https://aralroca.com/images/blog-images/38.svg)
 
 We'll see how Deno works and its differences with Node, implementing a simple chat application.
 
 **We will cover the following:**
 
-- [Installing Deno](#installing-deno)
-- [Simple "Hello World"](#simple-%22hello-world%22)
-- [Serve an index.html](#serve-an-indexhtml)
-- [Using WebSockets](#using-websockets)
-- [Third-party and deps.ts convention](#third-party-and-depsts-convention)
-- [Testing](#testing)
-- [Debugging](#debugging)
-- [Conclusion](#conclusion)
-- [Code of this article](#code-of-this-article)
-- [References](#references)
+- [Learn Deno: Chat app](#learn-deno-chat-app)
+  - [Installing Deno](#installing-deno)
+  - [Simple "Hello World"](#simple-%22hello-world%22)
+  - [Serve an index.html](#serve-an-indexhtml)
+  - [Using WebSockets](#using-websockets)
+  - [Third-party and deps.ts convention](#third-party-and-depsts-convention)
+  - [Testing](#testing)
+  - [Debugging](#debugging)
+  - [Conclusion](#conclusion)
+  - [Code of this article](#code-of-this-article)
+  - [References](#references)
 
 ## Installing Deno
 
@@ -175,7 +178,7 @@ Compile file:///Users/aralroca/server.ts
 Server running on localhost:3000
 ```
 
-<img class="center" src="/images/blog-images/32.png" alt="Deno server serving an index.html" />
+![](https://aralroca.com/images/blog-images/32.png)
 
 ## Using WebSockets
 
@@ -318,7 +321,7 @@ To implement our client-side part, we are going to choose Preact to be able to u
 
 Result:
 
-<img class="center" src="/images/blog-images/33.gif" alt="Chat implemented with Deno + Preact" />
+![](https://aralroca.com/images/blog-images/33.gif)
 
 It's a very ugly chat without styles, but functional, because our aim here is to understand how Deno works.
 
@@ -333,7 +336,7 @@ However, the ecosystem in https://deno.land/x/ is quite small yet. But hey, I ha
 
 We are going to use the [camel-case](https://www.pika.dev/npm/camel-case) package to transform every chat message to camelCase!
 
-<img class="center" src="/images/blog-images/34.png" alt="Importing camel-case lib from pika web" />
+![](https://aralroca.com/images/blog-images/34.png)
 
 Let's add this import in our `chat.ts` file:
 
@@ -346,7 +349,7 @@ const message = camelCase(typeof event === 'string' ? event : '')
 
 That's it. Running again the `server.ts` is going to download the `camel-case` package. Now you can see that it works:
 
-<img class="center" src="/images/blog-images/35.gif" alt="Using camel-case package on deno" />
+![](https://aralroca.com/images/blog-images/35.gif)
 
 However, if I want to use this `camelCase` helper in more than one file, it's cumbersome to add the full import everywhere. The URL indicates which version of the package we have to use. This means that if we want to upgrade a dependency we will need to search and replace all the imports. This could cause us problems, but don't worry, there is a Deno convention for the dependencies that solves this. Creating a `deps.ts` file to export all project dependencies.
 
@@ -468,8 +471,7 @@ If you want to use a watcher to not execute everytime all tests, you can use htt
 
 Now we are ready to use our helper on `chat.ts`.
 
-<img class="center" src="/images/blog-images/36.png" alt="camels on the message" />
-<br />
+![](https://aralroca.com/images/blog-images/36.png)
 
 ## Debugging
 
@@ -481,8 +483,7 @@ In order to debug with Deno:
 4. On the Remote Target section press to "inspect".
 5. Press the Resume script execution button, the code will pause just in your breakpoint.
 
-<img src="/images/blog-images/37.png" alt="Debugging with Deno" class="center" />
-<br />
+![](https://aralroca.com/images/blog-images/37.png)
 
 ## Conclusion
 

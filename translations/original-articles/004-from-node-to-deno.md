@@ -9,39 +9,42 @@ cover_image_vert: /images/cover-images/10_cover_image_vert.jpg
 cover_color: '#353133'
 ---
 
+# [From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+
 Last week I published an article about Deno, and how to create a [Chat app with Deno and Preact](https://aralroca.com/blog/learn-deno-chat-app). Since then, many doubts have arisen. Mostly of them are about how to do the same thing we did in Node, but with the new Deno ecosystem.
 
 I've tried to collect some of the most used topics in Node, and looked for their alternative with Deno. First of all, I would like to make it clear that we can use many of the current Node.js modules. There is no need to look for an alternative for everything, as many modules are reusable. You can visit [pika.dev](https://www.pika.dev/about) to look for modules to use in Deno. That said, let's start with the list:
 
 **We will cover the following:**
 
-- [Electron](#electron)
-- [Forever / PM2](#forever--pm2)
-- [Express / Koa](#express--koa)
-  - [Http (std lib)](#http-std-lib)
-  - [Oak (Third party lib)](#oak-third-party-lib)
-  - [Abc (Third party lib)](#abc-third-party-lib)
-  - [Deno-express (Third party lib)](#deno-express-third-party-lib)
-- [MongoDB](#mongodb)
-- [PostgresSQL](#postgressql)
-- [MySQL / MariaDB](#mysql--mariadb)
-- [Redis](#redis)
-- [Nodemon](#nodemon)
-- [Jest, Jasmine, Ava...](#jest-jasmine-ava)
-- [Webpack, Parcel, Rollup...](#webpack-parcel-rollup)
-- [Prettier](#prettier)
-- [NPM Scripts](#npm-scripts)
-- [Nvm](#nvm)
-- [Npx](#npx)
-- [Run on a Docker](#run-on-a-docker)
-- [Run as a lambda](#run-as-a-lambda)
-- [Conclusion](#conclusion)
+- [From Node to Deno](#from-node-to-deno)
+  - [Electron](#electron)
+  - [Forever / PM2](#forever--pm2)
+  - [Express / Koa](#express--koa)
+    - [Http (std lib)](#http-std-lib)
+    - [Oak (Third party lib)](#oak-third-party-lib)
+    - [Abc (Third party lib)](#abc-third-party-lib)
+    - [Deno-express (Third party lib)](#deno-express-third-party-lib)
+  - [MongoDB](#mongodb)
+  - [PostgresSQL](#postgressql)
+  - [MySQL / MariaDB](#mysql--mariadb)
+  - [Redis](#redis)
+  - [Nodemon](#nodemon)
+  - [Jest, Jasmine, Ava...](#jest-jasmine-ava)
+  - [Webpack, Parcel, Rollup...](#webpack-parcel-rollup)
+  - [Prettier](#prettier)
+  - [NPM Scripts](#npm-scripts)
+  - [Nvm](#nvm)
+  - [Npx](#npx)
+  - [Run on a Docker](#run-on-a-docker)
+  - [Run as a lambda](#run-as-a-lambda)
+  - [Conclusion](#conclusion)
 
 ## Electron
 
 With Node.js we can create desktop applications using [Electron](https://github.com/electron/electron). Electron uses Chromium as interface to run a web environment. But, can we use Electron with Deno? Are there alternatives?
 
-<img src="/images/blog-images/55.png" alt="Electron logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/55.png)
 
 Well, right now Electron is far from being able to be executed under Deno. We must look for alternatives. Since Deno is made with Rust, we can use [web-view rust bindings](https://github.com/Boscop/web-view) to run Destkop application in Deno.
 
@@ -87,9 +90,7 @@ const webview2 = new WebView({
 await Promise.all([webview1.run(), webview2.run()]);
 ```
 
-<img src="/images/blog-images/40.jpg" alt="Deno desktop app" class="center" />
-<br />
-
+![](https://aralroca.com/images/blog-images/40.jpg)
 
 ## Forever / PM2
 
@@ -97,7 +98,7 @@ await Promise.all([webview1.run(), webview2.run()]);
 
 Forever is intended for Node only, so using it is not feasible. On the other hand, with PM2 we can run non-node scripts, so we could still use it for Deno.
 
-<img src="/images/blog-images/56.png" alt="PM2 logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/56.png)
 
 Creating an `app.sh` file
 
@@ -112,17 +113,13 @@ And
 ➜ pm2 start ./app.sh 
 ```
 
-<br />
-<img src="/images/blog-images/41.png" alt="Running Deno with PM2" class="center" />
-<br />
+![](https://aralroca.com/images/blog-images/41.png)
 
 ## Express / Koa
 
 [Express](https://github.com/expressjs/express) and [Koa](https://github.com/koajs/koa) are the best known Node frameworks. They're known for their robust routing system and their HTTP helpers (redirection, caching, etc). Can we use them in Deno? The answer is not... But there are some alternatives.
 
-<br />
-<img src="/images/blog-images/42.png" alt="Express and Koa logo" class="center transparent" />
-
+![](https://aralroca.com/images/blog-images/42.png)
 
 ### Http (std lib)
 
@@ -198,8 +195,7 @@ console.log(`app listening on port ${server.port}`);
 
 [MongoDB](https://github.com/mongodb/mongo) is a document database with a huge scability and flexibility. In the JavaScript ecosystem has been widely used, with many stacks like MEAN or MERN that use it. It's very popular.
 
-<br />
-<img src="/images/blog-images/43.png" alt="MongoDB logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/43.png)
 
 So yes, we can use MongoDB with Deno. To do this, we can use this driver: https://github.com/manyuanrong/deno_mongo.
 
@@ -245,7 +241,7 @@ const deleteCount = await users.deleteOne({ _id: insertId });
 
 ## PostgresSQL
 
-<img src="/images/blog-images/44.png" alt="PostgresSQL logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/44.png)
 
 Like MongoDB, there is also a driver for [PostgresSQL](https://github.com/postgres/postgres/). 
 
@@ -268,7 +264,7 @@ await client.end();
 
 ## MySQL / MariaDB
 
-<img src="/images/blog-images/45.png" alt="MySQL and MariaDB logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/45.png)
 
 As with MongoDB and PostgresSQL, there is also a driver for [MySQL](https://github.com/mysqljs/mysql) / [MariaDB](https://github.com/mariadb-corporation/mariadb-connector-nodejs).
 
@@ -294,7 +290,7 @@ console.log(result);
 
 ## Redis
 
-<img src="/images/blog-images/46.png" alt="Redis logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/46.png)
 
 [Redis](https://github.com/NodeRedis/node-redis), the best known database for caching, has also a driver for Deno.
 
@@ -314,7 +310,7 @@ const example = await redis.get("example");
 
 ## Nodemon
 
-<img src="/images/blog-images/47.png" alt="Nodemon logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/47.png)
 
 [Nodemon](https://github.com/remy/nodemon) is used in development environment to monitor any changes in your files, automatically restarting the server. This makes node development much more enjoyable, without having to manually stop and restart the server to see the applied changes. Can it be used in Deno?
 
@@ -330,7 +326,7 @@ We can use Denon as we use `deno run` to execute scripts.
 
 ## Jest, Jasmine, Ava...
 
-<img src="/images/blog-images/48.png" alt="Jasmine, Jest, Ava, Mocha logos" class="center" />
+![](https://aralroca.com/images/blog-images/48.png)
 
 In the Node.js ecosystem there are a lot of alternatives for test runners. However, there isn't one official way to test the Node.js code.
 
@@ -354,7 +350,7 @@ To run the tests:
 
 ## Webpack, Parcel, Rollup...
 
-<img src="/images/blog-images/52.png" alt="Webpack, Parcel, Rollup logos" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/52.png)
 
 One of the strengths of Deno is that we can use ESmodules with TypeScript without the need for a bundler such as [Webpack](https://github.com/webpack/webpack), [Parcel](https://github.com/parcel-bundler/parcel) or [Rollup](https://github.com/rollup/rollup).
 
@@ -375,7 +371,7 @@ Now it's ready to be loaded in the browser:
 
 ## Prettier
 
-<img src="/images/blog-images/49.png" alt="Prettier logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/49.png)
 
 In the last few years [Prettier](https://prettier.io/) has become quite well known within the JavaScript ecosystem because with it you don't have to worry about formatting the files.
 
@@ -389,7 +385,7 @@ You can format your files using this command:
 
 ## NPM Scripts
 
-<img src="/images/blog-images/50.png" alt="Npm scripts logo" class="center transparent" />
+![](https://aralroca.com/images/blog-images/50.png)
 
 With Deno, the `package.json` no longer exists. One of the things I really miss are the scripts that were declared in the `package.json`.
 
@@ -417,7 +413,7 @@ Another alternative is [denox](https://github.com/BentoumiTech/denox), very simi
 
 ## Nvm
 
-<img src="/images/blog-images/51.png" alt="Version semantics" class="center transparent" />
+![](https://aralroca.com/images/blog-images/51.png)
 
 [Nvm](https://github.com/nvm-sh/nvm) is a CLI to manage multiple active Node versions, to easy upgrade or downgrade versions depending on your projects.
 
@@ -443,7 +439,7 @@ As you can see, not only we have to remember the name of the module, but the who
 
 ## Run on a Docker
 
-<img src="/images/blog-images/53.png" alt="Docker logo" class="center transparent keepcolor" />
+![](https://aralroca.com/images/blog-images/53.png)
 
 To run Deno inside a Docker, we can create this Dockerfile:
 
@@ -476,7 +472,7 @@ Repo: https://github.com/hayd/deno-docker
 
 ## Run as a lambda
 
-<img src="/images/blog-images/54.png" alt="Lambda symbol" class="center transparent" />
+![](https://aralroca.com/images/blog-images/54.png)
 
 To use Deno as a lambda, there is a module in Deno STD library. https://deno.land/x/lambda.
 
