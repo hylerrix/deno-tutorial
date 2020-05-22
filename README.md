@@ -18,7 +18,7 @@
 * Rust 篇：探索 Deno 底层有关 Rust 的更多知识；
 * 前端篇：探索 Deno Web 前端应用开发的方式；
 * 后端篇：探索 Deno Web 后端应用开发的方式；
-* 架构篇：深入到 Deno 底层读 v8，学架构；
+* 架构篇：深入到 Deno 底层读 V8，学架构；
 * 生态篇：介绍 Deno 生态的相关内容；
 * 翻译篇：翻译优质的、授权的英文一手博文。
 
@@ -53,8 +53,8 @@
 
 |序号|文章名|发布时间|所属章节|备注|
 |-|-|-|-|-|
-|001|:heart: [Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
-|002|...|...|...|...|
+|001|[Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
+|002|:heart: [Awesome Deno 中文资源全图谱](./articles/002-awesome-deno-cn.md)|2020-05-22|生态篇||
 
 这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
 
@@ -79,14 +79,15 @@
 **202005 写作关键词**
 
 - [x] 简介、安装、Demo
-- [ ] Awesome Deno！
-- [ ] 参数列表、1.0 特性
+- [x] Awesome Deno！
 - [ ] Deno、React
 - [x] 授权翻译、[The Deno Handbook: ...](https://www.freecodecamp.org/news/the-deno-handbook/)
 - [ ] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+- [ ] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 
 **未来写作关键词**
 
+- [ ] 参数列表、1.0 特性
 - [ ] 运行时
 - [ ] 深入安装、deno_install
 - [ ] OAK、ABC 入门 & 简易对比
@@ -98,7 +99,6 @@
 - [ ] Node 篇：EventEmmiter
 - [ ] 精读、采访 Ry
 - [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
-- [ ] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 
 **其他待做**
 
