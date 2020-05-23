@@ -58,7 +58,7 @@
 
 这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
 
-|序号|文章名|原文发布时间|翻译完成时间|备注|
+|序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
 |001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
 |002|...|...|...|...|
