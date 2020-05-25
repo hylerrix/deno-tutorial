@@ -1,6 +1,6 @@
 # Deno + WebSockets 打造聊天室应用
 
-> > - 原文地址：[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+> - 原文地址：[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
 > - 原文作者：Flavio Copes
 > - 原文发布时间：2020-05-10
 > - 译者：[hylerrix](https://github.com/hylerrix)
@@ -475,7 +475,6 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)
 现在我们可以在 `chat.ts` 上使用这个 camelize 函数了。
 
 ![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401996997-b1bda177-c81a-4fa6-bd86-e0518d923c7a.png#align=left&display=inline&height=132&margin=%5Bobject%20Object%5D&originHeight=132&originWidth=700&size=0&status=done&style=none&width=700)
-
 
 ## 浏览器调试
 
