@@ -55,13 +55,15 @@
 |-|-|-|-|-|
 |001|[Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
 |002|:heart: [Awesome Deno 中文资源全图谱](./articles/002-awesome-deno-cn.md)|2020-05-22|生态篇||
+|003|...|...|...|...|
 
 这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
 
 |序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
 |001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
-|002|...|...|...|...|
+|002|[Deno + WebSockets 打造聊天室应用](./translations/002-deno-chat-app.md)|2020-05-10|2020-05-25|译者：[@hylerrix](https://github.com/hylerrix)|
+|003|...|...|...|...|
 
 同时更新在如下第三方平台：
 
@@ -82,7 +84,7 @@
 - [x] Awesome Deno！
 - [ ] Deno、React
 - [x] 授权翻译、[The Deno Handbook: ...](https://www.freecodecamp.org/news/the-deno-handbook/)
-- [ ] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+- [x] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
 - [ ] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 
 **未来写作关键词**

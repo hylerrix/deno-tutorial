@@ -1,38 +1,35 @@
-> - 原文地址：[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
+# Deno + WebSockets 打造聊天室应用
+
+> > - 原文地址：[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
 > - 原文作者：Flavio Copes
 > - 原文发布时间：2020-05-10
 > - 译者：[hylerrix](https://github.com/hylerrix)
 > - 备注：本文已获原作者授权，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
 
-![](https://aralroca.com/images/cover-images/8_cover_image.jpg)
-
-# [Deno + WebSockets 打造聊天室应用](https://aralroca.com/blog/learn-deno-chat-app)
+![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1590401997017-804006f5-6110-4c28-8a17-2242352773d1.jpeg#align=left&display=inline&height=432&margin=%5Bobject%20Object%5D&originHeight=432&originWidth=960&size=0&status=done&style=none&width=960)
 
 Node.js 最初由 [Ryan Dahl](https://en.wikipedia.org/wiki/Ryan_Dahl) 于 2009 年基于 C++ 语言创建。到了 2012 年，Ryan 觉得自己或多或少地已经实现了当年的目标便离开了 Node.js 项目。
 
 如今他的目标已大不相同：在意识到无法轻易在 Node.js 中修复某些当时的错误设计后，他决定创建一个全新的 JavaScript（也包括如今流行的 TypeScript） 运行时——基于 Rust 语言实现的 Deno。 Deno 1.0.0 版本将于 2020 年 05 月 13 日正式发布。
 
-![](https://aralroca.com/images/blog-images/38.svg)
+![](https://cdn.nlark.com/yuque/0/2020/svg/86548/1590401996680-7ccca422-ba2b-40e6-9e13-988e7635cdfe.svg#align=left&display=inline&height=254&margin=%5Bobject%20Object%5D&originHeight=1365&originWidth=1365&size=0&status=done&style=none&width=254)
 
 我们将在本文中探索 Deno 是如何工作的、Deno 和 Node.js 有什么区别并实现一个简单的聊天室程序。
 
 **本文的目录如下：**
 
-- [Deno + WebSockets 打造聊天室应用](#deno--websockets-打造聊天室应用)
-  - [安装 Deno](#安装-deno)
-  - [简单的 “Hello World” 实战](#简单的-hello-world-实战)
-  - [本地监听 index.html 文件](#本地监听-indexhtml-文件)
-  - [引入 WebSockets](#引入-websockets)
-  - [第三方库与 Dep.ts 约定](#第三方库与-depts-约定)
-  - [编写测试代码](#编写测试代码)
-  - [浏览器调试](#浏览器调试)
-  - [总结](#总结)
-  - [本文的代码](#本文的代码)
-  - [参考文献](#参考文献)
+- 安装 Deno
+- 简单的 “Hello World” 实战
+- 本地监听 index.html 文件
+- 引入 WebSockets
+- 第三方库与 Dep.ts 约定
+- 编写测试代码
+- 浏览器调试
+- 总结
+- 本文的代码
+- 参考文献
 
 ## 安装 Deno
-
-There are different ways to install Deno: Using curl, iwr, Homebrew, Chocolatey... See how to install it [here](https://github.com/denoland/deno/blob/34ec3b225425cecdccf754fbc87f4a8f3728890d/docs/getting_started/installation.md). Deno is a single binary executable, it has no external dependencies.
 
 有各种各样安装 Deno 的方法：使用 curl、iwr、Homebrew、Chocolatey...，可以参阅[此处](https://github.com/denoland/deno_install)查看如何安装。 Deno 没有外部依赖性，是个单独的二进制可执行文件。
 
@@ -90,15 +87,13 @@ ENVIRONMENT VARIABLES（环境变量）:
 
 如果你使用的是 Visual Studio Code 编辑器，建议你安装如下插件以简化使用 Deno 的繁琐操作：
 
-- https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-deno
+- [https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-deno](https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-deno)
 
 > 译者注：接下来会有 VS Code 版的官方插件，到时候可以在 VS Code 插件市场中搜索。
 
 ## 简单的 “Hello World” 实战
 
 对于 Deno 中一个简单的 “Hello world” 程序，我们只需要创建一个相应的 `.js` 或 `.ts` 文件，并通过 `deno run [文件名]` 命令来执行。
-
-In case of `.ts`, it will compile + execute, meanwhile for `.js`, the file will be executed directly:
 
 如果是 `.ts` 文件，Deno 将编译后执行；而对于 `.js` 文件，Deno 将直接执行：
 
@@ -115,21 +110,19 @@ Compile file:///Users/aralroca/example.ts
 Hello from Deno 🖐
 ```
 
-The `tsconfig.json` file is optional because in Deno there are some TypeScript defaults. To apply the `tsconfig.json` we should use `deno run -c tsconfig.json [file]`.
-
 因为 Deno 本身支持直接运行 TypeScript 文件，`tsconfig.json` 配置文件便是可选的。要手动导入 `tsconfig.json` 配置，则需要执行 `deno run -c tsconfig.json [文件名]`。
 
 同时，Deno 会尽可能地支持 Web 标准，我们可以很方便的使用兼容浏览器环境的 `window`、`fetch`、`Worker` 变量。
 
 ## 本地监听 index.html 文件
 
-Deno 有它内置的标准库（https://deno.land/std/），因此我们可以直接从官方提供的 **URL** 上直接导入并使用这些模块。Deno 的目标之一包括支持运行一个存放于 URL 上、具有最小耦合性的单个可执行文件。这时便可以直接将这些模块导入到用户的项目中或者通过 `deno run https:// ...` 命令来在终端上执行。
+Deno 有它内置的标准库（[https://deno.land/std/](https://deno.land/std/)），因此我们可以直接从官方提供的 **URL** 上直接导入并使用这些模块。Deno 的目标之一包括支持运行一个存放于 URL 上、具有最小耦合性的单个可执行文件。这时便可以直接将这些模块导入到用户的项目中或者通过 `deno run https:// ...` 命令来在终端上执行。
 
-我们可以使用 `https://deno.land/std/http/` 模块来创建 HTTP 服务器并本地监听一个 `index.html` 文件。
+我们可以使用 `[https://deno.land/std/http/](https://deno.land/std/http/)` 模块来创建 HTTP 服务器并本地监听一个 `index.html` 文件。
 
 在接下来的示例中我们将创建 `server.ts` 和 `index.html` 两个文件。
 
-<small>index.html</small>
+index.html
 
 ```html
 <!DOCTYPE html>
@@ -145,7 +138,7 @@ Deno 有它内置的标准库（https://deno.land/std/），因此我们可以�
 </html>
 ```
 
-<small>server.ts</small>
+server.ts
 
 ```javascript
 import { listenAndServe } from 'https://deno.land/std/http/server.ts'
@@ -174,8 +167,7 @@ Deno 中，我们可以直接使用 ES 标准来导入模块，而不再需要�
 首次执行 `deno run server.ts` 命令时，我们将会看到与上文“Hello World”示例的两个区别：
 
 1. 命令执行后、项目运行前，Deno 下载安装了“HTTP 模块”及其所有的依赖项，而不再需要使用 `yarn` 或 `npm install` 提前手动安装。由于缓存机制，这样的过程只发生在第一次。我们也可以使用 `--reload` 参数来清理缓存重新下载。
-
-2. 执行命令后终端抛出错误： `Uncaught PermissionDenied: network access to "127.0.0.1:3000", run again with the --allow-net flag`。这是因为在 Deno 默认的安全性协议下，不允许未授权的程序访问网络或读取文件（示例中的 index.html）——这是一个对比 Node.js 来说重大的改进之一，Node.js 中任何库都可以通过 CLI 做很多用户未授权的事情。Deno 提供了控制安全性的可能，如使用 `deno --allow-read=/etc` 来限制程序只在 `/etc` 文件夹下拥有读取的权限。更多许可标志可以使用 `deno run -h` 来查看。
+1. 执行命令后终端抛出错误： `Uncaught PermissionDenied: network access to "127.0.0.1:3000", run again with the --allow-net flag`。这是因为在 Deno 默认的安全性协议下，不允许未授权的程序访问网络或读取文件（示例中的 index.html）——这是一个对比 Node.js 来说重大的改进之一，Node.js 中任何库都可以通过 CLI 做很多用户未授权的事情。Deno 提供了控制安全性的可能，如使用 `deno --allow-read=/etc` 来限制程序只在 `/etc` 文件夹下拥有读取的权限。更多许可标志可以使用 `deno run -h` 来查看。
 
 现在我们已经充分了解完毕，可以本地监听 `index.html` 了：
 
@@ -185,13 +177,11 @@ Compile file:///Users/aralroca/server.ts
 Server running on localhost:3000
 ```
 
-![](https://aralroca.com/images/blog-images/32.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401996995-e78e4067-778a-4def-ab64-c5900f0f73ae.png#align=left&display=inline&height=83&margin=%5Bobject%20Object%5D&originHeight=83&originWidth=300&size=0&status=done&style=none&width=300)
 
 ## 引入 WebSockets
 
 WebSocket、UUID 以及其它对于 Node.js 来说必要的库都没有包含在 Node.js 的内核中。这意味着我们需要寻找第三方库来使用这些功能。现在，你可以直接在 Deno 的官方标准仓库中使用 WebSockets、UUID 等库了。因此，你不再需要担心这些库如果是第三方库的情况下，它们的不稳定性问题了——Deno 会直接维护这些功能。
-
-To continue implementing our simple chat app, let's create a new file `chat.ts` with:
 
 为了继续完善我们这个简单的聊天室应用程序，我们来创建一个名为 `chat.ts` 的文件：
 
@@ -233,8 +223,6 @@ export async function chat(ws: WebSocket): Promise<void> {
   }
 }
 ```
-
-Now, register an endpoint `/ws` to expose the chat on `server.ts`:
 
 现在，改动 `server.ts` 来注册一个 `/ws` 路由以开放公开聊天功能：
 
@@ -334,7 +322,7 @@ console.log('Server running on localhost:3000')
 
 结果如下：
 
-![](https://aralroca.com/images/blog-images/33.gif)
+![](https://cdn.nlark.com/yuque/0/2020/gif/86548/1590401997122-f932682f-51e7-467f-a0ab-820dc296a559.gif#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&originHeight=264&originWidth=800&size=0&status=done&style=none&width=800)
 
 这是一个并不优雅的的聊天室：没有样式，但是功能丰富。毕竟我们的目的是了解 Deno 的工作方式。
 
@@ -342,20 +330,16 @@ console.log('Server running on localhost:3000')
 
 通过直接导入 URL 上的模块，我们可以像使用 Deno 标准库一样使用第三方库。
 
-- STD，Deno 内置标准库：https://deno.land/std/
-- X，Deno 第三方库：https://deno.land/x/
+- STD，Deno 内置标准库：[https://deno.land/std/](https://deno.land/std/)
+- X，Deno 第三方库：[https://deno.land/x/](https://deno.land/x/)
 
-However, the ecosystem in https://deno.land/x/ is quite small yet. But hey, I have good news for you, we can use packages from https://www.pika.dev. Thanks to tools like Parcel or Minibundle we can compile Node libraries into modules to re-use them in Deno projects.
-
-但是，https：//deno.land/x/ 的生态系统如今还很小。好消息是，我们可以使用 https://www.pika.dev 中的软件包，来借助 Parcel 或 Minibundle 之类的工具以将 Node.js 的库编译为模块，以在 Deno 项目中重复使用它们。
+但是，https：[//deno.land/x/](https://deno.land/x/) 的生态系统如今还很小。好消息是，我们可以使用 [https://www.pika.dev](https://www.pika.dev) 中的软件包，来借助 Parcel 或 Minibundle 之类的工具以将 Node.js 的库编译为模块，以在 Deno 项目中重复使用它们。
 
 > 译者注：pika.dev 用来在 Npm 上找到现代 ESM 软件包（更快、更小）；Parcel 是极速零配置的 Web 应用打包工具。
 
-We are going to use the [camel-case](https://www.pika.dev/npm/camel-case) package to transform every chat message to camelCase!
-
 我们将使用 [camel-case](https://www.pika.dev/npm/camel-case) 包来将每个聊天消息转换转换为小驼峰法（camelCase）的文本。
 
-![](https://aralroca.com/images/blog-images/34.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401997781-3be97974-8e27-491d-ac06-5f0243444821.png#align=left&display=inline&height=162&margin=%5Bobject%20Object%5D&originHeight=162&originWidth=700&size=0&status=done&style=none&width=700)
 
 让我们将如下内容添加到我们的 `chat.ts` 文件中：
 
@@ -366,13 +350,9 @@ const message = camelCase(typeof event === 'string' ? event : '')
 // ... before code
 ```
 
-That's it. Running again the `server.ts` is going to download the `camel-case` package. Now you can see that it works:
-
 好了，现在来执行 `server.ts` 会下载 `camel-case` 软件包，并会发现小驼峰法的转换功能已能成功使用：
 
-![](https://aralroca.com/images/blog-images/35.gif)
-
-However, if I want to use this `camelCase` helper in more than one file, it's cumbersome to add the full import everywhere. The URL indicates which version of the package we have to use. This means that if we want to upgrade a dependency we will need to search and replace all the imports. This could cause us problems, but don't worry, there is a Deno convention for the dependencies that solves this. Creating a `deps.ts` file to export all project dependencies.
+![](https://cdn.nlark.com/yuque/0/2020/gif/86548/1590401996783-d919cf6b-614b-4378-a175-a5a65da9c26e.gif#align=left&display=inline&height=199&margin=%5Bobject%20Object%5D&originHeight=199&originWidth=600&size=0&status=done&style=none&width=600)
 
 但是，如果我想在多个文件中都使用 `camelCase` 这个软件包，将 URL 导入语句添加到每个文件中会很麻烦：URL 中包括着我们想要使用的软件包的具体版本，如果想要升级依赖项则需要搜索并替换所有相关文件中的导入语句。不用担心，Deno 的依赖项规则可以解决这类问题，我们可以创建一个 `deps.ts` 文件来导出当前项目的所有依赖项。
 
@@ -416,7 +396,7 @@ function camelize(text: string)
   Return the text in camelCase + how many 🐪
 ```
 
-让我们创建一个 `test.ts` 文件，`Deno.test（）` 内置在 Deno 的核心中，我们可以通过标准库中的 https://deno.land/std/testing/asserts.ts 来执行断言。
+让我们创建一个 `test.ts` 文件，`Deno.test（）` 内置在 Deno 的核心中，我们可以通过标准库中的 [https://deno.land/std/testing/asserts.ts](https://deno.land/std/testing/asserts.ts) 来执行断言。
 
 ```javascript
 import { assertStrictEq } from 'https://deno.land/std/testing/asserts.ts'
@@ -490,23 +470,24 @@ test camelize works ... ok (3ms)
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)
 ```
 
-如果你想使用一个能监听文件改动的观察者程序，在测试代码改动后重新执行测试，而非每次都得在改动后再次执行测试命令，则可以使用基于 `nodemon` 的 https://deno.land/x/denon/ 库，然后运行 `denon test` 命令来提供热更新功能。
+如果你想使用一个能监听文件改动的观察者程序，在测试代码改动后重新执行测试，而非每次都得在改动后再次执行测试命令，则可以使用基于 `nodemon` 的 [https://deno.land/x/denon/](https://deno.land/x/denon/) 库，然后运行 `denon test` 命令来提供热更新功能。
 
 现在我们可以在 `chat.ts` 上使用这个 camelize 函数了。
 
-![](https://aralroca.com/images/blog-images/36.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401996997-b1bda177-c81a-4fa6-bd86-e0518d923c7a.png#align=left&display=inline&height=132&margin=%5Bobject%20Object%5D&originHeight=132&originWidth=700&size=0&status=done&style=none&width=700)
+
 
 ## 浏览器调试
 
 想要在 Deno 中进行调试的话：
 
 1. 先在代码的某些行进行 `debugger;` 断点声明；
-2. 带上 `--inspect-brk` 参数：`deno run --inspect-brk ...` 或 `deno test --inspect-brk ...` 来调试/测试；
-3. 在 Chrome 中打开 `chrome://inspect` URL。
-4. 在“远程目标”标签下点击“检查”按钮。
-5. 按名为“继续”的脚本执行按钮，让代码将在你所设立的断点处暂停。
+1. 带上 `--inspect-brk` 参数：`deno run --inspect-brk ...` 或 `deno test --inspect-brk ...` 来调试/测试；
+1. 在 Chrome 中打开 `chrome://inspect` URL。
+1. 在“远程目标”标签下点击“检查”按钮。
+1. 按名为“继续”的脚本执行按钮，让代码将在你所设立的断点处暂停。
 
-![](https://aralroca.com/images/blog-images/37.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401998603-f54c9d49-8249-4a25-b21c-92d8d9c63d7c.png#align=left&display=inline&height=468&margin=%5Bobject%20Object%5D&originHeight=468&originWidth=700&size=0&status=done&style=none&width=700)
 
 ## 总结
 
@@ -520,16 +501,16 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)
 
 我上传了本文的相关代码在我的 Github 上：
 
-- https://github.com/aralroca/chat-with-deno-and-preact
+- [https://github.com/aralroca/chat-with-deno-and-preact](https://github.com/aralroca/chat-with-deno-and-preact)
 
-> 译者注：同时本文的代码也收录在了：https://github.com/hylerrix/deno-tutorial 的 demos 目录下。
+> 译者注：同时本文的代码也收录在了：[https://github.com/hylerrix/deno-tutorial](https://github.com/hylerrix/deno-tutorial) 的 demos 目录下。
 
 ## 参考文献
 
-- https://deno.land/
-- https://github.com/denoland/deno/tree/master/docs
-- https://blog.logrocket.com/deno-1-0-what-you-need-to-know/
-- https://twitter.com/flaviocopes/status/1259068673966383105
-- https://www.youtube.com/watch?v=M3BM9TB-8yA
-- https://github.com/denoland/deno
-- https://en.wikipedia.org/wiki/Ryan_Dahl
+- [https://deno.land/](https://deno.land/)
+- [https://github.com/denoland/deno/tree/master/docs](https://github.com/denoland/deno/tree/master/docs)
+- [https://blog.logrocket.com/deno-1-0-what-you-need-to-know/](https://blog.logrocket.com/deno-1-0-what-you-need-to-know/)
+- [https://twitter.com/flaviocopes/status/1259068673966383105](https://twitter.com/flaviocopes/status/1259068673966383105)
+- [https://www.youtube.com/watch?v=M3BM9TB-8yA](https://www.youtube.com/watch?v=M3BM9TB-8yA)
+- [https://github.com/denoland/deno](https://github.com/denoland/deno)
+- [https://en.wikipedia.org/wiki/Ryan_Dahl](https://en.wikipedia.org/wiki/Ryan_Dahl)
