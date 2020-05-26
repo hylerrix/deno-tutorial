@@ -4,11 +4,13 @@
 
 > 原文地址: 《[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)》
 
-上周我发表了一篇关于 Deno 的文章: [如何用 Deno 和 Preact 创建一个聊天应用](https://aralroca.com/blog/learn-deno-chat-app)。很多疑问接踵而至。期中大部分都是如何用 Done 来做 Node 之前所做的事情。
+上周我发表了一篇关于 Deno 的文章：[《Deno + WebSockets 打造聊天室应用》](https://aralroca.com/blog/learn-deno-chat-app)。在那之后，有很多困惑接踵而至——其中大部分都在思考如何在全新的 Deno 生态中来做 Node.js 上常做的工作。
 
-所以我尝试整理一些 Node 常见问题的 Deno 替代方案。这非必要，很多模块可以重用。可以访问 [pika.dev](https://www.pika.dev/about)来寻找在 Deno 中使用的模块。
+所以我尝试整理一些 Node.js 中常见库在 Deno 下的相关解决方案。在这里我得强调，很多 Node.js 的模块都可以重用，并且没有必要为每个库都重新造一遍轮子。你可以访问 [pika.dev](https://www.pika.dev/about) 来寻找在 Deno 中可以直接使用的 ES 模块。
 
-收集列表如何下：
+> 译者注：《Deno + WebSockets 打造聊天室应用》已经翻译并收录；pika.dev 用来在 Npm 上寻找符合现代 ESM 标准的软件包（更快、更小）。
+
+**本文的目录如下：**
 
 - Electron
 - Forever / PM2
@@ -30,15 +32,22 @@
 
 ## Electron
 
-Electron 使用 `Chromium` 作为界面来运行 Web 环境。可以通过 `Node.js + Electron` 创建桌面应用程序。Deno 替代方案么？
+With Node.js we can create desktop applications using Electron. Electron uses Chromium as interface to run a web environment. But, can we use Electron with Deno? Are there alternatives?
+
+Electron logo
+Well, right now Electron is far from being able to be executed under Deno. We must look for alternatives. Since Deno is made with Rust, we can use web-view rust bindings to run Destkop application in Deno.
+
+This way, we can use the native OS webview to run as many webviews as we want.
+
+Repo: https://github.com/eliassjogreen/deno_webview
+
+我们可以使用基于 Node.js + `Chromium` 的 Electron 来使用 Web 技术栈创建桌面应用程序。那么我么可以在 Deno 下使用 Electron 吗？或者还有其它更多选择吗？
 
 ![Electron](https://aralroca.com/images/blog-images/55.png)
 
-现在Electron还远远不能在Deno下运行。我们必须寻找替代方案。因为Deno是用Rust制作的，所以我们可以使用 [web-view rust bindings](https://github.com/Boscop/web-view) 来运行桌面应用。
+然而如今的 Electron 还远远不能运行在 Deno 上，我们必须寻找其它的解决方案。自从 Deno 选择用 Rust 语言构建其内核后，我们可以使用 Rust 生态上的 Web View [@Bosop/web-view](https://github.com/Boscop/web-view) 来在 Deno 上运行桌面应用。
 
-这样一来，我们可以使用原生操作系统的webview来运行我们想要的webview。
-
-回购：[https://github.com/eliassjogreen/deno_webview](https://github.com/eliassjogreen/deno_webview)
+于是 [@eliassjogreen/deno_webview](https://github.com/eliassjogreen/deno_webview) 应运而生。
 
 ``` typescript
 import { WebView } from "https://deno.land/x/webview/mod.ts";
