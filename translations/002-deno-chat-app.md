@@ -1,7 +1,7 @@
 # Deno + WebSockets 打造聊天室应用
 
 > - 原文地址：[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
-> - 原文作者：Flavio Copes
+> - 原文作者：Aral Roca
 > - 原文发布时间：2020-05-10
 > - 译者：[hylerrix](https://github.com/hylerrix)
 > - 备注：本文已获原作者授权，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
