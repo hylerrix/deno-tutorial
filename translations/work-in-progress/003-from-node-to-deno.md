@@ -32,15 +32,6 @@
 
 ## Electron
 
-With Node.js we can create desktop applications using Electron. Electron uses Chromium as interface to run a web environment. But, can we use Electron with Deno? Are there alternatives?
-
-Electron logo
-Well, right now Electron is far from being able to be executed under Deno. We must look for alternatives. Since Deno is made with Rust, we can use web-view rust bindings to run Destkop application in Deno.
-
-This way, we can use the native OS webview to run as many webviews as we want.
-
-Repo: https://github.com/eliassjogreen/deno_webview
-
 我们可以使用基于 Node.js + `Chromium` 的 Electron 来使用 Web 技术栈创建桌面应用程序。那么我么可以在 Deno 下使用 Electron 吗？或者还有其它更多选择吗？
 
 ![Electron](https://aralroca.com/images/blog-images/55.png)
@@ -91,34 +82,36 @@ await Promise.all([webview1.run(), webview2.run()]);
 
 ## Forever / PM2
 
-[Forever](https://github.com/foreversd/forever) 和 [PM2](https://github.com/Unitech/pm2) 是CLI工具，用于确保给定脚本作为守护进程连续运行。与Forever不同的是，PM2的功能更完善，同时还可以作为负载均衡。这两个工具在Node中都非常有用，但是在Deno中可以使用吗？
+[Forever](https://github.com/foreversd/forever) 和 [PM2](https://github.com/Unitech/pm2) 是用来守护指定脚本的进程使其可以持续运行的两个 CLI 工具。PM2 相比 Forever 来说功能跟你改为完善，还能同时作为负载均衡器。在 Node.js 中这两个工具都很有用，我们可以在 Deno 中也使用它们吗？
 
-`Forever`只适用于Node，所以使用它是不可行的。另一方面，用PM2我们可以运行非Node脚本，所以我们还是可以在Deno中使用它。
+Forever is intended for Node only, so using it is not feasible. On the other hand, with PM2 we can run non-node scripts, so we could still use it for Deno.
+
+Forever 专为 Node.js 创造，就不用考虑它了。而 PM2 可以运行 Node.js 之外的的脚本语言，因此 PM2 也可以和 Deno 搭配起来。 
 
 ![pm2](https://tva1.sinaimg.cn/large/007S8ZIlly1geyzx0tohgj305k01kwea.jpg)
 
-创建一个`app.sh`文件
+创建一个 `app.sh` 文件：
 
 ```bash
 #!/bin/bash
 deno run -A myCode.ts
 ```
 
-和
+保存后在当前目录执行（请确保 pm2 已成功安装）：
 
 ```bash
- pm2 start ./app.sh
+pm2 start ./app.sh
 ```
 
 ![pm2](https://tva1.sinaimg.cn/large/007S8ZIlly1gexn4dvlfuj30j60700sx.jpg)
 
 ## Express / Koa
 
-[Express](https://github.com/expressjs/express) 和 [Koa](https://github.com/koajs/koa) 是最著名的Node框架。它们以其强大的路由系统和HTTP助手（重定向、缓存等）而闻名。我们可以在Deno中使用它们吗？答案是不能.....。但也有一些替代方案。
+[Express](https://github.com/expressjs/express) 和 [Koa](https://github.com/koajs/koa) 以其强大的路由系统和友好的 HTTP 工具库（重定向、缓存等）而闻名于 Node.js 社区。我们可以在 Deno 中使用它们吗？答案是不能...但也有一些替代方案。
 
 ![Express / Koa](https://tva1.sinaimg.cn/large/007S8ZIlly1geyzy0tmdjj308c047aa2.jpg)
 
-## Http（标准库）
+### Http（标准库）
 
 Deno自己的STD库已经涵盖了`Express`或`Koa`功能。[https://deno.land/std/http/](https://deno.land/std/http/)。
 
@@ -136,7 +129,7 @@ console.log("cookies:", cookies);
 
 但是，STD库的方式并不是很吸引人。所以，我们再来看看一些备选方案。
 
-## Oak (第三方库)
+### Oak (第三方库)
 
 受Koa启发，这是目前最优雅的解决方案之一。[https://github.com/oakserver/oak](https://github.com/oakserver/oak)
 
@@ -152,7 +145,7 @@ app.use((ctx) => {
 await app.listen({ port: 8000 });
 ```
 
-## Abc (第三方库)
+### Abc (第三方库)
 
 类似于 `Oak`。[https://deno.land/x/abc](https://deno.land/x/abc)。
 
@@ -167,7 +160,7 @@ app.get("/hello", (c) => "Hello!")
   .start({ port: 8080 });
 ```
 
-## Deno-Express（第三方lib）
+### Deno-Express（第三方lib）
 
 也许是最类似于Express Framework的替代品，[https://github.com/NMathar/deno-express](https://github.com/NMathar/deno-express)。
 
