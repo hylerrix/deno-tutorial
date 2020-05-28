@@ -1,4 +1,4 @@
-# 从 Node 到 Deno
+# 探索从 Node 到 Deno 的各大主流库替代方案
 
 ![从 Node 到 Deno](https://tva1.sinaimg.cn/large/007S8ZIlly1gexm53yyjqj30qn0c0q4e.jpg)
 
@@ -84,9 +84,7 @@ await Promise.all([webview1.run(), webview2.run()]);
 
 [Forever](https://github.com/foreversd/forever) 和 [PM2](https://github.com/Unitech/pm2) 是用来守护指定脚本的进程使其可以持续运行的两个 CLI 工具。PM2 相比 Forever 来说功能跟你改为完善，还能同时作为负载均衡器。在 Node.js 中这两个工具都很有用，我们可以在 Deno 中也使用它们吗？
 
-Forever is intended for Node only, so using it is not feasible. On the other hand, with PM2 we can run non-node scripts, so we could still use it for Deno.
-
-Forever 专为 Node.js 创造，就不用考虑它了。而 PM2 可以运行 Node.js 之外的的脚本语言，因此 PM2 也可以和 Deno 搭配起来。 
+Forever 专为 Node.js 创造，就不用考虑了；而 PM2 可以运行 Node.js 之外的的脚本语言，因此我们可以让 PM2 和 Deno 搭配起来。 
 
 ![pm2](https://tva1.sinaimg.cn/large/007S8ZIlly1geyzx0tohgj305k01kwea.jpg)
 
@@ -111,9 +109,9 @@ pm2 start ./app.sh
 
 ![Express / Koa](https://tva1.sinaimg.cn/large/007S8ZIlly1geyzy0tmdjj308c047aa2.jpg)
 
-### Http（标准库）
+### HTTP（标准库）
 
-Deno自己的STD库已经涵盖了`Express`或`Koa`功能。[https://deno.land/std/http/](https://deno.land/std/http/)。
+Deno 内置的 STD 标准库已经涵盖了 `Express` 或 `Koa` 的绝大多数功能：[https://deno.land/std/http/](https://deno.land/std/http/)。
 
 ``` typescript
 import { ServerRequest } from "https://deno.land/std/http/server.ts";
@@ -127,11 +125,11 @@ const cookies = getCookies(request);
 console.log("cookies:", cookies);
 ```
 
-但是，STD库的方式并不是很吸引人。所以，我们再来看看一些备选方案。
+但由于 Deno 内置的 HTTP 标准库其声明路由的方式并不那么吸引人，我们来看看其它的解决方案。
 
 ### Oak (第三方库)
 
-受Koa启发，这是目前最优雅的解决方案之一。[https://github.com/oakserver/oak](https://github.com/oakserver/oak)
+受 Koa 启发，这是目前最优雅的解决方案之一：[https://github.com/oakserver/oak](https://github.com/oakserver/oak)。
 
 ```typescript
 import { Application,  } from "https://deno.land/x/oak/mod.ts";
@@ -147,7 +145,7 @@ await app.listen({ port: 8000 });
 
 ### Abc (第三方库)
 
-类似于 `Oak`。[https://deno.land/x/abc](https://deno.land/x/abc)。
+类似于 `Oak`：[https://deno.land/x/abc](https://deno.land/x/abc)。
 
 ``` typescript
 import { Application } from "https://deno.land/x/abc/mod.ts";
@@ -160,9 +158,9 @@ app.get("/hello", (c) => "Hello!")
   .start({ port: 8080 });
 ```
 
-### Deno-Express（第三方lib）
+### Deno-Express（第三方库）
 
-也许是最类似于Express Framework的替代品，[https://github.com/NMathar/deno-express](https://github.com/NMathar/deno-express)。
+也许是最类似于 Express Framework 的替代品：[https://github.com/NMathar/deno-express](https://github.com/NMathar/deno-express)。
 
 ``` typescript
 import * as exp from "https://raw.githubusercontent.com/NMathar/deno-express/master/mod.ts";
