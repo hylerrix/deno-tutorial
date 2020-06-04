@@ -31,8 +31,10 @@
 ├── articles # 按照发布顺序进行编号
 │   └── ... 
 │   demos # 收录各大优良 Demo，来源不止于官方
+│   ├── deno-chat-app # 收录了《Deno + WebSockets...》文章中的相关代码
+│   ├── node-to-deno # 收录了《从 Node 到 Deno 解决方案...》文章中的相关代码
 │   ├── official-examples # 从官网长期更新 Demo 至本仓库
-│   └── the-deno-handbook # 收录了《Deno 入门手册》文章中的相关代码
+│   └── the-deno-handbook # 收录了《Deno 入门手册...》文章中的相关代码
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
     ├── authorization-required # 暂未得到授权，一般不会跟踪在 Git 上
     └── work-in-progress # 翻译进行中
@@ -41,9 +43,9 @@
 本仓库工作流大致如下。
 
 * `master` 分支：作为核心提供稳定版本，我直接工作在这里；
-* `Git Flow`: 开放权限给和我一起翻译、一起写作（大部分在语雀上）的小伙伴；
+* `Git Flow`：开放权限给和我一起翻译、一起写作（大部分在语雀上）的小伙伴；
   * `develop` 分支：用来对整个子分支进行统一管理；
-  * `trans/${name}-${user}` 分支： 某 user 用来翻译某篇授权 name文章；
+  * `trans/${name}-${user}` 分支：某 user 用来翻译某篇授权 name文章；
   * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
 * `Github Flow`：有兴趣的开发者 fork 后一起来 PR。
 
@@ -63,7 +65,8 @@
 |-|-|-|-|-|
 |001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
 |002|[Deno + WebSockets 打造聊天室应用](./translations/002-deno-chat-app.md)|2020-05-10|2020-05-25|译者：[@hylerrix](https://github.com/hylerrix)|
-|003|...|...|...|...|
+|003|[从 Node 到 Deno：探索各大主流库替代方案](./translations/003-from-node-to-deno.md)|2020-05-17|2020-06-04|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
+|004|...|...|...|...|
 
 同时更新在如下第三方平台：
 
@@ -78,26 +81,30 @@
 
 也欢迎你的建议。你想了解什么？一起来学。
 
+**202006 写作关键词**
+
+- [x] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+- [ ] Deno、React
+- [ ] 参数列表、1.0 特性
+- [ ] JS、运行时
+- [ ] 深入、HTTP
+- [ ] Node 篇：再谈、十大缺陷
+- [ ] ...
+
 **202005 写作关键词**
 
 - [x] 简介、安装、Demo
-- [x] Awesome Deno！
-- [ ] Deno、React
 - [x] 授权翻译、[The Deno Handbook: ...](https://www.freecodecamp.org/news/the-deno-handbook/)
+- [x] Awesome Deno！
 - [x] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
-- [ ] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 
 **未来写作关键词**
 
-- [ ] 参数列表、1.0 特性
-- [ ] 运行时
 - [ ] 深入安装、deno_install
 - [ ] OAK、ABC 入门 & 简易对比
 - [ ] 源码、安装
-- [ ] 深入、HTTP
 - [ ] 深入、IO
 - [ ] 深入、beats
-- [ ] Node 篇：再谈、十大缺陷
 - [ ] Node 篇：EventEmmiter
 - [ ] 精读、采访 Ry
 - [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
