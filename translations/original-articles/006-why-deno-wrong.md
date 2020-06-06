@@ -1,7 +1,4 @@
-> * 原文地址：[Why I Believe Deno is a Step in the Wrong Direction for JavaScript Runtime Environments 为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
-> * 原文作者：Mehul Mohan
-> * 译者：hylerrix
-> * 校对者：hylerrix
+# Why I Believe Deno is a Step in the Wrong Direction for JavaScript Runtime Environments
 
 ![Why I Believe Deno is a Step in the Wrong Direction for JavaScript Runtime Environments](https://images.unsplash.com/photo-1558519847-19fc2aa15a16?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ)
 

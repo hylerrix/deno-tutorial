@@ -43,11 +43,11 @@
 本仓库工作流大致如下。
 
 * `master` 分支：作为核心提供稳定版本，我直接工作在这里；
-* `Git Flow`：开放权限给和我一起翻译、一起写作（大部分在语雀上）的小伙伴；
+* `Github Flow`：有兴趣的开发者 fork 后一起来 PR；
+* `Git Flow`：开放权限给和我一起翻译、一起写作的小伙伴；
   * `develop` 分支：用来对整个子分支进行统一管理；
   * `trans/${name}-${user}` 分支：某 user 用来翻译某篇授权 name文章；
   * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
-* `Github Flow`：有兴趣的开发者 fork 后一起来 PR。
 
 ## 文章
 
@@ -84,11 +84,13 @@
 **202006 写作关键词**
 
 - [x] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+- [ ] JS 模块化
 - [ ] Deno、React
 - [ ] 参数列表、1.0 特性
-- [ ] JS、运行时
-- [ ] 深入、HTTP
 - [ ] Node 篇：再谈、十大缺陷
+- [ ] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
+- [ ] 授权翻译、[Deno Oak MySQL](https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/)
+- [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
 - [ ] ...
 
 **202005 写作关键词**
@@ -107,7 +109,8 @@
 - [ ] 深入、beats
 - [ ] Node 篇：EventEmmiter
 - [ ] 精读、采访 Ry
-- [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
+- [ ] 深入、HTTP
+- [ ] JS、运行时
 
 **其他待做**
 
