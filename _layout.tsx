@@ -3,7 +3,6 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 import { PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 import Sidebar from './_sidebar.tsx';
-import Gitalk from './_gitalk.tsx';
 
 const Layout: PagicLayout = ({ config, title, content, script, sidebar, outputPath }) => {
   const [isDark, setIsDark] = React.useState(
@@ -70,15 +69,6 @@ if (shouldSetIsDark) {
         <Sidebar sidebar={sidebar} outputPath={outputPath} />
         <section className="main">
           {content}
-          <Gitalk
-            clientID="balabala"
-            clientSecret="balabala"
-            repo="deno-tutorial"
-            owner="hylerrix"
-            admin={['hylerrix']}
-            id={outputPath}
-            title={title}
-          />
         </section>
         {script}
       </body>
