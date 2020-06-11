@@ -1,5 +1,11 @@
 # 开发日志
 
+## 20200611
+
+* 向 [js.org](http://js.org/) 提交 PR 注册域名。
+* 花费了一些时间来思考 Github Pages 为什么 404，同时显示 `http://hylerrix.github.io/deno-tutorial/`。
+* 线上网站在 js.org 上部署成功：[deno-tutorial.js.org]( https://deno-tutorial.js.org)。
+
 ## 20200609
 
 > 遇到问题不要慌，放好心态，逐步排查，然后搜重点，实在不行社区里问问题。
