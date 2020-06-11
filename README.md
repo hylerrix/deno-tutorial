@@ -30,11 +30,7 @@
 ├── README.md
 ├── articles # 按照发布顺序进行编号
 │   └── ... 
-│   demos # 收录各大优良 Demo，来源不止于官方
-│   ├── deno-chat-app # 收录了《Deno + WebSockets...》文章中的相关代码
-│   ├── node-to-deno # 收录了《从 Node 到 Deno 解决方案...》文章中的相关代码
-│   ├── official-examples # 从官网长期更新 Demo 至本仓库
-│   └── the-deno-handbook # 收录了《Deno 入门手册...》文章中的相关代码
+├── demos # 收录各大优良 Demo，来源不止于官方
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
     ├── authorization-required # 暂未得到授权，一般不会跟踪在 Git 上
     └── work-in-progress # 翻译进行中
