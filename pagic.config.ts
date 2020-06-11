@@ -1,7 +1,6 @@
 export default {
   srcDir: '.',
   ignore: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/work-in-progress\//],
-  base: '/deno-tuturial/',
   theme: 'docs',
   plugins: ['sidebar', 'script', 'ga'],
   title: 'Deno 钻研之术',
