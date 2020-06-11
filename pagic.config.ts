@@ -1,7 +1,9 @@
 export default {
   srcDir: '.',
   ignore: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/work-in-progress\//],
-  plugins: ['sidebar', 'script'],
+  base: '/deno-tuturial/',
+  theme: 'docs',
+  plugins: ['sidebar', 'script', 'ga'],
   title: 'Deno 钻研之术',
   sidebar: [
     'README.md',
@@ -20,5 +22,18 @@ export default {
         'translations/003-from-node-to-deno.md'
       ]
     }
-  ]
+  ],
+  nav: [
+    {
+      text: 'GitHub',
+      link: 'https://github.com/hylerrix/deno-tutorial'
+    },
+    {
+      text: '本网站使用 Pagic 构建',
+      link: 'https://github.com/xcatliu/pagic'
+    }
+  ],
+  ga: {
+    id: 'UA-45256157-14'
+  }
 };
