@@ -123,5 +123,5 @@
 使用 [Pagic](https://github.com/xcatliu/pagic) 构建：
 
 ```bash
-deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@0.7.3/mod.ts build --serve --watch
+deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@0.7.4/mod.ts build --serve --watch
 ```
