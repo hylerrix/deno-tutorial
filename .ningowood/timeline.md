@@ -1,5 +1,9 @@
 # 开发日志
 
+## 20200612
+
+* 随着 Pagic 主题修复 Bug，增加 Google Analytics 分析。
+
 ## 20200611
 
 * 向 [js.org](http://js.org/) 提交 PR 注册域名。

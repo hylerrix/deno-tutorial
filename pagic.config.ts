@@ -24,12 +24,28 @@ export default {
   ],
   nav: [
     {
-      text: 'GitHub',
+      text: '源码',
       link: 'https://github.com/hylerrix/deno-tutorial'
     },
     {
-      text: '本网站使用 Pagic 构建',
-      link: 'https://github.com/xcatliu/pagic'
+      text: '官网',
+      link: 'https://github.com/hylerrix/awesome-deno-cn'
+    },
+    {
+      text: '资源',
+      link: 'https://github.com/hylerrix/awesome-deno-cn'
+    },
+    {
+      text: '论坛 A',
+      link: 'https://deno.js.cn'
+    },
+    {
+      text: '论坛 B',
+      link: 'https://denocn.org'
+    },
+    {
+      text: '关于作者',
+      link: 'https://github.com/hylerrix'
     }
   ],
   ga: {
