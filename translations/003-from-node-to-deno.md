@@ -1,6 +1,6 @@
 # 从 Node 到 Deno：探索各大主流库替代方案
 
-> > - 原文地址：[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+> - 原文地址：[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 > - 原文作者：Aral Roca
 > - 原文发布时间：2020-05-17
 > - 译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)
