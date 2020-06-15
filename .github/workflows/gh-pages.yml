@@ -13,8 +13,8 @@ jobs:
 
       - name: Build
         run: |
-          curl -fsSL https://deno.land/x/install/install.sh | sh
           export DENO_INSTALL="/home/runner/.deno"
+          curl -fsSL https://deno.land/x/install/install.sh | sh
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
           deno install --unstable --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@0.7.6/mod.ts
