@@ -15,11 +15,14 @@ jobs:
           curl -fsSL https://deno.land/x/install/install.sh | sh
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@0.7.6/mod.ts
+          deno install --unstable --allow-env --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@0.7.6/mod.ts
           pagic build
 
       - name: Deploy
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
+        env:
+          GA_ID: UA-169223577-1
+        run: pagic build
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,6 +31,9 @@ jobs:
 
       - name: Deploy CN
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
+        env:
+          GA_ID: UA-169223577-1
+        run: pagic build
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
