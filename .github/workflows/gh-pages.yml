@@ -29,11 +29,15 @@ jobs:
           publish_dir: ./public
           cname: deno-tutorial.js.org
 
-      - name: Deploy CN
+      - name: Build CN
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
         env:
           GA_ID: UA-169621310-1
-        run: pagic build
+        run: |
+          pagic build
+
+      - name: Deploy CN
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
