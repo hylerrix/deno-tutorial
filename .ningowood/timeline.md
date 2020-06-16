@@ -4,16 +4,12 @@
 
 * Github Pages + 百度 SSO
 * 将文章结构在 Pagic 主题上拆分成三级目录，文章名称上不显示编号
-  * 基础篇
-    * 安装
-      * ...
-  * 生态篇
-    * ...
-  * Web 篇
-    * 模块化
-      * ...
-  ...
-  * 翻译
+
+## 20200616
+
+* 这两天合并了 [@justjavac](https://github.com/justjavac) 的若干个关于 Github Actions 的优化与更新：
+  * 优化：部署方式；
+  * 更新：根据不同环境分析不同 Google Analysis）。
 
 ## 20200612
 
