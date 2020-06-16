@@ -5,6 +5,7 @@
 > - 原文发布时间：2020-05-29
 > - 译者：[hylerrix](https://github.com/hylerrix)
 > - 备注：本文遵循 [freeCodeCamp 翻译规范](https://github.com/freeCodeCamp/news-translation)，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
+> - 备注：《Deno 钻研之术》电子书官网上线啦！https://deno-tutorial.js.org
 
 ![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591930484981-2749cbc1-5906-4f91-ac67-03d0f5f1275c.png)
 

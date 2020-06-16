@@ -45,6 +45,8 @@
   * `trans/${name}-${user}` 分支：某 user 用来翻译某篇授权 name文章；
   * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
 
+本仓库的[开发日志](./.ningowood/timeline.md)。
+
 ## 文章
 
 《Deno 钻研之术》文章内容重点维护在该项目中，以下列表内容根据发布时间排序。写作序号思路为：随心而动！
@@ -84,7 +86,7 @@
 - [ ] Deno、React
 - [ ] 参数列表、1.0 特性
 - [ ] Node 篇：再谈、十大缺陷
-- [ ] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
+- [x] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
 - [ ] 授权翻译、[Deno Oak MySQL](https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/)
 - [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
 - [ ] ...
@@ -110,7 +112,7 @@
 
 **其他待做**
 
-- [ ] 寻找好看的 UI 生成器搭建 Github Pages 部署网站
+- [x] 寻找好看的 UI 生成器搭建 Github Pages 部署网站
 
 ## 构建
 
@@ -122,8 +124,12 @@ deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/p
 
 ## 贡献者
 
+按第一次贡献顺序排名
+
 * [@hylerrix](https://github.com/hylerrix)
+* [@imcoddy](https://github.com/imcoddy)
 * [@xcatliu](https://github.com/xcatliu)
+* [@justjavac](https://github.com/justjavac)
 
 ## 订阅
 

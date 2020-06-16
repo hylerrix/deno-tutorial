@@ -30,7 +30,7 @@ export default {
     },
     {
       text: '官网',
-      link: 'http://deno.js.cn/'
+      link: 'https://deno.land'
     },
     {
       text: '资源',
@@ -47,6 +47,10 @@ export default {
     {
       text: 'denocn.org',
       link: 'https://denocn.org'
+    },
+    {
+      text: 'Pagic 主题',
+      link: 'https://github.com/xcatliu/pagic'
     },
     {
       text: '关于作者',
