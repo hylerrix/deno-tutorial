@@ -21,7 +21,7 @@ jobs:
       - name: Deploy
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
         env:
-          DENO_INSTALL: UA-169223577-1
+          GA_ID: UA-169223577-1
         run: pagic build
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -32,7 +32,7 @@ jobs:
       - name: Deploy CN
         if: github.ref == 'refs/heads/master' && github.event_name == 'push' && github.repository == 'hylerrix/deno-tutorial'
         env:
-          DENO_INSTALL: UA-169223577-1
+          GA_ID: UA-169223577-1
         run: pagic build
         uses: peaceiris/actions-gh-pages@v3
         with:
