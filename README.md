@@ -70,10 +70,8 @@
 
 * [微信](https://mp.weixin.qq.com/s/Eg2atcxZPpIfgqdAd73imQ)：公众号 @ningowood。
 * [知乎](https://zhuanlan.zhihu.com/ningowood)。
-* [语雀](https://www.yuque.com/ningowood/beginning)。
 * [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
-* [简书](https://www.jianshu.com/u/ecbf49bf207b)。
-* [SegmentFault](https://segmentfault.com/blog/ningowood)。
+* [语雀](https://www.yuque.com/ningowood/beginning)。
 
 ## 写作路线图
 
