@@ -61,10 +61,12 @@
 
 |序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
-|001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
-|002|[Deno + WebSockets 打造聊天室应用](./translations/002-deno-chat-app.md)|2020-05-10|2020-05-25|译者：[@hylerrix](https://github.com/hylerrix)|
-|003|[从 Node 到 Deno：探索各大主流库替代方案](./translations/003-from-node-to-deno.md)|2020-05-17|2020-06-04|译者：[@hylerrix](https://github.com/hylerrix), [@YunKou](http://github.com/yunkou)|
-|004|...|...|...|...|
+|001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
+|002|[Deno + WebSockets 打造聊天室应用](./translations/002-deno-chat-app.md)|2020-05-10|2020-05-25||
+|003|[从 Node 到 Deno：探索各大主流库替代方案](./translations/003-from-node-to-deno.md)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
+|004|[Deno + Oak 构建酷炫的 Todo API](./translations/004-deno-oak-todo-api.md)|2020-05-29|2020-06-15||
+|005|[Deno + Oak 连接 MySQL 实战教程](./translations/005-deno-oak-mysql.md)|2020-06-07|2020-07-06||
+|...|...|...|...|...|
 
 同时更新在如下第三方平台：
 
@@ -77,17 +79,20 @@
 
 也欢迎你的建议。你想了解什么？一起来学。
 
-**202006 写作关键词**
+**202007 写作关键词**
 
-- [x] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
 - [ ] JS 模块化
 - [ ] Deno、React
 - [ ] 参数列表、1.0 特性
 - [ ] Node 篇：再谈、十大缺陷
-- [x] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
-- [ ] 授权翻译、[Deno Oak MySQL](https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/)
+- [x] 授权翻译、[Deno Oak MySQL](https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/)
 - [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
 - [ ] ...
+
+**202006 写作关键词**
+
+- [x] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
+- [x] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
 
 **202005 写作关键词**
 
@@ -117,7 +122,7 @@
 使用 [Pagic](https://github.com/xcatliu/pagic) 构建：
 
 ```bash
-deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@0.7.4/mod.ts build --serve --watch
+deno run --unstable --allow-read --allow-write --allow-net --allow-env https://deno.land/x/pagic@0.7.28/mod.ts build --serve --watch
 ```
 
 ## 贡献者

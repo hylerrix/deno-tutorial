@@ -20,6 +20,7 @@ export default {
         'translations/002-deno-chat-app.md',
         'translations/003-from-node-to-deno.md',
         'translations/004-deno-oak-todo-api.md',
+        'translations/005-deno-oak-mysql.md',
       ]
     }
   ],
@@ -49,8 +50,8 @@ export default {
       link: 'https://denocn.org'
     },
     {
-      text: 'Pagic 主题',
-      link: 'https://github.com/xcatliu/pagic'
+      text: 'Deno 库排行',
+      link: 'https://yoshixmk.github.io/deno-x-ranking/'
     },
     {
       text: '关于作者',
@@ -58,6 +59,6 @@ export default {
     }
   ],
   ga: {
-    id: Deno.env.get('GA_ID') ?? 'UA-169223577-1'
+    id: window.Deno?.env.get('GA_ID') ?? 'UA-169223577-1' 
   }
 };
