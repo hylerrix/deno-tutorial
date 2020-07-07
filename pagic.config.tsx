@@ -3,7 +3,7 @@ import React from 'https://dev.jspm.io/react@16.13.1'
 
 export default {
   srcDir: '.',
-  ignore: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//],
+  ignore: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/pagic\.config\.tsx/],
   theme: 'docs',
   // prev_next, gitalk
   plugins: ['sidebar', 'script', 'ga'],
@@ -30,23 +30,31 @@ export default {
     { text: 'denocn.org', link: 'https://denocn.org' },
     { text: 'Deno 库排行', link: 'https://yoshixmk.github.io/deno-x-ranking/' },
     { text: '关于作者', link: 'https://github.com/hylerrix' },
-    'articles/THANKS.md',
+    { text: '关于作者', link: 'https://github.com/hylerrix' },
+    { text: '感谢', link: 'articles/THANKS.md' },
   ],
   sidebar: [
     'README.md',
-    {
+    { // 基础篇
       link: 'articles/basic/README.md',
       children: [
         'articles/basic/install-and-hello-world.md',
       ]
     },
-    {
+    { // 生态篇
       link: 'articles/ecology/README.md',
       children: [
         'articles/ecology/awesome-deno-cn.md'
       ]
     },
-    {
+    { // Node 篇
+      link: 'articles/node/README.md',
+      children: [
+        'articles/node/create-react-app-intro.md',
+        'articles/node/javascript-toolchain-rome.md',
+      ]
+    },
+    { // 翻译篇
       link: 'translations/README.md',
       children: [
         'translations/001-the-deno-handbook.md',
@@ -61,14 +69,14 @@ export default {
     editOnGithub: true,
     backToTop: true
   },
-  gitalk: {
-    clientID: '60180eea2c09238f8998',
-    clientSecret: 'e9ea0ff6555185eda28eff4dfd4b755b1764abf3',
-    repo: 'deno-tutorial',
-    owner: 'hylerrix',
-    admin: ['hylerrix'],
-    pagerDirection: 'first'
-  },
+  // gitalk: {
+  //   clientID: '60180eea2c09238f8998',
+  //   clientSecret: 'e9ea0ff6555185eda28eff4dfd4b755b1764abf3',
+  //   repo: 'deno-tutorial',
+  //   owner: 'hylerrix',
+  //   admin: ['hylerrix'],
+  //   pagerDirection: 'first'
+  // },
   ga: {
     id: window.Deno?.env.get('GA_ID') ?? 'UA-169223577-1' 
   }
