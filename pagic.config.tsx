@@ -30,53 +30,58 @@ export default {
     { text: 'denocn.org', link: 'https://denocn.org' },
     { text: 'Deno 库排行', link: 'https://yoshixmk.github.io/deno-x-ranking/' },
     { text: '关于作者', link: 'https://github.com/hylerrix' },
-    { text: '关于作者', link: 'https://github.com/hylerrix' },
-    { text: '感谢', link: 'articles/THANKS.md' },
   ],
   sidebar: [
     'README.md',
-    { // 基础篇
-      link: 'articles/basic/README.md',
+    {
+      // link: 'articles/basic/README.md',
+      text: '基础篇',
       children: [
         'articles/basic/install-and-hello-world.md',
       ]
     },
-    { // 生态篇
-      link: 'articles/ecology/README.md',
+    {
+      // link: 'articles/ecology/README.md',
+      text: '生态篇',
       children: [
         'articles/ecology/awesome-deno-cn.md'
       ]
     },
-    { // Node 篇
-      link: 'articles/node/README.md',
+    {
+      // link: 'articles/node/README.md',
+      text: 'Node 篇',
       children: [
         'articles/node/create-react-app-intro.md',
         'articles/node/javascript-toolchain-rome.md',
       ]
     },
-    { // 翻译篇
-      link: 'translations/README.md',
+    {
+      // link: 'translations/README.md',
+      text: '翻译篇',
       children: [
-        'translations/001-the-deno-handbook.md',
-        'translations/002-deno-chat-app.md',
-        'translations/003-from-node-to-deno.md',
-        'translations/004-deno-oak-todo-api.md',
-        'translations/005-deno-oak-mysql.md',
+        'translations/the-deno-handbook.md',
+        'translations/deno-chat-app.md',
+        'translations/from-node-to-deno.md',
+        'translations/deno-oak-todo-api.md',
+        'translations/deno-oak-mysql.md',
       ]
+    },
+    {
+      text: '感谢', link: 'articles/THANKS.md',
     }
   ],
   tools: {
     editOnGithub: true,
     backToTop: true
   },
-  // gitalk: {
-  //   clientID: '60180eea2c09238f8998',
-  //   clientSecret: 'e9ea0ff6555185eda28eff4dfd4b755b1764abf3',
-  //   repo: 'deno-tutorial',
-  //   owner: 'hylerrix',
-  //   admin: ['hylerrix'],
-  //   pagerDirection: 'first'
-  // },
+  gitalk: {
+    clientID: '60180eea2c09238f8998',
+    clientSecret: 'e9ea0ff6555185eda28eff4dfd4b755b1764abf3',
+    repo: 'deno-tutorial',
+    owner: 'hylerrix',
+    admin: ['hylerrix'],
+    pagerDirection: 'first'
+  },
   ga: {
     id: window.Deno?.env.get('GA_ID') ?? 'UA-169223577-1' 
   }
