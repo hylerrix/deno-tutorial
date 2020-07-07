@@ -32,8 +32,6 @@
 │   └── ... 
 ├── demos # 收录各大优良 Demo，来源不止于官方
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
-    ├── authorization-required # 暂未得到授权，一般不会跟踪在 Git 上
-    └── work-in-progress # 翻译进行中
 ```
 
 本仓库工作流大致如下。
