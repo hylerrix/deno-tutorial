@@ -3,22 +3,21 @@
 ## 未来计划
 
 * Github Pages + 百度 SSO
-* 将文章结构在 Pagic 主题上拆分成三级目录，文章名称上不显示编号
+* 修复图片外链 403 问题 - 需要重新切换图床？七牛云/Github+PicGo
 
 ## 20200707
 
 * 更新 Pagic 为最新版本并使用其最新功能
   * 每个文件夹填充 README.md 来介绍
   * 增加赞助功能
-* 优化电子书目录结构 -> 争取三级目录结构
+* 细化目录结构 -> 未来等 pagic 1.0 三级目录结构
 * 引入 [Gittalk](https://github.com/gitalk/gitalk)
-* 修复图片外链 403 问题
 
 ## 20200616
 
 * 这两天合并了 [@justjavac](https://github.com/justjavac) 的若干个关于 Github Actions 的优化与更新：
   * 优化：部署方式；
-  * 更新：根据不同环境分析不同 Google Analysis）。
+  * 更新：根据不同环境分析不同 Google Analysis。
 
 ## 20200612
 

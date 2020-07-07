@@ -5,8 +5,7 @@ export default {
   srcDir: '.',
   ignore: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/pagic\.config\.tsx/],
   theme: 'docs',
-  // prev_next, gitalk
-  plugins: ['sidebar', 'script', 'ga'],
+  plugins: ['sidebar', 'prev_next', 'script', 'gitalk', 'ga'],
   title: 'Deno 钻研之术',
   description: '循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。',
   github: 'https://github.com/hylerrix/deno-tutorial',
@@ -14,7 +13,7 @@ export default {
   nav: [
     {
       text: '打赏一下!!',
-      link: 'https://github.com/xcatliu/buy-me-a-coffee',
+      link: 'http://qiniu.ningo.cloud/reward-alipay.png',
       target: '_blank',
       popover: (
         <>
