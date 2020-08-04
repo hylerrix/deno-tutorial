@@ -40,6 +40,13 @@ export default {
       ]
     },
     {
+      // link: 'articles/cli/README.md',
+      text: 'CLI篇',
+      children: [
+        'articles/cli/deno-cli-v1-function.md',
+      ]
+    },
+    {
       // link: 'articles/ecology/README.md',
       text: '生态篇',
       children: [
