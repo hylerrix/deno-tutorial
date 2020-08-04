@@ -7,9 +7,9 @@
 * 零散 Demo：对于零散的 Demo，直接收录在本目录下；
 * 钻研 Demo：本仓库的原创 Demo。
 
-## NingoWood：钻研 Demo
+## NingoWood：自研 Demo
 
-...TBD
+* v1-cli-example：配合文章：《从命令行指令实战 Deno 全特性（v1.x 最新版）》
 
 ## Community：社区 Demo
 
