@@ -1,1 +1,4 @@
 public
+
+# ignore third part demos
+deno-playground

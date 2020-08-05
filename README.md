@@ -4,7 +4,13 @@
 
 ![](http://qiniu.ningo.cloud/deno-background.png)
 
-《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
+> 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
+
+Deno 钻研之术官方网站：https://deno-tutorial.js.org。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
+
+**公告 1**：由于 Pagic 即将发布 v1，发布之前 API 不稳定，暂时不维护官网的更新了，Github Action 会构建失败。因此在 Pagic v1 发布之前，官网内容会停留在 2020-07-06 时间。
+
+**公告 2**：由于之前写作顺序是先在语雀写完，导出 markdown 粘贴到本仓库中；从而导致图床崩溃，等 Pagic v1 发布之时，统一解决~，因此官网可能会阅读不便，可以先在这里阅读：https://zhuanlan.zhihu.com/deno-tutorial。
 
 ## 目录
 
@@ -28,17 +34,19 @@
 .
 ├── LICENSE
 ├── README.md
-├── articles # 按照发布顺序进行编号
-│   └── ... 
+├── articles # 分为多种章节
 ├── demos # 收录各大优良 Demo，来源不止于官方
+│   ├── community # 社区 Demo
+│   ├── ningowood # 自研 Demo
+│   └── scattered # 零散 Demo
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
 ```
 
 本仓库工作流大致如下。
 
-* `master` 分支：作为核心提供稳定版本，我直接工作在这里；
+* `main` 分支：作为核心提供稳定版本，我直接工作在这里；
 * `Github Flow`：有兴趣的开发者 fork 后一起来 PR；
-* `Git Flow`：开放权限给和我一起翻译、一起写作的小伙伴；
+* `Git Flow`：开放权限给和我一起翻译、一起写作的小伙伴（其实没怎么用）；
   * `develop` 分支：用来对整个子分支进行统一管理；
   * `trans/${name}-${user}` 分支：某 user 用来翻译某篇授权 name文章；
   * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
@@ -51,73 +59,42 @@
 
 |序号|文章名|发布时间|所属章节|备注|
 |-|-|-|-|-|
-|001|[Hello, 从多样化安装到简单实战](./articles/001-install-and-hello-world.md)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
-|002|:heart: [Awesome Deno 中文资源全图谱](./articles/002-awesome-deno-cn.md)|2020-05-22|生态篇||
-|003|...|...|...|...|
+|001|[Hello, 从多样化安装到简单实战](https://deno-tutorial.js.org/articles/basic/install-and-hello-world.html)|2020-05-13|基础篇|Deno v1.0 正式发布之日|
+|002|[Awesome Deno 中文资源全图谱](https://deno-tutorial.js.org/articles/ecology/awesome-deno-cn.html)|2020-05-22|生态篇||
+|003|:heart: [从 CLI 指令通读 Deno v1.x 全特性](https://juejin.im/post/6857058738046861320)|2020-08-04|CLI 篇|掘金征文|
+|...|...|...|...|...|
+
+这里将 Node 篇抽离出来单独排序，记录在纯 Node 社区里的游玩过程（Deno 和 Node 同时提到的文章不会在这里）。
+
+|序号|文章名|发布时间|备注|
+|-|-|-|-|
+|001|[深入浅出 Create React App](https://deno-tutorial.js.org/articles/node/create-react-app-intro.html)|2020-01-10||
+|002|[欲取代绝大多 JavaScript 工具链？Rome 尝鲜](https://deno-tutorial.js.org/articles/node/javascript-toolchain-rome.html)|2020-04-10||
+|...|...|...|...|
 
 这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
 
 |序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
-|001|[Deno 入门手册：附大量 TypeScript 代码实例](./translations/001-the-deno-handbook.md)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
-|002|[Deno + WebSockets 打造聊天室应用](./translations/002-deno-chat-app.md)|2020-05-10|2020-05-25||
-|003|[从 Node 到 Deno：探索各大主流库替代方案](./translations/003-from-node-to-deno.md)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
-|004|[Deno + Oak 构建酷炫的 Todo API](./translations/004-deno-oak-todo-api.md)|2020-05-29|2020-06-15||
-|005|[Deno + Oak 连接 MySQL 实战教程](./translations/005-deno-oak-mysql.md)|2020-06-07|2020-07-06||
+|001|[Deno 入门手册：附大量 TypeScript 代码实例](https://deno-tutorial.js.org/translations/the-deno-handbook.html)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
+|002|[Deno + WebSockets 打造聊天室应用](https://deno-tutorial.js.org/translations/deno-chat-app.html)|2020-05-10|2020-05-25||
+|003|[从 Node 到 Deno：探索各大主流库替代方案](https://deno-tutorial.js.org/translations/from-node-to-deno.html)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
+|004|[Deno + Oak 构建酷炫的 Todo API](https://deno-tutorial.js.org/translations/deno-oak-todo-api.html)|2020-05-29|2020-06-15||
+|005|[Deno + Oak 连接 MySQL 实战教程](https://deno-tutorial.js.org/translations/deno-oak-mysql.html)|2020-06-07|2020-07-06||
 |...|...|...|...|...|
 
 同时更新在如下第三方平台：
 
 * [微信](https://mp.weixin.qq.com/s/Eg2atcxZPpIfgqdAd73imQ)：公众号 @ningowood。
-* [知乎](https://zhuanlan.zhihu.com/ningowood)。
+* [知乎](https://zhuanlan.zhihu.com/deno-tutorial)。
 * [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
-* [语雀](https://www.yuque.com/ningowood/beginning)。
-
-## 写作路线图
-
-也欢迎你的建议。你想了解什么？一起来学。
-
-**202007 写作关键词**
-
-- [ ] JS 模块化
-- [ ] Deno、React
-- [ ] 参数列表、1.0 特性
-- [ ] Node 篇：再谈、十大缺陷
-- [x] 授权翻译、[Deno Oak MySQL](https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/)
-- [ ] 授权翻译、[Why ... Deno ... Wrong ...](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
-- [ ] ...
-
-**202006 写作关键词**
-
-- [x] 授权翻译、[From Node to Deno](https://aralroca.com/blog/from-node-to-deno)
-- [x] 授权翻译、[Deno Oak Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/)
-
-**202005 写作关键词**
-
-- [x] 简介、安装、Demo
-- [x] 授权翻译、[The Deno Handbook: ...](https://www.freecodecamp.org/news/the-deno-handbook/)
-- [x] Awesome Deno！
-- [x] 授权翻译、[Learn Deno: Chat app](https://aralroca.com/blog/learn-deno-chat-app)
-
-**未来写作关键词**
-
-- [ ] 深入安装、deno_install
-- [ ] OAK、ABC 入门 & 简易对比
-- [ ] 源码、安装
-- [ ] 深入、IO
-- [ ] 深入、beats
-- [ ] Node 篇：EventEmmiter
-- [ ] 精读、采访 Ry
-- [ ] 深入、HTTP
-- [ ] JS、运行时
-
-**其他待做**
-
-- [x] 寻找好看的 UI 生成器搭建 Github Pages 部署网站
+* [语雀](https://www.yuque.com/ningowood/beginning/record)。
 
 ## 构建
 
 使用 [Pagic](https://github.com/xcatliu/pagic) 构建：
+
+> 请查看顶部公告，可能会编译失败。等 v1.0 发布。
 
 ```bash
 deno run --unstable --allow-read --allow-write --allow-net --allow-env https://deno.land/x/pagic@0.7.28/mod.ts build --serve --watch
@@ -125,7 +102,7 @@ deno run --unstable --allow-read --allow-write --allow-net --allow-env https://d
 
 ## 贡献者
 
-按第一次贡献顺序排名
+按第一次贡献顺序排名：
 
 * [@hylerrix](https://github.com/hylerrix)
 * [@imcoddy](https://github.com/imcoddy)
@@ -135,5 +112,7 @@ deno run --unstable --allow-read --allow-write --allow-net --allow-env https://d
 ## 订阅
 
 本项目文档内容均采用 [CC-BY-SA-4.0] 协议进行共享，欢迎 Star, Watch 本仓库，或订阅下方微信公众号及时交流。
+
+> 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/reward-alipay.png)
 
 ![](http://qiniu.ningo.cloud/official-qrcode.png)
