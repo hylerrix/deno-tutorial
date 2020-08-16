@@ -6,11 +6,11 @@
 
 > 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
 
-Deno 钻研之术官方网站：https://deno-tutorial.js.org。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
+Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tutorial.js.org)。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
 
 **公告 1**：由于 Pagic 即将发布 v1，发布之前 API 不稳定，暂时不维护官网的更新了，Github Action 会构建失败。因此在 Pagic v1 发布之前，官网内容会停留在 2020-07-06 时间。
 
-**公告 2**：由于之前写作顺序是先在语雀写完，导出 markdown 粘贴到本仓库中；从而导致图床崩溃，等 Pagic v1 发布之时，统一解决~，因此官网可能会阅读不便，可以先在这里阅读：https://zhuanlan.zhihu.com/deno-tutorial。
+**公告 2**：由于之前写作顺序是先在语雀写完，导出 markdown 粘贴到本仓库中；从而导致图床崩溃，等 Pagic v1 发布之时，统一解决~，因此官网可能会阅读不便，可以先在这里阅读：[https://zhuanlan.zhihu.com/deno-tutorial](https://zhuanlan.zhihu.com/deno-tutorial)。
 
 ## 目录
 
