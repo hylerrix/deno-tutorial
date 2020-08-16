@@ -13,12 +13,12 @@ export default {
   nav: [
     {
       text: '打赏一下!!',
-      link: 'http://qiniu.ningo.cloud/reward-alipay.png',
+      link: 'http://qiniu.ningo.cloud/hylerrix/reward-alipay.png',
       target: '_blank',
       popover: (
         <>
-          <img src="http://qiniu.ningo.cloud/reward-alipay.png" width="256" style={{ marginRight: '1rem', verticalAlign: 'top' }} />
-          <img src="http://qiniu.ningo.cloud/reward-wechat.png" width="256" style={{ verticalAlign: 'top' }} />
+          <img src="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" width="256" style={{ marginRight: '1rem', verticalAlign: 'top' }} />
+          <img src="http://qiniu.ningo.cloud/hylerrix/reward-wechat.png" width="256" style={{ verticalAlign: 'top' }} />
         </>
       )
     },

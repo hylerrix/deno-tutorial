@@ -2,7 +2,7 @@
 
 > :sauropod: 长期更新的《Deno 钻研之术》！循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。
 
-![](http://qiniu.ningo.cloud/deno-background.png)
+![](http://qiniu.ningo.cloud/deno/deno-tutorial-background.png)
 
 > 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
 
@@ -113,6 +113,6 @@ deno run --unstable --allow-read --allow-write --allow-net --allow-env https://d
 
 本项目文档内容均采用 [CC-BY-SA-4.0] 协议进行共享，欢迎 Star, Watch 本仓库，或订阅下方微信公众号及时交流。
 
-> 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/reward-alipay.png)
+> 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/hylerrix/reward-alipay.png)
 
-![](http://qiniu.ningo.cloud/official-qrcode.png)
+![](http://qiniu.ningo.cloud/ningo/official-qrcode.png)
