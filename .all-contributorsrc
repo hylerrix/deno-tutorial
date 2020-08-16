@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "AlvinMi",
+      "name": "YuHui",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/21032217?v=4",
+      "profile": "https://github.com/AlvinMi",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "deno-tutorial",
+  "projectOwner": "hylerrix",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
