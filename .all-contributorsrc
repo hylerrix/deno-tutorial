@@ -1,0 +1,61 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "hylerrix",
+      "name": "hylerrix",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19285461?v=4",
+      "profile": "https://github.com/hylerrix",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "imcoddy",
+      "name": "imcoddy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/622780?v=4",
+      "profile": "https://www.twitter.com/imcoddy",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "xcatliu",
+      "name": "xcatliu",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5453359?v=4",
+      "profile": "http://xcatliu.com/",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "justjavac",
+      "name": "迷渡",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/359395?v=4",
+      "profile": "https://twitter.com/justjavac",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "AlvinMi",
+      "name": "YuHui",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/21032217?v=4",
+      "profile": "https://github.com/AlvinMi",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "deno-tutorial",
+  "projectOwner": "hylerrix",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true,
+  "commitConvention": "none"
+}

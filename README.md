@@ -1,4 +1,7 @@
 # Deno 钻研之术
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > :sauropod: 长期更新的《Deno 钻研之术》！循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。
 
@@ -6,11 +9,11 @@
 
 > 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
 
-Deno 钻研之术官方网站：https://deno-tutorial.js.org。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
+Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tutorial.js.org)。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
 
 **公告 1**：由于 Pagic 即将发布 v1，发布之前 API 不稳定，暂时不维护官网的更新了，Github Action 会构建失败。因此在 Pagic v1 发布之前，官网内容会停留在 2020-07-06 时间。
 
-**公告 2**：由于之前写作顺序是先在语雀写完，导出 markdown 粘贴到本仓库中；从而导致图床崩溃，等 Pagic v1 发布之时，统一解决~，因此官网可能会阅读不便，可以先在这里阅读：https://zhuanlan.zhihu.com/deno-tutorial。
+**公告 2**：由于之前写作顺序是先在语雀写完，导出 markdown 粘贴到本仓库中；从而导致图床崩溃，等 Pagic v1 发布之时，统一解决~，因此官网可能会阅读不便，可以先在这里阅读：[https://zhuanlan.zhihu.com/deno-tutorial](https://zhuanlan.zhihu.com/deno-tutorial)。
 
 ## 目录
 
@@ -100,14 +103,28 @@ Deno 钻研之术官方网站：https://deno-tutorial.js.org。基于 [Pagic](ht
 deno run --unstable --allow-read --allow-write --allow-net --allow-env https://deno.land/x/pagic@0.7.28/mod.ts build --serve --watch
 ```
 
-## 贡献者
+## 贡献者 ✨
 
-按第一次贡献顺序排名：
+感谢如下贡献者的贡献（按贡献顺序排名）([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-* [@hylerrix](https://github.com/hylerrix)
-* [@imcoddy](https://github.com/imcoddy)
-* [@xcatliu](https://github.com/xcatliu)
-* [@justjavac](https://github.com/justjavac)
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/hylerrix"><img src="https://avatars1.githubusercontent.com/u/19285461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>hylerrix</b></sub></a><br /><a href="#ideas-hylerrix" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://www.twitter.com/imcoddy"><img src="https://avatars0.githubusercontent.com/u/622780?v=4?s=100" width="100px;" alt=""/><br /><sub><b>imcoddy</b></sub></a><br /><a href="https://github.com/hylerrix/deno-tutorial/commits?author=imcoddy" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://xcatliu.com/"><img src="https://avatars0.githubusercontent.com/u/5453359?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xcatliu</b></sub></a><br /><a href="#infra-xcatliu" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://twitter.com/justjavac"><img src="https://avatars1.githubusercontent.com/u/359395?v=4?s=100" width="100px;" alt=""/><br /><sub><b>迷渡</b></sub></a><br /><a href="#infra-justjavac" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/AlvinMi"><img src="https://avatars3.githubusercontent.com/u/21032217?v=4?s=100" width="100px;" alt=""/><br /><sub><b>YuHui</b></sub></a><br /><a href="https://github.com/hylerrix/deno-tutorial/commits?author=AlvinMi" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+本项目贡献者列表遵循 [all-contributors](https://github.com/all-contributors/all-contributors) 规范。欢迎你的参与！
 
 ## 订阅
 
@@ -116,3 +133,4 @@ deno run --unstable --allow-read --allow-write --allow-net --allow-env https://d
 > 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/hylerrix/reward-alipay.png)
 
 ![](http://qiniu.ningo.cloud/ningo/official-qrcode.png)
+
