@@ -7,7 +7,7 @@
 > - 备注：本文遵循 [freeCodeCamp 翻译规范](https://github.com/freeCodeCamp/news-translation)，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
 > - 备注：《Deno 钻研之术》电子书官网上线啦！https://deno-tutorial.js.org
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591930484981-2749cbc1-5906-4f91-ac67-03d0f5f1275c.png)
+![](http://qiniu.ningo.cloud/articles/1b4-01.jpg)
 
 ## 序言
 
@@ -19,7 +19,7 @@
 
 > 译者注：另一篇文章《How to Use MySQL With Deno and Oak》即将会被翻译，其相关 Demo 也会被收录在《Deno 钻研之术》中。
 
-![](https://images.unsplash.com/photo-1590672617573-08866973bf72)
+![](http://qiniu.ningo.cloud/articles/1b4-02.jpg)
 
 照片来自于 [Bernard de Clerk](https://unsplash.com/@bernardtheclerk?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit) / [Unsplash](https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit)
 
@@ -54,7 +54,7 @@ $ deno --version
 
 一切正常的话终端会产生如下输出：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-22.34.24.png)
+![](http://qiniu.ningo.cloud/articles/1b4-03.jpg)
 
  `deno --version` 命令用来查看当前安装的 Deno 是哪个版本。
 
@@ -91,7 +91,7 @@ $ deno run --allow-net server.ts
 
 不出意外的话，你会得到如下结果：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-22.33.28.png)
+![](http://qiniu.ningo.cloud/articles/1b4-04.jpg)
 
 到现在为止，我们创建了一个监听着 8080 端口的服务端应用。只有 8080 端口不被占用，这个应用才能正常执行。
 
@@ -216,12 +216,12 @@ $ deno run --allow-net server.ts
 
 现在通过你常用的浏览器打开 `http://localhost:8080` 地址，就可以得到如下结果：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-23.11.08.png)
+![](http://qiniu.ningo.cloud/articles/1b4-05.jpg)
 浏览器打开 localhost:8080 的执行结果
 
 最难的部分差不多搞定了，但在对概念的更多了解中我们只进行了 60% 的介绍。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/images.jpeg#align=left&display=inline&height=195&margin=%5Bobject%20Object%5D&originHeight=195&originWidth=258&status=done&style=none&width=258)
+![](http://qiniu.ningo.cloud/articles/1b4-06.jpg)
 来自 Yoda 大师的批准
 
 棒极了。
@@ -279,7 +279,7 @@ $ deno run --allow-net server.ts
 
 将会打印输出如下日志：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-23.34.29.png)
+![](http://qiniu.ningo.cloud/articles/1b4-07.jpg)
 
 太酷了，我们现在有了一个色彩缤纷的控制台。
 
@@ -491,7 +491,7 @@ export default todos;
 
 太棒了，你已经进行到如此之远，再接再厉。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/download-1.jpeg#align=left&display=inline&height=168&margin=%5Bobject%20Object%5D&originHeight=168&originWidth=300&status=done&style=none&width=300)
+![](http://qiniu.ningo.cloud/articles/1b4-08.jpg)
 
 巨石强森感激你所做的一切努力。
 
@@ -622,7 +622,7 @@ $ deno run --allow-net server.ts
 
 在 Postman 中，打开一个新的标签页。设置请求方式为 `GET` 请求并且在 `URL` 输入框中输入 `http://localhost:8080/todos` 。点击 `Send` 按钮便会得到想要的结果：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.01.11.png)
+![](http://qiniu.ningo.cloud/articles/1b4-09.jpg)
 
 GET /todos API 返回结果。
 
@@ -753,13 +753,13 @@ $ deno run --allow-net server.ts
 
 在 postman 中，我再打开一个新的标签页。设置请求的方式为 `POST` 类型，并在 `URL` 输入框中输入 `http://localhost:8080/todos` 后，点击 `Send` 便会得到如下结果：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.24.00.png)
+![](http://qiniu.ningo.cloud/articles/1b4-10.jpg)
 
 因为上面的请求体中发送了空的内容，所以得到了 400 错误响应码及其错误原因。
 
 但如果我们给请求体中加入如下 JSON 内容，并重新发送：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.24.15.png)
+![](http://qiniu.ningo.cloud/articles/1b4-11.jpg)
 
 通过 { todo: "eat a lamma" } 来 POST /todos 后的成功结果，我们可以看到新的元素已经加入到列表中。
 
@@ -876,11 +876,11 @@ $ deno run --allow-net server.ts
 
 我们这样输入：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.40.52.png)
+![](http://qiniu.ningo.cloud/articles/1b4-12.jpg)
 
 服务端返回 404，且告诉我们没有相关数据被找到。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.41.36.png)
+![](http://qiniu.ningo.cloud/articles/1b4-13.jpg)
 
 但如果输入一个正确的 ID，服务端会返回其 ID 和这个 ID 的一样的数据并且响应状态为 200。
 
@@ -1013,11 +1013,11 @@ $ deno run --allow-net server.ts
 
 每次重启 Deno 程序时，新的 ID 都会被重新生成。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.59.39.png)
+![](http://qiniu.ningo.cloud/articles/1b4-14.jpg)
 
 如上返回了 404 状态码并提示我们没有找到相关的 todo 元素。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-03.00.21.png)
+![](http://qiniu.ningo.cloud/articles/1b4-15.jpg)
 
 提供一个已知的 ID，并且请求体中填写需要改变的内容。服务端会返回一个更改后的元素及其它所有元素。
 
@@ -1090,11 +1090,11 @@ $ deno run --allow-net server.ts
 
 每次重启 Deno 程序时，新的 ID 都会被重新生成。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-03.07.54.png)
+![](http://qiniu.ningo.cloud/articles/1b4-16.jpg)
 
 我们终于搞定了所有 5 个 API。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/75bdf06df3fd6ddd9d3311d8cb2be029.jpg#align=left&display=inline&height=400&margin=%5Bobject%20Object%5D&originHeight=400&originWidth=400&status=done&style=none&width=400)
+![](http://qiniu.ningo.cloud/articles/1b4-17.jpg)
 
 现在我们只剩下两件事了：
 
@@ -1148,7 +1148,7 @@ $ deno run --allow-net server.ts
 
 在 Postman 中打开一个标签页。将请求方式设置为 `PUT`，并在 `URL` 输入框中输入 `http://localhost:8080/todos/:id` 后，点击 `Send`：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.28.10.png)
+![](http://qiniu.ningo.cloud/articles/1b4-18.jpg)
 
 因此，我们现在有了一个路由中间件，将 `app.use(notFound);` 放在 `server.ts` 文件中其它路由的后面。如果请求路由不存在，它将执行并返回 `404` 状态代码（表示未找到），并像往常一样简单地返回一个响应消息，即 `{success, message}`。
 
@@ -1252,7 +1252,7 @@ app.use(logger.responseTime);
 
 现在我们来讨论下日志中间件到底做了什么，并且通过 `next()` 来说明其执行过程。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36.png)
+![](http://qiniu.ningo.cloud/articles/1b4-19.jpg)
 
 上图为调用 GET / todos API 时日志记录中间件的执行顺序。
 
@@ -1316,7 +1316,7 @@ logger: async (
 
 当遇到 `await next()` 时会立即跳到下一个中间件——`responseTime` 上。
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36-1.png)
+![](http://qiniu.ningo.cloud/articles/1b4-20.jpg)
 
 再次分享此图来回顾这个过程。
 
@@ -1345,7 +1345,7 @@ response.headers.set(X_RESPONSE_TIME, ${ms}ms)
 
 再次分享这个文件来回顾这个过程：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36-2.png)
+![](http://qiniu.ningo.cloud/articles/1b4-21.jpg)
 
 - 接下来我们在 `response` 响应头的 Headers 中设置：
 
@@ -1380,11 +1380,11 @@ $ deno run --allow-net server.ts
 
 在 Postman 中打开一个标签页。将请求方式设置为 `GET`，并在 `URL` 输入框中输入 `http://localhost:8080/todos` 后，点击 `Send`：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-13.17.13.png)
+![](http://qiniu.ningo.cloud/articles/1b4-22.jpg)
 
 在 Postman 中多请求几次 API，然后返回到控制台查看日志时，应该看到类似如下的内容：
 
-![](https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-13.21.03.png)
+![](http://qiniu.ningo.cloud/articles/1b4-23.jpg)
 
 每个 API 请求都会被日志中间件记录在终端。
 

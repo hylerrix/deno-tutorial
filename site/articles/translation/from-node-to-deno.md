@@ -7,7 +7,7 @@
 > - 备注：本文已获原作者授权，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
 > - 备注：本文独立争取授权与翻译的同时，发现 InfoQ 等平台也独立授权翻译，可以作为对比。看来翻译的文章不能积压，要不也会错失风口~
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241263396-a27163d1-af55-4345-8a57-f312ab509b36.jpeg#align=left&display=inline&height=432&margin=%5Bobject%20Object%5D&originHeight=432&originWidth=959&size=0&status=done&style=none&width=959)
+![](http://qiniu.ningo.cloud/articles/1b3-01.jpg)
 
 上周我发表了一篇关于 Deno 的文章：[《Deno + WebSockets 打造聊天室应用》](https://aralroca.com/blog/learn-deno-chat-app)。在那之后，有很多困惑接踵而至——其中大部分都在思考如何在全新的 Deno 生态中来做 Node.js 上常做的工作。
 
@@ -39,7 +39,7 @@
 
 我们可以使用基于 Node.js + `Chromium` 的 Electron 来依托 Web 技术栈创建桌面应用程序。那么我们可以在 Deno 下使用 Electron 吗？或者还有其它更多选择吗？
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591241263044-47d1cea3-4123-4bd1-8c78-001649d1327b.png#align=left&display=inline&height=150&margin=%5Bobject%20Object%5D&originHeight=150&originWidth=154&size=0&status=done&style=none&width=154)
+![](http://qiniu.ningo.cloud/articles/1b3-02.jpg)
 
 答案是如今的 Electron 还远远不能运行在 Deno 上，我们必须寻找其它的解决方案。自从 Deno 选择用 Rust 语言构建其内核后，我们可以使用 Rust 生态上的 Web View [@Bosop/web-view](https://github.com/Boscop/web-view) 来在 Deno 上运行桌面应用。
 
@@ -83,7 +83,7 @@ const webview2 = new WebView({
 await Promise.all([webview1.run(), webview2.run()]);
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262798-d96bcdbc-efe9-44dd-8317-4ea1dbdcd21f.jpeg#align=left&display=inline&height=534&margin=%5Bobject%20Object%5D&originHeight=534&originWidth=800&size=0&status=done&style=none&width=800)
+![](http://qiniu.ningo.cloud/articles/1b3-03.jpg)
 
 ## Forever / PM2
 
@@ -91,7 +91,7 @@ await Promise.all([webview1.run(), webview2.run()]);
 
 Forever 专为 Node.js 创造，就不用考虑了；而 PM2 可以运行 Node.js 之外的的脚本语言，因此我们可以让 PM2 和 Deno 搭配起来。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262736-f5f47f71-b568-4937-aa76-9408aac14cd6.jpeg#align=left&display=inline&height=56&margin=%5Bobject%20Object%5D&originHeight=56&originWidth=200&size=0&status=done&style=none&width=200)
+![](http://qiniu.ningo.cloud/articles/1b3-04.jpg)
 
 创建一个 `app.sh` 文件：
 
@@ -106,13 +106,13 @@ deno run -A myCode.ts
 pm2 start ./app.sh
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262714-21293f92-de3d-4534-9b8c-346963f9f005.jpeg#align=left&display=inline&height=252&margin=%5Bobject%20Object%5D&originHeight=252&originWidth=690&size=0&status=done&style=none&width=690)
+![](http://qiniu.ningo.cloud/articles/1b3-05.jpg)
 
 ## Express / Koa
 
 [Express](https://github.com/expressjs/express) 和 [Koa](https://github.com/koajs/koa) 以其强大的路由系统和友好的 HTTP 工具库（重定向、缓存等）而闻名于 Node.js 社区。我们可以在 Deno 中使用它们吗？答案是不能...但也有一些替代方案。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262740-85628155-fc5c-46a1-9339-4b3f8acb7680.jpeg#align=left&display=inline&height=151&margin=%5Bobject%20Object%5D&originHeight=151&originWidth=300&size=0&status=done&style=none&width=300)
+![](http://qiniu.ningo.cloud/articles/1b3-06.jpg)
 
 ### HTTP（标准库）
 
@@ -190,7 +190,7 @@ console.log(`app listening on port ${server.port}`);
 
 > 译者注：MEAN = MongoDB(数据库) + Express(后端) + Angular(前端) + Node.js(运行时)；MERN 同左，但其中的 R 代表 React。如上技术栈都对 JavaScript 语言极其友好。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262844-9c75e8dd-ebd9-4c33-b853-b57cebd20b53.jpeg#align=left&display=inline&height=108&margin=%5Bobject%20Object%5D&originHeight=108&originWidth=400&size=0&status=done&style=none&width=400)
+![](http://qiniu.ningo.cloud/articles/1b3-07.jpg)
 
 因此，我们可以让 Deno 和 MongoDB 搭配起来，比如使用这个模块：[https://github.com/manyuanrong/deno_mongo](https://github.com/manyuanrong/deno_mongo)。
 
@@ -236,7 +236,7 @@ const deleteCount = await users.deleteOne({ _id: insertId });
 
 ## PostgresSQL
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262628-31821a7a-2276-4cf6-84f1-68a24b61961a.jpeg#align=left&display=inline&height=155&margin=%5Bobject%20Object%5D&originHeight=155&originWidth=150&size=0&status=done&style=none&width=150)
+![](http://qiniu.ningo.cloud/articles/1b3-08.jpg)
 
 与 MongoDB 一样，[PostgresSQL](https://github.com/postgres/postgres/) 也有一个 Deno 生态库：[https://github.com/buildondata/deno-postgres。](https://github.com/buildondata/deno-postgres%E3%80%82)
 
@@ -257,7 +257,7 @@ await client.end();
 
 ## MySQL / MariaDB
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262661-94b4e9eb-44e8-44ee-864d-8e71bf92c004.jpeg#align=left&display=inline&height=125&margin=%5Bobject%20Object%5D&originHeight=125&originWidth=220&size=0&status=done&style=none&width=220)
+![](http://qiniu.ningo.cloud/articles/1b3-09.jpg)
 
 与 `MongoDB` 和 `PostgresSQL` 一样，Deno 生态下也有 [MySQL](https://github.com/mysqljs/mysql)/[MariaDB](https://github.com/mariadb-corporation/mariadb-connector-nodejs) 的相关库：[https://github.com/manyuanrong/deno_mysql](https://github.com/manyuanrong/deno_mysql)。
 
@@ -281,7 +281,7 @@ console.log(result);
 
 ## Redis
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262896-29f3a770-1767-4c58-a9ae-24602febfa36.jpeg#align=left&display=inline&height=129&margin=%5Bobject%20Object%5D&originHeight=129&originWidth=150&size=0&status=done&style=none&width=150)
+![](http://qiniu.ningo.cloud/articles/1b3-10.jpg)
 
 [Redis](https://github.com/NodeRedis/node-redis) 是著名的缓存数据库之一，Deno 下也有相关库：[https://github.com/keroxp/deno-redis](https://github.com/keroxp/deno-redis)。
 
@@ -298,7 +298,7 @@ const example = await redis.get("example");
 
 ## Nodemon
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262712-5a92606c-c38c-49e9-ac9a-bf341ad48b3d.jpeg#align=left&display=inline&height=137&margin=%5Bobject%20Object%5D&originHeight=137&originWidth=120&size=0&status=done&style=none&width=120)
+![](http://qiniu.ningo.cloud/articles/1b3-11.jpg)
 
 [Nodemon](https://github.com/remy/nodemon) 在开发环境中监控文件的任何改变，并能自动更新服务器。这使 `node` 下的发更加有趣，无需手动停止并重启服务器来查看应用的变化。那么 Nodemon 可以在 Deno 中使用吗？
 
@@ -312,7 +312,7 @@ const example = await redis.get("example");
 
 ## Jest、Jasmine、Ava...
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241263412-a910bdef-a756-41b5-ae50-4a3733f7a340.jpeg#align=left&display=inline&height=200&margin=%5Bobject%20Object%5D&originHeight=200&originWidth=500&size=0&status=done&style=none&width=500)
+![](http://qiniu.ningo.cloud/articles/1b3-12.jpg)
 
 在 `Node.js` 的生态系统中，有很多不同的测试工具和方法。但直到现在，官方也没有推出一种正式的机制来测试 `Node.js` 代码。
 
@@ -334,7 +334,7 @@ Deno.test('My first test', async () => {
 
 ## Webpack、Parcel、Rollup...
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262718-6c058b13-724d-4e16-b1d3-724ef401e369.jpeg#align=left&display=inline&height=174&margin=%5Bobject%20Object%5D&originHeight=174&originWidth=447&size=0&status=done&style=none&width=447)
+![](http://qiniu.ningo.cloud/articles/1b3-13.jpg)
 
 Deno 的优势之一是我们可以将 `ESmodules` 与`TypeScript` 一起使用，而无需诸如 [Webpack](https://github.com/webpack/webpack)、[Parcel](https://github.com/parcel-bundler/parcel) 或[Rollup](https://github.com/rollup/rollup) 之类的工具。
 
@@ -356,7 +356,7 @@ Deno 的优势之一是我们可以将 `ESmodules` 与`TypeScript` 一起使�
 
 ## Prettier
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241262696-12da8219-ee44-4f53-8736-7c6d340ce35a.jpeg#align=left&display=inline&height=150&margin=%5Bobject%20Object%5D&originHeight=150&originWidth=150&size=0&status=done&style=none&width=150)
+![](http://qiniu.ningo.cloud/articles/1b3-14.jpg)
 
 在过去的几年中，[Prettier](https://prettier.io/) 在 JavaScript 生态中已广为人知，因为有了它，我们不必担心格式化文件。
 
@@ -370,7 +370,7 @@ Deno 的优势之一是我们可以将 `ESmodules` 与`TypeScript` 一起使�
 
 ## NPM Scripts
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1591241263086-ac55b70a-97f6-4bf8-8d64-6c1324458196.jpeg#align=left&display=inline&height=32&margin=%5Bobject%20Object%5D&originHeight=32&originWidth=200&size=0&status=done&style=none&width=200)
+![](http://qiniu.ningo.cloud/articles/1b3-15.jpg)
 
 我非常怀念的一件事就是曾在 `package.json` 中配置各种命令行脚本。但在 Deno 上，`package.json` 已经不复存在了。
 
@@ -395,7 +395,7 @@ scripts:
 
 ## Nvm
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591241263776-e4ad6e35-fd30-47e9-8959-74d3f0be5a5c.png#align=left&display=inline&height=51&margin=%5Bobject%20Object%5D&originHeight=51&originWidth=220&size=0&status=done&style=none&width=220)
+![](http://qiniu.ningo.cloud/articles/1b3-16.jpg)
 
 [Nvm](https://github.com/nvm-sh/nvm) 是一个用于管理多个 Node.js 版本的 `CLI` 工具，可以根据具体的项目来轻松升级或降级 Node.js 版本。
 
@@ -419,7 +419,7 @@ scripts:
 
 ## 在 Docker 上运行
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591241263382-d5641f36-9a3f-444f-9c49-46bfe4f69fa1.png#align=left&display=inline&height=150&margin=%5Bobject%20Object%5D&originHeight=150&originWidth=205&size=0&status=done&style=none&width=205)
+![](http://qiniu.ningo.cloud/articles/1b3-17.jpg)
 
 要在 `Docker` 内部运行 Deno，我们可以创建以下 `Dockerfile`：
 
@@ -451,7 +451,7 @@ CMD ["--allow-net", "main.ts"]
 
 ## 作为 Lambda 运行
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1591241263775-bec4e6ae-7db8-4246-9ea8-8499e0be68b7.png#align=left&display=inline&height=150&margin=%5Bobject%20Object%5D&originHeight=150&originWidth=148&size=0&status=done&style=none&width=148)
+![](http://qiniu.ningo.cloud/articles/1b3-18.jpg)
 
 要将 Deno 作为 `lambda` 运行，需要 `Deno STD` 库中有类似于这样的模块：[https://deno.land/x/lambda](https://deno.land/x/lambda)。
 

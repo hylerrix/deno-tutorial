@@ -4,7 +4,7 @@
 
 一个全新的技术会有怎样的生态？在对 Deno 的好奇和梳理过程中，基于已有的 Awesome Deno 英文列表全新出发，一个专注于中文技术圈的 Deno 资源列表呼之欲出。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590144018246-716727c5-eb3b-4fba-a562-ac701690ebdb.png#align=left&display=inline&height=337&margin=%5Bobject%20Object%5D&name=image.png&originHeight=592&originWidth=839&size=47035&status=done&style=none&width=478)
+![](http://qiniu.ningo.cloud/articles/1b0-01.jpg)
 
 ## 为什么是 Awesome？
 
@@ -56,7 +56,7 @@ _**急需你的贡献。**_
 ## Deno 中文资源全图谱 · v1.0.0[
 ](https://github.com/sindresorhus/awesome)
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590131737208-48b6410f-f29e-4ec0-922c-a42cf6c6ed96.png#align=left&display=inline&height=188&margin=%5Bobject%20Object%5D&name=image.png&originHeight=376&originWidth=376&size=47946&status=done&style=none&width=188)
+![](http://qiniu.ningo.cloud/articles/1b0-02.jpg)
 
 ### 目录
 

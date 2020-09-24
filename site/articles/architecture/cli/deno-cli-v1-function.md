@@ -1,6 +1,6 @@
 # 从 CLI 指令通读 Deno v1.x 全特性
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596527495214-be867c27-7594-4771-bd4a-ceb8a74320c0.png#align=left&display=inline&height=587&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1174&originWidth=2148&size=2714972&status=done&style=none&width=1074)
+![](http://qiniu.ningo.cloud/articles/1b8-01.jpg)
 
 随着掘金开启了第一期技术专题之“[聊聊 Deno 的一些事儿](https://juejin.im/post/6854573219266887694)”的征稿活动，赶在截稿日的最后一天（08/04），一篇新的 Deno 文章呼之欲出。拜读了下其他伙伴的 Deno 征文，有 Deno TCP Echo Server、在 Deno 上进行 TDD 实践、Deno 程序如何调用 Rust、Deno 命令行开发方案、Deno 造一个简单的 Router、Deno 的简单应用以及 Deno 从入门到跑路、Deno 从零到架构开发等等文章，每篇都很生动精彩。那么...如果你是这两天看到的这篇文章，觉得有所帮助，**欢(gan)迎(jin)来我的掘金文章里点点赞**，可以让我获得一个不错的掘金周边礼物~如果是未来某天看到的，[**戳这里**](https://github.com/hylerrix/deno-tutorial)。
 
@@ -19,7 +19,7 @@
 
 ## 通读命令行基本信息
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596529925246-c8e8c4f1-47a5-43a6-a49d-856f685969b6.png#align=left&display=inline&height=151&margin=%5Bobject%20Object%5D&name=image.png&originHeight=195&originWidth=259&size=81027&status=done&style=none&width=201)
+![](http://qiniu.ningo.cloud/articles/1b8-02.jpg)
 
 ### deno --help, help
 
@@ -130,7 +130,7 @@ $ deno eval "console.log(30933 + 404)"
 
 本章目录按照 14 个内置工具使用到的数量进行由大到小的排序。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596529966276-8030cc66-b39d-4051-8615-0c11a10ebbc4.png#align=left&display=inline&height=205&margin=%5Bobject%20Object%5D&name=image.png&originHeight=574&originWidth=666&size=138294&status=done&style=none&width=238)
+![](http://qiniu.ningo.cloud/articles/1b8-03.jpg)
 
 ### (01) --log-level/--quiet
 
@@ -296,7 +296,7 @@ $ deno run --allow-net --no-remote main.ts
 
 由于本文在“通读 Deno 通用指令章节”将 Deno 内置工具包可复用的指令都已经一一介绍了一遍。本章重点以目录的形式强调 14 个内置工具包的独立性（中文名以 xx 器来命名），并进行除了通用指令外的一些独特介绍。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596530001606-e5644671-e6a9-48eb-9e25-76ebdaf082e3.png#align=left&display=inline&height=184&margin=%5Bobject%20Object%5D&name=image.png&originHeight=368&originWidth=390&size=38226&status=done&style=none&width=195)
+![](http://qiniu.ningo.cloud/articles/1b8-04.jpg)
 
 ### (01) 运行器：deno run
 
@@ -558,7 +558,7 @@ $ deno repl # deno
 
 > 相关实战代码都收录在[《Deno 钻研之术》仓库](https://github.com/hylerrix/deno-tutorial)中的 demos/ningowood/v1-cli-example 下。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596530091439-70d08757-bba7-4808-9b38-68d2ff4fcd2d.png#align=left&display=inline&height=212&margin=%5Bobject%20Object%5D&name=image.png&originHeight=424&originWidth=520&size=244601&status=done&style=none&width=260)
+![](http://qiniu.ningo.cloud/articles/1b8-05.jpg)
 
 ### (01) DENO_DIR
 
@@ -619,7 +619,7 @@ false
 
 ## 总结 & 订阅
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1596530467334-3a93388d-504b-4587-84af-333c8c32796d.png#align=left&display=inline&height=174&margin=%5Bobject%20Object%5D&name=image.png&originHeight=436&originWidth=450&size=111988&status=done&style=none&width=180)
+![](http://qiniu.ningo.cloud/articles/1b8-06.jpg)
 
 至此，《从 CLI 指令通读 Deno v1.x 全特性》文章大功告成。在写作的这 14h+ 过程中，产生了很多灵感，也对更多内容感兴趣觉得可以深挖。奈何一篇文章能承载的内容十分有限，所以可以从本文引发思考的一些有趣的主题也就先推迟再看了。同时，未来很可能会有更多的指令作为新功能推出，或许也有些指令由于不在文档帮助信息中而没办法收录。
 

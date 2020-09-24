@@ -8,7 +8,7 @@
 > - 备注：本文遵循 [freeCodeCamp 翻译规范](https://github.com/freeCodeCamp/news-translation)，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
 > - 备注：非营利组织 freeCodeCamp.org 自 2014 年成立以来，以“帮助人们免费学习编程”为使命，创建了大量免费的编程教程，包括交互式课程、视频课程、文章等。线下开发者社区遍布 160 多个国家、2000 多个城市。我们正在帮助全球数百万人学习编程，希望让世界上每个人都有机会获得免费的优质的编程教育资源，成为开发者或者运用编程去解决问题。搜索关注微信公众号 “freeCodeCamp”，可了解更多信息。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108212-9cf6dc3e-0bc8-4194-8d77-f6dafc31dcc1.jpeg#align=left&display=inline&height=904&margin=%5Bobject%20Object%5D&originHeight=904&originWidth=1706&size=0&status=done&style=none&width=1706)
+![](http://qiniu.ningo.cloud/articles/1a9-01.jpg)
 
 我每周都在探索新的项目，很少会有一个像 [Deno](https://deno.land/) 这样的项目让我如此着迷。
 
@@ -145,7 +145,7 @@ Deno 基于 Rust 和 TypeScript 这两种今天正在迅速发展的语言编写
 brew install deno
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108205-00f60477-b616-452d-a55e-44c96aa7044c.jpeg#align=left&display=inline&height=1080&margin=%5Bobject%20Object%5D&originHeight=1080&originWidth=1964&size=0&status=done&style=none&width=1964)
+![](http://qiniu.ningo.cloud/articles/1a9-02.jpg)
 
 输出如上命令后，你将可以访问 `deno` 命令。帮助是`deno --help`：
 
@@ -239,7 +239,7 @@ ENVIRONMENT VARIABLES:
 
 如下所示，我们可以直接输入 `deno` 命令命令来默认启动 REPL（Read-Execute-Print-Loop）环境直接调试功能，这与运行 `deno repl` 效果是相同的。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108204-177538f5-f838-43d2-872d-7738a2e5ad74.jpeg#align=left&display=inline&height=678&margin=%5Bobject%20Object%5D&originHeight=678&originWidth=1388&size=0&status=done&style=none&width=1388)
+![](http://qiniu.ningo.cloud/articles/1a9-03.jpg)
 
 一个更常见的直接使用 `deno` 命令的场景是执行在 TypeScript 文件中写的 Deno 应用程序。
 
@@ -259,7 +259,7 @@ Deno 让我感到非常惊奇的特性是：你甚至不必写一行代码，便
 
 此时 Deno 会将 URL 上的程序下载到本地并进行编译，然后运行：
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108212-88b3701c-858d-4d7a-9e68-e52c159d4eac.jpeg#align=left&display=inline&height=578&margin=%5Bobject%20Object%5D&originHeight=578&originWidth=1908&size=0&status=done&style=none&width=1908)
+![](http://qiniu.ningo.cloud/articles/1a9-04.jpg)
 
 **当然，我一般不建议从 Internet 运行无法保障安全性的代码。在这种情况下，我们先运行 Deno 官方网站上提供的 Demo；另外 Deno 还有一个沙箱，可以阻止程序执行你不希望做的事情。稍后再详细介绍。**
 
@@ -271,20 +271,21 @@ console.log("Welcome to Deno 🦕");
 
 如果使用浏览器打开直接打开 [https://deno.land/std/examples/welcome.ts](https://deno.land/std/examples/welcome.ts) 这个 URL，则会看到以下页面：
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108234-0283df4e-e0ba-4db9-85f8-af0d6ee9723e.jpeg#align=left&display=inline&height=487&margin=%5Bobject%20Object%5D&originHeight=487&originWidth=752&size=0&status=done&style=none&width=752)
+![](http://qiniu.ningo.cloud/articles/1a9-05.jpg)
 
 奇怪吧？你可能期待着打开 URL 后出现一个纯 TypeScript 文件以供下载，但是我们却看到了一个网页。原因是 Deno 网站的 Web 服务器知道你正在使用浏览器，并为你提供了对用户更加友好的页面。
 
 为了验证这个功能，我们可以使用 `wget` 命令来测试这个 URL， `wget` 使用 `text/plain` 下载文本而不是  `text/html`：
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108318-25c83547-94e1-42a2-9352-a33bd30bbae9.jpeg#align=left&display=inline&height=564&margin=%5Bobject%20Object%5D&originHeight=564&originWidth=1266&size=0&status=done&style=none&width=1266)
+
+![](http://qiniu.ningo.cloud/articles/1a9-06.jpg)
 
 如果你想再运行这个程序，现在已经被 Deno 缓存了，不需要再下载和编译了。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108160-002b0318-a8a9-4444-87fe-6608a25fe62a.jpeg#align=left&display=inline&height=778&margin=%5Bobject%20Object%5D&originHeight=778&originWidth=1622&size=0&status=done&style=none&width=1622)
+![](http://qiniu.ningo.cloud/articles/1a9-07.jpg)
 
 你可以用 `--reload` 参数强制重新下载和编译原始源码。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108280-40933589-9ba2-4337-a5b9-467534237714.jpeg#align=left&display=inline&height=578&margin=%5Bobject%20Object%5D&originHeight=578&originWidth=1622&size=0&status=done&style=none&width=1622)
+![](http://qiniu.ningo.cloud/articles/1a9-08.jpg)
 
 在当前版本（0.42.0）中，`deno --run` 有许多未在 `deno --help` 清单中列出的功能。你需要运行 `deno run --help` 以显示更多。
 
@@ -481,17 +482,17 @@ for await (const req of s) {
 
 > 译者注：justjavac 的 Deno VS Code 拓展将被官方收录，以后可以直接使用官方的拓展。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108587-ce37d813-3c3c-4aa5-8be2-9edeb4128efb.jpeg#align=left&display=inline&height=940&margin=%5Bobject%20Object%5D&originHeight=940&originWidth=1375&size=0&status=done&style=none&width=1375)
+![](http://qiniu.ningo.cloud/articles/1a9-09.jpg)
 
 该扩展将为 `VS Code` 提供几个实用工具和不错的东西来帮助你编写应用程序。
 
 现在在一个文件夹中创建一个 `app.ts` 文件，然后粘贴上面的代码。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108193-34529ea2-a542-4d14-911a-5cc9c2c0ae2a.jpeg#align=left&display=inline&height=751&margin=%5Bobject%20Object%5D&originHeight=751&originWidth=1059&size=0&status=done&style=none&width=1059)
+![](http://qiniu.ningo.cloud/articles/1a9-10.jpg)
 
 现在用 `deno run app.ts` 命令运行它。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108258-3a5d47d0-1630-4950-907a-9dc14399ed1c.jpeg#align=left&display=inline&height=1014&margin=%5Bobject%20Object%5D&originHeight=1014&originWidth=1266&size=0&status=done&style=none&width=1266)
+![](http://qiniu.ningo.cloud/articles/1a9-11.jpg)
 
 Deno 会先下载、编译我们导入的那个依赖及其所有需要的依赖项。
 
@@ -518,7 +519,7 @@ import Reader = Deno.Reader;
 
 在最后，我们还有一个问题。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108249-f25465bc-528c-44f8-91bf-a9cb5530258a.jpeg#align=left&display=inline&height=364&margin=%5Bobject%20Object%5D&originHeight=364&originWidth=1266&size=0&status=done&style=none&width=1266)
+![](http://qiniu.ningo.cloud/articles/1a9-12.jpg)
 
 这是怎么回事？我们为什么会收到执行权限被拒绝的提示？
 
@@ -544,12 +545,11 @@ Deno 的解决方案是试图大量借鉴浏览器实现相同的权限模型—
 deno run --allow-net app.ts
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108284-f40a4a1b-361a-4d66-8fc6-3565b5f78df3.jpeg#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&originHeight=264&originWidth=850&size=0&status=done&style=none&width=850)
-
+![](http://qiniu.ningo.cloud/articles/1a9-13.jpg)
 
 该应用程序现在监听在 8000 端口上运行着 HTTP 服务器：
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108404-f8d8f085-033f-4d0d-8ceb-26be08149324.jpeg#align=left&display=inline&height=487&margin=%5Bobject%20Object%5D&originHeight=487&originWidth=908&size=0&status=done&style=none&width=908)
+![](http://qiniu.ningo.cloud/articles/1a9-14.jpg)
 
 其他标志允许 Deno 解锁其他功能，如下所示：
 
@@ -572,7 +572,7 @@ JavaScript 程序员都习惯于运行 [Prettier](https://flaviocopes.com/pretti
 
 假设你有一个格式化问题严重的文件如下图所示。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108254-49bb0133-c6c2-4ebb-82e9-b0240541f0e0.jpeg#align=left&display=inline&height=751&margin=%5Bobject%20Object%5D&originHeight=751&originWidth=1059&size=0&status=done&style=none&width=1059)
+![](http://qiniu.ningo.cloud/articles/1a9-15.jpg)
 
 你运行 `deno fmt app.ts`，它就会执行正确的代码格式化，包括自动加上缺失的分号。
 
@@ -632,7 +632,7 @@ deno run https://deno.land/std/examples/cat.ts app.ts
 
 你会得到如下权限错误。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108211-4239256a-5731-471c-b8ad-496b5a1b308a.jpeg#align=left&display=inline&height=489&margin=%5Bobject%20Object%5D&originHeight=489&originWidth=967&size=0&status=done&style=none&width=967)
+![](http://qiniu.ningo.cloud/articles/1a9-16.jpg)
 
 这是因为 Deno 默认情况下不允许访问文件系统。需要使用 `--allow-read=./` 命令授予对当前文件夹的访问权限：
 
@@ -640,7 +640,7 @@ deno run https://deno.land/std/examples/cat.ts app.ts
 deno run --allow-read=./ https://deno.land/std/examples/cat.ts app.ts
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108327-f72d7fd6-6971-4799-a9f0-19f07f536cd4.jpeg#align=left&display=inline&height=439&margin=%5Bobject%20Object%5D&originHeight=439&originWidth=967&size=0&status=done&style=none&width=967)
+![](http://qiniu.ningo.cloud/articles/1a9-17.jpg)
 
 ## Deno 是否有 Express/Hapi/Koa/*
 
@@ -711,13 +711,13 @@ deno run --allow-env --allow-net app.ts
 
 然后 Deno 将下载依赖项：
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108275-215875c2-13ed-4ac7-b58b-22a2e21b6805.jpeg#align=left&display=inline&height=1123&margin=%5Bobject%20Object%5D&originHeight=1123&originWidth=923&size=0&status=done&style=none&width=923)
+![](http://qiniu.ningo.cloud/articles/1a9-18.jpg)
 
 这时程序监听在 `4000` 端口上。
 
 下次运行该命令时，Deno 会跳过安装部分，因为这些包已经被缓存了。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108253-c730a830-ac38-4909-a7e1-fb0895cd45e9.jpeg#align=left&display=inline&height=339&margin=%5Bobject%20Object%5D&originHeight=339&originWidth=1084&size=0&status=done&style=none&width=1084)
+![](http://qiniu.ningo.cloud/articles/1a9-19.jpg)
 
 在文件的顶部，让我们定义一个旺柴的接口，然后我们声明一个初始的 `Dogs` 数组 `Dog` 对象。
 
@@ -772,7 +772,7 @@ export const getDogs = ({ response }: { response: any }) => {
 };
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108268-7efd6854-4555-47eb-afa1-9e2c853bd2c0.jpeg#align=left&display=inline&height=624&margin=%5Bobject%20Object%5D&originHeight=624&originWidth=879&size=0&status=done&style=none&width=879)
+![](http://qiniu.ningo.cloud/articles/1a9-20.jpg)
 
 接下来，我们就来看看如何通过名字来检索旺柴。
 
@@ -798,7 +798,7 @@ export const getDog = ({
 };
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108264-40e48063-e125-4d38-bdbf-269d8ed0b608.jpeg#align=left&display=inline&height=624&margin=%5Bobject%20Object%5D&originHeight=624&originWidth=879&size=0&status=done&style=none&width=879)
+![](http://qiniu.ningo.cloud/articles/1a9-21.jpg)
 
 这是我们添加一个新的旺柴的方法：
 
@@ -819,7 +819,7 @@ export const addDog = async ({
 };
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108248-a5198b2e-db87-4370-aa93-e9d1be6eb73e.jpeg#align=left&display=inline&height=624&margin=%5Bobject%20Object%5D&originHeight=624&originWidth=879&size=0&status=done&style=none&width=879)
+![](http://qiniu.ningo.cloud/articles/1a9-22.jpg)
 
 注意，我现在使用 `const body = await request.body()` 来获取正文的内容，因为 `name` 和 `age` 值是以 JSON 的形式传递的。
 
@@ -853,7 +853,7 @@ export const updateDog = async ({
 };
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108243-5c436797-023f-42c3-a47c-02c97d026a64.jpeg#align=left&display=inline&height=624&margin=%5Bobject%20Object%5D&originHeight=624&originWidth=879&size=0&status=done&style=none&width=879)
+![](http://qiniu.ningo.cloud/articles/1a9-23.jpg)
 
 这是我们如何从列表中删除旺柴的方法：
 
@@ -882,7 +882,7 @@ export const removeDog = ({
 };
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1589798108280-d05de626-aa2f-45f2-84f9-4fbe37e76a33.jpeg#align=left&display=inline&height=624&margin=%5Bobject%20Object%5D&originHeight=624&originWidth=879&size=0&status=done&style=none&width=879)
+![](http://qiniu.ningo.cloud/articles/1a9-24.jpg)
 
 这是完整的示例代码：
 

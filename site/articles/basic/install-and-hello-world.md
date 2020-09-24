@@ -2,7 +2,7 @@
 
 > 《Deno 钻研之术》系列于 Deno v1 正式发售之日全新推出，每周不定期更新在 Github 中（[https://github.com/hylerrix/deno-tutorial](https://github.com/hylerrix/deno-tutorial)）。让我们一起循序渐进学 Deno，先易后难补 Node，面向未来开发属于自己的 Deno Web App。欢迎订阅，欢迎交流。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589276497896-b44833fd-0e49-4f4f-8b09-c571226431c1.png#align=left&display=inline&height=227&margin=%5Bobject%20Object%5D&name=image.png&originHeight=500&originWidth=1500&size=1423569&status=done&style=none&width=681)
+![](http://qiniu.ningo.cloud/articles/1a8-01.jpg)
 
 ## 学习 Deno 的 N+ 种理由
 
@@ -32,7 +32,7 @@ Deno 是一个基于 Chrome V8 引擎开发的一个安全的 JavaScript 和 Ty
 
 下方 Deno 知识体系示意图的截图来自基于机器学习的信息抽取和检索系统 [Magi.com](https://magi.com/search?q=deno)，“它能将任何领域的自然语言文本中的知识提取成结构化的数据，通过终身学习持续聚合和纠错，进而为人类用户和其他人工智能提供可解析、可检索、可溯源的知识体系”。图中内容仅供参考。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589270606077-239e082b-2a4d-477b-a93e-c261702aca6a.png#align=left&display=inline&height=460&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1590&originWidth=1262&size=288393&status=done&style=none&width=365)
+![](http://qiniu.ningo.cloud/articles/1a8-02.jpg)
 
 ### 优秀的生态，Star 量破 50k+
 
@@ -42,7 +42,7 @@ Deno 是一个基于 Chrome V8 引擎开发的一个安全的 JavaScript 和 Ty
 
 下图即为 Deno 目前的 Star History 趋势图。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589254908950-ab9617d9-960c-40fe-8e01-5df5653b0e89.png#align=left&display=inline&height=495&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1194&originWidth=1680&size=120735&status=done&style=none&width=697)
+![](http://qiniu.ningo.cloud/articles/1a8-03.jpg)
 
 ### 押宝 Deno？
 
@@ -61,7 +61,7 @@ Deno 是一个基于 Chrome V8 引擎开发的一个安全的 JavaScript 和 Ty
 > 平心而论，我最初参与的主要目的其实最早是想着“我一直在用 Node 但不了解它真实背后的工作原理”，所以最早看到 Deno 的时候在想“了解 Node 原理的比较好的一个方法是干脆自己去做一个新的 Node”。
 > ——@kevinkassimo
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589292642770-239c2471-bb9c-4bab-a292-476ebeb7ca54.png#align=left&display=inline&height=236&margin=%5Bobject%20Object%5D&name=image.png&originHeight=472&originWidth=950&size=788927&status=done&style=none&width=475)
+![](http://qiniu.ningo.cloud/articles/1a8-04.jpg)
 
 这也正是我对于 Deno 的重要心态。大学初入校园期间正值 Node.js 最火的时刻，自己因为对 Node.js 的喜欢选择了大前端领域，接下来的几年也参加、举办过很多前端相关活动，但对于 Node.js 的了解因为自己的身份局限一直没有得到更好的突破。
 
@@ -83,7 +83,7 @@ Deno 是一个基于 Chrome V8 引擎开发的一个安全的 JavaScript 和 Ty
 
 ### 安装方式 1：使用 curl 直接安装
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589293245925-d3e01ff5-18ec-4190-a848-1f26b53fb8d6.png#align=left&display=inline&height=85&margin=%5Bobject%20Object%5D&name=image.png&originHeight=137&originWidth=457&size=12408&status=done&style=none&width=285)
+![](http://qiniu.ningo.cloud/articles/1a8-05.jpg)
 
 curl 在命令行或脚本中用于传输数据。这里，第一种安装方式便是通过 curl 下载远程的安装脚本 install.sh 中的 deno.zip 压缩包到本地并立即执行，如下。
 
@@ -131,8 +131,7 @@ $ deno upgrade
 
 ### 安装方式 2：从 Homebrew 中安装
 
-
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589293222295-d0881591-7470-4e6b-bf68-70426bdf4ea5.png#align=left&display=inline&height=198&margin=%5Bobject%20Object%5D&name=image.png&originHeight=560&originWidth=1200&size=76707&status=done&style=none&width=424)
+![](http://qiniu.ningo.cloud/articles/1a8-06.jpg)
 
 如果你刚才通过 curl 已经将 Deno 安装成功了，现在想尝试 Homebrew 的安装，可以根据已知的 deno 目录和环境变量值，手动卸载 deno，确保相关目录（~/.deno）和相关环境变量（export -p | grep deno 来验收）都清空。
 
@@ -176,7 +175,7 @@ $ ll /usr/local/bin/deno
 
 ### 安装方式 3：从 ASDF 中安装
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589293179686-78685b0e-d131-4e99-bc67-209355750e0a.png#align=left&display=inline&height=244&margin=%5Bobject%20Object%5D&name=image.png&originHeight=720&originWidth=1280&size=938559&status=done&style=none&width=433)
+![](http://qiniu.ningo.cloud/articles/1a8-07.jpg)
 
 ASDF 的体验还不错，ASDF 是可扩展的版本管理器，支持 Ruby、Node.js、Elixir 和 Erlang 等，我们可以通过 ASDF 来安装 Deno，包括进行快速的管理 Deno 的多版本。首先安装 ASDF，可以使用通过 Git 安装并手动配置环境变量，也可以通过 Homebrew 来安装。
 
@@ -238,7 +237,7 @@ $ asdf current deno # 1.0.0-rc3 (set by /Users/${USER_NAME}/.tool-versions)
 
 ### 该选择怎样的安装方式？
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589293866295-d1c01be3-033e-4554-bc29-cf7e2849b41d.png#align=left&display=inline&height=242&margin=%5Bobject%20Object%5D&name=image.png&originHeight=896&originWidth=1578&size=2319638&status=done&style=none&width=427)
+![](http://qiniu.ningo.cloud/articles/1a8-08.jpg)
 
 基于自身所要使用的操作系统和想要学习 Deno 的方式，从“命令行快速安装”、“包管理器单版本安装”、“包管理器多版本安装并控制”、“源码上安装”等角度决定不同安装方式即可。
 
@@ -248,7 +247,7 @@ $ asdf current deno # 1.0.0-rc3 (set by /Users/${USER_NAME}/.tool-versions)
 
 Brian Kernighan 于 1978 年写了一本名叫《C 程序设计语言》的编程书，该书中第一次引用了 Hello World 程序，这个传统便被传承至今。在此，关于 Deno 的第一个程序也可以从 Hello World 开始。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589292490407-ffa09f20-3f70-49d2-94de-98f406d8987a.png#align=left&display=inline&height=189&margin=%5Bobject%20Object%5D&name=image.png&originHeight=880&originWidth=880&size=44684&status=done&style=none&width=189)
+![](http://qiniu.ningo.cloud/articles/1a8-09.jpg)
 
 因为 Deno 内置 TypeScript 运行时，这里的示例便是官网提供的 welcome.ts，具体如下。
 
@@ -304,7 +303,7 @@ $ deno-tutorial git:(master) deno run --allow-net demos/welcome.ts
 
 此时打开 localhost:8000 提示成功。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1589194281058-b5f95ddf-a9ce-48a1-90e7-964012cbec7c.png#align=left&display=inline&height=103&margin=%5Bobject%20Object%5D&name=image.png&originHeight=206&originWidth=992&size=33034&status=done&style=none&width=496)
+![](http://qiniu.ningo.cloud/articles/1a8-10.jpg)
 
 ### Deno 的更多实战
 

@@ -8,7 +8,7 @@
 > - 备注：《Deno 钻研之术》电子书官网上线啦！[https://deno-tutorial.js.org](https://deno-tutorial.js.org)
 > - 备注：最近着手准备原创 JavaScript 模块化从零到 Deno 模块机制系列 & 构思 Oak 开源应用中...
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1592877025767-bf6733e8-cd46-4f80-84e8-fa677389bf0c.jpeg#align=left&display=inline&height=1333&margin=%5Bobject%20Object%5D&originHeight=1333&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-01.jpg)
 
 我最近写了一篇关于 [Deno + Oak 构建酷炫 Todo API](https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/) 的文章 ，其中并没有使用数据库相关的知识点。您可以在我的 Github 仓库 [adeelibr/deno-playground](https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak) 的 chapter_1:oak 中查看当时的整套代码。
 
@@ -361,7 +361,7 @@ $ deno run --allow-net server.ts
 
 不出意外的话，此时你的终端会有这样类似的结果：
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120604886-50fe6669-3837-4a82-bcb6-a2673aff83f4.png#align=left&display=inline&height=146&margin=%5Bobject%20Object%5D&originHeight=146&originWidth=1866&size=0&status=done&style=none&width=1866)
+![](http://qiniu.ningo.cloud/articles/1b6-02.jpg)
 
 这也是当我通过命令行运行服务器时终端的样子。
 
@@ -372,7 +372,7 @@ $ deno run --allow-net server.ts
 
 让我们测试下我们的 API，我使用的是 [Postman](https://www.postman.com/)，但是你可以用任何你喜欢的 API 测试工具。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120600946-d327c4cb-9ad2-476d-9e34-c7d948da6c1d.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-03.jpg)
 
 执行 [GET] localhost:8080/todos 后，我们得到了所有 todos 列表。
 
@@ -529,11 +529,11 @@ $ deno run --allow-net server.ts
 
 打开 [Postman](https://www.postman.com/) 并且测试当前 API 能否正常运行：
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120600265-f1064593-73fd-40c6-9f80-3f57ecf4df96.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-04.jpg)
 
 执行 [POST] localhost:8080/todos => 将会为 todo 列表新增一个新的数据。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120601570-1c97b07a-1fe8-4aaf-aca9-378529e5b5b5.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-05.jpg)
 
 再次执行 [GET] localhost:8080/todos => 将会返回所有 todos，可以看到刚刚新增 todo 已经被加入到数据库中。
 
@@ -711,19 +711,19 @@ $ deno run --allow-net server.ts
 
 请记住我们每次重启服务器时都会重置数据库。如果你不想要这个功能，你可以注释掉 `db/client.ts` 文件中的整个 `run` 方法。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120600852-9d266fff-b37f-42fe-a9db-1116c8175077.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-06.jpg)
 
 执行 [POST] localhost:8080/todos => 将会新增一个新的 todo。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120600548-03c7b5e9-a429-475b-b6ed-7b0e0b8ae916.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-07.jpg)
 
 执行 [POST] localhost:8080/todos => 将会返回所有的 todo。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120601586-f37a1f6e-d480-4822-9dcd-e0c077a49f5a.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-08.jpg)
 
 执行 [GET] localhost:8080/todos/:id => 将会当查找指定 todo，并返回其内容。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120602036-5ffdd056-87d9-473d-9818-c3c645fa9993.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-09.jpg)
 
 执行 [GET] localhost:8080/todos/ => 将会返回包含 404 状态码及其错误信息的响应体。
 
@@ -859,11 +859,11 @@ $ deno run --allow-net server.ts
 
 打开 [Postman](https://www.postman.com/) 来测试当前接口能否正常运行：
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120601980-528ffcbb-5171-47c4-a88a-e11a849e86e7.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-10.jpg)
 
 执行 [PUT] localhost:8080/todos/:id => 将会通过指定的 id 来更新相应的 todo 内容
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120605861-56dee4d7-1a70-4c0a-84ee-96d2b9301ed7.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-11.jpg)
 
 执行 [GET] localhost:8080/todos/ => 将会返回所有 todo 列表，来验证是否更新成功。
 
@@ -932,15 +932,15 @@ $ deno run --allow-net server.ts
 
 打开 [Postman](https://www.postman.com/) 来测试：
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120601647-4163c485-9b93-40b7-95d5-7f89581d2e4c.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-12.jpg)
 
 执行 [GET] localhost:8080/todos/ => 将会得到所有 todo。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120600928-ca4557e3-eef7-48ce-8d55-4e7b81d49507.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-13.jpg)
 
 执行 [DELETE] localhost:8080/todos/:id => 将会通过指定的 id 删除相应元素。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1592120601874-96619e89-242c-407b-8df6-09280e6d90d9.png#align=left&display=inline&height=1165&margin=%5Bobject%20Object%5D&originHeight=1165&originWidth=2000&size=0&status=done&style=none&width=2000)
+![](http://qiniu.ningo.cloud/articles/1b6-14.jpg)
 
 执行 [GET] localhost:8080/todos/ => 将会返回所有 todo 列表，来看看之前想要删除的 todo 是否还在。
 

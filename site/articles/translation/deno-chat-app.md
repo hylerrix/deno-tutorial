@@ -6,13 +6,13 @@
 > - 译者：[hylerrix](https://github.com/hylerrix)
 > - 备注：本文已获原作者授权，同时本文会收录在[《Deno 钻研之术》](https://github.com/hylerrix/deno-tutorial)的翻译篇中。
 
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/86548/1590401997017-804006f5-6110-4c28-8a17-2242352773d1.jpeg#align=left&display=inline&height=432&margin=%5Bobject%20Object%5D&originHeight=432&originWidth=960&size=0&status=done&style=none&width=960)
+![](http://qiniu.ningo.cloud/articles/1b1-01.jpg)
 
 Node.js 最初由 [Ryan Dahl](https://en.wikipedia.org/wiki/Ryan_Dahl) 于 2009 年基于 C++ 语言创建。到了 2012 年，Ryan 觉得自己或多或少地已经实现了当年的目标便离开了 Node.js 项目。
 
 如今他的目标已大不相同：在意识到无法轻易在 Node.js 中修复某些当时的错误设计后，他决定创建一个全新的 JavaScript（也包括如今流行的 TypeScript） 运行时——基于 Rust 语言实现的 Deno。 Deno 1.0.0 版本将于 2020 年 05 月 13 日正式发布。
 
-![](https://cdn.nlark.com/yuque/0/2020/svg/86548/1590401996680-7ccca422-ba2b-40e6-9e13-988e7635cdfe.svg#align=left&display=inline&height=254&margin=%5Bobject%20Object%5D&originHeight=1365&originWidth=1365&size=0&status=done&style=none&width=254)
+![](http://qiniu.ningo.cloud/articles/1b1-02.jpg)
 
 我们将在本文中探索 Deno 是如何工作的、Deno 和 Node.js 有什么区别并实现一个简单的聊天室程序。
 
@@ -177,7 +177,7 @@ Compile file:///Users/aralroca/server.ts
 Server running on localhost:3000
 ```
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401996995-e78e4067-778a-4def-ab64-c5900f0f73ae.png#align=left&display=inline&height=83&margin=%5Bobject%20Object%5D&originHeight=83&originWidth=300&size=0&status=done&style=none&width=300)
+![](http://qiniu.ningo.cloud/articles/1b1-03.jpg)
 
 ## 引入 WebSockets
 
@@ -322,7 +322,7 @@ console.log('Server running on localhost:3000')
 
 结果如下：
 
-![](https://cdn.nlark.com/yuque/0/2020/gif/86548/1590401997122-f932682f-51e7-467f-a0ab-820dc296a559.gif#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&originHeight=264&originWidth=800&size=0&status=done&style=none&width=800)
+![](http://qiniu.ningo.cloud/articles/1b1-04.jpg)
 
 这是一个并不优雅的的聊天室：没有样式，但是功能丰富。毕竟我们的目的是了解 Deno 的工作方式。
 
@@ -339,7 +339,7 @@ console.log('Server running on localhost:3000')
 
 我们将使用 [camel-case](https://www.pika.dev/npm/camel-case) 包来将每个聊天消息转换转换为小驼峰法（camelCase）的文本。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401997781-3be97974-8e27-491d-ac06-5f0243444821.png#align=left&display=inline&height=162&margin=%5Bobject%20Object%5D&originHeight=162&originWidth=700&size=0&status=done&style=none&width=700)
+![](http://qiniu.ningo.cloud/articles/1b1-05.jpg)
 
 让我们将如下内容添加到我们的 `chat.ts` 文件中：
 
@@ -352,7 +352,7 @@ const message = camelCase(typeof event === 'string' ? event : '')
 
 好了，现在来执行 `server.ts` 会下载 `camel-case` 软件包，并会发现小驼峰法的转换功能已能成功使用：
 
-![](https://cdn.nlark.com/yuque/0/2020/gif/86548/1590401996783-d919cf6b-614b-4378-a175-a5a65da9c26e.gif#align=left&display=inline&height=199&margin=%5Bobject%20Object%5D&originHeight=199&originWidth=600&size=0&status=done&style=none&width=600)
+![](http://qiniu.ningo.cloud/articles/1b1-06.jpg)
 
 但是，如果我想在多个文件中都使用 `camelCase` 这个软件包，将 URL 导入语句添加到每个文件中会很麻烦：URL 中包括着我们想要使用的软件包的具体版本，如果想要升级依赖项则需要搜索并替换所有相关文件中的导入语句。不用担心，Deno 的依赖项规则可以解决这类问题，我们可以创建一个 `deps.ts` 文件来导出当前项目的所有依赖项。
 
@@ -474,7 +474,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)
 
 现在我们可以在 `chat.ts` 上使用这个 camelize 函数了。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401996997-b1bda177-c81a-4fa6-bd86-e0518d923c7a.png#align=left&display=inline&height=132&margin=%5Bobject%20Object%5D&originHeight=132&originWidth=700&size=0&status=done&style=none&width=700)
+![](http://qiniu.ningo.cloud/articles/1b1-07.jpg)
 
 ## 浏览器调试
 
@@ -486,7 +486,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)
 1. 在“远程目标”标签下点击“检查”按钮。
 1. 按名为“继续”的脚本执行按钮，让代码将在你所设立的断点处暂停。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/86548/1590401998603-f54c9d49-8249-4a25-b21c-92d8d9c63d7c.png#align=left&display=inline&height=468&margin=%5Bobject%20Object%5D&originHeight=468&originWidth=700&size=0&status=done&style=none&width=700)
+![](http://qiniu.ningo.cloud/articles/1b1-08.jpg)
 
 ## 总结
 
