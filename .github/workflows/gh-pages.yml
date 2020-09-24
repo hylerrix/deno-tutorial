@@ -16,7 +16,7 @@ jobs:
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
           deno upgrade --version 1.3.3
-          deno install --unstable --allow-env --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@0.9.1/mod.ts
+          deno install --unstable --allow-env --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@v0.9.1/mod.ts
           pagic build
 
       - name: Deploy
@@ -43,7 +43,7 @@ jobs:
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
           deno upgrade --version 1.3.3
-          deno install --unstable --allow-env --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@0.9.1/mod.ts
+          deno install --unstable --allow-env --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@v0.9.1/mod.ts
           pagic build
     
       - name: Deploy CN
