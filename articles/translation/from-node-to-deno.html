@@ -1,0 +1,371 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">从 Node 到 Deno：探索各大主流库替代方案 · Deno 钻研之术</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link active">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li></ol></li><li class="unfold"><a href="/articles/ROADMAP.html" class="nav_link">未来规划<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/frontend/index.html" class="nav_link">前端篇</a></li><li class=""><a href="/articles/backend/index.html" class="nav_link">后端篇</a></li><li class=""><a href="/articles/language/index.html" class="nav_link">语言篇</a></li><li class=""><a href="/articles/forward/index.html" class="nav_link">转载篇</a></li><li class=""><a href="/articles/weekly/index.html" class="nav_link">周报篇</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>从 Node 到 Deno：探索各大主流库替代方案</h1>
+<blockquote>
+<ul>
+<li>原文地址：<a href="https://aralroca.com/blog/from-node-to-deno">From Node to Deno</a></li>
+<li>原文作者：Aral Roca</li>
+<li>原文发布时间：2020-05-17</li>
+<li>译者：<a href="https://github.com/hylerrix">@hylerrix</a>, <a href="http://github.com/yunkou">@YunKou</a></li>
+<li>备注：本文已获原作者授权，同时本文会收录在<a href="https://github.com/hylerrix/deno-tutorial">《Deno 钻研之术》</a>的翻译篇中。</li>
+<li>备注：本文独立争取授权与翻译的同时，发现 InfoQ 等平台也独立授权翻译，可以作为对比。看来翻译的文章不能积压，要不也会错失风口~</li>
+</ul>
+</blockquote>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-01.jpg" alt=""></p>
+<p>上周我发表了一篇关于 Deno 的文章：<a href="https://aralroca.com/blog/learn-deno-chat-app">《Deno + WebSockets 打造聊天室应用》</a>。在那之后，有很多困惑接踵而至——其中大部分都在思考如何在全新的 Deno 生态中来做 Node.js 上常做的工作。</p>
+<p>所以我尝试整理一些 Node.js 中常见库在 Deno 下的相关解决方案。在这里我得强调，很多 Node.js 的模块都可以重用，并且没有必要为每个库都重新造一遍轮子。你可以访问 <a href="https://www.pika.dev/about">pika.dev</a> 来寻找在 Deno 中可以直接使用的 ES 模块。</p>
+<blockquote>
+<p>译者注：《Deno + WebSockets 打造聊天室应用》已经翻译并收录；pika.dev 用来在 Npm 上寻找符合现代 ESM 标准的软件包（更快、更小）。</p>
+</blockquote>
+<p><strong>本文的目录如下：</strong></p>
+<ul>
+<li>Electron</li>
+<li>Forever / PM2</li>
+<li>Express / Koa</li>
+<li>MongoDB</li>
+<li>PostgresSQL</li>
+<li>MySQL / MariaDB</li>
+<li>Redis</li>
+<li>Nodemon</li>
+<li>Jest、Jasmine、Ava...</li>
+<li>Webpack、Parcel、Rollup...</li>
+<li>Prettier</li>
+<li>NPM Scripts</li>
+<li>Nvm</li>
+<li>Npx</li>
+<li>在 Docker 上运行</li>
+<li>作为 Lambda 运行</li>
+<li>小结</li>
+</ul>
+<h2 id="electron">Electron<a class="anchor" href="#electron">§</a></h2>
+<p>我们可以使用基于 Node.js + <code>Chromium</code> 的 Electron 来依托 Web 技术栈创建桌面应用程序。那么我们可以在 Deno 下使用 Electron 吗？或者还有其它更多选择吗？</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-02.jpg" alt=""></p>
+<p>答案是如今的 Electron 还远远不能运行在 Deno 上，我们必须寻找其它的解决方案。自从 Deno 选择用 Rust 语言构建其内核后，我们可以使用 Rust 生态上的 Web View <a href="https://github.com/Boscop/web-view">@Bosop/web-view</a> 来在 Deno 上运行桌面应用。</p>
+<p>于是 <a href="https://github.com/eliassjogreen/deno_webview">@eliassjogreen/deno_webview</a> 应运而生。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebView <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/webview/mod.ts">https://deno.land/x/webview/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> sharedOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  width<span class="token operator">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+  height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+  resizable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  debug<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  frameless<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> webview1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebView</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  title<span class="token operator">:</span> <span class="token string">"Multiple deno_webview example"</span><span class="token punctuation">,</span>
+  url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data:text/html,
+    &lt;html>
+    &lt;body>
+      &lt;h1>1&lt;/h1>
+    &lt;/body>
+    &lt;/html>
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>sharedOptions<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> webview2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebView</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  title<span class="token operator">:</span> <span class="token string">"Multiple deno_webview example"</span><span class="token punctuation">,</span>
+  url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data:text/html,
+    &lt;html>
+    &lt;body>
+      &lt;h1>2&lt;/h1>
+    &lt;/body>
+    &lt;/html>
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>sharedOptions<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> <span class="token builtin">Promise</span><span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>webview1<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> webview2<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-03.jpg" alt=""></p>
+<h2 id="forever-%2F-pm2">Forever / PM2<a class="anchor" href="#forever-%2F-pm2">§</a></h2>
+<p><a href="https://github.com/foreversd/forever">Forever</a> 和 <a href="https://github.com/Unitech/pm2">PM2</a> 是用来守护指定脚本其进程的两个 CLI 工具。PM2 相比 Forever 来说功能更为完善，相比还能同时作为负载均衡器。在 Node.js 中这两个工具都很有用，我们可以在 Deno 中也使用它们吗？</p>
+<p>Forever 专为 Node.js 创造，就不用考虑了；而 PM2 可以运行 Node.js 之外的的脚本语言，因此我们可以让 PM2 和 Deno 搭配起来。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-04.jpg" alt=""></p>
+<p>创建一个 <code>app.sh</code> 文件：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+deno run -A myCode.ts
+</code></pre>
+<p>保存后在当前目录执行（请确保 pm2 已成功安装）：</p>
+<pre class="language-bash"><code class="language-bash">pm2 start ./app.sh
+</code></pre>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-05.jpg" alt=""></p>
+<h2 id="express-%2F-koa">Express / Koa<a class="anchor" href="#express-%2F-koa">§</a></h2>
+<p><a href="https://github.com/expressjs/express">Express</a> 和 <a href="https://github.com/koajs/koa">Koa</a> 以其强大的路由系统和友好的 HTTP 工具库（重定向、缓存等）而闻名于 Node.js 社区。我们可以在 Deno 中使用它们吗？答案是不能...但也有一些替代方案。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-06.jpg" alt=""></p>
+<h3 id="http%EF%BC%88%E6%A0%87%E5%87%86%E5%BA%93%EF%BC%89">HTTP（标准库）<a class="anchor" href="#http%EF%BC%88%E6%A0%87%E5%87%86%E5%BA%93%EF%BC%89">§</a></h3>
+<p>Deno 内置的 STD 标准库已经涵盖了 <code>Express</code> 或 <code>Koa</code> 的绝大多数功能：<a href="https://deno.land/std/http/">https://deno.land/std/http/</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ServerRequest <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/http/server.ts">https://deno.land/std/http/server.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getCookies <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/http/cookie.ts">https://deno.land/std/http/cookie.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ServerRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+request<span class="token punctuation">.</span>headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+request<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"Cookie"</span><span class="token punctuation">,</span> <span class="token string">"full=of; tasty=chocolate"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> cookies <span class="token operator">=</span> <span class="token function">getCookies</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"cookies:"</span><span class="token punctuation">,</span> cookies<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>但由于 Deno 内置的 HTTP 标准库其声明路由的方式并不那么吸引人，我们来看看其它的解决方案，如下。</p>
+<h3 id="oak-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">Oak (第三方库)<a class="anchor" href="#oak-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">§</a></h3>
+<p>受 Koa 启发，这是目前最优雅的解决方案之一：<a href="https://github.com/oakserver/oak">https://github.com/oakserver/oak</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application<span class="token punctuation">,</span>  <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span>response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">8000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="abc-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">Abc (第三方库)<a class="anchor" href="#abc-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">§</a></h3>
+<p>类似于 <code>Oak</code>：<a href="https://deno.land/x/abc">https://deno.land/x/abc</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/abc/mod.ts">https://deno.land/x/abc/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token keyword">static</span><span class="token punctuation">(</span><span class="token string">"/static"</span><span class="token punctuation">,</span> <span class="token string">"assets"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token string">"Hello!"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">8080</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="deno-express%EF%BC%88%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%EF%BC%89">Deno-Express（第三方库）<a class="anchor" href="#deno-express%EF%BC%88%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%EF%BC%89">§</a></h3>
+<p>也许是最类似于 Express Framework 的替代品：<a href="https://github.com/NMathar/deno-express">https://github.com/NMathar/deno-express</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> exp <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://raw.githubusercontent.com/NMathar/deno-express/master/mod.ts">https://raw.githubusercontent.com/NMathar/deno-express/master/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> port <span class="token operator">=</span> <span class="token number">3000</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">exp</span><span class="token punctuation">.</span><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>exp<span class="token punctuation">.</span><span class="token function">static_</span><span class="token punctuation">(</span><span class="token string">"./public"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>exp<span class="token punctuation">.</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/api/todos"</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"Buy some milk"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> server <span class="token operator">=</span> <span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">app listening on port </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>server<span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="mongodb">MongoDB<a class="anchor" href="#mongodb">§</a></h2>
+<p><a href="https://github.com/mongodb/mongo">MongoDB</a> 是一个广受欢迎的文档数据库，具有强大的可扩展性和灵活性。在 JavaScript 生态系统中已经被广泛使用：比如很多像 <code>MEAN</code> 或 <code>MERN</code> 这样的技术堆栈。</p>
+<blockquote>
+<p>译者注：MEAN = MongoDB(数据库) + Express(后端) + Angular(前端) + Node.js(运行时)；MERN 同左，但其中的 R 代表 React。如上技术栈都对 JavaScript 语言极其友好。</p>
+</blockquote>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-07.jpg" alt=""></p>
+<p>因此，我们可以让 Deno 和 MongoDB 搭配起来，比如使用这个模块：<a href="https://github.com/manyuanrong/deno_mongo">https://github.com/manyuanrong/deno_mongo</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> init<span class="token punctuation">,</span> MongoClient <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/mongo@v0.6.0/mod.ts">https://deno.land/x/mongo@v0.6.0/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Initialize the plugin</span>
+<span class="token keyword">await</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MongoClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+client<span class="token punctuation">.</span><span class="token function">connectWithUri</span><span class="token punctuation">(</span><span class="token string">"<a class="token url-link" href="mongodb://localhost:27017">mongodb://localhost:27017</a>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> db <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">database</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> users <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">collection</span><span class="token punctuation">(</span><span class="token string">"users"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// insert</span>
+<span class="token keyword">const</span> insertId <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">insertOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  username<span class="token operator">:</span> <span class="token string">"user1"</span><span class="token punctuation">,</span>
+  password<span class="token operator">:</span> <span class="token string">"pass1"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// findOne</span>
+<span class="token keyword">const</span> user1 <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span> _id<span class="token operator">:</span> insertId <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// find</span>
+<span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token punctuation">{</span> $ne<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// aggregation</span>
+<span class="token keyword">const</span> docs <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">aggregation</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> $match<span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token string">"many"</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> $group<span class="token operator">:</span> <span class="token punctuation">{</span> _id<span class="token operator">:</span> <span class="token string">"$username"</span><span class="token punctuation">,</span> total<span class="token operator">:</span> <span class="token punctuation">{</span> $sum<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// updateOne</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> matchedCount<span class="token punctuation">,</span> modifiedCount<span class="token punctuation">,</span> upsertedId <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">updateOne</span><span class="token punctuation">(</span>
+  username<span class="token operator">:</span> <span class="token punctuation">{</span> $ne<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> $<span class="token keyword">set</span><span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token string">"USERNAME"</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// deleteOne</span>
+<span class="token keyword">const</span> deleteCount <span class="token operator">=</span> <span class="token keyword">await</span> users<span class="token punctuation">.</span><span class="token function">deleteOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span> _id<span class="token operator">:</span> insertId <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="postgressql">PostgresSQL<a class="anchor" href="#postgressql">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-08.jpg" alt=""></p>
+<p>与 MongoDB 一样，<a href="https://github.com/postgres/postgres/">PostgresSQL</a> 也有一个 Deno 生态库：<a href="https://github.com/buildondata/deno-postgres%E3%80%82">https://github.com/buildondata/deno-postgres。</a></p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Client <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/postgres/mod.ts">https://deno.land/x/postgres/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Client</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  user<span class="token operator">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span>
+  database<span class="token operator">:</span> <span class="token string">"test"</span><span class="token punctuation">,</span>
+  hostname<span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
+  port<span class="token operator">:</span> <span class="token number">5432</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token string">"SELECT * FROM people;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>rows<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="mysql-%2F-mariadb">MySQL / MariaDB<a class="anchor" href="#mysql-%2F-mariadb">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-09.jpg" alt=""></p>
+<p>与 <code>MongoDB</code> 和 <code>PostgresSQL</code> 一样，Deno 生态下也有 <a href="https://github.com/mysqljs/mysql">MySQL</a>/<a href="https://github.com/mariadb-corporation/mariadb-connector-nodejs">MariaDB</a> 的相关库：<a href="https://github.com/manyuanrong/deno_mysql">https://github.com/manyuanrong/deno_mysql</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Client <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/mysql/mod.ts">https://deno.land/x/mysql/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  hostname<span class="token operator">:</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
+  username<span class="token operator">:</span> <span class="token string">"root"</span><span class="token punctuation">,</span>
+  db<span class="token operator">:</span> <span class="token string">"dbname"</span><span class="token punctuation">,</span>
+  poolSize<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token comment">// connection limit</span>
+  password<span class="token operator">:</span> <span class="token string">"password"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">INSERT INTO users(name) values(?)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+  <span class="token string">"aralroca"</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// { affectedRows: 1, lastInsertId: 1 }</span>
+</code></pre>
+<h2 id="redis">Redis<a class="anchor" href="#redis">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-10.jpg" alt=""></p>
+<p><a href="https://github.com/NodeRedis/node-redis">Redis</a> 是著名的缓存数据库之一，Deno 下也有相关库：<a href="https://github.com/keroxp/deno-redis">https://github.com/keroxp/deno-redis</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://denopkg.com/keroxp/deno-redis/mod.ts">https://denopkg.com/keroxp/deno-redis/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> redis <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  hostname<span class="token operator">:</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
+  port<span class="token operator">:</span> <span class="token number">6379</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ok <span class="token operator">=</span> <span class="token keyword">await</span> redis<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"example"</span><span class="token punctuation">,</span> <span class="token string">"this is an example"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> example <span class="token operator">=</span> <span class="token keyword">await</span> redis<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"example"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="nodemon">Nodemon<a class="anchor" href="#nodemon">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-11.jpg" alt=""></p>
+<p><a href="https://github.com/remy/nodemon">Nodemon</a> 在开发环境中监控文件的任何改变，并能自动更新服务器。这使 <code>node</code> 下的发更加有趣，无需手动停止并重启服务器来查看应用的变化。那么 Nodemon 可以在 Deno 中使用吗？</p>
+<p>抱歉，不能...但仍然有另一种选择：Denon：<a href="https://github.com/eliassjogreen/denon">https://github.com/eliassjogreen/denon</a>。</p>
+<p>我们可以像是 <code>deno run</code> 执行脚本的方式一样使用 <code>Denon</code>。</p>
+<pre class="language-bash"><code class="language-bash">➜ denon server.ts
+</code></pre>
+<h2 id="jest%E3%80%81jasmine%E3%80%81ava...">Jest、Jasmine、Ava...<a class="anchor" href="#jest%E3%80%81jasmine%E3%80%81ava...">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-12.jpg" alt=""></p>
+<p>在 <code>Node.js</code> 的生态系统中，有很多不同的测试工具和方法。但直到现在，官方也没有推出一种正式的机制来测试 <code>Node.js</code> 代码。</p>
+<p>在 Deno 中，可以使用官方测试 <code>std</code> 库测试：<a href="https://deno.land/std/testing">https://deno.land/std/testing</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> assertStrictEq <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/testing/asserts.ts">https://deno.land/std/testing/asserts.ts</a>'</span>
+
+Deno<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'My first test'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token function">assertStrictEq</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>运行测试：</p>
+<pre class="language-bash"><code class="language-bash">➜  deno <span class="token builtin class-name">test</span>
+</code></pre>
+<h2 id="webpack%E3%80%81parcel%E3%80%81rollup...">Webpack、Parcel、Rollup...<a class="anchor" href="#webpack%E3%80%81parcel%E3%80%81rollup...">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-13.jpg" alt=""></p>
+<p>Deno 的优势之一是我们可以将 <code>ESmodules</code> 与<code>TypeScript</code> 一起使用，而无需诸如 <a href="https://github.com/webpack/webpack">Webpack</a>、<a href="https://github.com/parcel-bundler/parcel">Parcel</a> 或<a href="https://github.com/rollup/rollup">Rollup</a> 之类的工具。</p>
+<p>然而，可能你会想，如果给定一个文件目录，我们是否可以将其统一打包在有一个 JavaScript 文件里，并让其能直接在 Web 上以模块的形式运行。</p>
+<p>答案是完全可行，我们可以通过 Deno 的 CLI 来实现。因此，不需要第三方的打包工具。</p>
+<pre class="language-bash"><code class="language-bash">➜ deno bundle myLib.ts myLib.bundle.js
+</code></pre>
+<p>现在可以将其加载到浏览器中了：</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword module">import</span> <span class="token imports"><span class="token operator">*</span> <span class="token keyword module">as</span> myLib</span> <span class="token keyword module">from</span> <span class="token string">"myLib.bundle.js"</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="prettier">Prettier<a class="anchor" href="#prettier">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-14.jpg" alt=""></p>
+<p>在过去的几年中，<a href="https://prettier.io/">Prettier</a> 在 JavaScript 生态中已广为人知，因为有了它，我们不必担心格式化文件。</p>
+<p>事实上 Prettier 也可以在 Deno 上使用，但是没有必要：因为 Deno 有自己内置的格式化程序。</p>
+<p>您可以使用以下命令格式化文件：</p>
+<pre class="language-bash"><code class="language-bash">➜  deno <span class="token function">fmt</span>
+</code></pre>
+<h2 id="npm-scripts">NPM Scripts<a class="anchor" href="#npm-scripts">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-15.jpg" alt=""></p>
+<p>我非常怀念的一件事就是曾在 <code>package.json</code> 中配置各种命令行脚本。但在 Deno 上，<code>package.json</code> 已经不复存在了。</p>
+<p>Deno 上的一个简单的替代方法是使用 <code>makefile</code> 技术，用 <code>make</code> 命令运行。但如果你怀念 NPM 的语法，Deno 上也有一个 NPM 风格的脚本运行器：<a href="https://github.com/umbopepato/velociraptor">https://github.com/umbopepato/velociraptor</a></p>
+<p>您可以使用脚本定义文件：</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token comment"># scripts.yaml</span>
+<span class="token key atrule">scripts</span><span class="token punctuation">:</span>
+  <span class="token key atrule">start</span><span class="token punctuation">:</span> deno run <span class="token punctuation">-</span><span class="token punctuation">-</span>allow<span class="token punctuation">-</span>net server.ts
+  <span class="token key atrule">test</span><span class="token punctuation">:</span> deno test <span class="token punctuation">-</span><span class="token punctuation">-</span>allow<span class="token punctuation">-</span>net server_test.ts
+</code></pre>
+<p>并执行：</p>
+<pre class="language-bash"><code class="language-bash">➜  vr run <span class="token operator">&lt;</span>SCRIPT<span class="token operator">></span>
+</code></pre>
+<p>还有一个替代品是 <a href="https://github.com/BentoumiTech/denox">denox</a>，与 <code>Velociraptor</code> 非常相似。</p>
+<h2 id="nvm">Nvm<a class="anchor" href="#nvm">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-16.jpg" alt=""></p>
+<p><a href="https://github.com/nvm-sh/nvm">Nvm</a> 是一个用于管理多个 Node.js 版本的 <code>CLI</code> 工具，可以根据具体的项目来轻松升级或降级 Node.js 版本。</p>
+<p>在 Deno 中，可以使用相当于 <code>nvm</code> 的 <code>dvm</code> ：<a href="https://github.com/axetroy/dvm">https://github.com/axetroy/dvm</a>。</p>
+<pre class="language-bash"><code class="language-bash">➜  dvm use <span class="token number">1.0</span>.0
+</code></pre>
+<h2 id="npx">Npx<a class="anchor" href="#npx">§</a></h2>
+<p><a href="https://github.com/npm/npx">NPX</a> 在近几年非常流行，可以在 NPM 不安装的情况下直接执行 NPM 包。由于 Deno 是一个独立的生态系统，因此如今很多 NPM 库都不可直接使用，那么我们如何只使用 <code>deno install [https://url-of-module.ts](https://url-of-module.ts)</code> 而无需安装就能执行 Deno 模块呢？</p>
+<p>就像我们通过命令行运行项目一样，只不过这里把我们使用 URL 模块名的代替了文件名：</p>
+<pre class="language-bash"><code class="language-bash">➜  deno run <a class="token url-link" href="https://deno.land/std/examples/welcome.ts">https://deno.land/std/examples/welcome.ts</a>
+</code></pre>
+<p>如上所见，我们不仅仅需要记住模块的名称，还要记住整个 URL 地址，这使它的使用更加麻烦；但是另一方面，也因此提供了更大的灵活性——我们可以运行任何文件，而不仅仅能运行像 Npx 这样在 <code>package.json</code> 中指定的二进制文件。</p>
+<h2 id="%E5%9C%A8-docker-%E4%B8%8A%E8%BF%90%E8%A1%8C">在 Docker 上运行<a class="anchor" href="#%E5%9C%A8-docker-%E4%B8%8A%E8%BF%90%E8%A1%8C">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-17.jpg" alt=""></p>
+<p>要在 <code>Docker</code> 内部运行 Deno，我们可以创建以下 <code>Dockerfile</code>：</p>
+<pre class="language-bash"><code class="language-bash">FROM hayd/alpine-deno:1.0.0
+
+EXPOSE <span class="token number">1993</span>  <span class="token comment"># Port.</span>
+
+WORKDIR /app
+
+<span class="token environment constant">USER</span> deno
+
+COPY deps.ts <span class="token builtin class-name">.</span>
+RUN deno cache deps.ts <span class="token comment"># Cache the deps</span>
+
+ADD <span class="token builtin class-name">.</span> <span class="token builtin class-name">.</span>
+RUN deno cache main.ts <span class="token comment"># main entrypoint.</span>
+
+CMD <span class="token punctuation">[</span><span class="token string">"--allow-net"</span>, <span class="token string">"main.ts"</span><span class="token punctuation">]</span>
+</code></pre>
+<p>构建并运行它：</p>
+<pre class="language-bash"><code class="language-bash">➜  docker build -t app <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> docker run -it --init -p <span class="token number">1993</span>:1993 app
+</code></pre>
+<p>相关仓库：<a href="https://github.com/hayd/deno-docker">https://github.com/hayd/deno-docker</a></p>
+<h2 id="%E4%BD%9C%E4%B8%BA-lambda-%E8%BF%90%E8%A1%8C">作为 Lambda 运行<a class="anchor" href="#%E4%BD%9C%E4%B8%BA-lambda-%E8%BF%90%E8%A1%8C">§</a></h2>
+<p><img src="http://qiniu.ningo.cloud/articles/1b3-18.jpg" alt=""></p>
+<p>要将 Deno 作为 <code>lambda</code> 运行，需要 <code>Deno STD</code> 库中有类似于这样的模块：<a href="https://deno.land/x/lambda">https://deno.land/x/lambda</a>。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  APIGatewayProxyEvent<span class="token punctuation">,</span>
+  APIGatewayProxyResult<span class="token punctuation">,</span>
+  Context
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/lambda/mod.ts">https://deno.land/x/lambda/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">handler</span><span class="token punctuation">(</span>
+  event<span class="token operator">:</span> APIGatewayProxyEvent<span class="token punctuation">,</span>
+  context<span class="token operator">:</span> Context
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>APIGatewayProxyResult<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    body<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Welcome to deno </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Deno<span class="token punctuation">.</span>version<span class="token punctuation">.</span>deno<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> 🦕</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string">"content-type"</span><span class="token operator">:</span> <span class="token string">"text/html;charset=utf8"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    statusCode<span class="token operator">:</span> <span class="token number">200</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>参考：</p>
+<ul>
+<li><code>Vercel</code> 中的Deno：<a href="https://github.com/lucacasonato/now-deno">https://github.com/lucacasonato/now-deno</a>。</li>
+<li><code>AWS</code> 中的Deno：<a href="https://blog.begin.com/deno-runtime-support-for-architect-805fcbaa82c3">https://blog.begin.com/deno-runtime-support-for-architect-805fcbaa82c3</a>。</li>
+</ul>
+<h2 id="%E5%B0%8F%E7%BB%93">小结<a class="anchor" href="#%E5%B0%8F%E7%BB%93">§</a></h2>
+<p>本文中，我难免会遗漏一些 Node 库如何在 Deno 使用的解决方案。如果有什么更多的地方需要我解释，欢迎告诉我。希望这篇文章能帮助你打破快速入手 Deno 应用开发的僵局。</p>
+<p>这里可以探索 Deno 下绝大多数可以上手的库：</p>
+<ul>
+<li><a href="https://deno.land/std">https://deno.land/std</a></li>
+<li><a href="https://deno.land/x">https://deno.land/x</a></li>
+<li><a href="https://www.pika.dev/">https://www.pika.dev/</a></li>
+</ul></article><div class="prev_next"><a class="prev button" href="/articles/translation/deno-chat-app.html">«  <!-- -->Deno + WebSockets 打造聊天室应用</a><a class="next button" href="/articles/translation/deno-oak-todo-api.html">Deno + Oak 构建酷炫的 Todo API<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#electron">Electron</a></li><li><a href="#forever-%2F-pm2">Forever / PM2</a></li><li><a href="#express-%2F-koa">Express / Koa</a><ol><li><a href="#http%EF%BC%88%E6%A0%87%E5%87%86%E5%BA%93%EF%BC%89">HTTP（标准库）</a></li><li><a href="#oak-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">Oak (第三方库)</a></li><li><a href="#abc-(%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93)">Abc (第三方库)</a></li><li><a href="#deno-express%EF%BC%88%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%EF%BC%89">Deno-Express（第三方库）</a></li></ol></li><li><a href="#mongodb">MongoDB</a></li><li><a href="#postgressql">PostgresSQL</a></li><li><a href="#mysql-%2F-mariadb">MySQL / MariaDB</a></li><li><a href="#redis">Redis</a></li><li><a href="#nodemon">Nodemon</a></li><li><a href="#jest%E3%80%81jasmine%E3%80%81ava...">Jest、Jasmine、Ava...</a></li><li><a href="#webpack%E3%80%81parcel%E3%80%81rollup...">Webpack、Parcel、Rollup...</a></li><li><a href="#prettier">Prettier</a></li><li><a href="#npm-scripts">NPM Scripts</a></li><li><a href="#nvm">Nvm</a></li><li><a href="#npx">Npx</a></li><li><a href="#%E5%9C%A8-docker-%E4%B8%8A%E8%BF%90%E8%A1%8C">在 Docker 上运行</a></li><li><a href="#%E4%BD%9C%E4%B8%BA-lambda-%E8%BF%90%E8%A1%8C">作为 Lambda 运行</a></li><li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-pen button" href="https://github.com/hylerrix/deno-tutorial/edit/master/articles/translation/from-node-to-deno.md" target="_blank" style="background-image:url(&quot;/assets/czs-pen.svg&quot;)"></a><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

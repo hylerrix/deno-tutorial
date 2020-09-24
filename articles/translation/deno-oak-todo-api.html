@@ -1,0 +1,1045 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Deno + Oak 构建酷炫的 Todo API · Deno 钻研之术</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link active">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li></ol></li><li class="unfold"><a href="/articles/ROADMAP.html" class="nav_link">未来规划<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/frontend/index.html" class="nav_link">前端篇</a></li><li class=""><a href="/articles/backend/index.html" class="nav_link">后端篇</a></li><li class=""><a href="/articles/language/index.html" class="nav_link">语言篇</a></li><li class=""><a href="/articles/forward/index.html" class="nav_link">转载篇</a></li><li class=""><a href="/articles/weekly/index.html" class="nav_link">周报篇</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Deno + Oak 构建酷炫的 Todo API</h1>
+<blockquote>
+<ul>
+<li>原文地址：<a href="https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/">How to Create a Todo API in Deno and Oak</a></li>
+<li>原文作者：Adeel Imran</li>
+<li>原文发布时间：2020-05-29</li>
+<li>译者：<a href="https://github.com/hylerrix">hylerrix</a></li>
+<li>备注：本文遵循 <a href="https://github.com/freeCodeCamp/news-translation">freeCodeCamp 翻译规范</a>，同时本文会收录在<a href="https://github.com/hylerrix/deno-tutorial">《Deno 钻研之术》</a>的翻译篇中。</li>
+<li>备注：《Deno 钻研之术》电子书官网上线啦！<a href="https://deno-tutorial.js.org">https://deno-tutorial.js.org</a></li>
+</ul>
+</blockquote>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-01.jpg" alt=""></p>
+<h2 id="%E5%BA%8F%E8%A8%80">序言<a class="anchor" href="#%E5%BA%8F%E8%A8%80">§</a></h2>
+<p>我是一位 JavaScript/Node 开发者，默默地喜欢甚至爱慕着 Deno。Deno 诞生之初就深深地吸引了我，此后我成为了 Deno 的忠实粉丝，期待着有朝一日能正式玩上 Deno。</p>
+<p>本文专注于创造一个基于 REST API 设计的待做清单（Todo）应用。请记住本文中还不会涉及有关数据库操作的知识，其内容会在我之后的<a href="https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/">另一篇文章</a>中进行详细介绍。</p>
+<p>如果你想能够随时回顾或参考本文的代码，可以访问我的这个仓库：<a href="https://github.com/adeelibr/deno-playground">@adeelibr/deno-playground</a>，收录了该系列的所有代码。</p>
+<blockquote>
+<p>译者注：另一篇文章《How to Use MySQL With Deno and Oak》即将会被翻译，其相关 Demo 也会被收录在《Deno 钻研之术》中。</p>
+</blockquote>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-02.jpg" alt=""></p>
+<p>照片来自于 <a href="https://unsplash.com/@bernardtheclerk?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Bernard de Clerk</a> / <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Unsplash</a></p>
+<h3 id="%E6%9C%AC%E6%96%87%E4%BC%9A%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9">本文会涉及的内容<a class="anchor" href="#%E6%9C%AC%E6%96%87%E4%BC%9A%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9">§</a></h3>
+<ul>
+<li>创建一个最基础的服务器</li>
+<li>创建 5 个 APIs（路由 routes/控制器 controller）</li>
+<li>创建一个中间件来给 API 请求添加终端输出的日志功能</li>
+<li>创建一个 404 中间件来处理用户访问未知 API 时的情况</li>
+</ul>
+<h3 id="%E6%9C%AC%E6%96%87%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%87%86%E5%A4%87">本文需要的知识准备<a class="anchor" href="#%E6%9C%AC%E6%96%87%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%87%86%E5%A4%87">§</a></h3>
+<ul>
+<li>一个已经安装好的 Deno 环境（别怕，我会告诉你怎么做）</li>
+<li>对 TypeScript 有浅要的了解</li>
+<li>如果你之前对 Node/Express 一定的了解就更好了（不了解也没关系，本文还是很通俗易懂的）</li>
+</ul>
+<h2 id="%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E5%90%A7">让我们开始吧<a class="anchor" href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E5%90%A7">§</a></h2>
+<p>首先我们要先安装 Deno。由于我使用的是 Mac 操作系统，所以在这里我将使用 brew。只需要打开终端并输入这条命令即可：</p>
+<pre class="language-bash"><code class="language-bash">$ brew <span class="token function">install</span> deno
+</code></pre>
+<p>但如果你用的是其它操作系统的话，这里有一个安装手册可以看看：<a href="https://deno.land/#installation">deno.land installation</a>。上面有多样化的安装方式可供你根据不同的操作系统来选择。</p>
+<p>一旦你安装成功，关闭终端并打开另一个后，输入这条命令：</p>
+<pre class="language-bash"><code class="language-bash">$ deno --version
+</code></pre>
+<p>一切正常的话终端会产生如下输出：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-03.jpg" alt=""></p>
+<p><code>deno --version</code> 命令用来查看当前安装的 Deno 是哪个版本。</p>
+<p>棒极了！通过这个介绍我们已经成功完成了本文 10% 的挑战。</p>
+<p>让我们继续探索，并为我们的待做清单应用创建一个后端 API 吧。</p>
+<h2 id="%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">项目的准备工作<a class="anchor" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">§</a></h2>
+<p>阅读下文，可以来提前来仓库里看看本文收录的所有代码：<a href="https://github.com/adeelibr/deno-playground">@adeelibr/deno-playground</a>。</p>
+<p>这里我们从零做起：</p>
+<ul>
+<li>创建一个名为 <code>chapter_1:oak</code> 的新文件夹（你也可以随意起名）。</li>
+<li>当你创建完毕后使用 <code>cd</code> 命令进入这个文件夹中。创建一个名为 <strong>server.ts</strong> 的文件并填充如下代码：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> port<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>让我们先运行这个文件。打开你的终端并进入当前项目的根目录后，输入如下命令：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>别急别急，我会在之后来介绍 <code>--allow-net</code> 参数到底做了什么的 😄。</p>
+<p>不出意外的话，你会得到如下结果：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-04.jpg" alt=""></p>
+<p>到现在为止，我们创建了一个监听着 8080 端口的服务端应用。只有 8080 端口不被占用，这个应用才能正常执行。</p>
+<p>如果你有过使用 JavaScript 开发的经验，你可能会注意到我们导入模块的方式有些不一样。我们在这里是这样导入模块的：</p>
+<pre class="language-autoit"><code class="language-autoit">import { Application } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+</code></pre>
+<p>当你在终端中执行 <code>deno run ---allow-net &lt;file_name&gt;</code> 命令时，Deno 会读取你的导入信息，并在本地的全局环境中没有安装该模块的情况下安装这些模块。</p>
+<p>第一次执行时 Deno 会尝试访问 <code>https://deno.land/x/oak/mod.ts</code> 模块并安装 <code>oak</code> 库。 Oak 是一个专注于编写 API 的 Deno Web 框架。</p>
+<p>接下来的一行我们是这样写的：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这条语句为我们的应用创建了一个实例，这个实例是本文深入探索 Deno 的基石。你可以为这个实例增加路由，配置中间件（如日志中间件），编写 404 未知路由处理程序等等。</p>
+<p>接下来我们是这样写的：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> port<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span>
+<span class="token comment">// const port = 8080; // => 也可以写成这样</span>
+</code></pre>
+<p>上面两行在功能上是等价的，唯一的区别是 <code>const port: number = 8080</code> 告诉 TypeScript： <code>port</code> 变量的类型是数值类的。</p>
+<p>如果你这样写的话：<code>const port: number = &quot;8080&quot;</code>，终端会产生类似这样的报错：port 变量应该是 <code>number</code> 类型的，但是这类尝试用 <code>string</code> 类型的 &quot;8080&quot; 来为其赋值。</p>
+<p>如果你想学习关于 Type 的更多类型现在就可以看看这个简单的文档：<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">TypeScript 官方 - 基础 Types 类型</a>。仅仅 2~3 分钟就可以重新回到本文。</p>
+<p>在文件的最后我们是这样写的：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>如上我们让 Deno 监听了 8080 端口，端口号是写死的。</p>
+<p>在你的 <strong>server.ts</strong> 文件中添加如下更多的代码：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application<span class="token punctuation">,</span> Router <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> port<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    message<span class="token operator">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>相比之前新增的内容是从 <code>oak</code> 中同时导入了 <code>Application</code> 和 <code>Router</code> 变量。</p>
+<p>其中关于 <code>Router</code> 的相关代码是：</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> router <span class="token operator">=</span> new <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+    message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  }<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>我们通过 <code>const router = new Router()</code> 语句创建了新的 Router 示例，然后我们为其根目录 <code>/</code> 创建了处理 <code>get</code> 请求的执行方式。</p>
+<p>让我们重点看看如下内容：</p>
+<pre class="language-typescript"><code class="language-typescript">router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    message<span class="token operator">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>router.get</code> 函数接收两个参数。第一个参数是路由挂载的路径 <code>/</code>，第二个参数是一个函数。函数本身也接受一个对象参数，这里使用 ES6 语法将其解构，只取了其中 response 变量的值。</p>
+<p>接下来就像之前编写 <code>const port: number = 8080;</code> 语句一样为 <code>response</code> 变量声明类型。<code>{ response }: { response: any }</code> 语句告诉 TypeScript 我们这里解构的 <code>response</code> 变量是 <code>any</code> 类型的。</p>
+<p><code>any</code> 类型可以帮准你避免 TypeScript 进行严格的类型检查，你可以通过<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html#any">这个文档</a>来了解更多。</p>
+<p>接下来我所编写的就是使用 <code>response</code> 变量，并设置 <code>response.body.message = &quot;hello world&quot;;</code>。</p>
+<pre class="language-autoit"><code class="language-autoit">response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+  message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>最后同样重要的是，我们编写了如下两行代码：</p>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>第一行告诉 Deno 要包含我们的 router 变量里设置的所有路径（目前我们只设置了根路径），第二行让 Deno 允许任意访问方法来请求我们设置的路径，比如 <code>GET, POST, PUT, DELETE</code>。</p>
+<p>到这里就可以测试运行了 ✅ ，让我们执行这行语句来看看最终会发生什么：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p><code>---allow-net</code> 参数告诉 Deno：用户授予了这个应用在打开的端口上访问网络的权限。</p>
+<p>现在通过你常用的浏览器打开 <code>http://localhost:8080</code> 地址，就可以得到如下结果：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-05.jpg" alt="">
+浏览器打开 localhost:8080 的执行结果</p>
+<p>最难的部分差不多搞定了，但在对概念的更多了解中我们只进行了 60% 的介绍。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-06.jpg" alt="">
+来自 Yoda 大师的批准</p>
+<p>棒极了。</p>
+<p>在我们正式开始编写待做清单的 API 前，我们最后要做的事是将如下代码：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>替换成这样：</p>
+<pre class="language-typescript"><code class="language-typescript">app<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> secure<span class="token punctuation">,</span> hostname<span class="token punctuation">,</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> protocol <span class="token operator">=</span> secure <span class="token operator">?</span> <span class="token string">"https://"</span> <span class="token operator">:</span> <span class="token string">"http://"</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> url <span class="token operator">=</span> $<span class="token punctuation">{</span>protocol<span class="token punctuation">}</span>$<span class="token punctuation">{</span>hostname <span class="token operator">??</span> <span class="token string">"localhost"</span><span class="token punctuation">}</span><span class="token operator">:</span>$<span class="token punctuation">{</span>port<span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Listening on<span class="token operator">:</span> $<span class="token punctuation">{</span>port<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>我们之前的代码是先在控制台上简单的打印一条成功日志，然后再让应用开始在端口上监听，不是很优雅（译者注：有可能会在监听失败的情况下依然打印监听成功的日志）。</p>
+<p>在替换后的版本中，我们通过 <code>app.addEventListener(&quot;listen&quot;, ({ secure, hostname, port }) =&gt; {}</code> 语句来向应用实例添加事件侦听器后，再让应用监听在端口上。</p>
+<p>侦听器的第一个参数是我们想侦听的事件。一语双关，这里侦听（listen）的就是 <code>listen</code> 事件 😅。第二个参数是一个可以被解构的对象，这里解构出 <code>{ secure, hostname, port }</code> 三个变量。Secure 变量是布尔类型，hostname 变量是字符串类型，port 变量是数值类型。</p>
+<p>此时运行这个应用的话，只有在成功监听指定端口后才会输出监听成功的日志，</p>
+<p>我们可以再向远方迈出一步，使其更加丰富多彩。让我们在 <code>server.ts</code> 文件的顶部添加这样一个新模块：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> green<span class="token punctuation">,</span> yellow <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>接下来我们可以在之前的事件侦听器函数里将如下代码：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Listening on<span class="token operator">:</span> $<span class="token punctuation">{</span>port<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>替换为：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">yellow</span><span class="token punctuation">(</span><span class="token string">"Listening on:"</span><span class="token punctuation">)</span><span class="token punctuation">}</span> $<span class="token punctuation">{</span><span class="token function">green</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>接下来当我们执行：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>将会打印输出如下日志：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-07.jpg" alt=""></p>
+<p>太酷了，我们现在有了一个色彩缤纷的控制台。</p>
+<p>如果你在某处卡住了，你可以直接访问本教程的源码仓库：<a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">@adeelibr/deno-playground</a>。</p>
+<p>让我们接下来创建待做清单的 API 吧。</p>
+<ul>
+<li>在项目的根目录创建一个 <code>routes</code> 文件夹，然后再文件夹里面创建一个 <code>todo.ts</code> 文件。</li>
+<li>与此同时在项目根目录创建一个 <code>controllers</code> 文件夹，再在文件夹里也创建一个 <code>todo.ts</code> 文件。</li>
+</ul>
+<p>我们先来填充 <code>controllers/todo.ts</code> 文件里的内容：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>我们在这里先简单地导出了一个包含很多有名字的函数的对象，这些函数目前都是空的。</p>
+<p>接下来在 <code>routes/todo.ts</code> 文件中填充这些：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Router <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// controller 控制器</span>
+<span class="token keyword">import</span> todoController <span class="token keyword">from</span> <span class="token string">"../controllers/todo.ts"</span><span class="token punctuation">;</span>
+router
+  <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getAllTodos<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>createTodo<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>updateTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">delete</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>deleteTodoById<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span class="token punctuation">;</span>
+</code></pre>
+<p>对于编写过 Node 和 Express 的人来说，对如上的代码风格一定很熟悉。</p>
+<p>其中包括从 <code>oak</code> 中导入了 <code>Route</code> 变量并通过 <code>const router = new Router();</code> 语句将其实例化。</p>
+<p>接下来我们导入我们的控制器：</p>
+<pre class="language-autoit"><code class="language-autoit">import todoController from <span class="token string">"../controllers/todo.ts"</span><span class="token comment">;</span>
+</code></pre>
+<p>这里需要注意的是：在 Deno 中我们每次导入一个本地文件到项目中的时候，我们都必须填写完整这个文件的后缀。否则 Deno 是不知道用户想要导入的文件后缀到底以 <code>.js</code> 还是 <code>.ts</code> 结尾。</p>
+<p>接下来我们通过如下代码为应用配置了我们需要的所有 RESTful 风格的路径。</p>
+<pre class="language-typescript"><code class="language-typescript">router
+  <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getAllTodos<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>createTodo<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>updateTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">delete</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>deleteTodoById<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>上面的代码会将路径解析为这样：</p>
+<table>
+<thead>
+<tr>
+<th>请求方式</th>
+<th>API 路由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/todos</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/todos/:id</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/todos</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/todos/:id</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/todos/:id</td>
+</tr>
+</tbody>
+</table>
+<p>最后我们通过 <code>export default router;</code> 语句来将配置好的路由导出。</p>
+<p>此时我们已经完成了创建路由的工作（但是由于我们的控制器还是空的函数，所以每个路由并都不会做任何反应，我们将向其中添加功能）。</p>
+<p>在我们开始向每个控制器添加功能之前的最后一个难题是，我们需要将此 <code>router</code> 挂载到我们的 <code>app</code> 实例上。</p>
+<p>因此回到 <code>server.ts</code> 文件中我们这样做：</p>
+<ul>
+<li>将这行代码添加至文件顶部：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// routes 路由</span>
+<span class="token keyword">import</span> todoRouter <span class="token keyword">from</span> <span class="token string">"./routes/todo.ts"</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>删除这一段代码：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    message<span class="token operator">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>将其替换为：</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>终于搞定了，你的 <code>server.ts</code> 现在应该是这个样子：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> green<span class="token punctuation">,</span> yellow <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// routes</span>
+<span class="token keyword">import</span> todoRouter <span class="token keyword">from</span> <span class="token string">"./routes/todo.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> port<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> secure<span class="token punctuation">,</span> hostname<span class="token punctuation">,</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> protocol <span class="token operator">=</span> secure <span class="token operator">?</span> <span class="token string">"https://"</span> <span class="token operator">:</span> <span class="token string">"http://"</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>protocol<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>hostname <span class="token operator">??</span> <span class="token string">"localhost"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">yellow</span><span class="token punctuation">(</span><span class="token string">"Listening on:"</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">green</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>如果你在某处卡住了，你可以直接访问本教程的源码仓库：<a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">@adeelibr/deno-playground</a>。</p>
+<p>由于路由的控制器上暂时没有任何功能，现在一起来手动为我们的控制器添加功能。</p>
+<p>在此之前我们得先创建两个（小）文件：</p>
+<ul>
+<li>在项目的根目录上创建一个 <code>interfaces</code> 文件夹并在其中创建一个 <code>Todo.ts</code>（确保 Todo 首字母大写，因为如果不这样做，它将不会在此处给出任何语法错误——这只是一种约定）。</li>
+<li>同时在项目根目录创建一个 <code>stubs</code> 文件夹并在其中创建一个 <code>todos.ts</code> 文件。</li>
+</ul>
+<p>在 <code>interfaces/Todo.ts</code> 文件中编写如下接口说明：</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> interface Todo {
+  id<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+  todo<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+  isCompleted<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>
+}
+</code></pre>
+<p>什么是 interface（接口）？</p>
+<p>要知道 TypeScript 的核心功能之一是检查一个变量的类型。就像前文的 <code>const port: number = 8080</code> 和 <code>{ response }: { response : any }</code> 一样，我们也可以检测一个变量是否为对象类型。</p>
+<p>在 TypeScript 中，interface 负责命名类型，并且是<strong>定义代码内外类型约束</strong>的有效方法。</p>
+<p>这里有一个有关 interface 的示例：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 写了个接口</span>
+<span class="token keyword">interface</span> <span class="token class-name">LabeledValue</span> <span class="token punctuation">{</span>
+  label<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 此函数的labeledObj 参数是符合 LabeledValue 接口类型的</span>
+<span class="token keyword">function</span> <span class="token function">printLabel</span><span class="token punctuation">(</span>labeledObj<span class="token operator">:</span> LabeledValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labeledObj<span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myObj <span class="token operator">=</span> <span class="token punctuation">{</span>label<span class="token operator">:</span> <span class="token string">"Size 10 Object"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">printLabel</span><span class="token punctuation">(</span>myObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>希望如上示例可以让你对 interface 有更多的了解。如果你想了解更多的信息可以查看：<a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces 官方文档</a>。</p>
+<p>现在关于 interface 的知识已经介绍够了，我们一起来模拟一些假数据（因为本文不涉及有关数据库的操作）。</p>
+<p>我们在 <code>stubs/todos.ts</code> 文件中来为 todos 变量填充一些模拟数据。这样即可：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token comment">// interface</span>
+<span class="token class-name"><span class="token keyword">import</span></span> Todo <span class="token keyword">from</span> <span class="token string">'../interfaces/Todo.ts'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> todos<span class="token operator">:</span> Todo<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    todo<span class="token operator">:</span> <span class="token string">'walk dog'</span><span class="token punctuation">,</span>
+    isCompleted<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    todo<span class="token operator">:</span> <span class="token string">'eat food'</span><span class="token punctuation">,</span>
+    isCompleted<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> todos<span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>有两件需要注意的事项：我们这里引用了一个新的模块并且通过 <code>import { v4 } from &quot;https://deno.land/std/uuid/mod.ts&quot;;</code> 语句解构了其中的 <code>v4</code> 变量。接下来我们每次使用 <code>v4.generate()</code> 语句都能生成一个随机的 ID 字符串。这个 <code>id</code> 不能是 <code>number</code> 类型的，而需是 <code>string</code> 类型的，因为我们之前的 <code>Todo</code> 接口已经声明了 <code>id</code> 的类型必须是字符串。</li>
+<li>另一个需要注意的是 <code>let todos: Todo[] = []</code> 语句。此语句告诉 Deno 我们的 todos 变量是一个 <code>Todo</code> 数组（此时编译器将会知道数组的每一个元素都是 <code>{id: _string_, todo: _string_ &amp; isCompleted: _boolean_}</code> 类型的，并不允许其他任何类型）。</li>
+</ul>
+<p>如果你想了解更多的信息可以查看：<a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">Interfaces 官方文档</a>。</p>
+<p>太棒了，你已经进行到如此之远，再接再厉。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-08.jpg" alt=""></p>
+<p>巨石强森感激你所做的一切努力。</p>
+<h2 id="%E8%AE%A9%E6%88%91%E4%BB%AC%E5%85%B3%E6%B3%A8%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8A">让我们关注在控制器上<a class="anchor" href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%85%B3%E6%B3%A8%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8A">§</a></h2>
+<p>在你的 <code>controllers/todo.ts</code> 文件中：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>让我们先编写 <code>getAllTodos</code> 控制器：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> 获取所有 todos
+   * <span class="token keyword">@route</span> GET /todos
+   */</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> todos<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在开始介绍这段代码前，让我解释下每个控制器都有的参数——<code>context</code>（上下文）参数。</p>
+<p>因此我们才能解构 <code>getAllTodos: (context) =&gt; {}</code> 为：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> params <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p>并且自从哪个我们使用 <code>typescript</code> 后，我们需要为每个这样的变量添加类型声明：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span>
+  <span class="token punctuation">{</span> request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> params <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> 
+    request<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> 
+    response<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> 
+    params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p>此时我们为解构的三个变量 <code>{ request, response, params }</code> 添加了类型说明。</p>
+<ul>
+<li><code>request</code> 变量有关用户发来的请求（比如请求头和 JSON 类的请求体）。</li>
+<li><code>response</code> 变量有关服务器端通过 API 返回的信息。</li>
+<li><code>params</code> 变量是我们在路由配置中定义的参数，如下：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> params<span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p><code>/todos/:id</code> 中的 <code>:id</code> 是一个变量，用来从 URL 中获得动态的数据。因此当用户访问这个 API （比如 <code>/todos/756</code>）的时候，<strong>756</strong> 则是 <strong>:id</strong> 参数的值。并且我们知道 URL 里的这个值的类型是 <code>string</code> 类的。</p>
+<p>现在我们有了基本的声明后，让我们回到我们的 todos 控制器：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> 获取所有 todos
+   * <span class="token keyword">@route</span> GET /todos
+   */</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> todos<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>对于 <code>getAllTodos</code> 方法来说我们只需要简单的返回结果。如果你记得之前说的，会想起来 <code>response</code> 是用来处理服务器想要给用户返回的数据。</p>
+<p>对于编写过 Node 和 Express 的人来说，这里的一大不同是我们不需要 <code>return</code> 响应对象。 Deno 会自动为我们执行此操作。</p>
+<p>我们需要做的第一件事是通过 <code>response.status</code> 来设置此次请求的响应码是 <code>200</code>。</p>
+<p>更多 HTTP 响应码可以看 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN 上的 HTTP 响应状态码文档</a>。</p>
+<p>另一件事是设置 <code>response.body</code> 的值为：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> todos
+<span class="token punctuation">}</span>
+</code></pre>
+<p>重新运行我们的服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<blockquote>
+<p>修订：--allow-net 属性告诉 Deno，此应用程序授予用户通过打开的端口访问网络的权限。</p>
+</blockquote>
+<p>一旦你的服务端示例跑通，挺可以通过 <code>GET /todos</code> 方式来请求这个 API。这里我使用的是 Google Chrome 浏览器下的一个插件 <code>postman</code>，<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop//%40">在这里下载</a>。</p>
+<p>你可以使用任意的 REST 风格的客户端，我喜欢使用 <code>postman</code> 是因为它真的很简单好用。</p>
+<p>在 Postman 中，打开一个新的标签页。设置请求方式为 <code>GET</code> 请求并且在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos</code> 。点击 <code>Send</code> 按钮便会得到想要的结果：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-09.jpg" alt=""></p>
+<p>GET /todos API 返回结果。</p>
+<p>酷！一个 API 搞定了，还剩 4 个等着我们 👍👍。</p>
+<p>如果你在某处卡住了，可以在<a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">配套的源码仓库</a>中寻找答案。</p>
+<p>让我们关注下一个控制器吧：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token comment">// interfaces</span>
+<span class="token keyword">import</span> Todo <span class="token keyword">from</span> <span class="token string">"../interfaces/Todo.ts"</span><span class="token punctuation">;</span>
+<span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> Add a new todo
+   * <span class="token keyword">@route</span> POST /todos
+   */</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> request<span class="token punctuation">,</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> request<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> body <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">.</span>hasBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+      response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">"No data provided"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 如果请求体验证通过，则返回新增后的所有 todos</span>
+    <span class="token keyword">let</span> newTodo<span class="token operator">:</span> Todo <span class="token operator">=</span> <span class="token punctuation">{</span>
+      id<span class="token operator">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      todo<span class="token operator">:</span> body<span class="token punctuation">.</span>value<span class="token punctuation">.</span>todo<span class="token punctuation">,</span>
+      isCompleted<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>todos<span class="token punctuation">,</span> newTodo<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>由于我们将要添加一个新的 Todo 到列表中，因此我在 controller 文件中导入了 2 个通用模块：</p>
+<ul>
+<li><code>import { v4 } from &quot;https://deno.land/std/uuid/mod.ts&quot;</code> 语句用来为每一个 todo 元素创建一个独一无二的标识。</li>
+<li><code>import Todo from &quot;../interfaces/Todo.ts&quot;;</code> 语句用来保证新建的 todo 遵循 todo 元素的接口格式标准。</li>
+</ul>
+<p>我们的 <code>createTodo</code> 控制器是 <code>async</code> 异步的代表函数中会使用到一些 Promise 技术。</p>
+<p>让我们来截断说明其中的小片段：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> body <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">.</span>hasBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> <span class="token string">"No data provided"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>首先我们读取请求体中用户传来的的 JSON 内容。接下来我们使用 <code>oak</code> 的内置 <code>request.hasBody</code> 方法来检查用户传来的内容是否为空。如果为空，我们将进入 <code>if (!request.hasBody) {}</code> 代码块中执行相关操作。</p>
+<p>里面我们将响应体的状态码设置成 <code>400</code>（400 代表着用户端出现了一些本不该出现的错误），并且服务端返回的响应体为 <code>{success: false, message: &quot;no data provided }</code>。之后程序直接执行 <code>return;</code> 语句来保证接下来的代码不会被执行。</p>
+<p>接下来我们这样编写：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 如果请求体验证通过，则返回新增后的所有 todos</span>
+<span class="token keyword">let</span> newTodo<span class="token operator">:</span> Todo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token operator">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  todo<span class="token operator">:</span> body<span class="token punctuation">.</span>value<span class="token punctuation">.</span>todo<span class="token punctuation">,</span>
+  isCompleted<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>todos<span class="token punctuation">,</span> newTodo<span class="token punctuation">]</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>其中我们通过如下代码创建了一个全新的 todo 元素：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> newTodo<span class="token operator">:</span> Todo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token operator">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  todo<span class="token operator">:</span> body<span class="token punctuation">.</span>value<span class="token punctuation">.</span>todo<span class="token punctuation">,</span>
+  isCompleted<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>let newTodo: Todo = {}</code> 保证 <code>newTodo</code> 变量的值和其它 todo 元素一样都遵循相同的接口格式。然后，我们使用 <code>v4.generate()</code> 分配一个随机 ID，将 todo 的键值设置为 <code>body.value.todo</code> 并将 <code>isCompleted</code> 变量值设置为 <code>false</code>。</p>
+<p>这里需要知道的是，用户给我们发的内容我们可以通过 <code>oak</code> 中的 <code>body.value</code> 来获取。</p>
+<p>接下来我们这样做：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>todos<span class="token punctuation">,</span> newTodo<span class="token punctuation">]</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这里将 <code>newTodo</code> 添加到整个 todo 列表中中，并在响应体中返回 <code>{success: true &amp; data: data</code>。</p>
+<p>此时这个控制器也运行成功了 ✅。</p>
+<p>让我们重新运行我们的服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 postman 中，我再打开一个新的标签页。设置请求的方式为 <code>POST</code> 类型，并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos</code> 后，点击 <code>Send</code> 便会得到如下结果：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-10.jpg" alt=""></p>
+<p>因为上面的请求体中发送了空的内容，所以得到了 400 错误响应码及其错误原因。</p>
+<p>但如果我们给请求体中加入如下 JSON 内容，并重新发送：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-11.jpg" alt=""></p>
+<p>通过 { todo: &quot;eat a lamma&quot; } 来 POST /todos 后的成功结果，我们可以看到新的元素已经加入到列表中。</p>
+<p>酷，我买可以看到我们的 API 已经一个个以预期的方式执行成功了。</p>
+<p>两个 API 搞定，还剩三个要做。</p>
+<p>我们快要搞定了，因为大部分难的内容已经介绍完毕。☺️ 🙂🤗🤩</p>
+<p>让我们看看第三个 API：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token comment">// interfaces</span>
+<span class="token keyword">import</span> Todo <span class="token keyword">from</span> <span class="token string">"../interfaces/Todo.ts"</span><span class="token punctuation">;</span>
+<span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> 通过 ID 获取 todo
+   * <span class="token keyword">@route</span> GET todos/:id
+   */</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> params<span class="token punctuation">,</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> todo<span class="token operator">:</span> Todo <span class="token operator">|</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+      response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 如果 todo 找到了</span>
+    response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> todo<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>我们先来聊聊 <code>GET todos/:id</code> 下的控制器，此控制器会通过 ID 来查找相应的 todo 元素。</p>
+<p>让我们继续通过截取小片段来深入分析：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> todo<span class="token operator">:</span> Todo <span class="token operator">|</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在第一行我们声明了一个 <code>const todo</code> 变量并将其类型设置为 <code>Todo</code> 或 <code>undefined</code> 类。因此 <code>todo</code> 元素只能是符合 <code>Todo</code> 接口规范的变量或者是一个 <code>undefined</code> 值，而不能是其它任何类型。</p>
+<p>我们接下来使用 <code>todos.find((t) =&gt; t.id === params.id);</code> 语句来通过 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.find()</a> 方法和 <code>params.id</code> 的值来查找指定的 <code>todo</code> 元素。如果找到了我们会得到 <code>Todo</code> 类型的 <code>todo</code> 元素，发否则得到一个 <code>undefined</code> 值。</p>
+<p>如果得到的 <code>todo</code> 的值是 undefined 的，意味着如下 if 条件中的代码会执行：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里我们设置响应的状态码为 <code>404</code>，代表着 <code>not found</code> 没有找到相关元素，并且返回体的格式也是标准的 <code>{ status, message }</code>。</p>
+<p>很酷不是嘛？ 😄</p>
+<p>接下来我们简单地编写：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 如果 todo 找到了</span>
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> todo<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>设置一个响应状态码为 <code>200</code> 的响应体并返回 <code>success: true &amp; data: todo</code> 内容。</p>
+<p>我们来在 postman 中测试：</p>
+<p>先一起重新启动服务端：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 postman 中，继续打开一个新的标签页，设置请求方式为 <code>GET</code> 请求并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos/:id</code> 后，点击 <code>Send</code> 来执行请求。</p>
+<p>自从我们使用了随机 ID 生成器，首先我们需要调取获取所有元素的 API。并在元素列表里选取一个 ID 来测试这个新的 API。每次你重启 Deno 程序时，新的 ID 都会被重新生成。</p>
+<p>我们这样输入：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-12.jpg" alt=""></p>
+<p>服务端返回 404，且告诉我们没有相关数据被找到。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-13.jpg" alt=""></p>
+<p>但如果输入一个正确的 ID，服务端会返回其 ID 和这个 ID 的一样的数据并且响应状态为 200。</p>
+<p>如果你需要参考本文的源码可以访问这里：<a href="https://github.com/adeelibr/deno-playground">@adeelibr/deno-playground</a>。</p>
+<p>不错，3 个 API 搞定，只剩 2 个了。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token comment">// interfaces</span>
+<span class="token keyword">import</span> Todo <span class="token keyword">from</span> <span class="token string">"../interfaces/Todo.ts"</span><span class="token punctuation">;</span>
+<span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> Update todo by id
+   * <span class="token keyword">@route</span> PUT todos/:id
+   */</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> params<span class="token punctuation">,</span> request<span class="token punctuation">,</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      request<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span>
+      response<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> todo<span class="token operator">:</span> Todo <span class="token operator">|</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+      response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 如果找到相应 todo 则更新它</span>
+    <span class="token keyword">const</span> body <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> updatedData<span class="token operator">:</span> <span class="token punctuation">{</span> todo<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> isCompleted<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">}</span> <span class="token operator">=</span> body<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> <span class="token punctuation">{</span> <span class="token operator">...</span>t<span class="token punctuation">,</span> <span class="token operator">...</span>updatedData <span class="token punctuation">}</span> <span class="token operator">:</span> t<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> newTodos<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>让我们来探讨下一个控制器 <code>PUT todos/:id</code>。这个控制器会更新一个元素的内容。</p>
+<p>我们继续截断代码来细看：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> todo<span class="token operator">:</span> Todo <span class="token operator">|</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里做的和之前控制器做的一样，所以我就不深入介绍了。</p>
+<p>高级提示：如果你想将这段代码设为通用代码块，然后在两个控制器中都使用它，完全可以。</p>
+<p>接下来我们这样做：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 如果找到相应 todo 则更新它</span>
+<span class="token keyword">const</span> body <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> updatedData<span class="token operator">:</span> <span class="token punctuation">{</span> todo<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> isCompleted<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">}</span> <span class="token operator">=</span> body<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">let</span> newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> <span class="token punctuation">{</span> <span class="token operator">...</span>t<span class="token punctuation">,</span> <span class="token operator">...</span>updatedData <span class="token punctuation">}</span> <span class="token operator">:</span> t<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> newTodos<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>其中我想在这里重点讨论的代码如下：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> updatedData<span class="token operator">:</span> <span class="token punctuation">{</span> todo<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> isCompleted<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">}</span> <span class="token operator">=</span> body<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">let</span> newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> <span class="token punctuation">{</span> <span class="token operator">...</span>t<span class="token punctuation">,</span> <span class="token operator">...</span>updatedData <span class="token punctuation">}</span> <span class="token operator">:</span> t<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>首先，我们执行 <code>const updatedData = body.value</code>，然后将类型检查添加到 <code>updatedData</code> 上，如下所示：</p>
+<pre class="language-typescript"><code class="language-typescript">updatedData<span class="token operator">:</span> <span class="token punctuation">{</span> todo<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> isCompleted<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>这一小段代码告诉 TS：<code>updatedData</code> 变量是一个有可能包含也有可能不包含 todo、isComplete 熟悉的对象。</p>
+<p>接下来我们遍历每一个 todo 元素，就像这样：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> t<span class="token punctuation">.</span>id <span class="token operator">===</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> <span class="token punctuation">{</span> <span class="token operator">...</span>t<span class="token punctuation">,</span> <span class="token operator">...</span>updatedData <span class="token punctuation">}</span> <span class="token operator">:</span> t<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>其中当 <code>params.id</code> 和 <code>t.id</code> 的值一致时，我们将此时的对象的内容重新覆盖为用户传来的想要更改为的内容。</p>
+<p>我们也编写成功了这个 API。</p>
+<p>让我们重新启动服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 Postman 中打开一个标签页。将请求方式设置为 <code>PUT</code>，并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos/:id</code> 后，点击 <code>Send</code>：</p>
+<p>自从我们使用了随机 ID 生成器，首先我们需要调取获取所有元素的 API。并在元素列表里选取一个 ID 来测试这个新的 API。</p>
+<p>每次重启 Deno 程序时，新的 ID 都会被重新生成。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-14.jpg" alt=""></p>
+<p>如上返回了 404 状态码并提示我们没有找到相关的 todo 元素。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-15.jpg" alt=""></p>
+<p>提供一个已知的 ID，并且请求体中填写需要改变的内容。服务端会返回一个更改后的元素及其它所有元素。</p>
+<p>酷，四个 API 搞定我们只剩最后一个需要做。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token punctuation">;</span>
+<span class="token comment">// interfaces</span>
+<span class="token keyword">import</span> Todo <span class="token keyword">from</span> <span class="token string">"../interfaces/Todo.ts"</span><span class="token punctuation">;</span>
+<span class="token comment">// stubs</span>
+<span class="token keyword">import</span> todos <span class="token keyword">from</span> <span class="token string">"../stubs/todos.ts"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getAllTodos</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createTodo</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">updateTodoById</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@description</span> 通过 ID 删除指定 todo
+   * <span class="token keyword">@route</span> DELETE todos/:id
+   */</span>
+  <span class="token function-variable function">deleteTodoById</span><span class="token operator">:</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> params<span class="token punctuation">,</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> allTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=></span> t<span class="token punctuation">.</span>id <span class="token operator">!==</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// remove the todo w.r.t id and return</span>
+    <span class="token comment">// remaining todos</span>
+    response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> allTodos<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>让我们最后来讨论下 <code>Delete todos/:id</code> 控制器的执行过程，此控制器会通过给定的 ID 来删除相应 todo 元素。</p>
+<p>我们这里只需简单地加一条过滤方法：</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> allTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">.</span>id !<span class="token operator">==</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>遍历所有元素并删除 <code>todo.id</code> 和 <code>params.id</code> 值一样的元素，并返回其余所有元素。</p>
+<p>接下来我们这样编写：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 删除这个 todo 并返回其它所有内容</span>
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> allTodos<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>只需返回所有没有相同 <a href="http://todo.id">todo.id</a> 的待办事项清单即可。</p>
+<p>让我们重启服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 Postman 中打开一个标签页。将请求方式设置为 <code>PUT</code>，并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos/:id</code> 后，点击 <code>Send</code>：</p>
+<p>自从我们使用了随机 ID 生成器，首先我们需要调取获取所有元素的 API。并在元素列表里选取一个 ID 来测试这个新的 API。每次你重启 Deno 程序时，新的 ID 都会被重新生成。</p>
+<p>每次重启 Deno 程序时，新的 ID 都会被重新生成。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-16.jpg" alt=""></p>
+<p>我们终于搞定了所有 5 个 API。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-17.jpg" alt=""></p>
+<p>现在我们只剩下两件事了：</p>
+<ul>
+<li>增加一个 404 中间件，来让用户访问不存在的路由时得到该有的提示；</li>
+<li>增加一个日志 API 来打印所有请求的执行时间。</li>
+</ul>
+<h2 id="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-404-%E8%B7%AF%E7%94%B1%E4%B8%AD%E9%97%B4%E4%BB%B6">创建一个 404 路由中间件<a class="anchor" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-404-%E8%B7%AF%E7%94%B1%E4%B8%AD%E9%97%B4%E4%BB%B6">§</a></h2>
+<p>在项目的根目录中创建一个名为 <code>middlewares</code> 的文件夹，并在其中创建一个名为 <code>notFound.ts</code> 的文件后，添加如下代码：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    message<span class="token operator">:</span> <span class="token string">"404 - Not found."</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>如上代码并没有引入什么新的知识点——它对于我们的控制器结构来使用了说很熟悉的风格。这里仅仅返回了 <code>404</code> 状态码（代表着相关路由没有找到）并且返回了一段 JSON 内容： <code>{ success, message }</code>。</p>
+<p>接下来在你的 <code>server.ts</code> 文件中增加如下内容：</p>
+<ul>
+<li>在文件顶部添加相关导入语句：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 没有找到</span>
+<span class="token keyword">import</span> notFound <span class="token keyword">from</span> <span class="token string">'./middlewares/notFound.ts'</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>接下来在 <code>app.use(todoRouter.allowedMethods())</code> 下面增加如下内容：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 404 page</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>notFound<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>执行顺序在这里很重要：每当我们尝试访问 API 路由时，它都会首先匹配/检查来自 <code>todoRouter</code> 的路由。 如果没有找到，它将执行 <code>app.use(notFound);</code> 语句。</p>
+<p>让我们看看是否能成功运行。</p>
+<p>重启服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 Postman 中打开一个标签页。将请求方式设置为 <code>PUT</code>，并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos/:id</code> 后，点击 <code>Send</code>：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-18.jpg" alt=""></p>
+<p>因此，我们现在有了一个路由中间件，将 <code>app.use(notFound);</code> 放在 <code>server.ts</code> 文件中其它路由的后面。如果请求路由不存在，它将执行并返回 <code>404</code> 状态代码（表示未找到），并像往常一样简单地返回一个响应消息，即 <code>{success, message}</code>。</p>
+<p><strong>高级贴士</strong>：我们已经约束 <code>{success, message}</code> 是在请求失败时返回的格式，<code>{success, data}</code> 是在请求成功时候返回给用户的格式。因此，我们甚至可以将其作为对象接口，并将其添加到项目中，以确保接口的一致性和进行安全的类型检查。</p>
+<p>酷，现在我们已经搞定了其中一个中间件——让我们添加另一个中间件来在终端打印日志吧。</p>
+<p><strong>切记</strong>：如果你在某些地方卡住了，可以看看文章的配套源码：<a href="https://github.com/adeelibr/deno-playground">@adeelibr/deno-playground</a>。</p>
+<h2 id="%E7%BB%88%E7%AB%AF%E4%B8%AD%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6">终端中打印日志的中间件<a class="anchor" href="#%E7%BB%88%E7%AB%AF%E4%B8%AD%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6">§</a></h2>
+<p>在你的 <code>middlewares</code> 文件夹中创建一个新的 <code>logger.ts</code> 文件并填充如下内容：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  green<span class="token punctuation">,</span>
+  cyan<span class="token punctuation">,</span>
+  white<span class="token punctuation">,</span>
+  bgRed<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token constant">X_RESPONSE_TIME</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">"X-Response-Time"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">logger</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> response<span class="token punctuation">,</span> request <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> request<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">responseTime</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> ms<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ms<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">ms</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在 <code>server.ts</code> 文件中添加如下代码：</p>
+<ul>
+<li>文件顶部添加 import 语句来导入模块：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// logger</span>
+<span class="token keyword">import</span> logger <span class="token keyword">from</span> <span class="token string">'./middlewares/logger.ts'</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>在之前提到的 <code>todoRouter</code> 代码前这样增加中间件代码：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 以下代码的编写顺序很重要</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>现在我们来讨论到底发生了什么。</p>
+<p>我们先来讨论 <code>logger.ts</code> 文件，先截断看这里：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  green<span class="token punctuation">,</span>
+  cyan<span class="token punctuation">,</span>
+  white<span class="token punctuation">,</span>
+  bgRed<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>我在这里导入了有关终端颜色的模块，想要用在我们的日志中间件上。</p>
+<p>这里和我们在之前的 <code>server.ts</code> 文件中使用 <code>eventListener</code> 的方式很像。我们将使用有颜色的日志信息来记录我们的 API 请求。</p>
+<p>接下来我们设置了 <code>const X_RESPONSE_TIME: string = &quot;X-Response-Time&quot;;</code>。这条语句用来在与用户请求到来时给响应头的 Header 中注入 <code>X_RESPONSE_TIME</code> 变量的值：<code>X-Response-Time</code>。我会在后面进行说明。</p>
+<p>然后我们像这样一样导出一个对象：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  logger<span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response<span class="token punctuation">,</span> request <span class="token punctuation">}</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  responseTime<span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>此时我们在 <code>server.ts</code> 中这样使用：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 以下两行的编写顺序很重要</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>现在我们来讨论下日志中间件到底做了什么，并且通过 <code>next()</code> 来说明其执行过程。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-19.jpg" alt=""></p>
+<p>上图为调用 GET / todos API 时日志记录中间件的执行顺序。</p>
+<p>这里和以前的控制器唯一的区别是使用了 <code>next()</code> 函数，此函数有助于我们从一个控制器跳到另一个控制器，如上图所示。</p>
+<p>因此有了这段：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">logger</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> response<span class="token punctuation">,</span> request <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> request<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">}</span> $<span class="token punctuation">{</span><span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">responseTime</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> response <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> ms<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">,</span> $<span class="token punctuation">{</span>ms<span class="token punctuation">}</span>ms<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>请留意我们在 <code>server.ts</code> 中的编写方式：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 以下代码的编写顺序很重要</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这里的执行顺序如下：</p>
+<ul>
+<li>logger.logger 中间件</li>
+<li>logger.responseTime 中间件</li>
+<li>todoRouter 控制器（无论用户想要访问什么路由，出于解释的目的，这里假设用户都调用 <code>GET /todos</code> 来获取所有待办事项）。</li>
+</ul>
+<p>因此会先执行 logger.logger 的内容：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token function-variable function">logger</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> response<span class="token punctuation">,</span> request <span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> response<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> request<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">}</span> $<span class="token punctuation">{</span><span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre>
+<p>当遇到 <code>await next()</code> 时会立即跳到下一个中间件——<code>responseTime</code> 上。</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-20.jpg" alt=""></p>
+<p>再次分享此图来回顾这个过程。</p>
+<p>在 <code>responseTime</code> 中，只会先执行如下两行（参考上图的执行过程 2）：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>然后跳转到 <code>getAllTodos</code> 控制器中并执行 <code>getAllTodos</code> 里的所有代码。</p>
+<p>在这个控制器中我们不需要使用 <code>next()</code>，它会自动返回到 <code>responseTime</code> 中间件中，并执行接下来的内容：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> ms<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">;</span>
+response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">,</span> $<span class="token punctuation">{</span>ms<span class="token punctuation">}</span>ms<span class="token punctuation">)</span>
+</code></pre>
+<p>现在，我们便了解了 2、3、4 的执行顺序过程（参见上图）。</p>
+<p>这里是发生的具体过程：</p>
+<ul>
+<li>我们通过执行 <code>const start = Date.now();</code> 来捕获以 <code>ms</code> 为单位的数据。然后，我们立即调用 <code>next()</code> 来跳转到 <code>getAllTodos</code> 控制器并运行其中的代码。然后再次返回到 <code>responseTime</code> 控制器中。</li>
+<li>然后，通过执行 <code>const ms: number = Date.now() - start;</code> 来减去请求刚来的时间。在这里，它将返回一个毫秒差的数字，将告诉 Deno 执行 getAllTodos 控制器所花费的所有时间。</li>
+</ul>
+<p>再次分享这个文件来回顾这个过程：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-21.jpg" alt=""></p>
+<ul>
+<li>接下来我们在 <code>response</code> 响应头的 Headers 中设置：</li>
+</ul>
+<pre class="language-typescript"><code class="language-typescript">response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">,</span> $<span class="token punctuation">{</span>ms<span class="token punctuation">}</span>ms<span class="token punctuation">)</span>
+</code></pre>
+<p>将 X-Response-Time 的值设置为 Deno getAllTodos API 所花费的毫秒数。</p>
+<ul>
+<li>然后从执行顺序 4 返回到执行顺序 5（参考上图）。</li>
+</ul>
+<p>在这里简单地编写：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token constant">X_RESPONSE_TIME</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">}</span> $<span class="token punctuation">{</span><span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span><span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>打印日志时我们从 <code>X-Response-Time</code> 中获取到了执行 API 耗费的时间。</li>
+<li>接下来我们用带有颜色的字体将其打印在终端。</li>
+</ul>
+<p><code>request.method</code> 返回用户请求的方式，比如 <code>GET, PUT 等</code>，同时 <code>request.url.pathname</code> 返回用户请求的路径，比如 <code>/todos</code>。</p>
+<p>让我们看看是否能成功运行。</p>
+<p>重启服务器：</p>
+<pre class="language-bash"><code class="language-bash">$ deno run --allow-net server.ts
+</code></pre>
+<p>在 Postman 中打开一个标签页。将请求方式设置为 <code>GET</code>，并在 <code>URL</code> 输入框中输入 <code>http://localhost:8080/todos</code> 后，点击 <code>Send</code>：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-22.jpg" alt=""></p>
+<p>在 Postman 中多请求几次 API，然后返回到控制台查看日志时，应该看到类似如下的内容：</p>
+<p><img src="http://qiniu.ningo.cloud/articles/1b4-23.jpg" alt=""></p>
+<p>每个 API 请求都会被日志中间件记录在终端。</p>
+<p>就是这样 —— 我们搞定了这一切。</p>
+<p>如果你在哪里卡住了，可以看看本文的全部源码：<a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">github.com/adeelibr/deno-playground/tree/master/chapter_1:oak</a></p>
+<p>我希望你觉得本文会很有帮助，并且真的能帮助你学到一些新的知识。</p>
+<p>如果你喜欢，欢迎分享到社交平台上。如果你想要深入交流，可以在 <a href="https://twitter.com/adeelibr">Twitter</a> 上与我联系。</p></article><div class="prev_next"><a class="prev button" href="/articles/translation/from-node-to-deno.html">«  <!-- -->从 Node 到 Deno：探索各大主流库替代方案</a><a class="next button" href="/articles/translation/deno-oak-mysql.html">Deno + Oak 连接 MySQL 实战教程<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E5%BA%8F%E8%A8%80">序言</a><ol><li><a href="#%E6%9C%AC%E6%96%87%E4%BC%9A%E6%B6%89%E5%8F%8A%E7%9A%84%E5%86%85%E5%AE%B9">本文会涉及的内容</a></li><li><a href="#%E6%9C%AC%E6%96%87%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%87%86%E5%A4%87">本文需要的知识准备</a></li></ol></li><li><a href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E5%90%A7">让我们开始吧</a></li><li><a href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">项目的准备工作</a></li><li><a href="#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%85%B3%E6%B3%A8%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%8A">让我们关注在控制器上</a></li><li><a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-404-%E8%B7%AF%E7%94%B1%E4%B8%AD%E9%97%B4%E4%BB%B6">创建一个 404 路由中间件</a></li><li><a href="#%E7%BB%88%E7%AB%AF%E4%B8%AD%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6">终端中打印日志的中间件</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-pen button" href="https://github.com/hylerrix/deno-tutorial/edit/master/articles/translation/deno-oak-todo-api.md" target="_blank" style="background-image:url(&quot;/assets/czs-pen.svg&quot;)"></a><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

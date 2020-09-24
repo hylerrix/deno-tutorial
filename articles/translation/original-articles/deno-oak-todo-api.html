@@ -1,0 +1,890 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">How to Create a Todo API in Deno and Oak · Deno 钻研之术</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li></ol></li><li class="unfold"><a href="/articles/ROADMAP.html" class="nav_link">未来规划<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/frontend/index.html" class="nav_link">前端篇</a></li><li class=""><a href="/articles/backend/index.html" class="nav_link">后端篇</a></li><li class=""><a href="/articles/language/index.html" class="nav_link">语言篇</a></li><li class=""><a href="/articles/forward/index.html" class="nav_link">转载篇</a></li><li class=""><a href="/articles/weekly/index.html" class="nav_link">周报篇</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>How to Create a Todo API in Deno and Oak</h1>
+<p><img src="https://images.unsplash.com/photo-1590733840202-55a039bb15a1?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=2000&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" alt="How to Create a Todo API in Deno and Oak"></p>
+<p>I am a JavaScript/Node developer who secretly likes (actually, loves and adores) Deno. I have been a huge fan of Deno ever since it was announced and I've been wanting to play with it.</p>
+<p>This tutorial focuses on creating a set of REST APIs for a Todo application. Keep in mind that I did not touch on the database here – I will cover that  <a href="https://www.freecodecamp.org/news/how-to-use-mysql-in-deno-oak/">in another article</a>.</p>
+<p>At any point if you feel lost or want to check a reference, here is the entire source code of this tutorial:  <strong><a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">Chapter 1: Oak</a>.</strong></p>
+<p><img src="https://images.unsplash.com/photo-1590672617573-08866973bf72?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=2000&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ" alt="Runner in Cape Town wearing vintage running clothing."></p>
+<p>Photo by  <a href="https://unsplash.com/@bernardtheclerk?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Bernard de Clerk</a>  /  <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit">Unsplash</a></p>
+<h3 id="things-we-will-cover">Things we will cover<a class="anchor" href="#things-we-will-cover">§</a></h3>
+<ul>
+<li>Create a basic server</li>
+<li>Create 5 APIs (routes/controller)</li>
+<li>Create a middleware to log API requests as they are made in the console</li>
+<li>Create a not found (404) middleware when the user tries to access an unknown API</li>
+</ul>
+<h3 id="what-will-we-need">What will we need<a class="anchor" href="#what-will-we-need">§</a></h3>
+<ul>
+<li>An installed version of Deno (don't worry I'll walk you through it)</li>
+<li>A tiny bit of knowledge of Typescript</li>
+<li>Would be awesome if you have worked with Node/Express before (don't worry if you haven't — this tutorial is very basic)</li>
+</ul>
+<h2 id="let's-get-started">Let's get started<a class="anchor" href="#let's-get-started">§</a></h2>
+<p>First things first let's install Deno. I am on a Mac computer so I am using brew. Simply open your terminal and type:</p>
+<pre class="language-autoit"><code class="language-autoit">$ brew install deno
+</code></pre>
+<p>But if you are using a different operating system, just head over to  <a href="https://deno.land/#installation"><strong>deno.land installation</strong></a><strong>.</strong> They have a lot of ways you can easily install it on your machine.</p>
+<p>Once you have it installed, close the terminal, open a new one, and type:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno <span class="token operator">-</span><span class="token operator">-</span>version
+</code></pre>
+<p>It should output something like this:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-22.34.24.png" alt=""></p>
+<p>running command &quot;deno --version&quot; to see which version of deno is installed</p>
+<p>Awesome! With this we are almost done with 10% of this tutorial.</p>
+<p>Let's move ahead and create the backend API for our Todo app.</p>
+<h3 id="setting-up-the-project">Setting up the project<a class="anchor" href="#setting-up-the-project">§</a></h3>
+<p>Before you move on, here is the entire source code of this tutorial:  <strong><a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">Chapter 1: Oak</a>.</strong></p>
+<p>Let's get started:</p>
+<ul>
+<li>Create a new folder and call it  <strong>chapter_1:oak</strong>  (but you can call it anything you want)</li>
+<li>Once you create a folder simply  <code>cd</code>  into your new project. Create a file called  <strong>server.ts</strong> and write the following code in it:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit">import { Application } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> new <span class="token function">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">const</span> port<span class="token punctuation">:</span> number <span class="token operator">=</span> <span class="token number">8080</span><span class="token comment">;</span>
+
+</code></pre>
+<p>Let's run this file. Open your terminal and in your project root folder type:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>I will talk about what the  <code>--allow-net</code>  flag does, but for now just bear with me 😄.</p>
+<p>You should get something like this:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-22.33.28.png" alt=""></p>
+<p>What we have done so far is create a server which listens on port 8080. It doesn't do much right now besides being able to run on port 8080.</p>
+<p>If you have used JavaScript before, one thing you might have noticed is we are importing packages in a different way. We have to do something like:</p>
+<pre class="language-autoit"><code class="language-autoit">import { Application } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+
+</code></pre>
+<p>When you run  <code>deno run ---allow-net &lt;file_name&gt;</code>  in your terminal, Deno will look at all your imports and install them locally in your machine if they are not there.</p>
+<p>The first time you run this it will go to this URL  <code>[https://deno.land/x/oak/mod.ts][8]</code>  and install the  <code>oak</code>  package. Oak is basically a Deno framework for writing API's. It will put it somewhere locally in your cache.</p>
+<p>In the next line we do this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> app <span class="token operator">=</span> new <span class="token function">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>This creates a new instance of our application, and it will be the basis of everything as you progress further in this tutorial. You can add routes to the application instance, attach middleware like API logging, write a 404 not found, and so on.</p>
+<p>Then we write:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> port<span class="token punctuation">:</span> number <span class="token operator">=</span> <span class="token number">8080</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">const</span> port <span class="token operator">=</span> <span class="token number">8080</span><span class="token comment">; // => can also be written like this</span>
+</code></pre>
+<p>Both are the same and do the same thing. The only difference is writing  <code>const port: number = 8080</code>  tells Typescript that  <code>port</code>  variable is of type number.</p>
+<p>If you were to write  <code>const port: number = &quot;8080&quot;</code>, this would throw an error in your terminal, as port is of type  <code>number</code>. But we are trying to assign it a  <code>string</code>  of value &quot;8080&quot;.</p>
+<p>If you want to learn more about different types of types (pun intended) check out this very easy and basic guide on  <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"><strong>Basic types by Typescript</strong></a>. Just give it a quick glance for 2-3 minutes and head back here.</p>
+<p>And in the end we have:</p>
+<pre class="language-autoit"><code class="language-autoit">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token comment">;</span>
+await app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>{ port }<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>We simply console here the port number and tell Deno to listen to the port, which is 8080.</p>
+<p>It isn't doing much right now. Let's make it do something basic like show a  <em>JSON</em>  message in your browser when you go to http:localhost:8080_._</p>
+<p>Add the following to your  <strong>server.ts</strong> file:</p>
+<pre class="language-autoit"><code class="language-autoit">import { Application<span class="token punctuation">,</span> Router } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> new <span class="token function">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">const</span> port<span class="token punctuation">:</span> number <span class="token operator">=</span> <span class="token number">8080</span><span class="token comment">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> new <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+    message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  }<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>The new thing added here is that we are now also importing  <code>Router</code>  along with  <code>Application</code>  from  <code>oak</code>  in line 1.</p>
+<p>Next what we do is:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> router <span class="token operator">=</span> new <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+    message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  }<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>We create a new router instance by doing  <code>const router = new Router()</code>  and then we create a new route called  <code>/</code>  which is of type  <code>get</code>.</p>
+<p>Let's break this down:</p>
+<pre class="language-autoit"><code class="language-autoit">router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+    message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  }<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p><code>router.get</code>  takes 2 parameters. The first is route which we have set to  <code>/</code>  and the second is function. The function itself takes an argument which is an object. What I am doing here is  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a>  the object and getting only  <code>response</code>.</p>
+<p>Next I am type checking  <code>response</code>  similar to how I did  <code>const port: number = 8080;</code>. All I am doing is  <code>{ response }: { response: any }</code>  which is telling TypeScript here that the  <code>response</code>  which I have destructed can be of type  <code>any</code>.</p>
+<p><code>any</code>  helps you avoid type checking in TypeScript. You can read more about it  <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html#any">here</a>.</p>
+<p>Then all I am doing is taking that  <code>response</code>  object and setting  <code>response.body.message = &quot;hello world&quot;;</code>.</p>
+<pre class="language-autoit"><code class="language-autoit">response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+  message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>Last but not least, we just add these two lines:</p>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>This tells Deno to include all routes by our router (currently we only have one) and the next line tells Deno to allow all methods for this route(s) like  <code>GET, POST, PUT, DELETE</code>.</p>
+<p>And now we are done. ✅ Let's run this and see what we have:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>The  <code>---allow-net</code>  property tells Deno that this app gives the user the permission to access its content via the port opened up.</p>
+<p>Now open your favorite browser and go to  <code>[http://localhost:8080][13]</code>. You will see something like this:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-23.11.08.png" alt=""></p>
+<p>Result of running localhost:8080 on your browser</p>
+<p>Honestly the hardest part is done. Conceptually we are 60% there.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/images.jpeg" alt=""></p>
+<p>Master Yoda approves</p>
+<p>Awesome.</p>
+<p>Just one last thing before we start with our Todo API. Let's replace:</p>
+<pre class="language-autoit"><code class="language-autoit">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'running on port '</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token comment">;</span>
+await app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>{ port }<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>with:</p>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ secure<span class="token punctuation">,</span> hostname<span class="token punctuation">,</span> port }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  <span class="token keyword">const</span> protocol <span class="token operator">=</span> secure <span class="token operator">?</span> <span class="token string">"https://"</span> <span class="token punctuation">:</span> <span class="token string">"http://"</span><span class="token comment">;</span>
+  <span class="token keyword">const</span> url <span class="token operator">=</span> ${protocol}${hostname <span class="token operator">?</span><span class="token operator">?</span> <span class="token string">"localhost"</span>}<span class="token punctuation">:</span>${port}<span class="token comment">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Listening on<span class="token punctuation">:</span> ${port}<span class="token punctuation">)</span><span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>The code we had before was not very accurate, because we were simply console logging a message and then waiting for the app to start listening on a port.</p>
+<p>With the later version we wait for the app to start listening on  <code>port</code>  and we can listen by adding an event listener to our  <code>app</code>  instance with the following:  <code>app_.addEventListener_(&quot;listen&quot;, ({ secure, hostname, port }) =&gt; {}</code>.</p>
+<p>The first param is the event we want to listen for (which is  <code>listen</code>  😅) and then the second param is an object which we destruct to  <code>{ secure, hostname, port }</code>. Secure is a boolean, hostname is a string, and port is a number.</p>
+<p>Now when we start our app, it will only console the message once the app actually starts listening on port.</p>
+<p>We can just go one step ahead and make it more colorful. Let's add a new module to the top of the file in  <code>server.ts</code>:</p>
+<pre class="language-autoit"><code class="language-autoit">import { green<span class="token punctuation">,</span> yellow } from <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token comment">;</span>
+
+</code></pre>
+<p>And then inside our event listener method we can replace:</p>
+<pre class="language-autoit"><code class="language-autoit">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Listening on<span class="token punctuation">:</span> ${port}<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>with:</p>
+<pre class="language-autoit"><code class="language-autoit">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">yellow</span><span class="token punctuation">(</span><span class="token string">"Listening on:"</span><span class="token punctuation">)</span>} ${<span class="token function">green</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>Now when we do:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>it will show this in our console:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-28-at-23.34.29.png" alt=""></p>
+<p>Cool, now we have a colourful console.</p>
+<p>If you get stuck anywhere you can simply go to the source code of this tutorial  <a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak"><strong>here</strong></a>.</p>
+<p>Let's create our Todo API's routes next.</p>
+<ul>
+<li>Create a new folder in your root folder called  <code>routes</code>  and inside that folder create a file called  <code>todo.ts</code></li>
+<li>At the same time in your root folder create a new folder called  <code>controllers</code>  and inside that folder create a file called  <code>todo.ts</code></li>
+</ul>
+<p>Let's first touch the  <code>controllers/todo.ts</code>  file:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  createTodo<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  getTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  updateTodoById<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  deleteTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>We are simply exporting an object here with some named functions which are empty (for now).</p>
+<p>Next go inside your file  <code>routes/todo.ts</code>  and type this:</p>
+<pre class="language-autoit"><code class="language-autoit">import { Router } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> new <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> controller
+import todoController from <span class="token string">"../controllers/todo.ts"</span><span class="token comment">;</span>
+router
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getAllTodos<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>createTodo<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>updateTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>deleteTodoById<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>This might look familiar to people who have worked with Node and Express.</p>
+<p>All we are doing here is importing  <code>Route</code>  from  <code>oak</code>  and then setting up a new instance of Router by doing  <code>const router = new Router();</code>.</p>
+<p>Next we import our controllers by doing:</p>
+<pre class="language-autoit"><code class="language-autoit">import todoController from <span class="token string">"../controllers/todo.ts"</span><span class="token comment">;</span>
+
+</code></pre>
+<p>One thing to notice here in Deno is every time we import a local file in our Deno project we have to provide the file extension. This is because Deno doesn't know whether the file being imported is a  <code>.js</code>  or  <code>.ts</code>  file.</p>
+<p>Moving forward we simply set all of our routes according to REST conventions:</p>
+<pre class="language-autoit"><code class="language-autoit">router
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getAllTodos<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/todos"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>createTodo<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>getTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>updateTodoById<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> todoController<span class="token punctuation">.</span>deleteTodoById<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>The code above will translate to our API definition like this:</p>
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>API ROUTE</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/todos</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/todos/:id</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/todos</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/todos/:id</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/todos/:id</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>and at the end we simply export our router by doing  <code>_export_  _default_  router;</code>.</p>
+<p>We are done with creating our routes structure. (Now, each route doesn't do anything because our controllers are empty, we will add functionality to them in a bit.)</p>
+<p>Here's the last piece of the puzzle before we start adding functionality to each route controller. We need to attach this  <code>router</code>  to our  <code>app</code>  instance.</p>
+<p>So head over to  <code>server.ts</code>  file and do the following:</p>
+<ul>
+<li>Add this to the very top:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> routes
+import todoRouter from <span class="token string">"./routes/todo.ts"</span><span class="token comment">;</span>
+</code></pre>
+<ul>
+<li>Remove this piece of code:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> router <span class="token operator">=</span> new <span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+    message<span class="token punctuation">:</span> <span class="token string">"hello world"</span><span class="token punctuation">,</span>
+  }<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<ul>
+<li>Replace it with:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>This is it – we are done. Your  <code>server.ts</code>  file should look like this now:</p>
+<pre class="language-autoit"><code class="language-autoit">import { Application } from <span class="token string">"<a class="token url-link" href="https://deno.land/x/oak/mod.ts">https://deno.land/x/oak/mod.ts</a>"</span><span class="token comment">;</span>
+import { green<span class="token punctuation">,</span> yellow } from <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> routes
+import todoRouter from <span class="token string">"./routes/todo.ts"</span><span class="token comment">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> new <span class="token function">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">const</span> port<span class="token punctuation">:</span> number <span class="token operator">=</span> <span class="token number">8080</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"listen"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>{ secure<span class="token punctuation">,</span> hostname<span class="token punctuation">,</span> port }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+  <span class="token keyword">const</span> protocol <span class="token operator">=</span> secure <span class="token operator">?</span> <span class="token string">"https://"</span> <span class="token punctuation">:</span> <span class="token string">"http://"</span><span class="token comment">;</span>
+  <span class="token keyword">const</span> url <span class="token operator">=</span> ${protocol}${hostname <span class="token operator">?</span><span class="token operator">?</span> <span class="token string">"localhost"</span>}<span class="token punctuation">:</span>${port}<span class="token comment">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+    ${<span class="token function">yellow</span><span class="token punctuation">(</span><span class="token string">"Listening on:"</span><span class="token punctuation">)</span>} ${<span class="token function">green</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>}<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>If you got stuck anywhere while following this, simple head over to the source code of this tutorial  <strong><a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">here</a>.</strong></p>
+<p>Awesome, now we have our routes with no functionality at the moment. So let's add that functionality in our controllers.</p>
+<p>But before we do that we have to create 2 more (tiny) files.</p>
+<ul>
+<li>In your root folder create a new folder called  <code>interfaces</code>  and inside that folder create a file called  <code>Todo.ts</code>  (make sure Todo is capitalized, as it won't give any syntax error here if you don't – these are just conventions.)</li>
+<li>Also in your root folder create a new folder called  <code>stubs</code>  and inside that folder create a file called  <code>todos.ts</code></li>
+</ul>
+<p>Let's create an interface in our  <code>interfaces/Todo.ts</code>  file. Simply add the following code:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> interface Todo {
+  id<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+  todo<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+  isCompleted<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>
+}
+</code></pre>
+<p>What is an interface?</p>
+<p>One of the core things in TypeScript is checking the shape that value has. Similar to  <code>const port: number = 8080</code>  or  <code>{ response }: { response : any }</code>, we can also type check an object.</p>
+<p>In TypeScript, interfaces fill the role of naming these types, and are a powerful way of  <strong>defining contracts within</strong>  your code as well as  <strong>contracts with code outside</strong>  of your project.</p>
+<p>Here is an another example of an interface:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token comment">// We have an interface</span>
+<span class="token keyword">interface</span> <span class="token class-name">LabeledValue</span> <span class="token punctuation">{</span>
+  label<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// the arg passed to this function labeledObj is </span>
+<span class="token comment">// of type LabeledValue (interface)</span>
+<span class="token keyword">function</span> <span class="token function">printLabel</span><span class="token punctuation">(</span>labeledObj<span class="token operator">:</span> LabeledValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labeledObj<span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>Hopefully this example gives you a bit more insight into interfaces. If you want more detailed information check out the docs on  <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">interfaces here</a>.</p>
+<p>Now that our interface is ready, let's mock some data (since we don't have an actual database for this tutorial).</p>
+<p>Let's create a mock list of todos first in our  <code>stubs/todos.ts</code>  file. Simply add the following:</p>
+<pre class="language-autoit"><code class="language-autoit">import { v4 } from <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> interface
+import Todo from <span class="token string">'../interfaces/Todo.ts'</span><span class="token comment">;</span>
+let todos<span class="token punctuation">:</span> Todo<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  {
+    id<span class="token punctuation">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    todo<span class="token punctuation">:</span> <span class="token string">'walk dog'</span><span class="token punctuation">,</span>
+    isCompleted<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  }<span class="token punctuation">,</span>
+  {
+    id<span class="token punctuation">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    todo<span class="token punctuation">:</span> <span class="token string">'eat food'</span><span class="token punctuation">,</span>
+    isCompleted<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  }<span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token comment">;</span>
+
+</code></pre>
+<ul>
+<li>
+<p>Two things to notice here: we add a new package and use its method  <code>v4</code>  by doing  <code>_import_  { v4 }  _from_  &quot;[https://deno.land/std/uuid/mod.ts&quot;][22];</code>. Then every time we use  <code>v4.generate()</code>  it will create a new random string of  <code>id</code>.</p>
+<p>The  <code>id</code>  can not be a  <code>number</code>, only a  <code>string</code>  because in our  <code>Todo</code>  interface we have defined  <code>id</code>  as a string.</p>
+</li>
+<li>
+<p>The other thing to focus on here is  <code>let _todos_: _Todo_[]  =  []</code>. This basically tells Deno that our todos array is of type  <code>Todo</code>  (which is awesome, our compiler now  <em>automagically</em>  knows that each item in our array can only have  <code>{**id**:  _string_,  **todo**:  _string_  &amp;  **isCompleted**:  _boolean_}</code>  it will not accept any other key).</p>
+</li>
+</ul>
+<p>If you want to learn more about  <code>interfaces</code>  in TypeScript check out this amazing detailed documentation on interfaces  <strong><a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">here</a>.</strong></p>
+<p>Awesome. If you have come this far, give yourself a pat on the back. Good job everyone.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/download-1.jpeg" alt=""></p>
+<p>The Rock appreciates all the effort you are doing</p>
+<h2 id="let's-work-on-our-controllers">Let's work on our controllers<a class="anchor" href="#let's-work-on-our-controllers">§</a></h2>
+<p>In your file  <code>controllers/todo.ts</code>:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  createTodo<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  getTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  updateTodoById<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  deleteTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+
+</code></pre>
+<p>Let's write the controller for  <code>getAllTodos</code>:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+export <span class="token keyword">default</span> {
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>Before I begin on this block of code, let me explain that every controller has an argument – let's call it  <code>context</code>.</p>
+<p>So we can deconstruct  <code>_getAllTodos_: (context) =&gt; {}</code>  to:</p>
+<pre class="language-autoit"><code class="language-autoit">getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span>{ request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> params }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}
+</code></pre>
+<p>And since we are using  <code>typescript</code>  we have to add type checking to all of these variables:</p>
+<pre class="language-autoit"><code class="language-autoit">getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span>
+{ request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> params }<span class="token punctuation">:</span> { 
+request<span class="token punctuation">:</span> any<span class="token punctuation">,</span> 
+response<span class="token punctuation">:</span> any<span class="token punctuation">,</span> 
+params<span class="token punctuation">:</span> { id<span class="token punctuation">:</span> string }<span class="token punctuation">,</span>
+}<span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}
+</code></pre>
+<p>So we have added type checks to all 3  <code>{ request, response, params }</code></p>
+<ul>
+<li><code>request</code>  is what the user sends us (information like headers and JSON data)</li>
+<li><code>response</code>  is what we send the user back in the API response</li>
+<li><code>params</code>  is what we define in our router routes, that is:</li>
+</ul>
+<pre class="language-ts"><code class="language-ts"><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/todos/:id"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> params<span class="token punctuation">}</span><span class="token operator">:</span> <span class="token punctuation">{</span> params<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>So the  <code>:id</code>  in  <code>/todos/:id</code>  is the param. Params are a way to get information from the URL. In this example we know that we have an  <code>/:id</code>  . So when the user tries to access this API (that is,  <code>/todos/756</code>)  <strong>756</strong>  is basically the  <strong>:id</strong> param. Since it is in the URL we know it is of type  <code>string</code>.</p>
+<p>Now that we have our basic definitions defined let's get back to our todos controller:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+
+export <span class="token keyword">default</span> {
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>For  <code>getAllTodos</code>  we only need  <code>response</code>  . If you remember,  <code>response</code>  is what is needed to send data back to the user.</p>
+<p>For people coming from a Node and Express background, one big thing that is different here is that we don't need to  <code>return</code>  the response object. Deno does this for us automatically.</p>
+<p>All we have to do is set  <code>response.status</code>  which in this case is  <code>200</code>.</p>
+<p>More on response statuses  <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"><strong>here</strong></a><strong>.</strong></p>
+<p>The other thing we set is the  <code>response.body</code>  which in this case is an object:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token punctuation">{</span>
+success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token operator">:</span> todos
+<span class="token punctuation">}</span>
+</code></pre>
+<p>I will go ahead and run my server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<blockquote>
+<p><strong>Revision:</strong>  The  <code>---allow-net</code>  property tells Deno that this app gives the user permission to access its content via the port opened up.</p>
+</blockquote>
+<p>Once your server is running, you can access the  <code>GET /todos</code>  API. I am using  <code>postman</code>  which is a Google Chrome extension and can be downloaded  <a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop//%40">here</a>.</p>
+<p>You can use whatever rest client you like. I like using  <code>postman</code>  because I think it is very easy.</p>
+<p>In Postman, open up a new tab. Set the request to type  <code>GET</code>  and in the  <code>URL</code>  bar type  <code>[http://localhost:8080/todos][26]</code>. Hit  <code>Send</code>  and this is what you see:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.01.11.png" alt=""></p>
+<p>GET /todos API response</p>
+<p>Cool! 1 API done, 4 more to go. 👍👍</p>
+<p>If you feel stuck anywhere just have sneak peak at the source code directly  <a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak"><strong>here</strong></a><strong>.</strong></p>
+<p>Let's move on to our next controller:</p>
+<pre class="language-autoit"><code class="language-autoit">import { v4 } from <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> interfaces
+import Todo from <span class="token string">"../interfaces/Todo.ts"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+
+export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>Since we are going to be adding a new Todo to our list, I have imported 2 modules in the controller file.</p>
+<ul>
+<li><code>import { v4 } from `&lt;a href=&quot;https://deno.land/std/uuid/mod.ts&quot; style=&quot;box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 17.6px; vertical-align: baseline; background-color: transparent; color: var(--gray90); text-decoration: underline; cursor: pointer; word-break: break-word;&quot;&gt;https://deno.land/std/uuid/mod.ts&lt;/a&gt;`;</code>  this will be used to create a new unique one for the todo being created</li>
+<li><code>import Todo from &quot;../interfaces/Todo.ts&quot;;</code>  this will be used to ensure that the new todo that is being created follows the same structure.</li>
+</ul>
+<p>Our  <code>createTodo</code>  controller is  <code>async</code>  meaning there are some promises used inside the controller.</p>
+<p>Let's break it into smaller parts:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">const</span> body <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">.</span>hasBody<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+success<span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token punctuation"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 153, 153);"</span><span class="token operator">></span><span class="token operator">:</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span> <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token boolean"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 0, 85);"</span><span class="token operator">></span><span class="token boolean">false</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token punctuation"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 153, 153);"</span><span class="token operator">></span><span class="token punctuation">,</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+message<span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token punctuation"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 153, 153);"</span><span class="token operator">></span><span class="token operator">:</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span> <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token string"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(102, 153, 0);"</span><span class="token operator">></span><span class="token string">"No data provided"</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"token punctuation"</span> style<span class="token operator">=</span><span class="token string">"box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 153, 153);"</span><span class="token operator">></span><span class="token punctuation">,</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+</code></pre>
+<p>First we get the content of the JSON body that the user has sent us. Then we use  <code>oak's</code>  built-in method called  <code>request.hasBody</code>  to check if the user has even sent any content. If not then we can do  <code>if (!request_._hasBody) {}</code>  inside this  <code>if</code>  block.</p>
+<p>We set the status to  <code>400</code>  (400 means that the user did something they were not suppose to do) and the body is set to  <code>{success: false, message: &quot;no data provided }</code>. Then we simple add  <code>return;</code>  to ensure that no further code below is executed.</p>
+<p>Next we do this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">if</span> everything is fine <span class="token keyword">then</span> perform
+<span class="token operator">/</span><span class="token operator">/</span> operation <span class="token operator">and</span> return todos <span class="token keyword">with</span> the
+<span class="token operator">/</span><span class="token operator">/</span> new data added<span class="token punctuation">.</span>
+let newTodo<span class="token punctuation">:</span> Todo <span class="token operator">=</span> {
+id<span class="token punctuation">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+todo<span class="token punctuation">:</span> body<span class="token punctuation">.</span>value<span class="token punctuation">.</span>todo<span class="token punctuation">,</span>
+isCompleted<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+let data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>todos<span class="token punctuation">,</span> newTodo<span class="token punctuation">]</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>We create a new todo by doing this:</p>
+<pre class="language-autoit"><code class="language-autoit">let newTodo<span class="token punctuation">:</span> Todo <span class="token operator">=</span> {
+id<span class="token punctuation">:</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+todo<span class="token punctuation">:</span> body<span class="token punctuation">.</span>value<span class="token punctuation">.</span>todo<span class="token punctuation">,</span>
+isCompleted<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p><code>let newTodo: Todo = {}</code>  ensures that  <code>newTodo</code>  follows the same structure as the rest of the todos. We then assign a random id by using  <code>v4.generate()</code>, set todo to  <code>body.value.todo</code>  and  <code>isCompleted</code>  to <code>false</code>.</p>
+<p>The thing to notice here is all the data the user sends us we can access from  <code>body.value</code>  in  <code>oak</code>.</p>
+<p>Next we do the following:</p>
+<pre class="language-autoit"><code class="language-autoit">let data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>todos<span class="token punctuation">,</span> newTodo<span class="token punctuation">]</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>Append the  <code>newTodo</code>  to our current list of todos and simply set the body to  <code>{success: true &amp; data: data</code>.</p>
+<p>And we are done ✅ with this controller as well.</p>
+<p>Let's restart our server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>In my postman, I open up a new tab. Set the request to  <code>POST</code>  type and in the  <code>URL</code>  bar type  <code>[http://localhost:8080/todos][29]</code>. Then hit  <code>Send</code>  and this is what you see:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.24.00.png" alt=""></p>
+<p>I send an empty request and get a 400 status error code along with an error message</p>
+<p>Then I send some content in the body of the request payload and try again:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.24.15.png" alt=""></p>
+<p>Awesome, POST /todos with body content { todo: &quot;eat a lamma&quot; } is success &amp; we can see content appended to our current todo list</p>
+<p>Cool, we can see that our API is working as expected.</p>
+<p>Two APIs down, three more to go.</p>
+<p>We are almost there. Most of the hard work is done. ☺️ 🙂 🤗 🤩</p>
+<p>Let's move on to our third API:</p>
+<pre class="language-autoit"><code class="language-autoit">import { v4 } from <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> interfaces
+import Todo from <span class="token string">"../interfaces/Todo.ts"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+
+
+export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  createTodo<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>Let's talk about our controller for  <code>GET todos/:id</code>. This will get us a todo by ID.</p>
+<p>Let's break this down into smaller parts and discuss it:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> todo<span class="token punctuation">:</span> Todo | undefined <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">.</span>id <span class="token operator">==</span><span class="token operator">=</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>!todo<span class="token punctuation">)</span> {
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+message<span class="token punctuation">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+return<span class="token comment">;</span>
+}
+</code></pre>
+<p>In the first part we set a new  <code>const todo</code>  and set its type to either  <code>Todo</code>  or  <code>undefined</code>. So  <code>todo</code>  will either be an object with the  <code>Todo</code>  interface shape or it will be  <code>undefined</code>  – it can not be anything else.</p>
+<p>We then  <code>_todos.find_((_t_)  =&gt; _t.id_ === _params.id_);</code>  use  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.find()</a>  to find the  <code>todo</code>  with the id provided in  <code>params.id</code>. If it matches we get a  <code>Todo</code>  with shape  <code>todo</code>, otherwise  <code>undefined</code>.</p>
+<p>If  <code>todo</code>  is undefined, it means that this  <code>if</code>  block will run:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">if</span> <span class="token punctuation">(</span>!todo<span class="token punctuation">)</span> {
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+message<span class="token punctuation">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+return<span class="token comment">;</span>
+}
+</code></pre>
+<p>Here we simply set the status to  <code>404</code>  which means  <code>not found</code>  along with our standard failure response or  <code>{ status, message }</code></p>
+<p>Cool, right? 😄</p>
+<p>Next we simply do this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">If</span> todo is found
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token punctuation">:</span> todo<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>Set a  <code>200</code>  success response and in our response body we set  <code>success: true &amp; data: todo</code>.</p>
+<p>Let's run this in our postman.</p>
+<p>Let's restart our server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>In my postman, I open up a new tab. Set the request to  <code>GET</code>  type and in the  <code>URL</code>  bar type  <code>[http://localhost:8080/todos/:id][32]</code>, then hit  <code>Send</code>.</p>
+<p>Since we are generating ID's randomly, first get all todos by hitting theget all todos API. Then from any todo get one of its ID to test this newly created API.<br>
+Every time you restart this Deno application, new ID's will be generated.</p>
+<p>Let's go:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.40.52.png" alt=""></p>
+<p>404 status, no record found case</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.41.36.png" alt=""></p>
+<p>Provided it a known ID and it returned the todo associated with that ID along with status 200</p>
+<p>If you need to reference the original source code of this tutorial go  <a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak"><strong>here</strong></a>.</p>
+<p>Great, 3 APIs done, 2 more to go.</p>
+<pre class="language-autoit"><code class="language-autoit">import { v4 } from <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> interfaces
+import Todo from <span class="token string">"../interfaces/Todo.ts"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+
+
+export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  createTodo<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  getTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>Let's talk about our controller for  <code>PUT todos/:id</code>. This will update a todo by ID.</p>
+<p>Let's break this down into smaller bits:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> todo<span class="token punctuation">:</span> Todo | undefined <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">.</span>id <span class="token operator">==</span><span class="token operator">=</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>!todo<span class="token punctuation">)</span> {
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+message<span class="token punctuation">:</span> <span class="token string">"No todo found"</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+return<span class="token comment">;</span>
+}
+</code></pre>
+<p>This is something we did exactly the same with the previous controller as well, so I won't go into much detail here.</p>
+<p>Pro tip here: You can if you want make this piece of code a generic code block and then use it in both controllers.</p>
+<p>Next we do this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">if</span> todo found <span class="token keyword">then</span> update todo
+<span class="token keyword">const</span> body <span class="token operator">=</span> await request<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+<span class="token keyword">const</span> updatedData<span class="token punctuation">:</span> { todo<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token comment">; isCompleted?: boolean } = body.value;</span>
+let newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+return t<span class="token punctuation">.</span>id <span class="token operator">==</span><span class="token operator">=</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> { <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>t<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>updatedData } <span class="token punctuation">:</span> t<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token punctuation">:</span> newTodos<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>The piece of code I want to talk about here is the following:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> updatedData<span class="token punctuation">:</span> { todo<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token comment">; isCompleted?: boolean } = body.value;</span>
+let newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+return t<span class="token punctuation">.</span>id <span class="token operator">==</span><span class="token operator">=</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> { <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>t<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>updatedData } <span class="token punctuation">:</span> t<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>First we do  <code>const updatedData = body.value</code>  and then add type checking to  <code>updatedData</code>  like the following:</p>
+<pre class="language-autoit"><code class="language-autoit">updatedData<span class="token punctuation">:</span> { todo<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token comment">; isCompleted?: boolean }</span>
+</code></pre>
+<p>This piece of code is telling TS that  <code>updatedData</code>  is an object which can  <code>have/not have</code>  <em>todo: string and</em>  also can  <code>have/not have</code>  <em>isCompleted: boolean.</em></p>
+<p>Then we simply map over all todos like this:</p>
+<pre class="language-autoit"><code class="language-autoit">let newTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+return t<span class="token punctuation">.</span>id <span class="token operator">==</span><span class="token operator">=</span> params<span class="token punctuation">.</span>id <span class="token operator">?</span> { <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>t<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>updatedData } <span class="token punctuation">:</span> t<span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>And where  <code>params.id</code>  match with  <code>t.id</code>  we simply append everything to that object we get from the user.</p>
+<p>We are done with this API as well.</p>
+<p>Let's restart our server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>Open up a new tab in Postman. Set the request to  <code>PUT</code>  and in the  <code>URL</code>  bar type in  <code>[http://localhost:8080/todos/:id][35]</code>, then hit  <code>Send</code>:</p>
+<p>Since we are generating ID's randomly, first get all todos by hitting get all todos API. Then from any todo get one of its ID to test this newly created API.<br>
+Every time you restart this Deno application, new ID's will be generated.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-02.59.39.png" alt=""></p>
+<p>404 status returned and no todo found error message given</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-03.00.21.png" alt=""></p>
+<p>Provided a known ID, updated todo content in body. It returned the updated todo along with all the other todos</p>
+<p>This is amazing – four APIs done and just one more to go.</p>
+<pre class="language-autoit"><code class="language-autoit">import { v4 } from <span class="token string">"<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> interfaces
+import Todo from <span class="token string">"../interfaces/Todo.ts"</span><span class="token comment">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> stubs
+import todos from <span class="token string">"../stubs/todos.ts"</span><span class="token comment">;</span>
+
+
+export <span class="token keyword">default</span> {
+  getAllTodos<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  createTodo<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  getTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  updateTodoById<span class="token punctuation">:</span> async <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {}<span class="token punctuation">,</span>
+  <span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+</code></pre>
+<p>Let's talk about our controller for  <code>Delete todos/:id</code>  this will delete a todo by ID.</p>
+<p>We simply run a filter on all todos:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> allTodos <span class="token operator">=</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">.</span>id !<span class="token operator">==</span> params<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>Remove the  <code>todo.id</code>  that matches with  <code>params.id</code>  and return the rest.</p>
+<p>Then we do this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> remove the todo w<span class="token punctuation">.</span>r<span class="token punctuation">.</span>t id <span class="token operator">and</span> return
+<span class="token operator">/</span><span class="token operator">/</span> remaining todos
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">200</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+data<span class="token punctuation">:</span> allTodos<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>Simply return all the todos left which do not have the same <a href="http://todo.id">todo.id</a>.</p>
+<p>Let's restart our server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>Open up a new tab in Postman. This time set the request to  <code>DELETE</code>  and in the  <code>URL</code>  bar type  <code>[http://localhost:8080/todos/:id][37]</code>  and hit  <code>Send</code>.</p>
+<p>Since we are generating ID's randomly, first get all todos by hitting get all todos API. Then from any todo get one of its ID to test this newly created API.<br>
+Every time you restart this Deno application, new ID's will be generated.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-03.07.54.png" alt=""></p>
+<p>With this we are all done with all five APIs.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/75bdf06df3fd6ddd9d3311d8cb2be029.jpg" alt=""></p>
+<hr>
+<p>Now we only have two things remaining:</p>
+<ul>
+<li>Add a not found route middleware so that when the user tries to access an unknown route it gives an error.</li>
+<li>Add a logger API that consoles the response time it took to return data from one API endpoint.</li>
+</ul>
+<h2 id="creating-a-route-middleware-for-routes-that-aren't-found">Creating a route middleware for routes that aren't found<a class="anchor" href="#creating-a-route-middleware-for-routes-that-aren't-found">§</a></h2>
+<p>In your root folder create a new folder called  <code>middlewares</code>. Inside that folder create a file called  <code>notFound.ts</code>  and inside this file add this code:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> <span class="token punctuation">(</span>{ response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+response<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token number">404</span><span class="token comment">;</span>
+response<span class="token punctuation">.</span>body <span class="token operator">=</span> {
+success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+message<span class="token punctuation">:</span> <span class="token string">"404 - Not found."</span><span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+}<span class="token comment">;</span>
+
+</code></pre>
+<p>Here we aren't doing anything new – it is very similar to our controllers structure. Just returning a status  <code>404</code>  (which means not found) along with a JSON object for  <code>{ success, message }</code>.</p>
+<p>Next go in your  <code>server.ts</code>  file and add the following content:</p>
+<ul>
+<li>Add this import somewhere at the top:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">not</span> found
+import notFound from <span class="token string">'./middlewares/notFound.ts'</span><span class="token comment">;</span>
+</code></pre>
+<ul>
+<li>And then just below your  <code>app.use(todoRouter.allowedMethods())</code>  add this line like this:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>todoRouter<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+
+
+
+</code></pre>
+<p>The order of execution is important here: every time we try to access an API end point it will first match/check routes from our  <code>todoRouter</code>. If none are found, it will then execute  <code>app_.use_(notFound);</code>.</p>
+<p>Let's see if this works.</p>
+<p>Restart the server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>Open up a new tab in Postman. Set the request to  <code>GET</code>  and in the  <code>URL</code>  bar type  <code>[http://localhost:8080/something-unknown][38]</code>, then hit  <code>Send</code>.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.28.10.png" alt=""></p>
+<p>So we now have a route middleware that we put at the end of our routes in  <code>server.ts</code>  as  <code>app_.use_(notFound);</code>. If no route matches this middleware it will execute and return a  <code>404</code>  status code (which means not found). Then we simply send a response message like always which is  <code>{success, message}</code>.</p>
+<p><strong>Pro tip:</strong>  We have decided that  <code>{success, message}</code>  is what we return in failed scenarios and  <code>{success, data}</code>  is what we return to user in success scenarios. So we can even make these to object/shapes as interfaces and add them to our project to ensure consistency and safe type checking.</p>
+<p>Cool, now we are done with one of our middlewares – let's add the other middleware for logging our APIs in the console.</p>
+<p><strong>Reminder:</strong>  If you get stuck anywhere you can use the  <a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">source code here</a>.</p>
+<h2 id="logging-apis-in-console">Logging APIs in console<a class="anchor" href="#logging-apis-in-console">§</a></h2>
+<p>In your  <code>middlewares</code>  folder create a new file called  <code>logger.ts</code>  and enter the following code:</p>
+<pre class="language-autoit"><code class="language-autoit">import {
+  green<span class="token punctuation">,</span>
+  cyan<span class="token punctuation">,</span>
+  white<span class="token punctuation">,</span>
+  bgRed<span class="token punctuation">,</span>
+} from <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token comment">;</span>
+<span class="token keyword">const</span> X_RESPONSE_TIME<span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">"X-Response-Time"</span><span class="token comment">;</span>
+
+</code></pre>
+<p>In your  <code>server.ts</code>  file add this code:</p>
+<ul>
+<li>Import this somewhere at the top:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> logger
+import logger from <span class="token string">'./middlewares/logger.ts'</span><span class="token comment">;</span>
+</code></pre>
+<ul>
+<li>Just above your  <code>todoRouter</code>  code add these middlewares like this:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> order of execution is important<span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>Now let's discuss what we just did.</p>
+<p>Let's talk about the  <code>logger.ts</code>  file and break it down into bits:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  green<span class="token punctuation">,</span>
+  cyan<span class="token punctuation">,</span>
+  white<span class="token punctuation">,</span>
+  bgRed<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"<a class="token url-link" href="https://deno.land/std@0.53.0/fmt/colors.ts">https://deno.land/std@0.53.0/fmt/colors.ts</a>"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>I am importing some console colors and console background colors that I want to use in API logging.</p>
+<p>This is similar to what we did in our  <code>eventListener</code>  in our  <code>server.ts</code>  file. We will use colors in our console to log API requests.</p>
+<p>Next I set  <code>const X_RESPONSE_TIME: string = &quot;X-Response-Time&quot;;</code>. This is the header we will inject in our API requests as they come into our server. I am calling this  <code>`X_RESPONSE_TIME`</code>  and its value is  <code>`X-Response-Time`</code>. I will demonstrate its usage in a bit.</p>
+<p>Next we simply export an object like this:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> {
+    logger<span class="token punctuation">:</span> async <span class="token punctuation">(</span>{ response<span class="token punctuation">,</span> request }<span class="token punctuation">,</span> <span class="token keyword">next</span><span class="token punctuation">)</span> {}
+    responseTime<span class="token punctuation">:</span> async <span class="token punctuation">(</span>{ response }<span class="token punctuation">,</span> <span class="token keyword">next</span><span class="token punctuation">)</span> {}
+}<span class="token comment">;</span>
+</code></pre>
+<p>And then we simply use it inside our  <code>server.ts</code>  file like this:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> order of execution is important<span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>Let's now discuss what is happening in our logger middleware code and discuss it execution style using  <code>next()</code>:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36.png" alt=""></p>
+<p>Execution of order of logging middleware when GET /todos API is called.</p>
+<p>The only difference here and in the controllers we had before is the use of the  <code>next()</code>  function. This functions helps us jump from one controller to the other as shown in the image below.</p>
+<p>So in:</p>
+<pre class="language-autoit"><code class="language-autoit">export <span class="token keyword">default</span> {
+  logger<span class="token punctuation">:</span> async <span class="token punctuation">(</span>
+    { response<span class="token punctuation">,</span> request }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any<span class="token punctuation">,</span> request<span class="token punctuation">:</span> any }<span class="token punctuation">,</span>
+    <span class="token keyword">next</span><span class="token punctuation">:</span> Function<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+    await <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+    <span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">)</span><span class="token comment">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span>} ${<span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+  }<span class="token punctuation">,</span>
+  responseTime<span class="token punctuation">:</span> async <span class="token punctuation">(</span>
+    { response }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any }<span class="token punctuation">,</span>
+    <span class="token keyword">next</span><span class="token punctuation">:</span> Function<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+    <span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+    await <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+    <span class="token keyword">const</span> ms<span class="token punctuation">:</span> number <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token comment">;</span>
+    response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">,</span> ${ms}ms<span class="token punctuation">)</span>
+  }<span class="token punctuation">,</span>
+}<span class="token comment">;</span>
+</code></pre>
+<p>Keep in mind that this is what we have in our  <code>server.ts</code>  file:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> order of execution is important<span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>logger<span class="token punctuation">)</span><span class="token comment">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>logger<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre>
+<p>The order of execution is as follows:</p>
+<ul>
+<li>logger.logger middleware</li>
+<li>logger.responseTime middleware</li>
+<li>todoRouter controller (whatever path is called by the user, for the purpose of explanation I am assuming that the user called  <code>GET /todos</code>  API to get all todos.)</li>
+</ul>
+<p>So it will first execute logger.logger middleware which is this:</p>
+<pre class="language-autoit"><code class="language-autoit">logger<span class="token punctuation">:</span> async <span class="token punctuation">(</span>
+    { response<span class="token punctuation">,</span> request }<span class="token punctuation">:</span> { response<span class="token punctuation">:</span> any<span class="token punctuation">,</span> request<span class="token punctuation">:</span> any }<span class="token punctuation">,</span>
+    <span class="token keyword">next</span><span class="token punctuation">:</span> Function<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+    await <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+    <span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">)</span><span class="token comment">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span>} ${<span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+  }<span class="token punctuation">,</span>
+</code></pre>
+<p>It will come inside this function and immediately as it reads  <code>await next()</code>  it quickly jumps to the next middleware which is  <code>responseTime</code>:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36-1.png" alt=""></p>
+<p>Sharing the image above again for revision.</p>
+<p>Inside  <code>responseTime</code>, it only executes two lines which are (look at execution order 2 in image above):</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+await <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>before jumping to the  <code>getAllTodos</code>  controller. Once it goes inside  <code>getAllTodos</code>  it will run the entire code inside that controller.</p>
+<p>Since in that controller we are not using  <code>next()</code>  it will simply return the flow of logic back to  <code>responseTime</code>  controller. There it will run the following:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> ms<span class="token punctuation">:</span> number <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token comment">;</span>
+response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">,</span> ${ms}ms<span class="token punctuation">)</span>
+</code></pre>
+<p>Now keeping in perspective of the order of execution which is  <code>2, 3, 4</code>  (look at the image above).</p>
+<p>This is what happens:</p>
+<ul>
+<li>We capture the data in  <code>ms</code>  by doing  <code>const</code> <em><code>start</code></em> <code>=</code> <em><code>Date.now</code></em><code>();</code>. Then we immediately call  <code>next()</code>  which goes to  <code>getAllTodos</code>  controller and runs the entire code. Then it comes back in the  <code>responseTime</code>  controller.</li>
+<li>We then subtract that  <code>start</code>  date with whatever the date is at that moment by doing  <code>const _ms_: _number_ = _Date.now_()  - _start_;</code>  <code>ms</code>. Here it will return a number which is basically the difference in milliseconds that will tell us all the time it took Deno to execute our  <code>getAllTodos</code>  controller.</li>
+</ul>
+<p>Sharing the image once again for review:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-12.51.36-2.png" alt=""></p>
+<ul>
+<li>Next we simply set headers in our  <code>response</code>  like this:</li>
+</ul>
+<pre class="language-autoit"><code class="language-autoit">response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">,</span> ${ms}ms<span class="token punctuation">)</span>
+</code></pre>
+<p>Which just sets the header value  <code>X-Response-Time</code>  to the milliseconds it took Deno to execute our API.</p>
+<ul>
+<li>Then from execution order  <code>4</code>  we move back to execution order  <code>5</code>  (have a look at the image above for reference).</li>
+</ul>
+<p>Here we simply do:</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> responseTime <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>X_RESPONSE_TIME<span class="token punctuation">)</span><span class="token comment">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">green</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span>} ${<span class="token function">cyan</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>${<span class="token function">bgRed</span><span class="token punctuation">(</span><span class="token function">white</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<ul>
+<li>We get the time we passed in the  <code>`X-Response-Time`</code></li>
+<li>Then we take that time and simply console it colourfully in the console.</li>
+</ul>
+<p><code>request.method</code>  tells us the method used to call our API, that is <code>GET, PUT etc</code>  while  <code>request.url.pathname</code>  will tell the API which path the user used i.e,  <code>/todos</code></p>
+<p>Let's see if this works.</p>
+<p>Restart the server:</p>
+<pre class="language-autoit"><code class="language-autoit">$ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net server<span class="token punctuation">.</span>ts
+</code></pre>
+<p>Open up a new tab in Postman. Set the request to  <code>GET</code>, type in  <code>[http://localhost:8080/todos][42]</code>, and hit  <code>Send</code>.</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-13.17.13.png" alt=""></p>
+<p>Hit the API a couple of times in Postman. Then when you go back to the console, you should see something like this:</p>
+<p><img src="https://www.freecodecamp.org/news/content/images/2020/05/Screenshot-2020-05-29-at-13.21.03.png" alt=""></p>
+<p>API being logged in our console</p>
+<p>This is it – we are done.</p>
+<p>If you still feel stuck, take a look at the entire source code for this tutorial here:  <a href="https://github.com/adeelibr/deno-playground/tree/master/chapter_1:oak">github.com/adeelibr/deno-playground/tree/master/chapter_1:oak</a></p>
+<p>I hope that you found this article useful and that it was able to help you learn something today.</p>
+<p>If you liked it, please do share it on social media. If you want to have a discussion about it, reach out to me on  <a href="https://twitter.com/adeelibr">Twitter</a>.</p></article><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#things-we-will-cover">Things we will cover</a></li><li><a href="#what-will-we-need">What will we need</a></li><li><a href="#let's-get-started">Let&#39;s get started</a><ol><li><a href="#setting-up-the-project">Setting up the project</a></li></ol></li><li><a href="#let's-work-on-our-controllers">Let&#39;s work on our controllers</a></li><li><a href="#creating-a-route-middleware-for-routes-that-aren't-found">Creating a route middleware for routes that aren&#39;t found</a></li><li><a href="#logging-apis-in-console">Logging APIs in console</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-pen button" href="https://github.com/hylerrix/deno-tutorial/edit/master/articles/translation/original-articles/deno-oak-todo-api.md" target="_blank" style="background-image:url(&quot;/assets/czs-pen.svg&quot;)"></a><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

@@ -1,0 +1,417 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Learn Deno: Chat app · Deno 钻研之术</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li></ol></li><li class="unfold"><a href="/articles/ROADMAP.html" class="nav_link">未来规划<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/frontend/index.html" class="nav_link">前端篇</a></li><li class=""><a href="/articles/backend/index.html" class="nav_link">后端篇</a></li><li class=""><a href="/articles/language/index.html" class="nav_link">语言篇</a></li><li class=""><a href="/articles/forward/index.html" class="nav_link">转载篇</a></li><li class=""><a href="/articles/weekly/index.html" class="nav_link">周报篇</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1><a href="https://aralroca.com/blog/learn-deno-chat-app">Learn Deno: Chat app</a></h1>
+<p>Node.js was writtern initially by <a href="https://en.wikipedia.org/wiki/Ryan_Dahl">Ryan Dahl</a> on 2009 (in C++). Ryan left Node.js in 2012, as at this point he felt he had more or less fulfilled his goals.</p>
+<p>His goals are now different. After realizing that there were some design errors impossible to fix in Node.js, he decided to create another JavaScript (also TypeScript) runtime built with V8: Deno (in Rust). Deno 1.0.0 will be finally released on 13th May 2020.</p>
+<p><img src="https://aralroca.com/images/blog-images/38.svg" alt=""></p>
+<p>We'll see how Deno works and its differences with Node, implementing a simple chat application.</p>
+<p><strong>We will cover the following:</strong></p>
+<ul>
+<li><a href="#learn-deno-chat-app">Learn Deno: Chat app</a>
+<ul>
+<li><a href="#installing-deno">Installing Deno</a></li>
+<li><a href="#simple-%22hello-world%22">Simple &quot;Hello World&quot;</a></li>
+<li><a href="#serve-an-indexhtml">Serve an index.html</a></li>
+<li><a href="#using-websockets">Using WebSockets</a></li>
+<li><a href="#third-party-and-depsts-convention">Third-party and deps.ts convention</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#code-of-this-article">Code of this article</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="installing-deno">Installing Deno<a class="anchor" href="#installing-deno">§</a></h2>
+<p>There are different ways to install Deno: Using curl, iwr, Homebrew, Chocolatey... See how to install it <a href="https://github.com/denoland/deno/blob/34ec3b225425cecdccf754fbc87f4a8f3728890d/docs/getting_started/installation.md">here</a>. Deno is a single binary executable, it has no external dependencies.</p>
+<p>In my case I'm going to use Homebrew:</p>
+<pre class="language-autoit"><code class="language-autoit">➜  ~ brew install deno
+➜  ~ deno <span class="token operator">-</span><span class="token operator">-</span>version
+deno <span class="token number">1.0</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">-</span>rc1
+v8 <span class="token number">8.2</span><span class="token punctuation">.</span><span class="token number">308</span>
+typescript <span class="token number">3.8</span><span class="token punctuation">.</span><span class="token number">3</span>
+</code></pre>
+<p>As we can see, there's no <code>npm</code> here. Npm started to be essential in the Node ecosystem... And it's a centralized (privately controlled even) repository for modules. This is now changing with Deno. We will see later how to install packages without a <code>package.json</code> and <code>node_modules</code> either.</p>
+<p>To upgrade to the latest version we need to do <code>deno upgrade</code>.</p>
+<p>I recommend to execute <code>deno help</code> to see all the possible usages:</p>
+<pre class="language-autoit"><code class="language-autoit">USAGE<span class="token punctuation">:</span>
+    deno <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> <span class="token punctuation">[</span>SUBCOMMAND<span class="token punctuation">]</span>
+
+OPTIONS<span class="token punctuation">:</span>
+    <span class="token operator">-</span>h<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token operator">-</span>help                     Prints help information
+    <span class="token operator">-</span>L<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token operator">-</span>log<span class="token operator">-</span>level <span class="token operator">&lt;</span>log<span class="token operator">-</span>level<span class="token operator">></span>    Set log level <span class="token punctuation">[</span>possible values<span class="token punctuation">:</span> debug<span class="token punctuation">,</span> info<span class="token punctuation">]</span>
+    <span class="token operator">-</span>q<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token operator">-</span>quiet                    Suppress diagnostic output
+    <span class="token operator">-</span>V<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token operator">-</span>version                  Prints version information
+
+SUBCOMMANDS<span class="token punctuation">:</span>
+    bundle         Bundle module <span class="token operator">and</span> dependencies into single file
+    cache          Cache the dependencies
+    completions    Generate shell completions
+    doc            Show documentation <span class="token keyword">for</span> a module
+    eval           Eval script
+    fmt            Format source files
+    help           Prints this message <span class="token operator">or</span> the help of the given <span class="token function">subcommand</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    info           Show info about cache <span class="token operator">or</span> info related <span class="token keyword">to</span> source file
+    install        Install script as an executable
+    repl           Read Eval Print Loop
+    run            Run a program given a filename <span class="token operator">or</span> url <span class="token keyword">to</span> the module
+    test           Run tests
+    types          Print runtime TypeScript declarations
+    upgrade        Upgrade deno executable <span class="token keyword">to</span> newest version
+
+ENVIRONMENT VARIABLES<span class="token punctuation">:</span>
+    DENO_DIR             Set deno's base directory <span class="token punctuation">(</span>defaults <span class="token keyword">to</span> <span class="token variable">$HOME</span><span class="token operator">/</span><span class="token punctuation">.</span>deno<span class="token punctuation">)</span>
+    DENO_INSTALL_ROOT    Set deno install's output directory
+                         <span class="token punctuation">(</span>defaults <span class="token keyword">to</span> <span class="token variable">$HOME</span><span class="token operator">/</span><span class="token punctuation">.</span>deno<span class="token operator">/</span>bin<span class="token punctuation">)</span>
+    NO_COLOR             Set <span class="token keyword">to</span> disable color
+    HTTP_PROXY           Proxy address <span class="token keyword">for</span> HTTP requests
+                         <span class="token punctuation">(</span>module downloads<span class="token punctuation">,</span> fetch<span class="token punctuation">)</span>
+    HTTPS_PROXY          Same but <span class="token keyword">for</span> HTTPS
+</code></pre>
+<p>In case that you are using Visual Studio Code, I recommend to install this plugin to ease working with Deno:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-deno">https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-deno</a></li>
+</ul>
+<h2 id="simple-%22hello-world%22">Simple &quot;Hello World&quot;<a class="anchor" href="#simple-%22hello-world%22">§</a></h2>
+<p>For a simple &quot;Hello world&quot; in Deno, we just need to create a file <code>.js</code> or <code>.ts</code>, and execute it with <code>deno run [file]</code>.</p>
+<p>In case of <code>.ts</code>, it will compile + execute, meanwhile for <code>.js</code>, the file will be executed directly:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// example.ts file</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Hello from Deno 🖐'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>And in the shell:</p>
+<pre class="language-autoit"><code class="language-autoit">➜  deno run example<span class="token punctuation">.</span>ts
+Compile file<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token operator">/</span>Users<span class="token operator">/</span>aralroca<span class="token operator">/</span>example<span class="token punctuation">.</span>ts
+Hello from Deno 🖐
+</code></pre>
+<p>The <code>tsconfig.json</code> file is optional because in Deno there are some TypeScript defaults. To apply the <code>tsconfig.json</code> we should use <code>deno run -c tsconfig.json [file]</code>.</p>
+<p>By the way, Deno uses web standards where possible. It's possible to use <code>window</code>, <code>fetch</code>, <code>Worker</code>... Our code should be compatible with both Deno and the browser.</p>
+<h2 id="serve-an-index.html">Serve an index.html<a class="anchor" href="#serve-an-index.html">§</a></h2>
+<p>Deno has his own standard library <a href="https://deno.land/std/">https://deno.land/std/</a> so to use their modules we can import it directly from the <strong>URL</strong>. One of its goals is shipping only a single executable with minimal linkage. This way it's only necessary to import the URL to their projects, or execute directly with <code>deno run https://...</code> in case of CLIs.</p>
+<p>In order to create a http server and serve an <code>index.html</code> we are going to use this module: <a href="https://deno.land/std/http/">https://deno.land/std/http/</a>.</p>
+<p>We are going to create two files: <code>server.ts</code> and <code>index.html</code>.</p>
+<p><small>index.html</small></p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Example using Deno<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    index.html served correctly
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><small>server.ts</small></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> listenAndServe <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/http/server.ts">https://deno.land/std/http/server.ts</a>'</span>
+
+<span class="token function">listenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">3000</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">req</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token property-access">method</span> <span class="token operator">===</span> <span class="token string">'GET'</span> <span class="token operator">&amp;&amp;</span> req<span class="token punctuation">.</span><span class="token property-access">url</span> <span class="token operator">===</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    req<span class="token punctuation">.</span><span class="token method function property-access">respond</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      status<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+      headers<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'content-type'</span><span class="token operator">:</span> <span class="token string">'text/html'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token operator">:</span> <span class="token keyword control-flow">await</span> <span class="token maybe-class-name">Deno</span><span class="token punctuation">.</span><span class="token method function property-access">open</span><span class="token punctuation">(</span><span class="token string">'./index.html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Server running on localhost:3000'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>We can use ESmodules by default instead of Common.js, indicating the file extension always at the end. Moreover, it supports the latest features as <code>async-await</code>.</p>
+<p>Also, we don't need to worry about formatting anymore. Instead of using tools as Prettier, we can format the files with <code>deno fmt</code> command.</p>
+<p>The first time <code>deno run server.ts</code> runs, we'll see two differences with respect to the &quot;Hello World&quot; example:</p>
+<ol>
+<li>
+<p>It downloads all the dependencies from <code>http</code> module. Instead of using <code>yarn</code> or <code>npm install</code>, it should install all the needed dependencies before running the project. This happens only the first time, since it's cached. To clean the cache you can use the <code>--reload</code> command.</p>
+</li>
+<li>
+<p>It throws an error <code>Uncaught PermissionDenied: network access to &quot;127.0.0.1:3000&quot;, run again with the --allow-net flag</code>. Deno is secure by default. This means that we can't access to the net or read a file (index.html). This is one of the big improvements over Node. In Node any CLI library could do many things without our consent. With Deno it's possible, for example, to allow reading access only in one folder: <code>deno --allow-read=/etc</code>. To see all permission flags, run <code>deno run -h</code>.</p>
+</li>
+</ol>
+<p>Now we are ready to serve <code>index.html</code>:</p>
+<pre class="language-autoit"><code class="language-autoit">➜ deno run <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>net <span class="token operator">-</span><span class="token operator">-</span>allow<span class="token operator">-</span>read server<span class="token punctuation">.</span>ts
+Compile file<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token operator">/</span>Users<span class="token operator">/</span>aralroca<span class="token operator">/</span>server<span class="token punctuation">.</span>ts
+Server running on localhost<span class="token punctuation">:</span><span class="token number">3000</span>
+</code></pre>
+<p><img src="https://aralroca.com/images/blog-images/32.png" alt=""></p>
+<h2 id="using-websockets">Using WebSockets<a class="anchor" href="#using-websockets">§</a></h2>
+<p>WebSockets, UUID, and other essentials in Node are not part of the core. This means that we need to use third-party libraries to use it. Yet, you can use WebSockets and UUID among many others by using Deno standard library. In other words, you don't need to worry about maintenance, because now it will be always maintained.</p>
+<p>To continue implementing our simple chat app, let's create a new file <code>chat.ts</code> with:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  WebSocket<span class="token punctuation">,</span>
+  isWebSocketCloseEvent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/ws/mod.ts">https://deno.land/std/ws/mod.ts</a>'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/uuid/mod.ts">https://deno.land/std/uuid/mod.ts</a>'</span>
+
+<span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> WebSocket<span class="token operator">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">broadcast</span><span class="token punctuation">(</span>message<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> senderId<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>message<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> user <span class="token keyword">of</span> users<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    user<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>senderId <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>senderId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">:</span> message<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">chat</span><span class="token punctuation">(</span>ws<span class="token operator">:</span> WebSocket<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> userId <span class="token operator">=</span> v4<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// Register user connection</span>
+  users<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>userId<span class="token punctuation">,</span> ws<span class="token punctuation">)</span>
+  <span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">> User with the id </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>userId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> is connected</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+  <span class="token comment">// Wait for new messages</span>
+  <span class="token keyword">for</span> <span class="token keyword">await</span> <span class="token punctuation">(</span><span class="token keyword">const</span> event <span class="token keyword">of</span> ws<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token keyword">typeof</span> event <span class="token operator">===</span> <span class="token string">'string'</span> <span class="token operator">?</span> event <span class="token operator">:</span> <span class="token string">''</span>
+
+    <span class="token function">broadcast</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> userId<span class="token punctuation">)</span>
+
+    <span class="token comment">// Unregister user conection</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>message <span class="token operator">&amp;&amp;</span> <span class="token function">isWebSocketCloseEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      users<span class="token punctuation">.</span><span class="token keyword">delete</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span>
+      <span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">> User with the id </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>userId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> is disconnected</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now, register an endpoint <code>/ws</code> to expose the chat on <code>server.ts</code>:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> listenAndServe <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/http/server.ts">https://deno.land/std/http/server.ts</a>'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> acceptWebSocket<span class="token punctuation">,</span> acceptable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/ws/mod.ts">https://deno.land/std/ws/mod.ts</a>'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> chat <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./chat.ts'</span>
+
+<span class="token function">listenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">{</span> port<span class="token operator">:</span> <span class="token number">3000</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>req<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>req<span class="token punctuation">.</span>method <span class="token operator">===</span> <span class="token string">'GET'</span> <span class="token operator">&amp;&amp;</span> req<span class="token punctuation">.</span>url <span class="token operator">===</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    req<span class="token punctuation">.</span><span class="token function">respond</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      status<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+      headers<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">'content-type'</span><span class="token operator">:</span> <span class="token string">'text/html'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token operator">:</span> <span class="token keyword">await</span> Deno<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'./index.html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// WebSockets Chat</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>req<span class="token punctuation">.</span>method <span class="token operator">===</span> <span class="token string">'GET'</span> <span class="token operator">&amp;&amp;</span> req<span class="token punctuation">.</span>url <span class="token operator">===</span> <span class="token string">'/ws'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">acceptable</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">acceptWebSocket</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        conn<span class="token operator">:</span> req<span class="token punctuation">.</span>conn<span class="token punctuation">,</span>
+        bufReader<span class="token operator">:</span> req<span class="token punctuation">.</span>r<span class="token punctuation">,</span>
+        bufWriter<span class="token operator">:</span> req<span class="token punctuation">.</span>w<span class="token punctuation">,</span>
+        headers<span class="token operator">:</span> req<span class="token punctuation">.</span>headers<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>chat<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Server running on localhost:3000'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>To implement our client-side part, we are going to choose Preact to be able to use modules directly without the need of npm, babel and webpack, as we saw on the <a href="https://aralroca.com/blog/app-with-react-api-without-tools-as-webpack-or-babel">previous article</a>.</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Chat using Deno<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+      <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>
+        html<span class="token punctuation">,</span>
+        render<span class="token punctuation">,</span>
+        useEffect<span class="token punctuation">,</span>
+        useState<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'<a class="token url-link" href="https://unpkg.com/htm/preact/standalone.module.js">https://unpkg.com/htm/preact/standalone.module.js</a>'</span>
+
+      <span class="token keyword">let</span> ws
+
+      <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Chat</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Messages</span>
+        <span class="token keyword">const</span> <span class="token punctuation">[</span>messages<span class="token punctuation">,</span> setMessages<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">const</span> <span class="token function-variable function">onReceiveMessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token function">setMessages</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">m</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">[</span><span class="token spread operator">...</span>m<span class="token punctuation">,</span> data<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">const</span> <span class="token function-variable function">onSendMessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> msg <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token property-access">target</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token property-access">value</span>
+
+          e<span class="token punctuation">.</span><span class="token method function property-access">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          ws<span class="token punctuation">.</span><span class="token method function property-access">send</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+          e<span class="token punctuation">.</span><span class="token property-access">target</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Websocket connection + events</span>
+        <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>ws<span class="token punctuation">)</span> ws<span class="token punctuation">.</span><span class="token method function property-access">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">ws://</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">location</span><span class="token punctuation">.</span><span class="token property-access">host</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/ws</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+          ws<span class="token punctuation">.</span><span class="token method function property-access">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> onReceiveMessage<span class="token punctuation">)</span>
+
+          <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+            ws<span class="token punctuation">.</span><span class="token method function property-access">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> onReceiveMessage<span class="token punctuation">)</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token keyword control-flow">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token embedded-code html">
+          ${messages.map((message) => html` &lt;div>${message}&lt;/div> `)}
+
+          &lt;form onSubmit=${onSendMessage}>
+            &lt;input type="text" />
+            &lt;button>Send&lt;/button>
+          &lt;/form>
+        </span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span>html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token embedded-code html">&lt;${Chat} /></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Result:</p>
+<p><img src="https://aralroca.com/images/blog-images/33.gif" alt=""></p>
+<p>It's a very ugly chat without styles, but functional, because our aim here is to understand how Deno works.</p>
+<h2 id="third-party-and-deps.ts-convention">Third-party and deps.ts convention<a class="anchor" href="#third-party-and-deps.ts-convention">§</a></h2>
+<p>We can use third-party libraries in the same way we use the Deno Standard Library, by importing directly the URL of the module.</p>
+<ul>
+<li>STD, Deno core libraries: <a href="https://deno.land/std/">https://deno.land/std/</a></li>
+<li>X, Deno Third-party libraries: <a href="https://deno.land/x/">https://deno.land/x/</a></li>
+</ul>
+<p>However, the ecosystem in <a href="https://deno.land/x/">https://deno.land/x/</a> is quite small yet. But hey, I have good news for you, we can use packages from <a href="https://www.pika.dev">https://www.pika.dev</a>. Thanks to tools like Parcel or Minibundle we can compile Node libraries into modules to re-use them in Deno projects.</p>
+<p>We are going to use the <a href="https://www.pika.dev/npm/camel-case">camel-case</a> package to transform every chat message to camelCase!</p>
+<p><img src="https://aralroca.com/images/blog-images/34.png" alt=""></p>
+<p>Let's add this import in our <code>chat.ts</code> file:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> camelCase <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'<a class="token url-link" href="https://cdn.pika.dev/camel-case@">https://cdn.pika.dev/camel-case@</a>^4.1.1'</span>
+<span class="token comment">// ...before code</span>
+<span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token function">camelCase</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> event <span class="token operator">===</span> <span class="token string">'string'</span> <span class="token operator">?</span> event <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">)</span>
+<span class="token comment">// ... before code</span>
+</code></pre>
+<p>That's it. Running again the <code>server.ts</code> is going to download the <code>camel-case</code> package. Now you can see that it works:</p>
+<p><img src="https://aralroca.com/images/blog-images/35.gif" alt=""></p>
+<p>However, if I want to use this <code>camelCase</code> helper in more than one file, it's cumbersome to add the full import everywhere. The URL indicates which version of the package we have to use. This means that if we want to upgrade a dependency we will need to search and replace all the imports. This could cause us problems, but don't worry, there is a Deno convention for the dependencies that solves this. Creating a <code>deps.ts</code> file to export all project dependencies.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// deps.ts file</span>
+<span class="token keyword module">export</span> <span class="token exports"><span class="token punctuation">{</span> camelCase <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'<a class="token url-link" href="https://cdn.pika.dev/camel-case@">https://cdn.pika.dev/camel-case@</a>^4.1.1'</span>
+</code></pre>
+<p>and</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// chat.ts file</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> camelCase <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'./deps.ts'</span>
+<span class="token comment">// ...</span>
+<span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token function">camelCase</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> event <span class="token operator">===</span> <span class="token string">'string'</span> <span class="token operator">?</span> event <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">)</span>
+<span class="token comment">// ...</span>
+</code></pre>
+<h2 id="testing">Testing<a class="anchor" href="#testing">§</a></h2>
+<p>We are going to build a useless <code>camelize.ts</code> utility to return the text in camelCase with a nice extra, it includes one 🐪 per uppercase letter. Why? To see how to test it with Deno.</p>
+<pre class="language-js"><code class="language-js"><span class="token doc-comment comment">/**
+ * Return the text in camelCase + how many 🐪
+ *
+ * <span class="token keyword">@example</span> <span class="token example"><span class="token code language-javascript"><span class="token string">"this is an example"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"thisIsAnExample 🐪🐪🐪"</span></span></span>
+ * <span class="token keyword">@param</span> <span class="token parameter">text</span>
+ * <span class="token keyword">@returns</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword module">export</span> <span class="token keyword">function</span> <span class="token function">camelize</span><span class="token punctuation">(</span><span class="token parameter">text<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// @todo</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>By the way, we can visualize the JSdocs of a file using <code>deno doc [file]</code>:</p>
+<pre class="language-autoit"><code class="language-autoit">➜  deno doc camelize<span class="token punctuation">.</span>ts
+function <span class="token function">camelize</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> string<span class="token punctuation">)</span>
+  Return the text <span class="token keyword">in</span> camelCase <span class="token operator">+</span> how many 🐪
+</code></pre>
+<p>Let's create a file <code>test.ts</code>. The test runner is built into the core of Deno using the <code>Deno.test()</code> and we can use assertions using the STD <a href="https://deno.land/std/testing/asserts.ts">https://deno.land/std/testing/asserts.ts</a>.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> assertStrictEq <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/std/testing/asserts.ts">https://deno.land/std/testing/asserts.ts</a>'</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> camelize <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'./camelize.ts'</span>
+
+<span class="token maybe-class-name">Deno</span><span class="token punctuation">.</span><span class="token method function property-access">test</span><span class="token punctuation">(</span><span class="token string">'camelize works'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token function">assertStrictEq</span><span class="token punctuation">(</span><span class="token function">camelize</span><span class="token punctuation">(</span><span class="token string">'this is an example'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'thisIsAnExample 🐪🐪🐪'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>To run all tests, we just need to execute <code>deno test</code>.</p>
+<pre class="language-autoit"><code class="language-autoit">➜  deno test
+Compile file<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token operator">/</span>Users<span class="token operator">/</span>aralroca<span class="token operator">/</span>test<span class="token punctuation">.</span>ts
+running <span class="token number">1</span> tests
+test camelize works <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> FAILED <span class="token punctuation">(</span>0ms<span class="token punctuation">)</span>
+
+failures<span class="token punctuation">:</span>
+
+camelize works
+AssertionError<span class="token punctuation">:</span> actual<span class="token punctuation">:</span> undefined expected<span class="token punctuation">:</span> thisIsAnExample 🐪🐪🐪
+    at assertStrictEq <span class="token punctuation">(</span>asserts<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">224</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+    at test<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token number">3</span>
+    at asyncOpSanitizer <span class="token punctuation">(</span><span class="token variable">$deno</span>$<span class="token operator">/</span>testing<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">36</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span>resourceSanitizer <span class="token punctuation">[</span>as fn<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token variable">$deno</span>$<span class="token operator">/</span>testing<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">70</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">)</span>
+    at TestApi<span class="token punctuation">.</span><span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>asyncIterator<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token variable">$deno</span>$<span class="token operator">/</span>testing<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">264</span><span class="token punctuation">:</span><span class="token number">22</span><span class="token punctuation">)</span>
+    at TestApi<span class="token punctuation">.</span><span class="token keyword">next</span> <span class="token punctuation">(</span><span class="token operator">&lt;</span>anonymous<span class="token operator">></span><span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span>runTests <span class="token punctuation">(</span><span class="token variable">$deno</span>$<span class="token operator">/</span>testing<span class="token punctuation">.</span>ts<span class="token punctuation">:</span><span class="token number">346</span><span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">)</span>
+
+failures<span class="token punctuation">:</span>
+
+        camelize works
+
+test result<span class="token punctuation">:</span> FAILED<span class="token punctuation">.</span> <span class="token number">0</span> passed<span class="token comment">; 1 failed; 0 ignored; 0 measured; 0 filtered out (0ms)</span>
+</code></pre>
+<p>Of course it fails because we didn't implemented our utility yet, but still, we can see how the errors are displayed in the shell.</p>
+<p>After implementing the <code>camelize</code> utility:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> camelCase <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'./deps.ts'</span>
+
+<span class="token doc-comment comment">/**
+ * Return the text in camelCase + how many 🐪
+ *
+ * <span class="token keyword">@example</span> <span class="token example"><span class="token code language-javascript"><span class="token string">"this is an example"</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">"thisIsAnExample 🐪🐪🐪"</span></span></span>
+ * <span class="token keyword">@param</span> <span class="token parameter">text</span>
+ * <span class="token keyword">@returns</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword module">export</span> <span class="token keyword">function</span> <span class="token function">camelize</span><span class="token punctuation">(</span><span class="token parameter">text<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> camelCaseText <span class="token operator">=</span> <span class="token function">camelCase</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> matches <span class="token operator">=</span> camelCaseText<span class="token punctuation">.</span><span class="token method function property-access">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[A-Z]</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">const</span> camels <span class="token operator">=</span> <span class="token known-class-name class-name">Array</span><span class="token punctuation">.</span><span class="token keyword module">from</span><span class="token punctuation">(</span><span class="token punctuation">{</span> length<span class="token operator">:</span> matches<span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token string">'🐪'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>camelCaseText<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>camels<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now all tests pass:</p>
+<pre class="language-autoit"><code class="language-autoit">➜  deno test
+Compile file<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token operator">/</span>Users<span class="token operator">/</span>aralroca<span class="token operator">/</span>camelize<span class="token punctuation">.</span>ts
+running <span class="token number">1</span> tests
+test camelize works <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> ok <span class="token punctuation">(</span>3ms<span class="token punctuation">)</span>
+
+test result<span class="token punctuation">:</span> ok<span class="token punctuation">.</span> <span class="token number">1</span> passed<span class="token comment">; 0 failed; 0 ignored; 0 measured; 0 filtered out (3ms)</span>
+</code></pre>
+<p>If you want to use a watcher to not execute everytime all tests, you can use <a href="https://deno.land/x/denon/">https://deno.land/x/denon/</a>, based on nodemon, and then run <code>denon test</code>.</p>
+<p>Now we are ready to use our helper on <code>chat.ts</code>.</p>
+<p><img src="https://aralroca.com/images/blog-images/36.png" alt=""></p>
+<h2 id="debugging">Debugging<a class="anchor" href="#debugging">§</a></h2>
+<p>In order to debug with Deno:</p>
+<ol>
+<li>Add somewhere in your code a <code>debugger;</code> line of code.</li>
+<li>Run with <code>--inspect-brk</code> flag. <code>deno run --inspect-brk ...</code> or <code>deno test --inspect-brk ...</code> to debug tests.</li>
+<li>Open <code>chrome://inspect</code> page on Chrome.</li>
+<li>On the Remote Target section press to &quot;inspect&quot;.</li>
+<li>Press the Resume script execution button, the code will pause just in your breakpoint.</li>
+</ol>
+<p><img src="https://aralroca.com/images/blog-images/37.png" alt=""></p>
+<h2 id="conclusion">Conclusion<a class="anchor" href="#conclusion">§</a></h2>
+<p>We learned about how Deno works by creating a simple chat app in TypeScript. We did it without npm, package.json, node_modules, webpack, babel, jest, prettier... because we don't need them, Deno simplifies this.</p>
+<p>We explored important things to begin with a Deno project: Permissions, deno commands, how to use deno internals, how to use third-party dependencies, serving a file, websockets, formating files, testing, debugging, etc.</p>
+<p>I hope this article will be useful to start using Deno 1.0.0 in your projects when it comes out on May 13, 2020.</p>
+<h2 id="code-of-this-article">Code of this article<a class="anchor" href="#code-of-this-article">§</a></h2>
+<p>I uploaded the code on my GitHub:</p>
+<ul>
+<li><a href="https://github.com/aralroca/chat-with-deno-and-preact">https://github.com/aralroca/chat-with-deno-and-preact</a></li>
+</ul>
+<h2 id="references">References<a class="anchor" href="#references">§</a></h2>
+<ul>
+<li><a href="https://deno.land/">https://deno.land/</a></li>
+<li><a href="https://github.com/denoland/deno/tree/master/docs">https://github.com/denoland/deno/tree/master/docs</a></li>
+<li><a href="https://blog.logrocket.com/deno-1-0-what-you-need-to-know/">https://blog.logrocket.com/deno-1-0-what-you-need-to-know/</a></li>
+<li><a href="https://twitter.com/flaviocopes/status/1259068673966383105">https://twitter.com/flaviocopes/status/1259068673966383105</a></li>
+<li><a href="https://www.youtube.com/watch?v=M3BM9TB-8yA">https://www.youtube.com/watch?v=M3BM9TB-8yA</a></li>
+<li><a href="https://github.com/denoland/deno">https://github.com/denoland/deno</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ryan_Dahl">https://en.wikipedia.org/wiki/Ryan_Dahl</a></li>
+</ul></article><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#installing-deno">Installing Deno</a></li><li><a href="#simple-%22hello-world%22">Simple &quot;Hello World&quot;</a></li><li><a href="#serve-an-index.html">Serve an index.html</a></li><li><a href="#using-websockets">Using WebSockets</a></li><li><a href="#third-party-and-deps.ts-convention">Third-party and deps.ts convention</a></li><li><a href="#testing">Testing</a></li><li><a href="#debugging">Debugging</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#code-of-this-article">Code of this article</a></li><li><a href="#references">References</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-pen button" href="https://github.com/hylerrix/deno-tutorial/edit/master/articles/translation/original-articles/deno-chat-app.md.md" target="_blank" style="background-image:url(&quot;/assets/czs-pen.svg&quot;)"></a><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
