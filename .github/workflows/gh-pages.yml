@@ -26,7 +26,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./dist
           cname: deno-tutorial.js.org
 
   build-and-deploy-cn:
@@ -54,5 +54,5 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: denocn/deno-tutorial
-          publish_dir: ./public
+          publish_dir: ./dist
           cname: tutorial.deno.js.cn
