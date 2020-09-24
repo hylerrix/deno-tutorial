@@ -20,7 +20,7 @@ jobs:
           pagic build
 
       - name: Deploy
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
           GA_ID: UA-169223577-1
         uses: peaceiris/actions-gh-pages@v3
