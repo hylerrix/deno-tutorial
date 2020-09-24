@@ -1,5 +1,7 @@
 # Deno 钻研之术
 
+<!-- 以下内容粘贴自根目录的 README.md，记得及时同步一下，期待 Pagic 未来支持直接读取根目录 README.md -->
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -132,4 +134,3 @@ $ ~/.deno/bin/pagic build --serve --watch
 > 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/hylerrix/reward-alipay.png)
 
 ![](http://qiniu.ningo.cloud/ningo/official-qrcode.png)
-
