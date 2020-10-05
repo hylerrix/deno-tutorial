@@ -109,26 +109,26 @@ const IndexPage = () => (
       <div>
         <h2>原创文章</h2>
         <ul>
-          <li>融合了笔者的大量思考</li>
-          <li>本书、笔者和读者一起成长</li>
-          <li>友好的交流环境</li>
+          <li>融合了笔者的大量思考。</li>
+          <li>本书、笔者和读者一起成长。</li>
+          <li>友好的交流环境。</li>
         </ul>
       </div>
       <div>
         <h2>内容丰富</h2>
         <ul>
-          <li>从多方位建设 <code>Deno</code> 生态</li>
+          <li>从多方位建设 <code>Deno</code> 生态。</li>
           <li>
-            内容包括但不局限于 <code>Deno</code> <code>Node</code> <code>React</code> <code>Rust</code> 等众多技术要点
+            内容包括但不局限于 <code>Deno</code> <code>Node</code> <code>React</code> <code>Rust</code> 等众多技术要点。
           </li>
-          <li>收录各种翻译文章、授权转载文章</li>
+          <li>收录各种翻译文章、授权转载文章。</li>
         </ul>
       </div>
       <div>
         <h2>长期维护</h2>
         <ul>
-          <li>来源于一份对持续深入地掌握前沿技术的渴望</li>
-          <li>基于 <code>Pagic</code> 静态网站生成器，构建长期的网站技术支持</li>
+          <li>来源于一份对持续深入地掌握前沿技术的渴望。</li>
+          <li>基于 <code>Pagic</code> 静态网站生成器，构建长期的网站技术支持。</li>
           <li>野心，不止于此。</li>
         </ul>
       </div>

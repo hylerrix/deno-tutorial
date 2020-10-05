@@ -3,9 +3,8 @@ import React from 'https://dev.jspm.io/react@16.13.1'
 
 export default {
   srcDir: 'site',
-  exclude: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/pagic\.config\.tsx/],
   theme: 'docs',
-  plugins: ['sidebar', 'prev_next', 'script', 'gitalk', 'ga'],
+  plugins: ['sidebar', 'prev_next', 'gitalk', 'ga'],
   title: 'Deno 钻研之术',
   description: '循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。',
   github: 'https://github.com/hylerrix/deno-tutorial',
