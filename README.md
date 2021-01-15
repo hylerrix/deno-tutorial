@@ -8,9 +8,14 @@
 
 ![](http://qiniu.ningo.cloud/deno/deno-tutorial-background.png)
 
-> 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
-
 Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tutorial.js.org)。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
+
+号外：《Deno 钻研之术》的生态仓库请查收！
+
+* [deno-tutorial](https://github.com/hylerrix/deno-tutorial)：核心仓库，电子书集中地，围绕 Deno 全生态的各种原创/翻译文章。 
+* [deno-feedly](https://github.com/hylerrix/deno-feedly)：Deno 双周刊，中英双语每两周地汇总 Deno 动态，2021 开年之作。
+* [deno-algorithm](https://github.com/hylerrix/deno-algorithm)：想在 Deno 上用 TypeScript 刷 LeetCode 算法？或许可以看看这个（才开源不久，刷一定的题后再宣传）。
+* [awesome-deno-cn](https://github.com/hylerrix/awesome-deno-cn)：见名知意，中文社区下的 Deno 资源全图谱，求 PR。
 
 ## 目录
 
@@ -27,6 +32,7 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 * 架构篇：深入到 Deno 底层读 V8，学架构；
 * 生态篇：介绍 Deno 生态的相关内容；
 * 翻译篇：翻译优质的、授权的英文一手博文。
+* 以及更多
 
 目前本仓库的文件结构如下。
 
@@ -76,11 +82,12 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 
 |序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
-|001|[Deno 入门手册：附大量 TypeScript 代码实例](https://deno-tutorial.js.org/translations/the-deno-handbook.html)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
-|002|[Deno + WebSockets 打造聊天室应用](https://deno-tutorial.js.org/translations/deno-chat-app.html)|2020-05-10|2020-05-25||
-|003|[从 Node 到 Deno：探索各大主流库替代方案](https://deno-tutorial.js.org/translations/from-node-to-deno.html)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
-|004|[Deno + Oak 构建酷炫的 Todo API](https://deno-tutorial.js.org/translations/deno-oak-todo-api.html)|2020-05-29|2020-06-15||
-|005|[Deno + Oak 连接 MySQL 实战教程](https://deno-tutorial.js.org/translations/deno-oak-mysql.html)|2020-06-07|2020-07-06||
+|001|[Deno 入门手册：附大量 TypeScript 代码实例](https://deno-tutorial.js.org/articles/translations/the-deno-handbook.html)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
+|002|[Deno + WebSockets 打造聊天室应用](https://deno-tutorial.js.org/articles/translations/deno-chat-app.html)|2020-05-10|2020-05-25||
+|003|[从 Node 到 Deno：探索各大主流库替代方案](https://deno-tutorial.js.org/articles/translations/from-node-to-deno.html)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
+|004|[Deno + Oak 构建酷炫的 Todo API](https://deno-tutorial.js.org/articles/translations/deno-oak-todo-api.html)|2020-05-29|2020-06-15||
+|005|[Deno + Oak 连接 MySQL 实战教程](https://deno-tutorial.js.org/articles/translations/deno-oak-mysql.html)|2020-06-07|2020-07-06||
+|006|[为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？](https://deno-tutorial.js.org/articles/translations/why-deno-wrong.html)|2020-06-07|2020-07-06||
 |...|...|...|...|...|
 
 同时更新在如下第三方平台：
@@ -89,6 +96,7 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 * [知乎](https://zhuanlan.zhihu.com/deno-tutorial)。
 * [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
 * [语雀](https://www.yuque.com/ningowood/beginning/record)。
+* ...
 
 ## 构建
 
@@ -132,4 +140,3 @@ $ ~/.deno/bin/pagic build --serve --watch
 > 打赏支持一下吧！[传送门](http://qiniu.ningo.cloud/hylerrix/reward-alipay.png)
 
 ![](http://qiniu.ningo.cloud/ningo/official-qrcode.png)
-

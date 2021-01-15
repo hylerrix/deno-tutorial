@@ -1,3 +1,5 @@
+# 为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？
+
 > - 原文地址：[Why I Believe Deno is a Step in the Wrong Direction for JavaScript Runtime Environments](https://www.freecodecamp.org/news/why-deno-is-a-wrong-step-in-the-future/)
 > - 原文作者：Mehul Mohan
 > - 原文发布时间：2020-05-14

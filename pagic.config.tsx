@@ -23,12 +23,8 @@ export default {
       )
     },
     { text: '资源', target: '_blank', link: 'https://github.com/hylerrix/awesome-deno-cn' },
-    // { text: '官网', target: '_blank', link: 'https://deno.land' },
-    // { text: '手册', target: '_blank', link: 'https://nugine.github.io/deno-manual-cn' },
-    // { text: '中文社区 1', target: '_blank', link: 'https://deno.js.cn' },
-    // { text: '中文社区 2', target: '_blank', link: 'https://denocn.org' },
-    // { text: 'Deno 库排行', target: '_blank', link: 'https://yoshixmk.github.io/deno-x-ranking' },
     { text: '镜像', target: '_blank', link: 'http://tutorial.deno.js.cn' },
+    { text: 'Deno 双周刊', target: '_blank', link: 'https://github.com/hylerrix/deno-feedly' },
     { text: '持续添加中...', target: '_blank', link: 'https://github.com/hylerrix' },
     {
       text: '凝果屋',
@@ -110,6 +106,7 @@ export default {
           'articles/translation/from-node-to-deno.md',
           'articles/translation/deno-oak-todo-api.md',
           'articles/translation/deno-oak-mysql.md',
+          'articles/translation/why-deno-wrong.md',
         ],
       },
       // {
@@ -117,22 +114,6 @@ export default {
       //   title: '转载篇',
       //   children: [],
       // },
-      // {
-      //   link: 'articles/weekly/README.md',
-      //   title: '周报篇',
-      //   children: [],
-      // },
-      {
-        link: 'articles/ROADMAP.md',
-        title: '未来规划',
-        children: [
-          'articles/frontend/README.md', // 前端篇
-          'articles/backend/README.md', // 后端篇
-          'articles/language/README.md', // 语言篇
-          'articles/forward/README.md', // 转载篇
-          'articles/weekly/README.md', // 周报篇
-        ],
-      },
       'articles/THANKS.md',
     ],
   },
