@@ -2,9 +2,8 @@
 import React from 'https://dev.jspm.io/react@16.13.1';
 export default {
     srcDir: 'site',
-    exclude: [/\/demos\//, /\/public\//, /\/\./, /\/LICENSE/, /\/original-articles\//, /\/pagic\.config\.tsx/],
     theme: 'docs',
-    plugins: ['sidebar', 'prev_next', 'script', 'gitalk', 'ga'],
+    plugins: ['sidebar', 'prev_next', 'gitalk', 'ga'],
     title: 'Deno 钻研之术',
     description: '循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。',
     github: 'https://github.com/hylerrix/deno-tutorial',
@@ -20,12 +19,8 @@ export default {
                 React.createElement("img", { src: "http://qiniu.ningo.cloud/hylerrix/reward-wechat.png", width: "256", style: { verticalAlign: 'top' } })))
         },
         { text: '资源', target: '_blank', link: 'https://github.com/hylerrix/awesome-deno-cn' },
-        // { text: '官网', target: '_blank', link: 'https://deno.land' },
-        // { text: '手册', target: '_blank', link: 'https://nugine.github.io/deno-manual-cn' },
-        // { text: '中文社区 1', target: '_blank', link: 'https://deno.js.cn' },
-        // { text: '中文社区 2', target: '_blank', link: 'https://denocn.org' },
-        // { text: 'Deno 库排行', target: '_blank', link: 'https://yoshixmk.github.io/deno-x-ranking' },
         { text: '镜像', target: '_blank', link: 'http://tutorial.deno.js.cn' },
+        { text: 'Deno 双周刊', target: '_blank', link: 'https://github.com/hylerrix/deno-feedly' },
         { text: '持续添加中...', target: '_blank', link: 'https://github.com/hylerrix' },
         {
             text: '凝果屋',
@@ -105,6 +100,7 @@ export default {
                     'articles/translation/from-node-to-deno.md',
                     'articles/translation/deno-oak-todo-api.md',
                     'articles/translation/deno-oak-mysql.md',
+                    'articles/translation/why-deno-wrong.md',
                 ],
             },
             // {
@@ -112,22 +108,6 @@ export default {
             //   title: '转载篇',
             //   children: [],
             // },
-            // {
-            //   link: 'articles/weekly/README.md',
-            //   title: '周报篇',
-            //   children: [],
-            // },
-            {
-                link: 'articles/ROADMAP.md',
-                title: '未来规划',
-                children: [
-                    'articles/frontend/README.md',
-                    'articles/backend/README.md',
-                    'articles/language/README.md',
-                    'articles/forward/README.md',
-                    'articles/weekly/README.md',
-                ],
-            },
             'articles/THANKS.md',
         ],
     },

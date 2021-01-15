@@ -1,7 +1,11 @@
-<!doctype html><html class="" data-reactroot=""><head><link rel="icon" type="image/png" href="/favicon.png"/>
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'UA-169223577-1', 'auto');
+            ga('send', 'pageview');</script><link rel="icon" type="image/png" href="/favicon.png"/>
 <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">从 CLI 指令通读 Deno v1.x 全特性 · Deno 钻研之术</title>
-<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
 <script data-react-helmet="true" >
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (shouldSetIsDark) {
@@ -9,7 +13,7 @@
       document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
     }
   </script>
-</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link active">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li></ol></li><li class="unfold"><a href="/articles/ROADMAP.html" class="nav_link">未来规划<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol><li class=""><a href="/articles/frontend/index.html" class="nav_link">前端篇</a></li><li class=""><a href="/articles/backend/index.html" class="nav_link">后端篇</a></li><li class=""><a href="/articles/language/index.html" class="nav_link">语言篇</a></li><li class=""><a href="/articles/forward/index.html" class="nav_link">转载篇</a></li><li class=""><a href="/articles/weekly/index.html" class="nav_link">周报篇</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>从 CLI 指令通读 Deno v1.x 全特性</h1>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/deno-feedly" target="_blank">Deno 双周刊</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link active">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li><li class=""><a href="/articles/translation/why-deno-wrong.html" class="nav_link">为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>从 CLI 指令通读 Deno v1.x 全特性</h1>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-01.jpg" alt=""></p>
 <p>随着掘金开启了第一期技术专题之“<a href="https://juejin.im/post/6854573219266887694">聊聊 Deno 的一些事儿</a>”的征稿活动，赶在截稿日的最后一天（08/04），一篇新的 Deno 文章呼之欲出。拜读了下其他伙伴的 Deno 征文，有 Deno TCP Echo Server、在 Deno 上进行 TDD 实践、Deno 程序如何调用 Rust、Deno 命令行开发方案、Deno 造一个简单的 Router、Deno 的简单应用以及 Deno 从入门到跑路、Deno 从零到架构开发等等文章，每篇都很生动精彩。那么...如果你是这两天看到的这篇文章，觉得有所帮助，<strong>欢(gan)迎(jin)来我的掘金文章里点点赞</strong>，可以让我获得一个不错的掘金周边礼物~如果是未来某天看到的，<a href="https://github.com/hylerrix/deno-tutorial"><strong>戳这里</strong></a>。</p>
 <ul>
@@ -28,7 +32,7 @@
 </blockquote>
 <h2 id="%E9%80%9A%E8%AF%BB%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">通读命令行基本信息<a class="anchor" href="#%E9%80%9A%E8%AF%BB%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">§</a></h2>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-02.jpg" alt=""></p>
-<h3 id="deno---help%2C-help">deno --help, help<a class="anchor" href="#deno---help%2C-help">§</a></h3>
+<h3 id="deno---help-help">deno --help, help<a class="anchor" href="#deno---help-help">§</a></h3>
 <p>了解一个命令的最快速实用的方法就是直接阅读其帮助文档，每行帮助信息都是简短且关键的介绍，不难理解和翻译。终端输入如下命令（help 或 --help 用来打印全局帮助信息或给定子命令的帮助信息）：</p>
 <pre class="language-bash"><code class="language-bash">$ deno --help
 </code></pre>
@@ -56,7 +60,7 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 <blockquote>
 <p>注：以下表格整理了好几小时，如果能帮到你，别忘记多多点赞哟。挖个坑：以后可以绘制出一个思维导图来。同时，如果哪里有差错，欢迎在评论区 Github 仓库 issues 里留言哈。</p>
 </blockquote>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>序号</th>
@@ -223,11 +227,11 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 <td>以 JSON 格式输出文档</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>具体通用指令会在“通读 Deno 通用指令”章节进行深入了解。</p>
 <h3 id="%E6%B1%87%E6%80%BB-14-%E4%B8%AA%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">汇总 14 个内置工具包<a class="anchor" href="#%E6%B1%87%E6%80%BB-14-%E4%B8%AA%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">§</a></h3>
 <p>帮助信息中初步介绍了这 14 个内置工具（为了强调每个工具的独立性，这些工具暂时都翻译为“xx 器”）：</p>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>序号</th>
@@ -322,11 +326,11 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 <td>读取/执行/打印/循环</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>具体工具会在“通读 Deno 内置工具包”章节进行深入了解。</p>
 <h3 id="%E6%B1%87%E6%80%BB-6-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">汇总 6 个基本环境变量<a class="anchor" href="#%E6%B1%87%E6%80%BB-6-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">§</a></h3>
 <p>帮助信息里初步介绍了这 6 个环境变量：</p>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>序号</th>
@@ -373,7 +377,7 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 <td>模块 downloads 和 fetch</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>具体基本环境变量会在“通读 Deno 环境变量”章节进行深入了解。</p>
 <h2 id="%E9%80%9A%E8%AF%BB-deno-%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">通读 Deno 通用指令<a class="anchor" href="#%E9%80%9A%E8%AF%BB-deno-%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">§</a></h2>
 <blockquote>
@@ -381,7 +385,7 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 </blockquote>
 <p>本章目录按照 14 个内置工具使用到的数量进行由大到小的排序。</p>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-03.jpg" alt=""></p>
-<h3 id="(01)---log-level%2F--quiet">(01) --log-level/--quiet<a class="anchor" href="#(01)---log-level%2F--quiet">§</a></h3>
+<h3 id="01---log-level--quiet">(01) --log-level/--quiet<a class="anchor" href="#01---log-level--quiet">§</a></h3>
 <p>这两个指令所有内置工具都可以使用。</p>
 <p>在 --log-level 中，可以加入 debug 或 info 参数 来设置日志等级。其中设置为 debug 时会出现如下信息。此时是非常详细的信息，一个简单的启动和网络访问都会打印出很多行的日志来。</p>
 <pre class="language-bash"><code class="language-bash">$ deno run --allow-net --log-level debug main.ts
@@ -397,7 +401,7 @@ Welcome to Deno 🦕
 DEBUG JS - sendAsync op_accept
 </code></pre>
 <p>--quiet 指令于 2019-10-20 日的 issues 被提出<a href="https://github.com/denoland/deno/issues/3162">新功能建议（#3162）</a>，2020-03-10 日成功添加。目的之一是解决多次运行同一程序但获得到不同的输出的情况。官方文档上该指令介绍是：将本来可读性友好的诊断消息限制为通用错误类型。</p>
-<h3 id="(02)---unstable%2F--cert%2F--config">(02) --unstable/--cert/--config<a class="anchor" href="#(02)---unstable%2F--cert%2F--config">§</a></h3>
+<h3 id="02---unstable--cert--config">(02) --unstable/--cert/--config<a class="anchor" href="#02---unstable--cert--config">§</a></h3>
 <p>这三个指令是除了所有指令都能用到的 --log-level 和 --quiet 外，被使用量最大的前三名。</p>
 <p>--unstable 允许程序执行时使用不稳定的 API 列表。什么样的 API 是不稳定的？官网文档这么解答：</p>
 <blockquote>
@@ -416,7 +420,7 @@ DEBUG JS - sendAsync op_accept
 <p>--config 用来读取 tsconfig.json 文件，当然也可以读取其它名称的文件来当作 tsconfig.json。</p>
 <pre class="language-bash"><code class="language-bash">deno run --allow-net main.ts --config tsconfig.json
 </code></pre>
-<h3 id="(03)---inspect*%2F--v8-flags">(03) --inspect*/--v8-flags<a class="anchor" href="#(03)---inspect*%2F--v8-flags">§</a></h3>
+<h3 id="03---inspect--v8-flags">(03) --inspect*/--v8-flags<a class="anchor" href="#03---inspect--v8-flags">§</a></h3>
 <p>这几个指令均只能在 run、eval、test 或 repl 四个工具包中使用。</p>
 <p>Deno 支持 V8 Inspector Protocol，使用 --inspect 或 --inspect-brk 指令可以在 Chrome Devtools 或其他支持该协议的客户端（比如 VSCode）上调试 Deno 程序。</p>
 <p>--inspect 允许在任何时间点连接调试器，而 --inspect-brk 选项会等待调试器连接，在第一行代码处暂停执行。输入以下代码，打开 chrome://inspect，点击 target 旁边的 Inspect 进行调试测试：</p>
@@ -434,7 +438,7 @@ Synopsis:
   d8 <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>-e <span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">]</span> <span class="token punctuation">[</span>--shell<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>--module<span class="token punctuation">]</span> <span class="token operator">&lt;</span>file<span class="token operator">></span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
 <span class="token punctuation">..</span>.
 </code></pre>
-<h3 id="(04)---allow-*">(04) --allow-*<a class="anchor" href="#(04)---allow-*">§</a></h3>
+<h3 id="04---allow-">(04) --allow-*<a class="anchor" href="#04---allow-">§</a></h3>
 <p>--allow-* 作为一个整体，只被 run、install 和 test 三个工具分别使用，其中包括：</p>
 <ul>
 <li>-A, --allow-all：允许所有权限，这将禁用所有安全限制。</li>
@@ -462,7 +466,7 @@ const config: DenonConfig <span class="token operator">=</span> <span class="tok
 <p>执行 denon start 这将默认替换为：</p>
 <pre class="language-bash"><code class="language-bash">$ deno run --allow-net --allow-env --allow-write --allow-read --allow-plugin --unstable main.ts
 </code></pre>
-<h3 id="(05)---cached-only%2F--seed">(05) --cached-only/--seed<a class="anchor" href="#(05)---cached-only%2F--seed">§</a></h3>
+<h3 id="05---cached-only--seed">(05) --cached-only/--seed<a class="anchor" href="#05---cached-only--seed">§</a></h3>
 <p>这两个指令只被 run 和 test 工具使用。</p>
 <p>--cached-only 要求远程依赖已经被缓存，当我们使用这个指令从远程找一个没有缓存过其软件包的 Deno 程序执行的时候，会报错无法从缓存中找到这个软件包：</p>
 <pre class="language-bash"><code class="language-bash">$ deno run --allow-net --cached-only not-cache.ts
@@ -473,7 +477,7 @@ from <span class="token string">"<a class="token url-link" href="file:///Users/"
 <p>--seed 为程序提供种子随机值。程序怎么获取这个随机值？留下来以后思考。</p>
 <pre class="language-bash"><code class="language-bash">$ deno run --allow-net --seed <span class="token number">1</span> main.ts
 </code></pre>
-<h3 id="(06)---reload%2F--lock*%2F.--no-*">(06) --reload/--lock*/.--no-*<a class="anchor" href="#(06)---reload%2F--lock*%2F.--no-*">§</a></h3>
+<h3 id="06---reload--lock--no-">(06) --reload/--lock*/.--no-*<a class="anchor" href="#06---reload--lock--no-">§</a></h3>
 <p>这五个指令是剩余的最后指令，分别被以下工具使用：</p>
 <ul>
 <li>--reload：run, cache, doc, test</li>
@@ -502,7 +506,7 @@ $ deno run --allow-net --no-remote main.ts
 </blockquote>
 <p>由于本文在“通读 Deno 通用指令章节”将 Deno 内置工具包可复用的指令都已经一一介绍了一遍。本章重点以目录的形式强调 14 个内置工具包的独立性（中文名以 xx 器来命名），并进行除了通用指令外的一些独特介绍。</p>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-04.jpg" alt=""></p>
-<h3 id="(01)-%E8%BF%90%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-run">(01) 运行器：deno run<a class="anchor" href="#(01)-%E8%BF%90%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-run">§</a></h3>
+<h3 id="01-%E8%BF%90%E8%A1%8C%E5%99%A8deno-run">(01) 运行器：deno run<a class="anchor" href="#01-%E8%BF%90%E8%A1%8C%E5%99%A8deno-run">§</a></h3>
 <p>run 工具支持近乎 100% 的通用指令列表（--json 指令除外），且上一个章节的通用指令示例都以 run 工具来举例，这里无需多讲。</p>
 <ul>
 <li>deno-run：执行一个模块程序，可以是一个文件名或 URL 地址。</li>
@@ -520,7 +524,7 @@ $ deno run --allow-read<span class="token operator">=</span>/etc <a class="token
 <span class="token comment"># Deno 允许指定文件名 “-” 以从 stdin 中读取文件。</span>
 $ <span class="token function">curl</span> <a class="token url-link" href="https://deno.land/std/examples/welcome.ts">https://deno.land/std/examples/welcome.ts</a> <span class="token operator">|</span> target/debug/deno run -
 </code></pre>
-<h3 id="(02)-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8%EF%BC%9Adeno-install">(02) 脚本安装器：deno install<a class="anchor" href="#(02)-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8%EF%BC%9Adeno-install">§</a></h3>
+<h3 id="02-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8deno-install">(02) 脚本安装器：deno install<a class="anchor" href="#02-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8deno-install">§</a></h3>
 <ul>
 <li>deno-install：将脚本作为可执行文件安装在安装路`径的根目录的 bin 目录中。</li>
 <li>使用方式：<code>deno install [OPTIONS] &lt;命令&gt;...</code></li>
@@ -549,7 +553,7 @@ $ deno <span class="token function">install</span> --allow-net --allow-read --ro
 <span class="token comment">#   - $HOME/.deno</span>
 <span class="token comment"># 如果需要，必须将它们手动添加到路径中。</span>
 </code></pre>
-<h3 id="(03)-%E6%89%93%E5%8C%85%E5%99%A8%EF%BC%9Adeno-bundle">(03) 打包器：deno bundle<a class="anchor" href="#(03)-%E6%89%93%E5%8C%85%E5%99%A8%EF%BC%9Adeno-bundle">§</a></h3>
+<h3 id="03-%E6%89%93%E5%8C%85%E5%99%A8deno-bundle">(03) 打包器：deno bundle<a class="anchor" href="#03-%E6%89%93%E5%8C%85%E5%99%A8deno-bundle">§</a></h3>
 <ul>
 <li>deno-bundle：打包。</li>
 <li>使用方式：<code>deno bundle [OPTIONS] &lt;source_file&gt; [out_file]</code></li>
@@ -560,7 +564,7 @@ $ deno bundle <a class="token url-link" href="https://deno.land/std/examples/col
 <span class="token comment"># 如果没有指定输入文件，输入将会写入到标准输出流中：</span>
 $ deno bundle <a class="token url-link" href="https://deno.land/std/examples/colors.ts">https://deno.land/std/examples/colors.ts</a>
 </code></pre>
-<h3 id="(04)-%E7%BC%93%E5%AD%98%E5%99%A8%EF%BC%9Adeno-cache">(04) 缓存器：deno cache<a class="anchor" href="#(04)-%E7%BC%93%E5%AD%98%E5%99%A8%EF%BC%9Adeno-cache">§</a></h3>
+<h3 id="04-%E7%BC%93%E5%AD%98%E5%99%A8deno-cache">(04) 缓存器：deno cache<a class="anchor" href="#04-%E7%BC%93%E5%AD%98%E5%99%A8deno-cache">§</a></h3>
 <ul>
 <li>deno-cache：递归地缓存并编译远程依赖</li>
 <li>使用方式：<code>deno cache [OPTIONS] &lt;file&gt;...</code></li>
@@ -572,7 +576,7 @@ $ deno cache <a class="token url-link" href="https://deno.land/std/http/file_ser
 <span class="token comment"># 除非以后运行此模块，否则不会触发下载或编译</span>
 <span class="token comment"># --reload 已指定。</span>
 </code></pre>
-<h3 id="(05)-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9Adeno-doc">(05) 文档生成器：deno doc<a class="anchor" href="#(05)-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9Adeno-doc">§</a></h3>
+<h3 id="05-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8deno-doc">(05) 文档生成器：deno doc<a class="anchor" href="#05-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8deno-doc">§</a></h3>
 <ul>
 <li>
 <p>deno-doc：显示某模块的文档</p>
@@ -602,7 +606,7 @@ $ deno doc ./path/to/module.ts MyClass.someField
 $ deno doc
 $ deno doc --builtin Deno.Listener
 </code></pre>
-<h3 id="(06)-%E6%89%A7%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-eval">(06) 执行器：deno eval<a class="anchor" href="#(06)-%E6%89%A7%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-eval">§</a></h3>
+<h3 id="06-%E6%89%A7%E8%A1%8C%E5%99%A8deno-eval">(06) 执行器：deno eval<a class="anchor" href="#06-%E6%89%A7%E8%A1%8C%E5%99%A8deno-eval">§</a></h3>
 <ul>
 <li>
 <p>deno-eval：执行代码。</p>
@@ -627,7 +631,7 @@ $ deno <span class="token builtin class-name">eval</span> <span class="token str
 $ deno <span class="token builtin class-name">eval</span> -T <span class="token string">"const v: string = 'hello'; console.log(v)"</span>
 <span class="token comment"># 此命令具有对所有权限的隐式访问权限（--allow-all）。</span>
 </code></pre>
-<h3 id="(07)-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8%EF%BC%9Adeno-fmt">(07) 格式化器：deno fmt<a class="anchor" href="#(07)-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8%EF%BC%9Adeno-fmt">§</a></h3>
+<h3 id="07-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8deno-fmt">(07) 格式化器：deno fmt<a class="anchor" href="#07-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8deno-fmt">§</a></h3>
 <ul>
 <li>deno-fmt：自动格式化 JavaScript/TypeScript 源代码。</li>
 <li>使用方式：<code>deno fmt [OPTIONS] [FILE]...</code></li>
@@ -650,7 +654,7 @@ $ <span class="token function">cat</span> file.ts <span class="token operator">|
 <span class="token comment"># 通过在文件顶部添加忽略注释来忽略此文件格式化：</span>
 <span class="token comment">#   // deno-fmt-ignore-file</span>
 </code></pre>
-<h3 id="(08)-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%9Adeno-info">(08) 依赖检查器：deno info<a class="anchor" href="#(08)-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%9Adeno-info">§</a></h3>
+<h3 id="08-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8deno-info">(08) 依赖检查器：deno info<a class="anchor" href="#08-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8deno-info">§</a></h3>
 <ul>
 <li>deno-info：有关模块或缓存目录的信息。</li>
 <li>使用方式：<code>deno info [OPTIONS] [FILE]</code></li>
@@ -669,7 +673,7 @@ $ deno info <a class="token url-link" href="https://deno.land/std/http/file_serv
 <span class="token comment"># Remote modules cache: 包含下载的远程模块的子目录。</span>
 <span class="token comment"># TypeScript compiler cache: 包含 TS 编译器输出的子目录。</span>
 </code></pre>
-<h3 id="(09)-%E8%A7%84%E8%8C%83%E5%99%A8%EF%BC%9Adeno-lint">(09) 规范器：deno lint<a class="anchor" href="#(09)-%E8%A7%84%E8%8C%83%E5%99%A8%EF%BC%9Adeno-lint">§</a></h3>
+<h3 id="09-%E8%A7%84%E8%8C%83%E5%99%A8deno-lint">(09) 规范器：deno lint<a class="anchor" href="#09-%E8%A7%84%E8%8C%83%E5%99%A8deno-lint">§</a></h3>
 <ul>
 <li>deno-lint：规范 JavaScript/TypeScript 源码。</li>
 <li>独特指令：
@@ -693,7 +697,7 @@ $ deno lint --unstable --rules
 <span class="token comment"># 通过在文件顶部添加忽略注释来忽略整个文件：</span>
 <span class="token comment">#   // deno-lint-ignore-file</span>
 </code></pre>
-<h3 id="(10)-%E6%B5%8B%E8%AF%95%E5%99%A8%EF%BC%9Adeno-test">(10) 测试器：deno test<a class="anchor" href="#(10)-%E6%B5%8B%E8%AF%95%E5%99%A8%EF%BC%9Adeno-test">§</a></h3>
+<h3 id="10-%E6%B5%8B%E8%AF%95%E5%99%A8deno-test">(10) 测试器：deno test<a class="anchor" href="#10-%E6%B5%8B%E8%AF%95%E5%99%A8deno-test">§</a></h3>
 <ul>
 <li>deno-test：使用 Deno 的内置测试运行程序运行测试。</li>
 <li>使用方式：<code>deno test [OPTIONS] [文件名]...</code></li>
@@ -712,7 +716,7 @@ $ deno <span class="token builtin class-name">test</span> src/fetch_test.ts src/
 <span class="token comment"># {*_,*.,}test.{js,mjs,ts,jsx,tsx}：</span>
 $ deno <span class="token builtin class-name">test</span> src/
 </code></pre>
-<h3 id="(11)-%E7%B1%BB%E5%9E%8B%E5%99%A8%EF%BC%9Adeno-types">(11) 类型器：deno types<a class="anchor" href="#(11)-%E7%B1%BB%E5%9E%8B%E5%99%A8%EF%BC%9Adeno-types">§</a></h3>
+<h3 id="11-%E7%B1%BB%E5%9E%8B%E5%99%A8deno-types">(11) 类型器：deno types<a class="anchor" href="#11-%E7%B1%BB%E5%9E%8B%E5%99%A8deno-types">§</a></h3>
 <ul>
 <li>deno-types：打印运行时的 TypeScript 声明。</li>
 <li>使用方式：<code>deno types [OPTIONS]</code></li>
@@ -722,7 +726,7 @@ $ deno <span class="token builtin class-name">test</span> src/
 $ deno types <span class="token operator">></span> lib.deno.d.ts
 <span class="token comment"># 声明文件可以保存并用于录入新内容。</span>
 </code></pre>
-<h3 id="(12)-%E8%A1%A5%E5%85%A8%E5%99%A8%EF%BC%9Adeno-completions">(12) 补全器：deno completions<a class="anchor" href="#(12)-%E8%A1%A5%E5%85%A8%E5%99%A8%EF%BC%9Adeno-completions">§</a></h3>
+<h3 id="12-%E8%A1%A5%E5%85%A8%E5%99%A8deno-completions">(12) 补全器：deno completions<a class="anchor" href="#12-%E8%A1%A5%E5%85%A8%E5%99%A8deno-completions">§</a></h3>
 <ul>
 <li>deno-completions：输入 shell 补全信息到标准输出流中。</li>
 <li>使用方式：<code>deno completions [OPTIONS] &lt;shell&gt;</code></li>
@@ -732,7 +736,7 @@ $ deno types <span class="token operator">></span> lib.deno.d.ts
 $ <span class="token builtin class-name">source</span> /usr/local/etc/bash_completion.d/deno.bash
 <span class="token comment"># [shell 可能的值： zsh, bash, fish, powershell, elvish]</span>
 </code></pre>
-<h3 id="(13)-%E5%8D%87%E7%BA%A7%E5%99%A8%EF%BC%9Adeno-upgrade">(13) 升级器：deno upgrade<a class="anchor" href="#(13)-%E5%8D%87%E7%BA%A7%E5%99%A8%EF%BC%9Adeno-upgrade">§</a></h3>
+<h3 id="13-%E5%8D%87%E7%BA%A7%E5%99%A8deno-upgrade">(13) 升级器：deno upgrade<a class="anchor" href="#13-%E5%8D%87%E7%BA%A7%E5%99%A8deno-upgrade">§</a></h3>
 <ul>
 <li>deno-upgrade：将 deno 可执行文件升级到给定的版本。</li>
 <li>使用方式：<code>deno upgrade [OPTIONS]</code></li>
@@ -754,7 +758,7 @@ $ <span class="token builtin class-name">source</span> /usr/local/etc/bash_compl
 <span class="token comment"># 如果您不想替换当前的 Deno 可执行文件，而是下载一个新版本到其他位置，请使用 --output 标志</span>
 $ deno upgrade --output <span class="token environment constant">$HOME</span>/my_deno
 </code></pre>
-<h3 id="(14)-repl-%E5%99%A8%EF%BC%9Adeno-repl">(14) REPL 器：deno repl<a class="anchor" href="#(14)-repl-%E5%99%A8%EF%BC%9Adeno-repl">§</a></h3>
+<h3 id="14-repl-%E5%99%A8deno-repl">(14) REPL 器：deno repl<a class="anchor" href="#14-repl-%E5%99%A8deno-repl">§</a></h3>
 <ul>
 <li>deno-repl：读取 执行 打印 循环</li>
 <li>使用方式：<code>deno repl [OPTIONS]</code></li>
@@ -767,7 +771,7 @@ $ deno upgrade --output <span class="token environment constant">$HOME</span>/my
 <p>相关实战代码都收录在<a href="https://github.com/hylerrix/deno-tutorial">《Deno 钻研之术》仓库</a>中的 demos/ningowood/v1-cli-example 下。</p>
 </blockquote>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-05.jpg" alt=""></p>
-<h3 id="(01)-deno_dir">(01) DENO_DIR<a class="anchor" href="#(01)-deno_dir">§</a></h3>
+<h3 id="01-deno_dir">(01) DENO_DIR<a class="anchor" href="#01-deno_dir">§</a></h3>
 <p>DENO_DIR 默认为 $HOME/.cache/deno，但可以设置为任何路径。这是 Deno 存放生成的代码和缓存的源码的路径。</p>
 <p>输入 deno info，可以看到自己的缓存位置，其中为远程模块、TypeScript 编译位置提供了专门的目录。</p>
 <pre class="language-bash"><code class="language-bash">$ deno info
@@ -789,7 +793,7 @@ $ tree -L <span class="token number">2</span> /Users/<span class="token punctuat
 ├── lib.deno_runtime.d.ts
 └── lib.webworker.d.ts
 </code></pre>
-<h3 id="(02)-deno_install_root">(02) DENO_INSTALL_ROOT<a class="anchor" href="#(02)-deno_install_root">§</a></h3>
+<h3 id="02-deno_install_root">(02) DENO_INSTALL_ROOT<a class="anchor" href="#02-deno_install_root">§</a></h3>
 <p>默认为 $HOME/.deno/bin。输入如下命令，可以看到我目前安装在全局的几个 Deno 程序：</p>
 <pre class="language-bash"><code class="language-bash">$ tree /Users/<span class="token punctuation">{</span><span class="token environment constant">$HOME</span><span class="token punctuation">}</span>/.deno
 <span class="token builtin class-name">.</span>
@@ -801,15 +805,15 @@ $ tree -L <span class="token number">2</span> /Users/<span class="token punctuat
     ├── pagic
     └── vr
 </code></pre>
-<h3 id="(02)-no_color">(02) NO_COLOR<a class="anchor" href="#(02)-no_color">§</a></h3>
+<h3 id="02-no_color">(02) NO_COLOR<a class="anchor" href="#02-no_color">§</a></h3>
 <p>如果 NO_COLOR 被设置，Deno 将会关闭彩色输出 (<a href="https://no-color.org/">https://no-color.org</a>)。用户代码可以通过布尔常量 Deno.noColor 测试 NO_COLOR 是否被设置，这不需要环境权限 (--allow-env)。</p>
 <pre class="language-bash"><code class="language-bash">$ deno run var.ts 
 Check <a class="token url-link" href="file:///Users/didi/WorkSpace/Hylerrix/deno-tutorial/demos/ningowood/v1-cli-example/no-color.ts">file:///Users/didi/WorkSpace/Hylerrix/deno-tutorial/demos/ningowood/v1-cli-example/no-color.ts</a>
 <span class="token boolean">false</span>
 </code></pre>
-<h3 id="(03)-deno_cert-%26-http*_proxy">(03) DENO_CERT &amp; HTTP*_PROXY<a class="anchor" href="#(03)-deno_cert-%26-http*_proxy">§</a></h3>
+<h3 id="03-deno_cert--http_proxy">(03) DENO_CERT &amp; HTTP*_PROXY<a class="anchor" href="#03-deno_cert--http_proxy">§</a></h3>
 <p>留个空白猜猜怎么用。</p>
-<h2 id="%E6%80%BB%E7%BB%93-%26-%E8%AE%A2%E9%98%85">总结 &amp; 订阅<a class="anchor" href="#%E6%80%BB%E7%BB%93-%26-%E8%AE%A2%E9%98%85">§</a></h2>
+<h2 id="%E6%80%BB%E7%BB%93--%E8%AE%A2%E9%98%85">总结 &amp; 订阅<a class="anchor" href="#%E6%80%BB%E7%BB%93--%E8%AE%A2%E9%98%85">§</a></h2>
 <p><img src="http://qiniu.ningo.cloud/articles/1b8-06.jpg" alt=""></p>
 <p>至此，《从 CLI 指令通读 Deno v1.x 全特性》文章大功告成。在写作的这 14h+ 过程中，产生了很多灵感，也对更多内容感兴趣觉得可以深挖。奈何一篇文章能承载的内容十分有限，所以可以从本文引发思考的一些有趣的主题也就先推迟再看了。同时，未来很可能会有更多的指令作为新功能推出，或许也有些指令由于不在文档帮助信息中而没办法收录。</p>
 <p>总之可以继续学习的地方还有很多！可以入手学习 Deno 的角度也非常之多。期待一起进行更多的编程实战后，对 Deno CLI 特性会有更为全面的认识。</p>
@@ -818,4 +822,4 @@ Check <a class="token url-link" href="file:///Users/didi/WorkSpace/Hylerrix/deno
 <li>仓库：<a href="https://github.com/hylerrix/deno-tutorial">https://github.com/hylerrix/deno-tutorial</a></li>
 <li>官网：<a href="http://deno-tutorial.js.org/">http://deno-tutorial.js.org</a></li>
 <li>Me：<a href="https://github.com/hylerrix/deno-tutorial">https://github.com/hylerrix</a></li>
-</ul></article><div class="prev_next"><a class="prev button" href="/articles/architecture/cli/index.html">«  <!-- -->CLI 篇</a><a class="next button" href="/articles/ecology/index.html">生态篇<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E9%80%9A%E8%AF%BB%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">通读命令行基本信息</a><ol><li><a href="#deno---help%2C-help">deno --help, help</a></li><li><a href="#%E6%B1%87%E6%80%BB-26-%E4%B8%AA%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">汇总 26 个通用指令</a></li><li><a href="#%E6%B1%87%E6%80%BB-14-%E4%B8%AA%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">汇总 14 个内置工具包</a></li><li><a href="#%E6%B1%87%E6%80%BB-6-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">汇总 6 个基本环境变量</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">通读 Deno 通用指令</a><ol><li><a href="#(01)---log-level%2F--quiet">(01) --log-level/--quiet</a></li><li><a href="#(02)---unstable%2F--cert%2F--config">(02) --unstable/--cert/--config</a></li><li><a href="#(03)---inspect*%2F--v8-flags">(03) --inspect*/--v8-flags</a></li><li><a href="#(04)---allow-*">(04) --allow-*</a></li><li><a href="#(05)---cached-only%2F--seed">(05) --cached-only/--seed</a></li><li><a href="#(06)---reload%2F--lock*%2F.--no-*">(06) --reload/--lock*/.--no-*</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">通读 Deno 内置工具包</a><ol><li><a href="#(01)-%E8%BF%90%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-run">(01) 运行器：deno run</a></li><li><a href="#(02)-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8%EF%BC%9Adeno-install">(02) 脚本安装器：deno install</a></li><li><a href="#(03)-%E6%89%93%E5%8C%85%E5%99%A8%EF%BC%9Adeno-bundle">(03) 打包器：deno bundle</a></li><li><a href="#(04)-%E7%BC%93%E5%AD%98%E5%99%A8%EF%BC%9Adeno-cache">(04) 缓存器：deno cache</a></li><li><a href="#(05)-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9Adeno-doc">(05) 文档生成器：deno doc</a></li><li><a href="#(06)-%E6%89%A7%E8%A1%8C%E5%99%A8%EF%BC%9Adeno-eval">(06) 执行器：deno eval</a></li><li><a href="#(07)-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8%EF%BC%9Adeno-fmt">(07) 格式化器：deno fmt</a></li><li><a href="#(08)-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%9Adeno-info">(08) 依赖检查器：deno info</a></li><li><a href="#(09)-%E8%A7%84%E8%8C%83%E5%99%A8%EF%BC%9Adeno-lint">(09) 规范器：deno lint</a></li><li><a href="#(10)-%E6%B5%8B%E8%AF%95%E5%99%A8%EF%BC%9Adeno-test">(10) 测试器：deno test</a></li><li><a href="#(11)-%E7%B1%BB%E5%9E%8B%E5%99%A8%EF%BC%9Adeno-types">(11) 类型器：deno types</a></li><li><a href="#(12)-%E8%A1%A5%E5%85%A8%E5%99%A8%EF%BC%9Adeno-completions">(12) 补全器：deno completions</a></li><li><a href="#(13)-%E5%8D%87%E7%BA%A7%E5%99%A8%EF%BC%9Adeno-upgrade">(13) 升级器：deno upgrade</a></li><li><a href="#(14)-repl-%E5%99%A8%EF%BC%9Adeno-repl">(14) REPL 器：deno repl</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">通读 Deno 环境变量</a><ol><li><a href="#(01)-deno_dir">(01) DENO_DIR</a></li><li><a href="#(02)-deno_install_root">(02) DENO_INSTALL_ROOT</a></li><li><a href="#(02)-no_color">(02) NO_COLOR</a></li><li><a href="#(03)-deno_cert-%26-http*_proxy">(03) DENO_CERT &amp; HTTP*_PROXY</a></li></ol></li><li><a href="#%E6%80%BB%E7%BB%93-%26-%E8%AE%A2%E9%98%85">总结 &amp; 订阅</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-pen button" href="https://github.com/hylerrix/deno-tutorial/edit/master/articles/architecture/cli/deno-cli-v1-function.md" target="_blank" style="background-image:url(&quot;/assets/czs-pen.svg&quot;)"></a><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ul></article><div class="prev_next"><a class="prev button" href="/articles/architecture/cli/index.html">«  <!-- -->CLI 篇</a><a class="next button" href="/articles/ecology/index.html">生态篇<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E9%80%9A%E8%AF%BB%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">通读命令行基本信息</a><ol><li><a href="#deno---help-help">deno --help, help</a></li><li><a href="#%E6%B1%87%E6%80%BB-26-%E4%B8%AA%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">汇总 26 个通用指令</a></li><li><a href="#%E6%B1%87%E6%80%BB-14-%E4%B8%AA%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">汇总 14 个内置工具包</a></li><li><a href="#%E6%B1%87%E6%80%BB-6-%E4%B8%AA%E5%9F%BA%E6%9C%AC%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">汇总 6 个基本环境变量</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E9%80%9A%E7%94%A8%E6%8C%87%E4%BB%A4">通读 Deno 通用指令</a><ol><li><a href="#01---log-level--quiet">(01) --log-level/--quiet</a></li><li><a href="#02---unstable--cert--config">(02) --unstable/--cert/--config</a></li><li><a href="#03---inspect--v8-flags">(03) --inspect*/--v8-flags</a></li><li><a href="#04---allow-">(04) --allow-*</a></li><li><a href="#05---cached-only--seed">(05) --cached-only/--seed</a></li><li><a href="#06---reload--lock--no-">(06) --reload/--lock*/.--no-*</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E5%8C%85">通读 Deno 内置工具包</a><ol><li><a href="#01-%E8%BF%90%E8%A1%8C%E5%99%A8deno-run">(01) 运行器：deno run</a></li><li><a href="#02-%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%99%A8deno-install">(02) 脚本安装器：deno install</a></li><li><a href="#03-%E6%89%93%E5%8C%85%E5%99%A8deno-bundle">(03) 打包器：deno bundle</a></li><li><a href="#04-%E7%BC%93%E5%AD%98%E5%99%A8deno-cache">(04) 缓存器：deno cache</a></li><li><a href="#05-%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90%E5%99%A8deno-doc">(05) 文档生成器：deno doc</a></li><li><a href="#06-%E6%89%A7%E8%A1%8C%E5%99%A8deno-eval">(06) 执行器：deno eval</a></li><li><a href="#07-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8deno-fmt">(07) 格式化器：deno fmt</a></li><li><a href="#08-%E4%BE%9D%E8%B5%96%E6%A3%80%E6%9F%A5%E5%99%A8deno-info">(08) 依赖检查器：deno info</a></li><li><a href="#09-%E8%A7%84%E8%8C%83%E5%99%A8deno-lint">(09) 规范器：deno lint</a></li><li><a href="#10-%E6%B5%8B%E8%AF%95%E5%99%A8deno-test">(10) 测试器：deno test</a></li><li><a href="#11-%E7%B1%BB%E5%9E%8B%E5%99%A8deno-types">(11) 类型器：deno types</a></li><li><a href="#12-%E8%A1%A5%E5%85%A8%E5%99%A8deno-completions">(12) 补全器：deno completions</a></li><li><a href="#13-%E5%8D%87%E7%BA%A7%E5%99%A8deno-upgrade">(13) 升级器：deno upgrade</a></li><li><a href="#14-repl-%E5%99%A8deno-repl">(14) REPL 器：deno repl</a></li></ol></li><li><a href="#%E9%80%9A%E8%AF%BB-deno-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">通读 Deno 环境变量</a><ol><li><a href="#01-deno_dir">(01) DENO_DIR</a></li><li><a href="#02-deno_install_root">(02) DENO_INSTALL_ROOT</a></li><li><a href="#02-no_color">(02) NO_COLOR</a></li><li><a href="#03-deno_cert--http_proxy">(03) DENO_CERT &amp; HTTP*_PROXY</a></li></ol></li><li><a href="#%E6%80%BB%E7%BB%93--%E8%AE%A2%E9%98%85">总结 &amp; 订阅</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

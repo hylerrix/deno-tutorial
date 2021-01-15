@@ -1,19 +1,37 @@
-import Gitalk from '/_gitalk.js';
 import projectConfig from '/pagic.config.js';
-var _a, _b;
+import Ga from '/_ga.js';
+import Gitalk from '/_gitalk.js';
 export default {
-    'head': React.createElement("link", { href: "/favicon.png", rel: "icon", type: "image/png" }),
-    'prev': {
-        "text": "语言篇",
-        "link": "articles/language/index.html"
-    },
-    'next': {
-        "text": "周报篇",
-        "link": "articles/weekly/index.html"
-    },
-    'gitalk': React.createElement(Gitalk, { admin: [
-            'hylerrix'
-        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/forward/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u8F6C\u8F7D\u7BC7" }),
+    'prev': undefined,
+    'next': undefined,
+    config: { "root": "/", ...projectConfig, branch: 'main' },
+    'pagePath': "articles/forward/README.md",
+    'layoutPath': "_layout.tsx",
+    'outputPath': "articles/forward/index.html",
+    'title': "转载篇",
+    'content': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: '<h1>转载篇</h1>\n<p>计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -&gt; 或许并不需要转载，放在 awesome-deno-cn 中就行。</p>\n<p>待定。</p>'
+        } }),
+    'head': React.createElement(React.Fragment, null,
+        React.createElement(Ga, { id: "UA-169223577-1" }),
+        React.createElement("link", { href: "/favicon.png", rel: "icon", type: "image/png" })),
+    'script': React.createElement(React.Fragment, null,
+        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { src: "/index.js", type: "module" })),
+    'contentTitle': React.createElement("h1", { key: "0" }, "\u8F6C\u8F7D\u7BC7"),
+    'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: '<p>计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -&gt; 或许并不需要转载，放在 awesome-deno-cn 中就行。</p>\n<p>待定。</p>'
+        } }),
+    'toc': null,
+    'author': "hylerrix",
+    'contributors': [
+        "hylerrix"
+    ],
+    'date': "2021-01-15T05:33:30.000Z",
+    'updated': null,
+    'excerpt': "计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -> 或许并不需要转载，放在 awesome-deno-cn 中就行。 待定。",
+    'cover': undefined,
     'sidebar': [
         {
             "text": "Deno 钻研之术",
@@ -35,8 +53,8 @@ export default {
                     "pagePath": "articles/document/deno-cli-handbook.md"
                 }
             ],
-            "text": "文档篇",
-            "pagePath": "articles/document/README.md"
+            "pagePath": "articles/document/README.md",
+            "text": "文档篇"
         },
         {
             "link": "articles/basic/index.html",
@@ -48,8 +66,8 @@ export default {
                     "pagePath": "articles/basic/install-and-hello-world.md"
                 }
             ],
-            "text": "基础篇",
-            "pagePath": "articles/basic/README.md"
+            "pagePath": "articles/basic/README.md",
+            "text": "基础篇"
         },
         {
             "link": "articles/architecture/index.html",
@@ -65,12 +83,12 @@ export default {
                             "pagePath": "articles/architecture/cli/deno-cli-v1-function.md"
                         }
                     ],
-                    "text": "CLI 篇",
-                    "pagePath": "articles/architecture/cli/README.md"
+                    "pagePath": "articles/architecture/cli/README.md",
+                    "text": "CLI 篇"
                 }
             ],
-            "text": "架构篇",
-            "pagePath": "articles/architecture/README.md"
+            "pagePath": "articles/architecture/README.md",
+            "text": "架构篇"
         },
         {
             "link": "articles/ecology/index.html",
@@ -82,8 +100,8 @@ export default {
                     "pagePath": "articles/ecology/awesome-deno-cn.md"
                 }
             ],
-            "text": "生态篇",
-            "pagePath": "articles/ecology/README.md"
+            "pagePath": "articles/ecology/README.md",
+            "text": "生态篇"
         },
         {
             "link": "articles/node/index.html",
@@ -100,8 +118,8 @@ export default {
                     "pagePath": "articles/node/javascript-toolchain-rome.md"
                 }
             ],
-            "text": "Node 篇",
-            "pagePath": "articles/node/README.md"
+            "pagePath": "articles/node/README.md",
+            "text": "Node 篇"
         },
         {
             "link": "articles/translation/index.html",
@@ -131,43 +149,15 @@ export default {
                     "text": "Deno + Oak 连接 MySQL 实战教程",
                     "link": "articles/translation/deno-oak-mysql.html",
                     "pagePath": "articles/translation/deno-oak-mysql.md"
+                },
+                {
+                    "text": "为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？",
+                    "link": "articles/translation/why-deno-wrong.html",
+                    "pagePath": "articles/translation/why-deno-wrong.md"
                 }
             ],
-            "text": "翻译篇",
-            "pagePath": "articles/translation/README.md"
-        },
-        {
-            "link": "articles/ROADMAP.html",
-            "title": "未来规划",
-            "children": [
-                {
-                    "text": "前端篇",
-                    "link": "articles/frontend/index.html",
-                    "pagePath": "articles/frontend/README.md"
-                },
-                {
-                    "text": "后端篇",
-                    "link": "articles/backend/index.html",
-                    "pagePath": "articles/backend/README.md"
-                },
-                {
-                    "text": "语言篇",
-                    "link": "articles/language/index.html",
-                    "pagePath": "articles/language/README.md"
-                },
-                {
-                    "text": "转载篇",
-                    "link": "articles/forward/index.html",
-                    "pagePath": "articles/forward/README.md"
-                },
-                {
-                    "text": "周报篇",
-                    "link": "articles/weekly/index.html",
-                    "pagePath": "articles/weekly/README.md"
-                }
-            ],
-            "text": "未来规划",
-            "pagePath": "articles/ROADMAP.md"
+            "pagePath": "articles/translation/README.md",
+            "text": "翻译篇"
         },
         {
             "text": "感谢",
@@ -175,17 +165,7 @@ export default {
             "pagePath": "articles/THANKS.md"
         }
     ],
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['undefined'] },
-    'pagePath': "articles/forward/README.md",
-    'layoutPath': "_layout.tsx",
-    'outputPath': "articles/forward/index.html",
-    'title': "转载篇",
-    'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>转载篇</h1>\n<p>计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -&gt; 或许并不需要转载，放在 awesome-deno-cn 中就行。</p>\n<p>待定。</p>'
-        } }),
-    'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
-        React.createElement("script", { src: "/index.js", type: "module" })),
-    'toc': null
+    'gitalk': React.createElement(Gitalk, { admin: [
+            'hylerrix'
+        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/forward/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u8F6C\u8F7D\u7BC7" })
 };
