@@ -174,7 +174,7 @@ Node 的异步模型并没有被淘汰，promise 和事件侦听器模型也没�
 很重要的事情是：Deno 并不支持 NPM。Ryan（Node 和 Deno 的创建者）在为此推广 Go 语言的相关特性。让我想到一些包管理器：
 
 1. npm for JS (obviously)
-1. npm 之于 JS（真很明细）
+1. npm 之于 JS（真很明显）
 1. apt-get
 1. composer 之于 PHP
 1. brew 之于 macOS
