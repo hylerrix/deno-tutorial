@@ -45,6 +45,7 @@ export default {
         children: [
           'articles/document/deno-version-handbook.md',
           'articles/document/deno-cli-handbook.md',
+          'articles/document/deno-translation-dictionary.md',
         ],
       },
       {
@@ -95,6 +96,13 @@ export default {
         children: [
           'articles/node/create-react-app-intro.md',
           'articles/node/javascript-toolchain-rome.md',
+        ],
+      },
+      {
+        link: 'articles/official/README.md',
+        title: '官方篇',
+        children: [
+          'articles/official/thoroughgoing-deno-in-2020.md',
         ],
       },
       {
