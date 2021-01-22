@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "学习 Deno 的 N+ 种理由 时隔 Deno 开源两年整，万众期待的 Deno v1 正式版今日正式登场。或许你已经听过 Deno 的大名、或许你在项目中已经大量使用 Deno 作者的上一个明星项目 Node.js，亦或许今天才刚刚接触这一切...总之现在...",
     'cover': "http://qiniu.ningo.cloud/articles/1a8-01.jpg",
@@ -59,6 +59,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -128,6 +133,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "我每周都在探索新的项目，很少会有一个像 Deno 这样的项目让我如此着迷。 在本手册中我想要让你快速入手 Deno。我会将其与 Node.js 进行对比，然后助力你在 Deno 上搭建第一个 REST API Demo。 目录 1. 什么是 Deno？ 2. 为什么...",
     'cover': "http://qiniu.ningo.cloud/articles/1a9-01.jpg",
@@ -59,6 +59,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -128,6 +133,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

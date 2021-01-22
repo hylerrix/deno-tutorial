@@ -28,7 +28,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -> 或许并不需要转载，放在 awesome-deno-cn 中就行。 待定。",
     'cover': undefined,
@@ -51,6 +51,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -120,6 +125,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

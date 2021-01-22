@@ -2,15 +2,21 @@ import projectConfig from '/pagic.config.js';
 import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
-    'prev': undefined,
-    'next': undefined,
+    'prev': {
+        "text": "欲取代绝大多 JavaScript 工具链？Rome 尝鲜",
+        "link": "articles/node/javascript-toolchain-rome.html"
+    },
+    'next': {
+        "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+        "link": "articles/official/thoroughgoing-deno-in-2020.html"
+    },
     config: { "root": "/", ...projectConfig, branch: 'main' },
-    'pagePath': "articles/frontend/README.md",
+    'pagePath': "articles/official/README.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "articles/frontend/index.html",
-    'title': "前端篇",
+    'outputPath': "articles/official/index.html",
+    'title': "官方篇",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>前端篇</h1>'
+            __html: '<h1>官方篇</h1>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-169223577-1" }),
@@ -19,7 +25,7 @@ export default {
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
         React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
-    'contentTitle': React.createElement("h1", { key: "0" }, "\u524D\u7AEF\u7BC7"),
+    'contentTitle': React.createElement("h1", { key: "0" }, "\u5B98\u65B9\u7BC7"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: ''
         } }),
@@ -185,5 +191,5 @@ export default {
     ],
     'gitalk': React.createElement(Gitalk, { admin: [
             'hylerrix'
-        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/frontend/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u524D\u7AEF\u7BC7" })
+        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/official/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u5B98\u65B9\u7BC7" })
 };

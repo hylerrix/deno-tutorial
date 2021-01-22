@@ -107,7 +107,8 @@ export default {
                     {
                         children: [
                             'articles/document/deno-version-handbook.md',
-                            'articles/document/deno-cli-handbook.md'
+                            'articles/document/deno-cli-handbook.md',
+                            'articles/document/deno-translation-dictionary.md'
                         ],
                         link: 'articles/document/README.md',
                         title: '文档篇'
@@ -146,6 +147,13 @@ export default {
                         ],
                         link: 'articles/node/README.md',
                         title: 'Node 篇'
+                    },
+                    {
+                        children: [
+                            'articles/official/thoroughgoing-deno-in-2020.md'
+                        ],
+                        link: 'articles/official/README.md',
+                        title: '官方篇'
                     },
                     {
                         children: [

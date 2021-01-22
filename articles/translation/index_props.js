@@ -3,8 +3,8 @@ import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
     'prev': {
-        "text": "欲取代绝大多 JavaScript 工具链？Rome 尝鲜",
-        "link": "articles/node/javascript-toolchain-rome.html"
+        "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+        "link": "articles/official/thoroughgoing-deno-in-2020.html"
     },
     'next': {
         "text": "Deno 入门手册：附大量 TypeScript 代码实例",
@@ -34,7 +34,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "",
     'cover': undefined,
@@ -57,6 +57,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -126,6 +131,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

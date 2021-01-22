@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "Last week I published an article about Deno, and how to create a Chat app with Deno and Preact. Since then, many doubts have arisen. Mostly of them are about how to do the same thing we did in Node, but with th...",
     'cover': "https://aralroca.com/images/blog-images/55.png",
@@ -61,6 +61,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -130,6 +135,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

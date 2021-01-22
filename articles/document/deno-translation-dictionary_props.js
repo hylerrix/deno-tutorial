@@ -2,15 +2,21 @@ import projectConfig from '/pagic.config.js';
 import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
-    'prev': undefined,
-    'next': undefined,
+    'prev': {
+        "text": "Deno CLI 通用手册",
+        "link": "articles/document/deno-cli-handbook.html"
+    },
+    'next': {
+        "link": "articles/basic/index.html",
+        "text": "基础篇"
+    },
     config: { "root": "/", ...projectConfig, branch: 'main' },
-    'pagePath': "articles/frontend/README.md",
+    'pagePath': "articles/document/deno-translation-dictionary.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "articles/frontend/index.html",
-    'title': "前端篇",
+    'outputPath': "articles/document/deno-translation-dictionary.html",
+    'title': "Deno 专业术语翻译手册",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>前端篇</h1>'
+            __html: '<h1>Deno 专业术语翻译手册</h1>\n<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-169223577-1" }),
@@ -19,18 +25,20 @@ export default {
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
         React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
-    'contentTitle': React.createElement("h1", { key: "0" }, "\u524D\u7AEF\u7BC7"),
+    'contentTitle': React.createElement("h1", { key: "0" }, "Deno \u4E13\u4E1A\u672F\u8BED\u7FFB\u8BD1\u624B\u518C"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
+            __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
         } }),
-    'toc': null,
+    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
+            __html: '<nav class="toc"><ol><li><a href="#rust">Rust</a></li><li><a href="#%E7%9F%AD%E8%AF%AD">短语</a></li><li><a href="#%E5%85%B6%E5%AE%83">其它</a></li></ol></nav>'
+        } }),
     'author': "hylerrix",
     'contributors': [
         "hylerrix"
     ],
     'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
-    'excerpt': "",
+    'excerpt': " - Incremental type checking - revamp - isolated Modules - test coverage：测试覆盖率 - breaking changes：破坏性更改 - incremental typechecking：增量类型检查 - benchmark system - compilation pipeline - technical...",
     'cover': undefined,
     'sidebar': [
         {
@@ -185,5 +193,5 @@ export default {
     ],
     'gitalk': React.createElement(Gitalk, { admin: [
             'hylerrix'
-        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/frontend/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u524D\u7AEF\u7BC7" })
+        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/document/deno-translation-dictionary.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "Deno \u4E13\u4E1A\u672F\u8BED\u7FFB\u8BD1\u624B\u518C" })
 };

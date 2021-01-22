@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "本文差点难产而死。因为总结的过程中，多次怀疑本文是对官方文档的直接翻译和简单罗列；同时官方文档很全面，全范围的介绍无疑加深了写作的心智负担。但在最终的梳理中，发现走出了一条与众不同的路，于是坚持分享出来。 希望本...",
     'cover': "https://cdn.nlark.com/yuque/0/2020/png/86548/1578586685262-ca35e2db-94b8-4510-a922-8ef68ade06ee.png#align=left&display=inline&height=704&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1408&originWidth=2790&size=145496&status=done&style=none&width=1395",
@@ -59,6 +59,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -128,6 +133,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

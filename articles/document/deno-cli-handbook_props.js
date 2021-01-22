@@ -7,8 +7,8 @@ export default {
         "link": "articles/document/deno-version-handbook.html"
     },
     'next': {
-        "link": "articles/basic/index.html",
-        "text": "基础篇"
+        "text": "Deno 专业术语翻译手册",
+        "link": "articles/document/deno-translation-dictionary.html"
     },
     config: { "root": "/", ...projectConfig, branch: 'main' },
     'pagePath': "articles/document/deno-cli-handbook.md",
@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-15T05:33:30.000Z",
+    'date': "2021-01-22T03:14:40.000Z",
     'updated': null,
     'excerpt': "通读命令行基本信息 deno --help, help 了解一个命令的最快速实用的方法就是直接阅读其帮助文档，每行帮助信息都是简短且关键的介绍，不难理解和翻译。终端输入如下命令（help 或 --help 用来打印全局帮助信息或给定子命令的帮...",
     'cover': undefined,
@@ -59,6 +59,11 @@ export default {
                     "text": "Deno CLI 通用手册",
                     "link": "articles/document/deno-cli-handbook.html",
                     "pagePath": "articles/document/deno-cli-handbook.md"
+                },
+                {
+                    "text": "Deno 专业术语翻译手册",
+                    "link": "articles/document/deno-translation-dictionary.html",
+                    "pagePath": "articles/document/deno-translation-dictionary.md"
                 }
             ],
             "pagePath": "articles/document/README.md",
@@ -128,6 +133,19 @@ export default {
             ],
             "pagePath": "articles/node/README.md",
             "text": "Node 篇"
+        },
+        {
+            "link": "articles/official/index.html",
+            "title": "官方篇",
+            "children": [
+                {
+                    "text": "精读《Deno 2020 官方回顾及 2021 展望》",
+                    "link": "articles/official/thoroughgoing-deno-in-2020.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                }
+            ],
+            "pagePath": "articles/official/README.md",
+            "text": "官方篇"
         },
         {
             "link": "articles/translation/index.html",

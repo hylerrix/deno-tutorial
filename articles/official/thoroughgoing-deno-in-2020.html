@@ -1,0 +1,196 @@
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'UA-169223577-1', 'auto');
+            ga('send', 'pageview');</script><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">精读《Deno 2020 官方回顾及 2021 展望》 · Deno 钻研之术</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/deno-feedly" target="_blank">Deno 双周刊</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li><li class=""><a href="/articles/document/deno-translation-dictionary.html" class="nav_link">Deno 专业术语翻译手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/official/index.html" class="nav_link">官方篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/official/thoroughgoing-deno-in-2020.html" class="nav_link active">精读《Deno 2020 官方回顾及 2021 展望》</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li><li class=""><a href="/articles/translation/why-deno-wrong.html" class="nav_link">为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>精读《Deno 2020 官方回顾及 2021 展望》</h1>
+<blockquote>
+<ul>
+<li>原文地址：<a href="https://deno.land/posts/deno-in-2020">Deno in 2020</a></li>
+<li>原文作者：Bartek Iwańczuk, Ryan Dahl</li>
+<li>译者：<a href="https://github.com/hylerrix">@hylerrix</a></li>
+<li>原文发布时间/翻译时间：20210115/20210122</li>
+<li>本文属于《<a href="https://github.com/hylerrix/deno-tutorial">Deno 钻研之术</a>》系列，原文翻译内容会同步更新到 <a href="https://deno-cn.vercel.app/posts/deno-in-2020">Deno 中文官网</a>中。</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/86548/1611115470568-57835cde-6644-4a07-b264-b398a4e1efa5.png#align=left&amp;display=inline&amp;height=400&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=800&amp;originWidth=1714&amp;size=125084&amp;status=done&amp;style=none&amp;width=857" alt=""></p>
+<p>随着 API 的稳定化改造、若干大型基础架构的重构，以及诸多备受关注功能的开放，Deno 1.0 版本正式发布。2020 年，Deno 迎来了众多的挑战和变化。</p>
+<p>请填写<a href="https://forms.gle/hbhP46LUAfVFMggU6">这份 Deno 调查问卷</a>来向我们反馈以让 Deno 在 2021 年变得更好。</p>
+<p>下文是 Deno 的 2020 年度回顾。</p>
+<h2 id="%E4%B8%80%E6%9C%88%E5%86%8D%E8%A7%81-libdeno%E4%BD%A0%E5%A5%BD-rusty_v8">一月：再见 libdeno，你好 rusty_v8<a class="anchor" href="#%E4%B8%80%E6%9C%88%E5%86%8D%E8%A7%81-libdeno%E4%BD%A0%E5%A5%BD-rusty_v8">§</a></h2>
+<p><code>libdeno</code> 是一个 C++ 库，可以方便地桥接 Deno 中的 V8 引擎和 Rust 代码。此库难以理解，也难以在其上开发额外的功能。基于这种情况，最终导致了 <code>rusty_v8</code> 于 2019 年秋季诞生。<a href="https://github.com/denoland/rusty_v8"><code>rusty_v8</code></a> 是一个为 V8 引擎提供相关 API 的 Rust crate。同年 12 月，<code>rusty_v8</code> 已具备所有必需的 binding 条件来替换 <code>libdeno</code>。这项工作始于 2019 年年底，当时先使用 <code>rusty_v8</code> 重写了 <code>libdeno</code> 的一部分。由于 Deno 代码库中测试覆盖率的不断提高，我们很有信心地继续推进，并在两周内完成了这项工作。<code>libdeno</code> 最终在 0.29.0 版本中被完全替换删除，此后 rusty_v8 也经历了绑定类型安全性相关的重要重构。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v0.28.0">0.28.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.28.1">0.28.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.29.0">0.29.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.30.0">0.30.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.31.0">0.31.0</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>libdeno</strong>：由 C++ 编写，早期是用来连接 TS/JS 和 V8 的通道。</li>
+<li><a href="https://github.com/denoland/rusty_v8"><strong>rusty_v8</strong></a>：libdeno 的替代品，2019 年年底开始开发，为 V8 的 C++ API 提供更高质量的 Rust 绑定。</li>
+<li><a href="https://v8.dev/"><strong>V8</strong></a>：Google 的一个开源 JavaScript 引擎。其一个非常大的项目（超过 600,000 行 C++），通常需要 30 分钟才能编译。此外，V8 依靠 Chromium 的定制构建系统（gn + ninja），在 Chromium 之外不容易使用。</li>
+<li><strong>Rust</strong>：Rust 语言快且内存效率高，没有运行时和垃圾收集器。Rust 的丰富类型系统和所有权模型保证了内存安全性和线程安全性，能够在编译时消除许多类的错误。</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://github.com/denoland/deno/issues/3530">replace libdeno with rusty_v8</a></li>
+<li><a href="https://github.com/denoland/deno/pull/3556">The long road to rusty_v8</a></li>
+<li><a href="https://denolib.gitbook.io/guide/advanced/interaction-with-v8">Interaction with V8</a></li>
+</ul>
+<h2 id="%E4%BA%8C%E6%9C%88deno-fmt-%E7%8E%B0%E7%94%B1-dprint-%E6%9E%84%E5%BB%BAdeno-test-%E5%AD%90%E5%91%BD%E4%BB%A4">二月：deno fmt 现由 dprint 构建、deno test 子命令<a class="anchor" href="#%E4%BA%8C%E6%9C%88deno-fmt-%E7%8E%B0%E7%94%B1-dprint-%E6%9E%84%E5%BB%BAdeno-test-%E5%AD%90%E5%91%BD%E4%BB%A4">§</a></h2>
+<p>本月我们彻底地重构了 <code>deno fmt</code>。与此之前，<code>deno fmt</code> 是一个简单的子命令，其在背后只是最终指向 <code>prettier</code> 的“deno run”的一个别名。这意味着在首次运行 <code>deno fmt</code> 以及每次 <code>prettier</code> 升级后，用户都必须下载 <code>prettier</code> 的最新版本。这和 Deno 承诺的内置工具开箱即用的原则很不契合。同时，<code>prettier</code> 真的很慢，其性能也有很多问题。</p>
+<p>我们被推荐了 <a href="https://github.com/dsherret">David Sherret</a> 的 <a href="https://dprint.dev/">dprint</a> 库——一个基于 <a href="https://github.com/kdy1">Kang Dong Yun</a> 的 SWC JavaScript 解析器、并由 Rust 编写的代码格式化工具。<code>dprint</code> 可以和 <code>prettier</code> 库一样的工作，但速度却要快上好几个数量级。经过了一些初步测算后，我们决定在 <code>deno fmt</code> 中使用 <code>dprint</code>。</p>
+<p><code>deno test</code> 也有在首次运行该命令时从标准库中下载模块的问题。这导致添加了新的 <code>Deno.test()</code> API，并且 <code>deno test</code> CLI 子命令也让测试成为了 Deno 的一等公民。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v0.32.0">0.32.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.33.0">0.33.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.34.0">0.34.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.35.0">0.35.0</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><code>deno fmt</code>：Deno 内置工具之一，用来格式化 TypeScript/JavaScript 代码。早期依赖 <code>prettier</code>，现在由基于 Rust 语言的 dprint 提供支持，速度和性能都有所提高。</li>
+<li><code>deno test</code>：deno 内置工具之一，开箱即用提供测试基本功能。</li>
+<li><a href="https://prettier.io/"><strong>prettier</strong></a>：Node 下知名的可配置式代码格式化工具，可以在编辑器、预提交或 CI 等诸多环境中来格式化多种语言（TS/JS/CSS/HTML/GraphQL/YAML/Markdown 等），更多的语言可以通过社区插件支持。</li>
+<li><a href="https://dprint.dev/"><strong>dprint</strong></a>：支持定义插件和配置的代码编辑器，由 Rust 语言构建。速度很快，插件支持 URL 或文件导入（WebAssembly）。支持格式化 TS/JS/JSON/C#/VB/Markdown 等文件，同时也有 Prettier 的插件。目前处于早期积极开发中。</li>
+<li><strong><a href="https://github.com/swc-project/swc">SWC</a></strong>：是一个基于 Rust 的JavaScript/TypeScript 解析器，性能极好。JavaScript 的解析器包括的实施规范起始于 <a href="https://github.com/estree/estree">ESTree</a> 项目，常见的基于 JS 开发的 JavaScript 解析器包括 <a href="https://github.com/estree/estree">uglify-js</a>、<a href="http://esprima.org/">Esprima</a>、<a href="https://github.com/acornjs/acorn">acorn</a>、<a href="https://github.com/babel/babel/tree/master/packages/babel-parser">@babel/parser(babylon)</a>、<a href="https://github.com/eslint/espree">espree</a>、<a href="https://github.com/microsoft/TypeScript">TypeScript</a>；常见的基于其他语言开发的 JavaScript 解析器包括 <a href="https://github.com/alangpierce/sucrase">sucrase</a>、<a href="https://github.com/swc-project/swc">swc</a>、<a href="https://github.com/evanw/esbuild/">esbuild</a>；其它 AST 工具包括：<a href="https://github.com/benjamn/recast">recast</a>、<a href="https://github.com/facebook/jscodeshift">jscodeshift</a>、<a href="https://github.com/fkling/astexplorer">ASTExplorer</a> 等。</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://iter01.com/574746.html">簡單介紹下各種 JavaScript 解析器</a></li>
+<li><a href="https://blog.logrocket.com/why-you-should-use-swc/">Why you should use SWC (and not Babel)</a></li>
+</ul>
+<h2 id="%E4%B8%89%E6%9C%88v8-%E8%B0%83%E8%AF%95%E5%99%A8deno-docdeno-upgrade">三月：V8 调试器、deno doc、deno upgrade<a class="anchor" href="#%E4%B8%89%E6%9C%88v8-%E8%B0%83%E8%AF%95%E5%99%A8deno-docdeno-upgrade">§</a></h2>
+<p>阻碍 Deno 1.0 发布正式版的主要原因是缺少 Chrome Devtools 的支持。因此，我们花了很多精力来增加对 V8 调试器的支持以及提高使用 Chrome Devtools 连接到 Deno 进程的能力。</p>
+<p>CLI 中也添加了两个新的命令：<code>deno doc</code> 和 <code>deno upgrade</code>。</p>
+<p>我们同时经历了构建过程的巨大改进。与此之前，Deno 中的每一次构建都会导致 V8 从源码级别进行重新构建。V8 是一个庞大的 C++ 项目，常常需要花费 30 多分钟来对其进行构建。尽管有大量的构建缓存和更多技巧，我们也一直难以克服得更好。现在，我们增加了 rusty_v8 在 Github 发行版上生成和下载预构建过的静态库的能力，从而允许 Deno 构建过程完全绕过 V8 的构建。这简化并加快了 CI 的构建，同时更重要的是，这让贡献者变得可以更轻松地构建 Deno。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v0.36.0">0.36.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.37.0">0.37.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.37.1">0.37.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.38.0">0.38.0</a></p>
+<p>精读笔记：</p>
+<ul>
+<li><code>deno doc</code>：内置工具之一，来从源码中生成相关的 JSDoc 文档。<code>--json</code> 标志可以生成 JSON 格式，也可以用来生成模块文档。</li>
+<li><code>deno upgrade</code>：内置命令，可以直接通过此命令开自升级 Deno 版本。</li>
+<li><strong>Chrome DevTools</strong>：Chrome DevTools 是辅助开发者进行 Web 开发的重要调试工具，DevTools 是 Chromium 的一部分，可以作为独立项目被 Electron 等容器集成。DevTools 主要分为四部分：调试器前端（默认由 Chromium 内核层集成）、调试器后端（Chromium/V8/Node.js）、调试协议、消息通道（Embedder、Web Socket、Chrome Extensions、USB/ADB Chaeeml）。</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://zhaomenghuan.js.org/blog/chrome-devtools.html">Chrome DevTools 调试技术</a></li>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/javascript?hl=zh-cn">在 Chrome DevTools 中调试 JavaScript 入门</a></li>
+<li><a href="https://juejin.cn/post/6844903828756627463">Web 调试技术详解</a></li>
+</ul>
+<h2 id="%E5%9B%9B%E6%9C%88%E7%A0%B4%E5%9D%8F%E6%89%80%E6%9C%89%E7%9A%84-api-%E6%9D%A5%E6%9E%84%E9%80%A0%E9%87%8D%E8%A6%81%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7">四月：破坏所有的 API 来构造重要的稳定性<a class="anchor" href="#%E5%9B%9B%E6%9C%88%E7%A0%B4%E5%9D%8F%E6%89%80%E6%9C%89%E7%9A%84-api-%E6%9D%A5%E6%9E%84%E9%80%A0%E9%87%8D%E8%A6%81%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7">§</a></h2>
+<p>本月为 1.0 的正式发布做准备，重点关注在审阅 <code>Deno</code> global 全局中的 API。这导致了诸多破坏性地改动。对此我们很谨慎：我们将不确定的所有 API 都需要被移到 <code>--unstable</code> 标志之后。</p>
+<p>这也是 1.0 版本的重要承诺；在 2.0 发布之前，标记为稳定的 Deno API 将不会有破坏性的更改。</p>
+<p>本月是 Deno 版本以 0.x.y 命名的最后阶段。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v0.39.0">0.39.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.40.0">0.40.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.41.0">0.41.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v0.42.0">0.42.0</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li>内置标准库的 stable API：<a href="https://doc.deno.land/builtin/stable">https://doc.deno.land/builtin/stable</a>。</li>
+<li>内置标准库的 unstable API：<a href="https://doc.deno.land/builtin/unstable">https://doc.deno.land/builtin/unstable</a>。</li>
+<li>Deno 0.x.y 版本的大致历程：从 2018-08-18 的 v0.0.1 版本开始，到 2020-04-30 的 v0.42.0，621 天迭代了 82 个版本。其中从 73 个版本 v0.34.0 开始，每个版本同时会更新标准库的版本。</li>
+</ul>
+<h2 id="%E4%BA%94%E6%9C%88deno-10-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83">五月：Deno 1.0 正式发布<a class="anchor" href="#%E4%BA%94%E6%9C%88deno-10-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83">§</a></h2>
+<p>本月初标记删除了如下功能：</p>
+<ul>
+<li>JSON imports</li>
+<li>WASM imports</li>
+<li><code>window.location</code>  API</li>
+<li>Rust API for deno crate</li>
+</ul>
+<p>删除的原因是，我们不想因为 JSON/WASM imports 缺少底层规范支持、或者 deno crate 下有 Rust API 额外维护负担的情况下提供相关 API。</p>
+<p>终于在 5 月 13 日——<a href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan 最初发表 Deno 演讲</a>的整整两年后，我们正式发布了 1.0。</p>
+<p>在社交媒体上，这个版本非常受欢迎。我们的<a href="https://deno.land/v1">相关博客</a>被广为传播。我们也收获了大量的新用户和新贡献者。</p>
+<p>发布后我们紧张地回到了有关运行时重要组件的工作中：TypeScript 宿主中的依赖关系分析是使用 <a href="https://swc.rs/">SWC</a> 重写的。这次的改动标志着我们开始着手用 Rust 来重写 TypeScript 基础架构的一些部分。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.0.0-rc1">1.0.0-rc1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.0-rc2">1.0.0-rc2</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.0-rc3">1.0.0-rc3</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.0">1.0.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.1">1.0.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.2">1.0.2</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.3">1.0.3</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>Deno JSON imports</strong>：1.0 发布之前因缺乏标准被删除掉，想要导入一个 <code>.json</code> 文件可以在有 <code>--allow-read</code> 的情况下编写 <code>Deno.readTextFile</code> 或 <code>Deno.readTextFileSync</code> 来实现。此提议于 2018 年 10 月 21 日提出并讨论 (<a href="https://github.com/denoland/deno/issues/1048">#1048</a>)。</li>
+<li><strong>WASM imports</strong>：1.0 发布之前因缺乏标准被删除掉。此提议在 (<a href="https://github.com/denoland/deno/issues/2552">#2552</a>) (<a href="https://github.com/denoland/deno/issues/5609">#5609</a>) 等中讨论。WebAssembly 的 esm 集成标准<a href="https://github.com/WebAssembly/esm-integration/tree/master/proposals/esm-integration">提案进程</a>。当时去掉了 <code>import './foo.wasm'</code> 的支持，但依然可以通过 WebAssembly API 来使用。</li>
+</ul>
+<h2 id="%E5%85%AD%E6%9C%88%E5%A2%9E%E9%87%8F%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E4%BB%A5%E5%8F%8A-deno-lint">六月：增量类型检查以及 deno lint<a class="anchor" href="#%E5%85%AD%E6%9C%88%E5%A2%9E%E9%87%8F%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E4%BB%A5%E5%8F%8A-deno-lint">§</a></h2>
+<p>1.0 发布后，从社区中收到最多的反馈之一就是 TypeScript 的编译和类型检查非常得慢。此后我们着眼于改进 TSC 集成来支持增量类型检查。经过几次反复试验的 PR，我们能够使功能正常工作，并且显著地改进了开发效率。尽管我们通过利用 TSC 的增量 API 设法提高了类型检查的速度，但我们仍然需要依靠它来 emit 已转义的源。TypeScript 的伟大设计原则之一是它只是一个具有附加语法的 JavaScript，因此剥离类型信息（转换为 JavaScript）是相对容易的操作。所以我们设定了能够在 Rust 中使用 SWC 进行转移的同时，继续使用 TSC 进行类型检查的目标。</p>
+<p>经过几个月的开发，在一个单独的仓库中，我们添加了新的 <code>deno lint</code> 子命令。这是另一个建立在 SWC JavaScript 解析器之上的项目。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.0.4">1.0.4</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.0.5">1.0.5</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.1.0">1.1.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.1.0">1.1.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.1.2">1.1.2</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>TSC</strong>：代指 TypeScript 编译器模块，同时 TypeScript 提供 tsc 命令来在命令行进行编译。</li>
+<li><strong>deno_lint</strong>：是全新的仓库，建立在由 Rust 开发的 SWC 解析器上。和 Deno 内置的 TSC 协同工作。</li>
+</ul>
+<h2 id="%E4%B8%83%E6%9C%88%E5%B0%86%E5%86%85%E9%83%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BB%A3%E7%A0%81%E4%BB%8E-typescript-%E8%BD%AC%E6%8D%A2%E4%B8%BA-javascript">七月：将内部运行时代码从 TypeScript 转换为 JavaScript<a class="anchor" href="#%E4%B8%83%E6%9C%88%E5%B0%86%E5%86%85%E9%83%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BB%A3%E7%A0%81%E4%BB%8E-typescript-%E8%BD%AC%E6%8D%A2%E4%B8%BA-javascript">§</a></h2>
+<p>这个月，我们做出了一个艰难的决定：<a href="https://github.com/denoland/deno/pull/6793">将内部运行时代码从 TypeScript 转换为 JavaScript</a>。有几个因素导致了我们做出这个决定：Deno 内部运行时代码的每个构建过程中，类型检查、<a href="https://v8.dev/blog/custom-startup-snapshots">快照</a>前绑定，都是复杂而缓慢的构建步骤。我们有两个独立的 TypeScript 编译器宿主。一个是 <code>deno_typescript</code> crate 只用于构建过程，另一个被包含在 <code>Deno</code> 二进制文件中。此外，整个过程对构建时间有显著影响：2 分钟的增量重建！通过使用普通的 JavaScript，我们能够极大地简化内部构建依赖关系和总体复杂性。因为实际的 JavaScript 代码是由 TypeScript 编译器作为单个文件包生成的，所以我们几乎无法控制输出代码的类型。ES 模块被转换为使用 bundle 的 SystemJS 加载程序，这为最终 bundle 添加了大量代码。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.1.3">1.1.3</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.2.0">1.2.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.2.1">1.2.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.2.2">1.2.2</a>。</p>
+<p>精读笔记：</p>
+<blockquote>
+<p>JavaScript 规范包括许多内置功能，从数学函数到全功能正则表达式引擎。每个新创建的 V8 上下文从一开始就有这些可用的函数。要使其工作，必须在创建上下文时设置全局对象（例如，浏览器中的 window 对象）和所有内置功能，并将其初始化到 V8 的堆中。从头开始做这件事需要相当长的时间。</p>
+</blockquote>
+<blockquote>
+<p>幸运的是，V8 使用了一种快捷方式来加快速度：就像解冻速食披萨一样，我们将预先准备好的快照直接反序列化到堆中，以获得初始化的上下文。在普通台式计算机上，这可以将创建上下文的时间从 40 毫秒减少到不到 2 毫秒。在普通移动电话上，这可能意味着 270 毫秒和 10 毫秒之间的差异。</p>
+</blockquote>
+<h2 id="%E5%85%AB%E6%9C%88%E6%96%B0%E7%9A%84%E9%95%9C%E5%83%8F%E6%BA%90%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83">八月：新的镜像源网站发布<a class="anchor" href="#%E5%85%AB%E6%9C%88%E6%96%B0%E7%9A%84%E9%95%9C%E5%83%8F%E6%BA%90%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83">§</a></h2>
+<p>原始文章： <a href="https://deno.land/posts/registry2">https://deno.land/posts/registry2</a></p>
+<p>八月三日，我们发布了一个全新的 <a href="https://deno.land/x">deno.land/x</a> 镜像源，可以用来通过使用 WebHooks 与 Github 集成。每当一个模块被更新，我们的系统会下载并永远保存其源代码，这样我们就可以依赖不可变的源代码链接。</p>
+<p>由于在使用 Deno 基础设施时进行了一些非公开工作，我们开始努力将 Deno 系统分解成更小的“op crates”，可以混合和匹配以生成定制的 V8 运行时。8 月份，我们朝着这个目标迈出了第一步，发布了 <a href="https://crates.io/crates/deno_web">deno_web</a> crate，它提供了一些基本的 Web API，比如 <code>Event</code>、<code>TextUncoder</code> 和 <code>TextDecoder</code>。</p>
+<p>这个月，基准系统使用 Rust 重写，这标志着减少 Deno 项目的构建依赖性的单调工作的开始。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.2.3">1.2.3</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.3.0">1.3.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.3.1">1.3.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.3.2">1.3.2</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>Deno 镜像源</strong>：其中注册的项目的每个版本会被永久保存，来提供信任的 URL 资源。国内镜像源加速服务可以使用 <a href="http://x.deno.js.cn/">http://x.deno.js.cn</a>。</li>
+<li><strong>Deno 基准系统</strong>：作为 Deno 持续集成和测试管道的一部分，来度量运行时某些关键的性能。运行时指标包括执行时间、线程计数、系统调用计数、最大内存使用量；TypeScript 性能指标包括类型检查、I/O、HTTP 延迟、HTTP 代理吞吐量、吞吐量；大小指标包括文件大小、捆绑包大小、Cargo 依赖数。可视化数据长久访问地址：<a href="https://deno.land/benchmarks">https://deno.land/benchmarks</a>。</li>
+</ul>
+<h2 id="%E4%B9%9D%E6%9C%88websocket-api%E7%BB%88%E7%AB%AF%E4%B8%8B%E7%9A%84-css-%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6%E7%9B%91%E5%90%AC%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96">九月：WebSocket API、终端下的 CSS 样式、文件监听、测试覆盖<a class="anchor" href="#%E4%B9%9D%E6%9C%88websocket-api%E7%BB%88%E7%AB%AF%E4%B8%8B%E7%9A%84-css-%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6%E7%9B%91%E5%90%AC%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96">§</a></h2>
+<p>本月，我们发布了自 1.0 以来最大的功能版本。更多细节请参见 <a href="https://deno.land/posts/v1.4">1.4.0 发布说明</a>文档。</p>
+<p>另一个重要变化是关于项目的版本维护部分。发布时间表正式改变：从每月发布一次改为每六周发布一次新的版本，以与 Rust 和 Chrome 项目相匹配。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.3.3">1.3.3</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.0">1.4.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.1">1.4.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.2">1.4.2</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>WebSocket</strong>：是一种计算机通用协议，通过单个 TCP 连接提供全双工通信信道。WebSocket 协议在 2011 年被 IETF 标准化为 rfc6455。WebSocket 不同于 HTTP。</li>
+<li><strong>终端下的 CSS 样式</strong>：大多数现代浏览器都支持控制台中 <code>console.log</code> 的样式化输出，Deno 的目标是尽可能地与 Web 兼容，现在正在努力更好地在终端下支持 CSS 样式化。目前支持的 CSS 属性包括 <code>color</code>、<code>background-color</code>、<code>font-weight</code>、<code>font-style</code>、<code>text-decoration-color</code> 和 <code>text-decoration-line</code> 等，具体需要根据开发者终端的 ANSI 支持度来决定。</li>
+<li><strong>文件监听</strong>：1.4 版本热更新时自动重启服务，需要使用 <code>deno run --watch</code>。</li>
+<li><strong>测试覆盖</strong>：1.4 版本支持获得测试覆盖报告，需要使用 <code>deno test --coverage</code>。</li>
+</ul>
+<h2 id="%E5%8D%81%E6%9C%88repl-%E7%BF%BB%E6%96%B0%E6%8D%86%E7%BB%91%E6%94%B9%E8%BF%9B%E9%BB%98%E8%AE%A4-isolatedmodules">十月：REPL 翻新、捆绑改进、默认 isolatedModules<a class="anchor" href="#%E5%8D%81%E6%9C%88repl-%E7%BF%BB%E6%96%B0%E6%8D%86%E7%BB%91%E6%94%B9%E8%BF%9B%E9%BB%98%E8%AE%A4-isolatedmodules">§</a></h2>
+<p><a href="https://deno.land/posts/v1.5">1.5.0 发布说明</a>。</p>
+<p>本月发生的最大变化是在 TypeScript 编译器宿主中默认启用 <code>isolatedModules</code> 选项。此设置更改了 TypeScript 的行为，以确保每个文件都可以由 TSC 以外的工具（如 SWC 和 Babel）隔离编译（而无需知道其类型或其它模块）。这一变化对模块生态系统产生了重大影响，一度使得一些流行的模块无法使用，直到维护人员调整代码以支持 <code>isolatedModules</code>。</p>
+<p>这个月我们还在 SWC 中采用了新的 bundle 特性，这是对原始 TypeScript 编译器转向使用 Rust 方向的又一步迈进。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.4.3">1.4.3</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.4">1.4.4</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.5">1.4.5</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.4.6">1.4.6</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.5.0">1.5.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.5.1">1.5.1</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><code>isolatedModules</code>：用来执行其他检查以确保单独编译（例如 transpileModule 或 @babel/plugin transform typescript）是安全的。如果设置了 <code>isolatedModules</code>，则所有实现文件都必须是模块（这意味着它具有某种形式的导入/导出）。如果任何文件不是模块，则会发生错误：<code>'index.ts' cannot be compiled under '--isolatedModules' because it is considered a global script file. Add an import, export, or an empty 'export {}' statement to make it a module</code>。</li>
+</ul>
+<h2 id="%E5%8D%81%E4%B8%80%E6%9C%88%E5%A4%A7%E6%94%B9-tsc-%E7%BC%96%E8%AF%91%E5%99%A8%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84">十一月：大改 TSC 编译器基础架构<a class="anchor" href="#%E5%8D%81%E4%B8%80%E6%9C%88%E5%A4%A7%E6%94%B9-tsc-%E7%BC%96%E8%AF%91%E5%99%A8%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84">§</a></h2>
+<p>本月我们看到了 <a href="https://github.com/kitsonk">Kitson Kelly</a> 长达数周重写编译管道（compilation pipeline）的总结。它进一步地提高了 TypeScript 的编译速度，更最重要的是减轻了大量的技术债务。</p>
+<p><a href="https://crates.io/crates/deno_crypto">deno_crypto op crate</a> 也被添加。</p>
+<p><strong>本月发布的版本：</strong> 1.5.2、1.5.3、1.5.4。</p>
+<p>精读笔记：</p>
+<ul>
+<li><a href="https://crates.io/">https://crates.io/</a> 是 Rust 下的包管理仓库。</li>
+</ul>
+<h2 id="%E5%8D%81%E4%BA%8C%E6%9C%88%E8%87%AA%E5%8C%85%E5%90%AB%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A-lsp">十二月：自包含的二进制文件以及 LSP<a class="anchor" href="#%E5%8D%81%E4%BA%8C%E6%9C%88%E8%87%AA%E5%8C%85%E5%90%AB%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A-lsp">§</a></h2>
+<p><a href="https://deno.land/posts/v1.6">1.6.0 发布说明</a>。</p>
+<p>在 12 月，我们发布了 1.6 版本，包含了两个里程碑特性：自包含的二进制文件和语言服务器。<code>deno compile</code> 是 deno 的 bug 追踪器中受期待的特色之一。</p>
+<p>通过提供的内置语言服务器提高了所有能够使用 LSP 协议的编辑器的良好开发体验。它导致了对 vscode_deno 的第三次翻新，此项工作目前还在进行中。</p>
+<p><strong>本月发布的版本：</strong><a href="https://github.com/denoland/deno/releases/tag/v1.6.0">1.6.0</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.6.1">1.6.1</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.6.2">1.6.2</a>、<a href="https://github.com/denoland/deno/releases/tag/v1.6.3">1.6.3</a>。</p>
+<p>精读笔记：</p>
+<ul>
+<li><strong>自包含二进制文件</strong>：自包含的单个二进制文件可以让用户无需关注内核源码，封装即用。</li>
+<li><strong>LSP 语言服务器协议</strong>：由红帽、微软和 Codenvy 联合推出，是编辑器/IDE 与语言服务器之间的协议，可以让不同的编辑器/IDE 嵌入各种程序语言，允许开发人员来提供相应。</li>
+<li><a href="https://github.com/denoland/vscode_deno"><strong>vscode_deno</strong></a>：经过了三次以上的大翻新。现在支持 TypeScript 类型检查、快速修复、悬停卡、IntelliSense 等等，其和 Deno 内置的 TypeScript 进行沟通；与 deno-lint 集成，带有内联诊断；也为 deno fmt 代码格式化提供支持。</li>
+</ul>
+<h2 id="2021-%E5%B1%95%E6%9C%9B">2021 展望<a class="anchor" href="#2021-%E5%B1%95%E6%9C%9B">§</a></h2>
+<p>到 2020 年，我们在项目和社区中看到了许多的增长。这让我们对 Deno 进入 2021 年背后的支持倍感信心。请继续关注即将推出的激动人心的公告！</p>
+<p>如果你有兴趣为 Deno 做贡献，或者只是想了解我们的进展，请查看以下内容：</p>
+<ul>
+<li>回答这份 <a href="https://forms.gle/hbhP46LUAfVFMggU6">Deno 问卷调查</a>；</li>
+<li><a href="https://github.com/denoland/deno/issues/8824">查看 Q1 路线图</a>；</li>
+<li>通过添加<a href="https://github.com/denoland/deno/issues/8643">新的语言服务器</a>的功能来提高对 IDE 的支持；</li>
+<li>通过使用 <a href="https://github.com/denoland/deno/issues/9001">Web 平台测试套件</a>来确保对 Web 的兼容性。</li>
+</ul>
+<p>精读笔记：</p>
+<ul>
+<li><strong>Deno 问卷调查重点问题包括</strong>：你使用 Deno 多久/多频繁/用了哪些、阻碍你使用 Deno 的原因有什么、最吸引你的优势/内置工具是什么、你在下个项目使用 Deno 的可能性多大、URL 导入觉得好吗以及你有多愿意推荐 Deno 给你周围的人？</li>
+<li><strong>Deno 2021 Q1 路线图包括但不止于</strong>：1 月 19 日发布 1.7.0（已如期发布）、3 月 2 日发布 1.8.0、URL 导入支持 <code>data:</code>、重构运行时编译器 API、支持远程模块的访问令牌、IIFE budles、支持 React 17 jsx、rusty_v8 的 ICU、使用 WPT 测试内置 Web API、标准化运行时权限 API、结构化 worker 的 clone API、WebGPU 支持、bundles 的类型定义支持、ops 下的 V8 Fast API、URL 导入支持 <code>blob:</code> 等。</li>
+<li><strong>Web 测试套件</strong>：在 <a href="https://github.com/denoland/deno/pull/8990">#8990</a> 中 添加了 WPT runner，支持运行 Web 平台测试，目前还在提高可测试通过的范围。</li>
+</ul>
+<h2 id="%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">译者结语<a class="anchor" href="#%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">§</a></h2>
+<p>全文译完，并在每个章节做了简单的精读笔记。本次翻译与众不同的地方在于，专业技术难度提高了一个数量级。本文中涉及了很多专业术语甚至要懂 Deno 特性发展历程才能翻译到位的地方，在精读过程中也都一一解决。翻译过程中产生了“Deno 词汇表”的想法，已同步到 deno-tutorial 仓库中。</p>
+<p>《<a href="https://github.com/hylerrix/deno-tutorial">Deno 钻研之术</a>》的精读系列将重点围绕<a href="https://deno.land/posts">官方博客</a>展开，同时每翻译完一篇文章，也会争取 PR 合并到目前的 <a href="https://deno-cn.vercel.app/">Deno 中文官网</a>上。欢迎对 <a href="https://github.com/hylerrix/deno-tutorial">deno-tutorial</a> 仓库进行 star 或关注公众号 (@ningowood) 来及时接收消息，携手助力 Deno 在 2021 变得更好！</p></article><div class="prev_next"><a class="prev button" href="/articles/official/index.html">«  <!-- -->官方篇</a><a class="next button" href="/articles/translation/index.html">翻译篇<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%B8%80%E6%9C%88%E5%86%8D%E8%A7%81-libdeno%E4%BD%A0%E5%A5%BD-rusty_v8">一月：再见 libdeno，你好 rusty_v8</a></li><li><a href="#%E4%BA%8C%E6%9C%88deno-fmt-%E7%8E%B0%E7%94%B1-dprint-%E6%9E%84%E5%BB%BAdeno-test-%E5%AD%90%E5%91%BD%E4%BB%A4">二月：deno fmt 现由 dprint 构建、deno test 子命令</a></li><li><a href="#%E4%B8%89%E6%9C%88v8-%E8%B0%83%E8%AF%95%E5%99%A8deno-docdeno-upgrade">三月：V8 调试器、deno doc、deno upgrade</a></li><li><a href="#%E5%9B%9B%E6%9C%88%E7%A0%B4%E5%9D%8F%E6%89%80%E6%9C%89%E7%9A%84-api-%E6%9D%A5%E6%9E%84%E9%80%A0%E9%87%8D%E8%A6%81%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7">四月：破坏所有的 API 来构造重要的稳定性</a></li><li><a href="#%E4%BA%94%E6%9C%88deno-10-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83">五月：Deno 1.0 正式发布</a></li><li><a href="#%E5%85%AD%E6%9C%88%E5%A2%9E%E9%87%8F%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E4%BB%A5%E5%8F%8A-deno-lint">六月：增量类型检查以及 deno lint</a></li><li><a href="#%E4%B8%83%E6%9C%88%E5%B0%86%E5%86%85%E9%83%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BB%A3%E7%A0%81%E4%BB%8E-typescript-%E8%BD%AC%E6%8D%A2%E4%B8%BA-javascript">七月：将内部运行时代码从 TypeScript 转换为 JavaScript</a></li><li><a href="#%E5%85%AB%E6%9C%88%E6%96%B0%E7%9A%84%E9%95%9C%E5%83%8F%E6%BA%90%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83">八月：新的镜像源网站发布</a></li><li><a href="#%E4%B9%9D%E6%9C%88websocket-api%E7%BB%88%E7%AB%AF%E4%B8%8B%E7%9A%84-css-%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6%E7%9B%91%E5%90%AC%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96">九月：WebSocket API、终端下的 CSS 样式、文件监听、测试覆盖</a></li><li><a href="#%E5%8D%81%E6%9C%88repl-%E7%BF%BB%E6%96%B0%E6%8D%86%E7%BB%91%E6%94%B9%E8%BF%9B%E9%BB%98%E8%AE%A4-isolatedmodules">十月：REPL 翻新、捆绑改进、默认 isolatedModules</a></li><li><a href="#%E5%8D%81%E4%B8%80%E6%9C%88%E5%A4%A7%E6%94%B9-tsc-%E7%BC%96%E8%AF%91%E5%99%A8%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84">十一月：大改 TSC 编译器基础架构</a></li><li><a href="#%E5%8D%81%E4%BA%8C%E6%9C%88%E8%87%AA%E5%8C%85%E5%90%AB%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A-lsp">十二月：自包含的二进制文件以及 LSP</a></li><li><a href="#2021-%E5%B1%95%E6%9C%9B">2021 展望</a></li><li><a href="#%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">译者结语</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
