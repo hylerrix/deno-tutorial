@@ -90,6 +90,8 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 |006|[为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？](https://deno-tutorial.js.org/articles/translations/why-deno-wrong.html)|2020-06-07|2020-07-06||
 |...|...|...|...|...|
 
+> 还有几篇没同步这里，接下来同步。
+
 同时更新在如下第三方平台：
 
 * [微信](https://mp.weixin.qq.com/s/Eg2atcxZPpIfgqdAd73imQ)：公众号 @ningowood。

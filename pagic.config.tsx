@@ -117,6 +117,13 @@ export default {
           'articles/translation/why-deno-wrong.md',
         ],
       },
+      {
+        link: 'articles/rust/README.md',
+        title: 'Rust 篇',
+        children: [
+          'articles/rust/rust-tutorial-todo-app.md',
+        ],
+      },
       // {
       //   link: 'articles/forward/README.md',
       //   title: '转载篇',

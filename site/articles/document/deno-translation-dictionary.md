@@ -12,11 +12,12 @@
 * revamp：翻新
 * hard to reason about -> 难以理解
 * bundler
-
 ## Rust
 
 * Rust crate
 * bindings
+* manifest file
+* marco
 
 ## 短语
 
