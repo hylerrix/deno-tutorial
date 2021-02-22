@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': "通读命令行基本信息 deno --help, help 了解一个命令的最快速实用的方法就是直接阅读其帮助文档，每行帮助信息都是简短且关键的介绍，不难理解和翻译。终端输入如下命令（help 或 --help 用来打印全局帮助信息或给定子命令的帮...",
     'cover': undefined,

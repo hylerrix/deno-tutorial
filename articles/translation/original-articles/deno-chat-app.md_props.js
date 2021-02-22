@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': "Node.js was writtern initially by Ryan Dahl on 2009 (in C++). Ryan left Node.js in 2012, as at this point he felt he had more or less fulfilled his goals. His goals are now different. After realizing that there...",
     'cover': "https://aralroca.com/images/blog-images/38.svg",

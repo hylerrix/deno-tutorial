@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': "Last week I published an article about Deno, and how to create a Chat app with Deno and Preact. Since then, many doubts have arisen. Mostly of them are about how to do the same thing we did in Node, but with th...",
     'cover': "https://aralroca.com/images/blog-images/55.png",

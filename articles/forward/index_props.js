@@ -28,7 +28,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': "计划未来会寻找更多授权转载的文章到这里，方便直接阅读 -> 或许并不需要转载，放在 awesome-deno-cn 中就行。 待定。",
     'cover': undefined,

@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': " - Incremental type checking - revamp - isolated Modules - test coverage：测试覆盖率 - breaking changes：破坏性更改 - incremental typechecking：增量类型检查 - benchmark system - compilation pipeline - technical...",
     'cover': undefined,

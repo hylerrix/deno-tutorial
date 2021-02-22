@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-01-22T03:14:40.000Z",
+    'date': "2021-02-22T04:11:42.000Z",
     'updated': null,
     'excerpt': "I explore new projects every week, and it’s rare that one grabs my attention as much as Deno did. In this post I want to get you up to speed with Deno quickly. We'll compare it with Node.js, and build your fir...",
     'cover': "https://www.freecodecamp.org/news/content/images/size/w2000/2020/05/Screen-Shot-2020-05-11-at-18.55.24.png",
