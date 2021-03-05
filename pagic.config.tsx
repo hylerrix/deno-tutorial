@@ -103,6 +103,7 @@ export default {
         title: '官方篇',
         children: [
           'articles/official/thoroughgoing-deno-in-2020.md',
+          'articles/official/thoroughgoing-deno-1-8.md',
         ],
       },
       {

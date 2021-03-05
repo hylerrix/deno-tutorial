@@ -1,5 +1,7 @@
 public
 dist
+.DS_Store
+demos/.DS_Store
 
 # ignore third part demos
 deno-playground
