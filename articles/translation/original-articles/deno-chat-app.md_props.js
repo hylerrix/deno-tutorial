@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "Node.js was writtern initially by Ryan Dahl on 2009 (in C++). Ryan left Node.js in 2012, as at this point he felt he had more or less fulfilled his goals. His goals are now different. After realizing that there...",
     'cover': "https://aralroca.com/images/blog-images/38.svg",
@@ -144,6 +144,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -186,6 +191,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

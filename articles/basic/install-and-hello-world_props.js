@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "学习 Deno 的 N+ 种理由 时隔 Deno 开源两年整，万众期待的 Deno v1 正式版今日正式登场。或许你已经听过 Deno 的大名、或许你在项目中已经大量使用 Deno 作者的上一个明星项目 Node.js，亦或许今天才刚刚接触这一切...总之现在...",
     'cover': "http://qiniu.ningo.cloud/articles/1a8-01.jpg",
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

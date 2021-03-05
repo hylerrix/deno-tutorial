@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "通读命令行基本信息 deno --help, help 了解一个命令的最快速实用的方法就是直接阅读其帮助文档，每行帮助信息都是简短且关键的介绍，不难理解和翻译。终端输入如下命令（help 或 --help 用来打印全局帮助信息或给定子命令的帮...",
     'cover': undefined,
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

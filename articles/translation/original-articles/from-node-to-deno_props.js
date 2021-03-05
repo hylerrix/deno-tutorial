@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "Last week I published an article about Deno, and how to create a Chat app with Deno and Preact. Since then, many doubts have arisen. Mostly of them are about how to do the same thing we did in Node, but with th...",
     'cover': "https://aralroca.com/images/blog-images/55.png",
@@ -144,6 +144,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -186,6 +191,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

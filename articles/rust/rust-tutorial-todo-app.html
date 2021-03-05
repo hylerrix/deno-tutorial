@@ -1,0 +1,518 @@
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'UA-169223577-1', 'auto');
+            ga('send', 'pageview');</script><link rel="icon" type="image/png" href="/favicon.png"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="循序渐进学 Deno &amp; 先易后难补 Node &amp; 面向未来的 Deno Web 应用开发。"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Rust 语言入门教程：从实战 To-Do App 开始 · Deno 钻研之术</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Deno 钻研之术</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Deno 钻研之术</a></h1></li><li class="hide_on_mobile"><a href="/articles/">文章</a></li><li class="hide_on_mobile"><a href="http://qiniu.ningo.cloud/hylerrix/reward-alipay.png" target="_blank">打赏一下!!</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/awesome-deno-cn" target="_blank">资源</a></li><li class="hide_on_mobile"><a href="http://tutorial.deno.js.cn" target="_blank">镜像</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix/deno-feedly" target="_blank">Deno 双周刊</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">持续添加中...</a></li><li class="hide_on_mobile"><a href="https://github.com/ningowood" target="_blank">凝果屋</a></li><li class="hide_on_mobile"><a href="https://github.com/hylerrix" target="_blank">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/hylerrix/deno-tutorial" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/articles/index.html" class="nav_link">Deno 钻研之术</a></li><li class="unfold"><a href="/articles/document/index.html" class="nav_link">文档篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/document/deno-version-handbook.html" class="nav_link">Deno 版本历史概览</a></li><li class=""><a href="/articles/document/deno-cli-handbook.html" class="nav_link">Deno CLI 通用手册</a></li><li class=""><a href="/articles/document/deno-translation-dictionary.html" class="nav_link">Deno 专业术语翻译手册</a></li></ol></li><li class="unfold"><a href="/articles/basic/index.html" class="nav_link">基础篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/basic/install-and-hello-world.html" class="nav_link">Hello，从多样化安装到简单实战</a></li></ol></li><li class="unfold"><a href="/articles/architecture/index.html" class="nav_link">架构篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class="unfold"><a href="/articles/architecture/cli/index.html" class="nav_link">CLI 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/architecture/cli/deno-cli-v1-function.html" class="nav_link">从 CLI 指令通读 Deno v1.x 全特性</a></li></ol></li></ol></li><li class="unfold"><a href="/articles/ecology/index.html" class="nav_link">生态篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/ecology/awesome-deno-cn.html" class="nav_link">Awesome Deno 中文资源全图谱</a></li></ol></li><li class="unfold"><a href="/articles/node/index.html" class="nav_link">Node 篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/node/create-react-app-intro.html" class="nav_link">深入浅出 Create React App</a></li><li class=""><a href="/articles/node/javascript-toolchain-rome.html" class="nav_link">欲取代绝大多 JavaScript 工具链？Rome 尝鲜</a></li></ol></li><li class="unfold"><a href="/articles/official/index.html" class="nav_link">官方篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/official/thoroughgoing-deno-in-2020.html" class="nav_link">精读《Deno 2020 官方回顾及 2021 展望》</a></li><li class=""><a href="/articles/official/thoroughgoing-deno-1-8.html" class="nav_link">精读《Deno v1.8 发布说明》</a></li></ol></li><li class="unfold"><a href="/articles/translation/index.html" class="nav_link">翻译篇<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/translation/the-deno-handbook.html" class="nav_link">Deno 入门手册：附大量 TypeScript 代码实例</a></li><li class=""><a href="/articles/translation/deno-chat-app.html" class="nav_link">Deno + WebSockets 打造聊天室应用</a></li><li class=""><a href="/articles/translation/from-node-to-deno.html" class="nav_link">从 Node 到 Deno：探索各大主流库替代方案</a></li><li class=""><a href="/articles/translation/deno-oak-todo-api.html" class="nav_link">Deno + Oak 构建酷炫的 Todo API</a></li><li class=""><a href="/articles/translation/deno-oak-mysql.html" class="nav_link">Deno + Oak 连接 MySQL 实战教程</a></li><li class=""><a href="/articles/translation/why-deno-wrong.html" class="nav_link">为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？</a></li></ol></li><li class="unfold"><a href="/articles/rust/README.md" class="nav_link">articles/rust/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none"><li class=""><a href="/articles/rust/rust-tutorial-todo-app.html" class="nav_link active">Rust 语言入门教程：从实战 To-Do App 开始</a></li></ol></li><li class=""><a href="/articles/THANKS.html" class="nav_link">感谢</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Rust 语言入门教程：从实战 To-Do App 开始</h1>
+<blockquote>
+<ul>
+<li>原文：<a href="https://www.freecodecamp.org/news/how-to-build-a-to-do-app-with-rust/">Rust Programming Language Tutorial – How to Build a To-Do List App</a></li>
+<li>作者/译者：Claudio Restifo/<a href="https://github.com/hylerrix">@hylerrix</a></li>
+<li>发布时间/翻译时间：20210104/20210129</li>
+<li>备注：本文遵循 <a href="https://github.com/freeCodeCamp/news-translation">freeCodeCamp 翻译规范</a>，同时本文会收录在<a href="https://github.com/hylerrix/deno-tutorial">《Deno 钻研之术》</a>的 Rust 篇中。</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/86548/1611302172869-1896d3be-0c1b-444b-a17f-e945faf3c05c.png#align=left&amp;display=inline&amp;height=800&amp;margin=%5Bobject%20Object%5D&amp;name=&amp;originHeight=800&amp;originWidth=1200&amp;size=70280&amp;status=done&amp;style=none&amp;width=1200" alt=""></p>
+<p>Rust 语言从 2015 年发布的首个开源版本开始，便获得了社区大量的关注。从 <a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages">StackOverflow</a> 上的开发者调查来看，Rust 也是 2016 年每年都最受开发者喜欢的编程语言。</p>
+<p>Rust 由 Mozilla 设计，被定义为一个系统级编程语言（就像 C 和 C++）。Rust 没有垃圾处理器，因此性能极为优良。且其中的一些设计也常让 Rust 看起来很高级。</p>
+<p>Rust 的学习曲线被普遍认为是较为艰难的。我并不是 Rust 语言的深入了解者，但在这篇教程中，我将尝试提供一些概念的实用方法，来帮助你更深入的理解。</p>
+<h2 id="%E6%88%91%E4%BB%AC%E5%B0%86%E5%9C%A8%E8%BF%99%E7%AF%87%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%E4%B8%AD%E6%9E%84%E5%BB%BA%E4%BB%80%E4%B9%88">我们将在这篇实战教程中构建什么？<a class="anchor" href="#%E6%88%91%E4%BB%AC%E5%B0%86%E5%9C%A8%E8%BF%99%E7%AF%87%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%E4%B8%AD%E6%9E%84%E5%BB%BA%E4%BB%80%E4%B9%88">§</a></h2>
+<p>我决定通过遵循 JavaScript 应用的悠久传统，来将一个 to-do app 当做我们的第一个 Rust 项目。我们将重点使用命令行，所以有关命令行的知识必须有所了解。同时，你还需要了解一些有关编程概念的基础知识。</p>
+<p>这个程序将基于终端运行。我们将存储一些元素的集合，并在其中分别存储一个表示其活动状态的布尔值。</p>
+<h2 id="%E6%88%91%E4%BB%AC%E5%B0%86%E4%BC%9A%E5%9B%B4%E7%BB%95%E5%93%AA%E4%BA%9B%E6%A6%82%E5%BF%B5%E6%9D%A5%E8%AE%A8%E8%AE%BA">我们将会围绕哪些概念来讨论？<a class="anchor" href="#%E6%88%91%E4%BB%AC%E5%B0%86%E4%BC%9A%E5%9B%B4%E7%BB%95%E5%93%AA%E4%BA%9B%E6%A6%82%E5%BF%B5%E6%9D%A5%E8%AE%A8%E8%AE%BA">§</a></h2>
+<ul>
+<li>Rust 中的错误处理。</li>
+<li>Options 和 Null 类型。</li>
+<li>Structs 和 impl。</li>
+<li>终端 I/O。</li>
+<li>文件系统处理。</li>
+<li>Rust 中的所有权（Ownership）和借用（borrow）。</li>
+<li>匹配模式。</li>
+<li>迭代器和闭包。</li>
+<li>使用外部的包（crates）。</li>
+</ul>
+<h2 id="%E5%9C%A8%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D">在我们开始之前<a class="anchor" href="#%E5%9C%A8%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D">§</a></h2>
+<p>对于来自 JavaScript 背景的开发者来说，这里有几个我们开始深入前的建议：</p>
+<ul>
+<li>Rust 是一个强类型的语言。这意味着当编译器无法为我们推断类型时，我们需要时刻关注变量类型。</li>
+<li>同样和 JavaScript 不同的是，Rust 中没有 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Automatic_semicolon_insertion">AFI</a>。这意味着我们必须主动在语句后键入分号 (&quot;;&quot;)——除非它是函数的最后一条语句（此时可以省略分号 <code>;</code> 来将其当做一条 return）。</li>
+</ul>
+<blockquote>
+<p>译者注：AFI，Automatic semicolon insertion，自动分号插入。JavaScript 可以不用写分号，但某些语句也必须使用分号来保证正确地被执行。</p>
+</blockquote>
+<p>事不宜迟，让我们开始吧！</p>
+<h2 id="rust-%E5%A6%82%E4%BD%95%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B">Rust 如何从零开始<a class="anchor" href="#rust-%E5%A6%82%E4%BD%95%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B">§</a></h2>
+<p>开始的第一步：下载 Rust 到你的电脑上。想要下载，可以在 Rust 官方文档中的<a href="https://www.rust-lang.org/learn/get-started">入门篇</a>中根据指导来安装。</p>
+<blockquote>
+<p>译者注：通过 <code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code> 安装。</p>
+</blockquote>
+<p>在上面的文档中，你还会找到有关如何将 Rust 与你熟悉的编辑器集成以获得更好开发体验的相关说明。</p>
+<p>除了 Rust 编译器本身外，Rust 还附带了一个工具——<a href="https://doc.rust-lang.org/cargo/index.html">Cargo</a>。Cargo 是 Rust 的包管理工具，就像 JavaScript 开发者会用到的 npm 和 yarn 一样。</p>
+<p>要开始一个新项目，请先在终端下进入到你想要创造项目的位置，然后只需运行 <code>cargo new &lt;project-name&gt;</code> 即可开始。就我而言，我决定将我的项目命名为“todo-cli”，所以有了如下命令：</p>
+<pre class="language-bash"><code class="language-bash">$ cargo new todo-cli
+</code></pre>
+<p>现在切入到新创建的项目目录并打印出其文件列表。你应该会在其中看到这两个文件：</p>
+<pre class="language-bash"><code class="language-bash">$ tree <span class="token builtin class-name">.</span>
+<span class="token builtin class-name">.</span>
+├── Cargo.toml
+└── src
+ └── main.rs
+</code></pre>
+<p>在本教程的剩余篇章中，我们将会主要关注在 <code>src/main.rs</code> 文件上，所以直接打开这个文件吧。</p>
+<p>就像其它众多的编程语言一样，Rust 有一个 main 函数来当作一切的入口。<code>fn</code> 来声明一个函数，同时 <code>println!</code> 中的 <code>!</code> 符号是一个<a href="https://doc.rust-lang.org/book/ch19-06-macros.html">宏</a>（macro）。你很可能会立马看出来，这是 Rust 语言下的一个“<code>Hello World</code>”程序。</p>
+<p>想要编译并运行这个程序，可以直接直接 <code>cargo run</code>。</p>
+<pre class="language-bash"><code class="language-bash">$ cargo run
+Hello world<span class="token operator">!</span>
+</code></pre>
+<h2 id="%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">如何读取命令行参数<a class="anchor" href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">§</a></h2>
+<p>我们的目标是让我们的 CLI 工具接收两个参数：第一个参数代表要执行的操作类型，第二个参数代表要操作的对象。</p>
+<p>我们将从读取并打印用户输入的参数开始入手。</p>
+<p>使用如下内容<strong>替换</strong>掉 main 函数里的内容：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> action <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>env<span class="token punctuation">::</span></span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">nth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"Please specify an action"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> item <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>env<span class="token punctuation">::</span></span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">nth</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"Please specify an item"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{:?}, {:?}"</span><span class="token punctuation">,</span> action<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>来一起消化下代码里的重要信息：</p>
+<ul>
+<li><code>let</code> <a href="https://doc.rust-lang.org/std/keyword.let.html">[文档]</a> 给变量绑定一个值</li>
+<li><code>std::env::args()</code> <a href="https://doc.rust-lang.org/std/env/fn.args.html">[文档]</a> 是从标准库的 env 模块中引入的函数，该函数返回启动程序时传递给其的参数。由于它是一个迭代器，我们可以使用 <code>nth()</code> 函数来访问存储在每个位置的值。位置 0 引向程序本身，这也是为什么我们从第一个元素而非第零个元素开始读取的原因。</li>
+<li><code>expect()</code> <a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.expect">[文档]</a> 是一个 <code>Option</code> 枚举定义的方法，该方法将返回一个需要给定的值，如果给定的值不存在，则程序立即会被停止，并打印出指定的错误信息。</li>
+</ul>
+<p>由于程序可以不带参数直接运行，因此 Rust 通过给我们提供 Option 类型来要求我们检查是否确实提供了该值。</p>
+<p>作为开发者，我们有责任确保在每种条件下都采取适当的措施。</p>
+<p>目前我们的程序中，如果未提供参数，程序会被立即退出。</p>
+<p>让我们通过如下命令运行程序的同时传递两个参数，记得参数要附加在 <code>--</code> 之后。</p>
+<pre class="language-bash"><code class="language-bash">$ cargo run -- hello world<span class="token operator">!</span>
+    Finished dev <span class="token punctuation">[</span>unoptimized + debuginfo<span class="token punctuation">]</span> target<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token number">0</span>.01s
+     Running target/debug/todo_cli hello <span class="token string">'world'</span><span class="token punctuation">\</span><span class="token operator">!</span><span class="token string">''</span>
+<span class="token string">"hello"</span>, <span class="token string">"world!"</span>
+</code></pre>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8F%92%E5%85%A5%E5%92%8C%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE">如何使用一个自定义类型插入和保存数据<a class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8F%92%E5%85%A5%E5%92%8C%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE">§</a></h2>
+<p>让我们考虑一下我们想在这个程序中实现的目标：能够读取用户在命令行输入的参数，更新我们的 todo 清单，然后存储到某个地方来提供记录。</p>
+<p>为了达到这个目标，我们将实现自定义类型，来在其中满足我们的业务。</p>
+<p>我们将使用 Rust 中的 <a href="https://doc.rust-lang.org/std/keyword.struct.html">struct</a>（结构体），它使开发者能设计有着更优良结构的代码，从而避免了必须在主函数中编写所有的代码。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">如何定义我们的结构体<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">§</a></h3>
+<p>由于我们将在项目中会用到很多 HashMap，因此我们可以考虑将其纳入自定义结构体中。</p>
+<p>在文件顶部添加如下行：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>collections<span class="token punctuation">::</span></span><span class="token class-name">HashMap</span>
+</code></pre>
+<p>这将让我们能直接地使用 <code>HashMap</code>，而无需每次使用时都键入完整的包路径。</p>
+<p>在 main 函数的下方，让我们添加以下代码：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Todo</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用 Rust 内置的 HashMap 来保存 key - val 键值对。</span>
+  map<span class="token punctuation">:</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这将定义出我们需要的 Todo 类型：一个有且仅有 map 字段的结构体。</p>
+<p>这个字段是 <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html">HashMap</a> 类型。你可以将其考虑为一种 JavaScript 对象，在 Rust 中要求我们声明键和值的类型。</p>
+<ul>
+<li><code>HashMap&lt;String, bool&gt;</code> 表示我们具有一个字符串组成的键，其值是一个布尔值：在应用中来代表当前元素的活动状态。</li>
+</ul>
+<h3 id="%E5%A6%82%E4%BD%95%E7%BB%99%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95">如何给我们的结构体中新增方法<a class="anchor" href="#%E5%A6%82%E4%BD%95%E7%BB%99%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95">§</a></h3>
+<p>方法就像常规的函数一样——都是由 <code>fn</code> 关键字来声明，都接受参数且都可以有返回值。</p>
+<p>但是，它们与常规函数不同之处在于它们是在 struct 上下文中定义的，并且它们的第一个参数始终是 <code>self</code>。</p>
+<p>我们将定义一个 <em>impl</em>（实现）代码块在上文新增的结构体下方。</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">insert</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> key<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 在我们的 map 中新增一个新的元素。</span>
+    <span class="token comment">// 我们默认将其状态值设置为 true</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>该函数内容十分简单明了：它通过使用 HashMap 内置的 <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.insert">insert</a> 方法将传入的 key 插入到 map 中。</p>
+<p>其中两个很重要的知识是：</p>
+<ul>
+<li><strong>mut</strong>  <a href="https://doc.rust-lang.org/std/keyword.mut.html">[doc]</a> 设置一个可变变量
+<ul>
+<li>在 Rust 中，每个变量默认是不可变的。如果你想改变一个值，你需要使用 <code>mut</code> 关键字来给相关变量加入可变性。由于我们的函数需要通过修改 map 来添加新的值，因此我们需要将其设置为可变值。</li>
+</ul>
+</li>
+<li><strong>&amp;</strong>  <a href="https://doc.rust-lang.org/std/primitive.reference.html">[doc]</a> 标识一个引用。
+<ul>
+<li>你可以认为这个变量是一个指针，指向内存中保存这个值的具体地方，并不是直接存储这个值。</li>
+<li>在 Rust 属于中，这被认为是一个<strong>借用</strong>（borrow），意味着函数并不拥有该变量，而是指向其存储位置。</li>
+</ul>
+</li>
+</ul>
+<h2 id="rust-%E6%89%80%E6%9C%89%E6%9D%83%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AE%80%E8%A6%81%E6%A6%82%E8%A7%88">Rust 所有权系统的简要概览<a class="anchor" href="#rust-%E6%89%80%E6%9C%89%E6%9D%83%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AE%80%E8%A6%81%E6%A6%82%E8%A7%88">§</a></h2>
+<p>有了前面关于借用（borrow）和引用（reference）的知识铺垫，现在是个很好的时机来简要地讨论 Rust 里的所有权（ownership）。</p>
+<p>所有权是 Rust 中最独特的功能，它使 Rust 程序员无需手动分配内存（例如在 C/C++ 中）就可以编写程序，同时仍可以在无需垃圾收集器（如 JavaScript 或 Python）的情况下运行，Rust 会不断查看程序的内存以释放未使用的资源。</p>
+<p>所有权系统有如下三个规则：</p>
+<ul>
+<li>Rust 中每个值都有一个变量：即为其所有者。</li>
+<li>每个值一次只能有一个所有者。</li>
+<li>当所有者超出范围时，该值将被删除。</li>
+</ul>
+<p>Rust 会在编译时检查这些规则，这意味着是否以及何时要在内存中释放值需要被开发者明确指出。</p>
+<p>思考一下如下示例：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// String 的所有者是 x</span>
+  <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 我们将值移动到此函数中</span>
+  <span class="token comment">// 现在 doSomething 是 x 的所有者</span>
+  <span class="token comment">// 一旦超出 doSomething 的范围</span>
+  <span class="token comment">// Rust 将释放与 x 关联的内存。</span>
+  <span class="token function">doSomething</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 由于我们尝试使用值 x，因此编译器将引发错误</span>
+  <span class="token comment">// 因为我们已将其移至 doSomething 内</span>
+  <span class="token comment">// 我们此时无法使用它，因为此时已经没有所有权</span>
+  <span class="token comment">// 并且该值可能已经被删除了</span>
+  <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在学习 Rust 时，这个概念被广泛地认为是最难掌握的，因为它对许多程序员来说都是新概念。</p>
+<p>你可以从 Rust 的官方文档中阅读有关<a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html">所有权</a>的更深入的说明。</p>
+<p>我们不会深入研究所有权制度的来龙去脉。现在，请记住我上面提到的规则。尝试在每个步骤中考虑是否需要“拥有”这些值后删除它们，或者是否需要继续引用它以便可以保留它。</p>
+<p>例如，在上面的 insert 方法中，我们不想拥有 <code>map</code>，因为我们仍然需要它来将其数据存储在某个地方。只有这样，我们才能最终释放被分配的内存。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E5%B0%86-map-%E4%BF%9D%E5%AD%98%E5%88%B0%E7%A1%AC%E7%9B%98%E4%B8%8A">如何将 map 保存到硬盘上<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%B0%86-map-%E4%BF%9D%E5%AD%98%E5%88%B0%E7%A1%AC%E7%9B%98%E4%B8%8A">§</a></h3>
+<p>由于这是一个演示程序，因此我们将采用最简单的长期存储解决方案：将 map 写入文件到磁盘。</p>
+<p>让我们在 <code>impl</code> 块中创建一个新的方法。</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+  <span class="token comment">// [其余代码]</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">save</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token class-name">Error</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> content <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token keyword">self</span><span class="token punctuation">.</span>map <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> record <span class="token operator">=</span> <span class="token macro property">format!</span><span class="token punctuation">(</span><span class="token string">"{}\t{}\n"</span><span class="token punctuation">,</span> k<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      content<span class="token punctuation">.</span><span class="token function">push_str</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>record<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"db.txt"</span><span class="token punctuation">,</span> content<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>-&gt;</code> 表示函数返回的类型。我们在这里返回的是一个 <code>Result</code> 类型。</li>
+<li>我们遍历 map，并分别格式化出一个字符串，其中同时包括 key 和 value，并用 tab 制表符分隔，同最后用新的一个换行符来结尾。</li>
+<li>我们将格式化的字符串放入到 content 变量中。</li>
+<li>我们将 <code>content</code> 容写入名为 <code>db.txt</code> 的文件中。</li>
+</ul>
+<p>值得注意的是，<code>save</code> 拥有自 self 的_所有权_。此时，如果我们在调用 save 之后意外尝试更新 map，编译器将会阻止我们（因为 self 的内存将被释放）。</p>
+<p>这是一个完美的例子，展示了如何使用 Rust 的内存管理来创建更为严格的代码，这些代码将无法编译（以防止开发过程中的人为错误）。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E5%9C%A8-main-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%84%E4%BD%93">如何在 main 中使用结构体<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%9C%A8-main-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%84%E4%BD%93">§</a></h3>
+<p>现在我们有了这两种方法，就可以开始使用了。现在我们将继续在之前编写的 main 函数内编写功能：如果提供的操作是 add，我们将该元素插入并存储到文件中以供未来使用。</p>
+<p>将如下代码添加到之前编写的两个参数绑定的下方：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...[参数绑定代码]</span>
+
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> todo <span class="token operator">=</span> <span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+    map<span class="token punctuation">:</span> <span class="token class-name">HashMap</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> action <span class="token operator">==</span> <span class="token string">"add"</span> <span class="token punctuation">{</span>
+    todo<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">match</span> todo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">Ok</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"todo saved"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token class-name">Err</span><span class="token punctuation">(</span>why<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"An error occurred: {}"</span><span class="token punctuation">,</span> why<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>让我们看看我们都做了什么：</p>
+<ul>
+<li><code>let mut todo = Todo</code> 让我们实例化一个结构体，绑定它到一个可变变量上。</li>
+<li>我们通过 <code>.</code> 符号来调用 <code>TODO insert</code> 方法。</li>
+<li>我们将<a href="https://doc.rust-lang.org/std/keyword.match.html">匹配</a> save 功能返回的结果，并在不同情况下载屏幕上显示一条消息。</li>
+</ul>
+<p>让我们测试运行吧。打开终端并输入：</p>
+<pre class="language-rust"><code class="language-rust">$ cargo run <span class="token operator">-</span><span class="token operator">-</span> add <span class="token string">"code rust"</span>
+todo saved
+</code></pre>
+<p>让我们来检查元素是否真的保存了：</p>
+<pre class="language-autoit"><code class="language-autoit">$ cat db<span class="token punctuation">.</span>txt
+code rust <span class="token boolean">true</span>
+</code></pre>
+<p>你可以在这个 <a href="https://gist.github.com/Marmiz/b67e98c2fc7be3561d124294cf3cb6ac">gist</a> 中找到完整的代码片段。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6">如何读取文件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6">§</a></h2>
+<p>现在我们的程序有个根本性的缺陷：每次“add”添加时，我们都会重写整个 map 而不是对其进行更新。这是因为我们在程序运行的每一次都创造一个全新的空 map 对象，现在一起来修复它。</p>
+<h3 id="%E5%9C%A8-todo-%E4%B8%AD%E6%96%B0%E5%A2%9E-new-%E6%96%B9%E6%B3%95">在 TODO 中新增 new 方法<a class="anchor" href="#%E5%9C%A8-todo-%E4%B8%AD%E6%96%B0%E5%A2%9E-new-%E6%96%B9%E6%B3%95">§</a></h3>
+<p>我们将为 Todo 结构实现一个新的功能。调用后，它将读取文件的内容，并将已存储的值返回给我们的 Todo。请注意，这不是一个方法，因为它没有将 self 作为第一个参数。</p>
+<p>我们将其称为 <code>new</code>，这只是一个 Rust 约定（请参阅之前使用的 <code>HashMap::new()</code>）。</p>
+<p>让我们在 impl 块中添加以下代码：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token class-name">Todo</span><span class="token punctuation">,</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token class-name">Error</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> f <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">OpenOptions</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"db.txt"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> content <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">.</span><span class="token function">read_to_string</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> content<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> map<span class="token punctuation">:</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span> <span class="token operator">=</span> content
+      <span class="token punctuation">.</span><span class="token function">lines</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>line<span class="token closure-punctuation punctuation">|</span></span> line<span class="token punctuation">.</span><span class="token function">splitn</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token char string">'\t'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token operator">&amp;</span><span class="token keyword">str</span><span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>v<span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">(</span>v<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> v<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">::</span><span class="token function">from_str</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">Todo</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+<span class="token comment">// ...剩余的方法</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如果看到上面的代码感到头疼的话，请不用担心。我们这里使用了一种更具函数式的编程风格，主要是用来展示 Rust 支持许多其他语言的范例，例如迭代器，闭包和 lambda 函数。</p>
+<p>让我们看看上面代码都具体发生了什么：</p>
+<ul>
+<li>我们定义了一个 <code>new</code> 函数，其会返回一个 Result 类型，要么是 <code>Todo</code> 结构体要么是 <code>io:Error</code>。</li>
+<li>我们通过定义各种 <a href="https://doc.rust-lang.org/std/fs/struct.OpenOptions.html">OpenOptions</a> 来配置如何打开“db.txt”。最显著的是 <code>create(true)</code> 标志，这代表如果该文件不存在则创建这个文件。</li>
+<li><code>f.read_to_string(&amp;mut content)?</code> 读取文件中的所有字节，并将它们附加到 <code>content</code> 字符串中。
+<ul>
+<li><em>注意</em>：记得添加使用 <code>std:io::Read</code> 在文件的顶部以及其他 use 语句来使用 <code>read_to_string</code> 方法。</li>
+</ul>
+</li>
+<li>我们需要将文件中的 String 类型转换为 HashMap。为此我们将 map 变量与此行绑定：<code>let map: HashMap&lt;String, bool&gt;</code>。
+<ul>
+<li>这是编译器在为我们推断类型时遇到麻烦的情况之一，因此我们需要自行声明。</li>
+</ul>
+</li>
+<li>lines <a href="https://doc.rust-lang.org/std/primitive.str.html#method.lines">[文档]</a> 在字符串的每一行上创建一个 Iterator 迭代器，来在文件的每个条目中进行迭代。因为我们已在每个条目的末尾使用了 <code>/n</code> 格式化。</li>
+<li>map <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map">[文档]</a> 接受一个闭包，并在迭代器的每个元素上调用它。</li>
+<li><code>line.splitn(2, '\t')</code> <a href="https://doc.rust-lang.org/std/primitive.str.html#method.splitn">[文档]</a> 将我们的每一行通过 tab 制表符切割。</li>
+<li><code>collect::&lt;Vec&lt;&amp;str&gt;&gt;()</code> <a href="https://doc.rust-lang.org/core/iter/trait.Iterator.html#method.collect">[文档]</a> 是标准库中最强大的方法之一：它将迭代器转换为相关的集合。
+<ul>
+<li>在这里，我们告诉 map 函数通过将 <code>::Vec&lt;&amp;str&gt;</code> 附加到方法中来将我们的 Split 字符串转换为借来的字符串切片的 Venctor，这回告诉编译器在操作结束时需要哪个集合。</li>
+</ul>
+</li>
+<li>然后为了方便起见，我们使用 <code>.map(|v| (v[0], v[1]))</code> 将其转换为元祖类型。</li>
+<li>然后使用 <code>.map(|(k, v)| (String::from(k), bool::from_str(v).unwrap()))</code> 将元祖的两个元素转换为 String 和 boolean。
+<ul>
+<li>注意：记得添加 <code>use std::str::FromStr;</code> 在文件顶部以及其它 use 语句，以便能够使用 from_str 方法。</li>
+</ul>
+</li>
+<li>我们最终将它们收集到我们的 HashMap 中。这次我们不需要声明类型，因为 Rust 从绑定声明中推断出了它。</li>
+<li>最后，如果我们从未遇到任何错误，则使用 <code>Ok(Todo { map })</code> 将结果返回给调用方。
+<ul>
+<li>注意，就像在 JavaScript 中一样，如果键和变量在结构内具有相同的名称，则可以使用较短的表示法。</li>
+</ul>
+</li>
+</ul>
+<p><em>phew!</em></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/86548/1611302104430-0cd9e432-dab4-4e0b-bf55-fba774e75349.gif#align=left&amp;display=inline&amp;height=490&amp;margin=%5Bobject%20Object%5D&amp;originHeight=490&amp;originWidth=734&amp;size=0&amp;status=done&amp;style=none&amp;width=734" alt=""></p>
+<p>你做的很棒！图片来源于 <a href="https://rustacean.net/">https://rustacean.net/</a>。</p>
+<h3 id="%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%AD%89%E4%BB%B7%E6%96%B9%E5%BC%8F">另一种等价方式<a class="anchor" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%AD%89%E4%BB%B7%E6%96%B9%E5%BC%8F">§</a></h3>
+<p>尽管通常认为 map 更为好用，但以上内容也可以通过基本的 <code>for</code> 循环来使用。你可以选择自己喜欢的方式。</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token class-name">Todo</span><span class="token punctuation">,</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token class-name">Error</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment">// 打开 db 文件</span>
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> f <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">OpenOptions</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"db.txt"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  <span class="token comment">// 读取其内容到一个新的字符串中</span>
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> content <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  f<span class="token punctuation">.</span><span class="token function">read_to_string</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> content<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 分配一个新的空的 HashMap</span>
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> map <span class="token operator">=</span> <span class="token class-name">HashMap</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 遍历文件中的每一行</span>
+  <span class="token keyword">for</span> entries <span class="token keyword">in</span> content<span class="token punctuation">.</span><span class="token function">lines</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 分割和绑定值</span>
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> values <span class="token operator">=</span> entries<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token char string">'\t'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> key <span class="token operator">=</span> values<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"No Key"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> val <span class="token operator">=</span> values<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"No Value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将其插入到 HashMap 中</span>
+    map<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">::</span><span class="token function">from_str</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 返回 Ok</span>
+  <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">Todo</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上述代码和之前的函数式代码是功能性等价的关系。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%96%B0%E6%96%B9%E6%B3%95">如何使用这个新方法<a class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%96%B0%E6%96%B9%E6%B3%95">§</a></h3>
+<p>在 main 中，只需要用以下代码块来初始化 todo 变量：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> <span class="token keyword">mut</span> todo <span class="token operator">=</span> <span class="token class-name">Todo</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"Initialisation of db failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>现在如果我们回到终端并执行若干个如下“add”命令，我们应该可以看到我们的数据库被正确的更新了。</p>
+<pre class="language-autoit"><code class="language-autoit">$ cargo run <span class="token operator">-</span><span class="token operator">-</span> add <span class="token string">"make coffee"</span>
+todo saved
+$ cargo run <span class="token operator">-</span><span class="token operator">-</span> add <span class="token string">"make pancakes"</span>
+todo saved
+$ cat db<span class="token punctuation">.</span>txt
+make coffee     <span class="token boolean">true</span>
+make pancakes   <span class="token boolean">true</span>
+</code></pre>
+<p>你可以在这个 <a href="https://gist.github.com/Marmiz/b659c7835054d25513106e3804c4539f">gist</a> 中找到目前阶段下所有的完整代码。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E5%90%88%E4%B8%AD%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E5%80%BC">如何在集合中更新一个值<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E5%90%88%E4%B8%AD%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E5%80%BC">§</a></h2>
+<p>正如所有的 todo app 一样，我们希望不仅能够添加项目，而且能够对齐进行状态切换并将其标记为已完成。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E-complete-%E6%96%B9%E6%B3%95">如何新增 complete 方法<a class="anchor" href="#%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E-complete-%E6%96%B9%E6%B3%95">§</a></h3>
+<p>我们需要在 Todo 结构体中新增一个 complete 方法。在其中，我们获取到 key 的引用值，并更新其值。在 key 不存在的情况下，返回 <code>None</code>。</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+  <span class="token comment">// [其余的 TODO 方法]</span>
+
+  <span class="token keyword">fn</span> <span class="token function-definition function">complete</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> key<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>map<span class="token punctuation">.</span><span class="token function">get_mut</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">Some</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">*</span>v <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>让我们看看上面代码发生了什么：</p>
+<ul>
+<li>我们声明了方法的返回类型：一个空的 <code>Option</code>。</li>
+<li>整个方法返回 <code>Match</code> 表达式的结果，该结果将为空 <code>Some() </code>或 <code>None</code>。</li>
+<li>我们使用 <code>*</code> <a href="https://doc.rust-lang.org/book/appendix-02-operators.html">[文档]</a> 运算符来取消引用该值，并将其设置为 false。</li>
+</ul>
+<h3 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-complete-%E6%96%B9%E6%B3%95">如何使用 complete 方法<a class="anchor" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-complete-%E6%96%B9%E6%B3%95">§</a></h3>
+<p>我们可以像之前使用 insert 一样使用 “complete” 方法。</p>
+<p>在 <code>main</code> 函数中，我们使用 <code>else if</code> 语句来检查命令行传递的动作是否是“complete”。</p>
+<pre class="language-rust"><code class="language-rust"><span class="token comment">// 在 main 函数中</span>
+
+<span class="token keyword">if</span> action <span class="token operator">==</span> <span class="token string">"add"</span> <span class="token punctuation">{</span>
+  <span class="token comment">// add 操作的代码</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> action <span class="token operator">==</span> <span class="token string">"complete"</span> <span class="token punctuation">{</span>
+  <span class="token keyword">match</span> todo<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">None</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"'{}' is not present in the list"</span><span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token class-name">Some</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">match</span> todo<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">Ok</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"todo saved"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token class-name">Err</span><span class="token punctuation">(</span>why<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"An error occurred: {}"</span><span class="token punctuation">,</span> why<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>是时候来分析我们在上述代码中做的事了：</p>
+<ul>
+<li>如果我们检测到返回了 Some 值，则调用 todo.save 将更改永久存储到我们的文件中。</li>
+<li>我们匹配由 <code>todo.complete(&amp;item)</code> 方法返回的 Option。</li>
+<li>如果返回结果为 <code>None</code>，我们将向用户打印警告，来提供良好的交互性体验。
+<ul>
+<li>我们通过 <code>&amp;item</code> 将 item 作为引用传递给“todo.complete”方法，以便 main 函数仍然拥有该值。这意味着我们可以再接下来的 <code>println!</code> 宏中继续使用到这个变量。</li>
+<li>如果我们不这样做，那么该值将由“complete”用于，最终被意外丢弃。</li>
+</ul>
+</li>
+<li>如果我们检测到返回了 <code>Some</code> 值，则调用 <code>todo.save</code> 将此次更改永久存储到我们的文件中。</li>
+</ul>
+<p>和之前一样，你可以在这个 <a href="https://gist.github.com/Marmiz/1480b31e8e0890e8745e7b6b44a803b8">gist</a> 中找到目前阶段下的所有相关代码。</p>
+<h2 id="%E8%BF%90%E8%A1%8C%E8%BF%99%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%90%A7">运行这个程序吧<a class="anchor" href="#%E8%BF%90%E8%A1%8C%E8%BF%99%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%90%A7">§</a></h2>
+<p>现在是时候在终端来完整运行我们开发的这个程序了。让我们通过先删除掉之前的 db.txt 来从零开始这个程序：</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">rm</span> db.txt
+</code></pre>
+<p>然后在 todos中进行新增和修改操作：</p>
+<pre class="language-bash"><code class="language-bash">$ cargo run -- <span class="token function">add</span> <span class="token string">"make coffee"</span>
+$ cargo run -- <span class="token function">add</span> <span class="token string">"code rust"</span>
+$ cargo run -- complete <span class="token string">"make coffee"</span>
+$ <span class="token function">cat</span> db.txt
+<span class="token function">make</span> coffee     <span class="token boolean">false</span>
+code rust       <span class="token boolean">true</span>
+</code></pre>
+<p>这意味着在这些命令执行完成后，我们将会得到一个完成的元素（“make coffee”），和一个尚未完成的元素（“code rust”）。</p>
+<p>假设我们此时再重新新增一个喝咖啡的元素“make coffee”：</p>
+<pre class="language-bash"><code class="language-bash">$ cargo run -- <span class="token function">add</span> <span class="token string">"make coffee"</span>
+$ <span class="token function">cat</span> db.txt
+<span class="token function">make</span> coffee     <span class="token boolean">true</span>
+code rust       <span class="token boolean">true</span>
+</code></pre>
+<h2 id="%E7%95%AA%E5%A4%96%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-serde-%E5%B0%86%E5%85%B6%E5%AD%98%E5%82%A8%E4%B8%BA-json">番外：如何使用 Serde 将其存储为 JSON<a class="anchor" href="#%E7%95%AA%E5%A4%96%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-serde-%E5%B0%86%E5%85%B6%E5%AD%98%E5%82%A8%E4%B8%BA-json">§</a></h2>
+<p>该程序即使很小，但也能正常运行了。此外，我们可以稍微改变一些逻辑。对于来自 JavaScript 世界的我，决定将值存储为 JSON 文件而不是纯文本文件。</p>
+<p>我们将借此机会了解如何安装和使用来自 Rust 开源社区的名为 <a href="https://crates.io/">creates.io</a> 的软件包。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-serde">如何安装 serde<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-serde">§</a></h3>
+<p>要将新的软件包安装到我们的项目中，请打开 <code>cargo.toml</code> 文件。在底部，你应该会看到一个 <code>[dependencies]</code> 字段：只需要将以下内容添加到文件中：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token punctuation">[</span>dependencies<span class="token punctuation">]</span>
+serde_json <span class="token operator">=</span> <span class="token string">"1.0.60"</span>
+</code></pre>
+<p>这就够了。下次我们运行程序的时候，cargo 将会编译我们的程序并下载和导入这个新的包到我们的项目之中。</p>
+<h3 id="%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todonew">如何改动 Todo::New<a class="anchor" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todonew">§</a></h3>
+<p>我们要使用 Serde 的第一个地方是在读取 db 文件时。现在，我们要读取一个 JSON 文件而非“.txt”文件。</p>
+<p>在 <code>impl</code> 代码块中，我们更像一下 <code>new</code> 方法：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token comment">// 在 Todo impl 代码块中</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token class-name">Todo</span><span class="token punctuation">,</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token class-name">Error</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment">// 打开 db.json</span>
+  <span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">OpenOptions</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"db.json"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  <span class="token comment">// 序列化 json 为 HashMap</span>
+  <span class="token keyword">match</span> <span class="token namespace">serde_json<span class="token punctuation">::</span></span><span class="token function">from_reader</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Ok</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">Todo</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token class-name">Err</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token keyword">if</span> e<span class="token punctuation">.</span><span class="token function">is_eof</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">Todo</span> <span class="token punctuation">{</span>
+      map<span class="token punctuation">:</span> <span class="token class-name">HashMap</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token class-name">Err</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">panic!</span><span class="token punctuation">(</span><span class="token string">"An error occurred: {}"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>值得注意的改动是：</p>
+<ul>
+<li>文件选项不再需要 <code>mut f</code> 来绑定，因为我们不需要像以前一样手动将内容分配到 String 中。Serde 会来处理相关逻辑。</li>
+<li>我们将文件拓展名更新为了 <code>db.json</code>。</li>
+<li><code>serde_json::from_reader</code> <a href="https://docs.serde.rs/serde_json/fn.from_reader.html">[文档]</a> 将为我们反序列化文件。它会干扰 map 的返回类型，并会尝试将 JSON 转换为兼容的 HashMap。如果一切顺利，我们将像以前一样返回 Todo 结构。</li>
+<li><code>Err(e) if e.is_eof()</code> 是一个<a href="https://doc.rust-lang.org/reference/expressions/match-expr.html#match-guards">匹配守卫</a>，可让我们优化 Match 语句的行为。
+<ul>
+<li>如果 Serde 作为错误返回一个过早的 EOF（文件结尾），则意味着该文件完全为空（例如，在第一次运行时，或如果我们删除了该文件）。在那种情况下，我们从错误中恢复并返回一个空的 HashMap。</li>
+</ul>
+</li>
+<li>对于其它所有错误，程序会立即被中断退出。</li>
+</ul>
+<h3 id="%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todosave">如何改动 Todo.save<a class="anchor" href="#%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todosave">§</a></h3>
+<p>我们要使用 Serde 的另一个地方是将 map 另存为 JSON。为此，将 impl 块中的 <code>save</code> 方法更新为：</p>
+<pre class="language-rust"><code class="language-rust"><span class="token comment">// 在 Todo impl 代码块中</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">save</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Box</span><span class="token operator">&lt;</span><span class="token keyword">dyn</span> <span class="token namespace">std<span class="token punctuation">::</span>error<span class="token punctuation">::</span></span><span class="token class-name">Error</span><span class="token operator">>></span> <span class="token punctuation">{</span>
+  <span class="token comment">// 打开 db.json</span>
+  <span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">OpenOptions</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"db.json"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  <span class="token comment">// 通过 Serde 写入文件</span>
+  <span class="token namespace">serde_json<span class="token punctuation">::</span></span><span class="token function">to_writer_pretty</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">.</span>map<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>和以前一样，让我们看看这里所做的更改：</p>
+<ul>
+<li><code>Box&lt;dyn std::error::Error&gt;</code>。这次我们返回一个包含 Rust 通用错误实现的 <a href="https://doc.rust-lang.org/std/boxed/index.html">Box</a>。
+<ul>
+<li>简而言之，Box 是指向内存中分配的指针。</li>
+<li>由于打开文件时可能会返回 Serde 错误，所以我们实际上并不知道函数会返回这两个错误里的哪一个。</li>
+<li>因此我们需要返回一个指向可能错误的指针，而不是错误本身，以便调用者处理它们。</li>
+</ul>
+</li>
+<li>我们当然已经将文件名更新为 <code>db.json</code> 以匹配文件名。</li>
+<li>最后，我们让 Serde 承担繁重的工作：将 HashMap 编写为 JSON 文件。</li>
+<li>请记得从文件顶部删除 <code>use std::io::Read;</code> 和 <code>use std::str::FromStr;</code>，因为我们不再需要它们了。</li>
+</ul>
+<p>这就搞定了。</p>
+<p>现在你可以运行你的程序并检查输出是否保存到文件中。如果一切都很顺利，你会看到你的 todos 都保持为 JSON 了。</p>
+<p>你可以在这个 <a href="https://gist.github.com/Marmiz/541c3ccea832a27bfb60d4882450a4a8">gist</a> 中阅读当前阶段下完整的代码。</p>
+<h2 id="%E7%BB%93%E8%AF%AD%E6%8A%80%E5%B7%A7%E5%92%8C%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90">结语、技巧和更多资源<a class="anchor" href="#%E7%BB%93%E8%AF%AD%E6%8A%80%E5%B7%A7%E5%92%8C%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90">§</a></h2>
+<p>这是一段漫长的旅程，很荣幸你能阅读到这里。</p>
+<p>我希望你能在这个教程中学到一些东西，并产生了更多的好奇心。别忘了我们在这里介绍的是一门非常“底层”的语言。</p>
+<p>这是 Rust 吸引我的重要原因——Rust 使我能够编既快速又具有内存效率的代码，而不必畏惧承担过多的编码责任：我知道编译器会帮我优化更多，在运行前可能会出现错误的情况下提前中断运行。</p>
+<p>在结束前，我想向你分享一些其他技巧和资源，以帮助你在 Rust 的旅途中继续前行：</p>
+<ul>
+<li><a href="https://github.com/rust-lang/rustfmt">Rust fmt </a>是一个非常方便的工具，你可以按照一致的模式运行以格式化代码。不必再浪费时间配置你喜欢的 linter 插件。</li>
+<li><code>cargo check</code> <a href="https://doc.rust-lang.org/cargo/commands/cargo-check.html">[文档]</a> 将尝试在不运行的情况下编译代码：这在你只想在不实际运行时检查代码正确性的情况下，会变得很有用。</li>
+<li>Rust 带有集成的测试套件和生成文档的工具：<a href="https://doc.rust-lang.org/cargo/commands/cargo-test.html">cargo test</a> 和 <a href="https://doc.rust-lang.org/cargo/commands/cargo-rustdoc.html">cargo doc</a>。这次我们没有涉及它们，因为本教程内容量已经足够多了，或许未来会有所涉及。</li>
+</ul>
+<p>想要了解有关 Rust 的更多内容，我认为这些资源真的很棒：</p>
+<ul>
+<li>官方 <a href="https://www.rust-lang.org/">Rust 网站</a>，所有重要信息的聚集地。</li>
+<li>如果你喜欢通过聊天来互动交流，Rust 的 Discord <a href="https://discord.gg/rust-lang">服务器</a>是个很活跃和有用的社区。</li>
+<li>如果你想要通过读书来学习，“Rust 程序设计语言”一书是个很好的选择。</li>
+<li>如果你更喜欢视频类型的资料，Ryan Levick 的“<a href="https://youtu.be/WnWGO-tLtLA">Rust 介绍</a>”视频系列是个很棒的资源。</li>
+</ul>
+<p>你可以在 <a href="https://github.com/Marmiz/todo-cli">Github</a> 中找到本文的相关源码。</p>
+<p>文中的插图来自于 <a href="https://rustacean.net/">https://rustacean.net/</a>。</p>
+<p>感谢阅读，祝你编码愉快！</p>
+<h2 id="%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">译者结语<a class="anchor" href="#%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">§</a></h2>
+<p>由于《<a href="https://github.com/hylerrix/deno-tutorial">Deno 钻研之术</a>》的铺垫，Rust 语言的探索之旅也正式开启。在本文阅读的过程中，如果 cargo 安装包下载速度太慢的话，可以将 cargo 源设置为 <a href="https://mirrors.ustc.edu.cn/">https://mirrors.ustc.edu.cn/</a>。</p>
+<p>最后，随着这篇文章的结束，一月结束。二月份会除了 Deno 期刊外停更一段时间文章，这段时间会以编码和高效学习为主，重点包括但不限于：</p>
+<ul>
+<li>《<a href="https://github.com/hylerrix/es-interview">ECMAScript+ 面试宝典</a>》：打造 2021 年的面试宝典。</li>
+<li>《<a href="https://github.com/hylerrix/deno-algorithm">Deno LeetCode 算法之旅</a>》 - 暂译名：在 Deno 下使用 TypeScript 刷 LeetCode 算法。</li>
+<li>...实现我的更多开源灵感。</li>
+</ul>
+<p>欢迎持续关注！Github：<a href="https://github.com/hylerrix/">https://github.com/hylerrix</a>，公众号（@ningowood）。</p></article><div class="prev_next"><a class="prev button" href="/articles/translation/why-deno-wrong.html">«  <!-- -->为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？</a><a class="next button" href="/articles/THANKS.html">感谢<!-- -->  »</a></div><div id="gitalk-container"></div><link id="gitalk-css" rel="preload" href="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.css" as="style"/><script defer="" src="https://cdn.pagic.org/gitalk@1.6.2/dist/gitalk.min.js"></script></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E6%88%91%E4%BB%AC%E5%B0%86%E5%9C%A8%E8%BF%99%E7%AF%87%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%E4%B8%AD%E6%9E%84%E5%BB%BA%E4%BB%80%E4%B9%88">我们将在这篇实战教程中构建什么？</a></li><li><a href="#%E6%88%91%E4%BB%AC%E5%B0%86%E4%BC%9A%E5%9B%B4%E7%BB%95%E5%93%AA%E4%BA%9B%E6%A6%82%E5%BF%B5%E6%9D%A5%E8%AE%A8%E8%AE%BA">我们将会围绕哪些概念来讨论？</a></li><li><a href="#%E5%9C%A8%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D">在我们开始之前</a></li><li><a href="#rust-%E5%A6%82%E4%BD%95%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B">Rust 如何从零开始</a></li><li><a href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">如何读取命令行参数</a></li><li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8F%92%E5%85%A5%E5%92%8C%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE">如何使用一个自定义类型插入和保存数据</a><ol><li><a href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">如何定义我们的结构体</a></li><li><a href="#%E5%A6%82%E4%BD%95%E7%BB%99%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95">如何给我们的结构体中新增方法</a></li></ol></li><li><a href="#rust-%E6%89%80%E6%9C%89%E6%9D%83%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AE%80%E8%A6%81%E6%A6%82%E8%A7%88">Rust 所有权系统的简要概览</a><ol><li><a href="#%E5%A6%82%E4%BD%95%E5%B0%86-map-%E4%BF%9D%E5%AD%98%E5%88%B0%E7%A1%AC%E7%9B%98%E4%B8%8A">如何将 map 保存到硬盘上</a></li><li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8-main-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%84%E4%BD%93">如何在 main 中使用结构体</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6">如何读取文件</a><ol><li><a href="#%E5%9C%A8-todo-%E4%B8%AD%E6%96%B0%E5%A2%9E-new-%E6%96%B9%E6%B3%95">在 TODO 中新增 new 方法</a></li><li><a href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%AD%89%E4%BB%B7%E6%96%B9%E5%BC%8F">另一种等价方式</a></li><li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%AA%E6%96%B0%E6%96%B9%E6%B3%95">如何使用这个新方法</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E5%90%88%E4%B8%AD%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E5%80%BC">如何在集合中更新一个值</a><ol><li><a href="#%E5%A6%82%E4%BD%95%E6%96%B0%E5%A2%9E-complete-%E6%96%B9%E6%B3%95">如何新增 complete 方法</a></li><li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-complete-%E6%96%B9%E6%B3%95">如何使用 complete 方法</a></li></ol></li><li><a href="#%E8%BF%90%E8%A1%8C%E8%BF%99%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%90%A7">运行这个程序吧</a></li><li><a href="#%E7%95%AA%E5%A4%96%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-serde-%E5%B0%86%E5%85%B6%E5%AD%98%E5%82%A8%E4%B8%BA-json">番外：如何使用 Serde 将其存储为 JSON</a><ol><li><a href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-serde">如何安装 serde</a></li><li><a href="#%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todonew">如何改动 Todo::New</a></li><li><a href="#%E5%A6%82%E4%BD%95%E6%94%B9%E5%8A%A8-todosave">如何改动 Todo.save</a></li></ol></li><li><a href="#%E7%BB%93%E8%AF%AD%E6%8A%80%E5%B7%A7%E5%92%8C%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90">结语、技巧和更多资源</a></li><li><a href="#%E8%AF%91%E8%80%85%E7%BB%93%E8%AF%AD">译者结语</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

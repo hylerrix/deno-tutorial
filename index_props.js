@@ -150,7 +150,8 @@ export default {
                     },
                     {
                         children: [
-                            'articles/official/thoroughgoing-deno-in-2020.md'
+                            'articles/official/thoroughgoing-deno-in-2020.md',
+                            'articles/official/thoroughgoing-deno-1-8.md'
                         ],
                         link: 'articles/official/README.md',
                         title: '官方篇'
@@ -166,6 +167,13 @@ export default {
                         ],
                         link: 'articles/translation/README.md',
                         title: '翻译篇'
+                    },
+                    {
+                        children: [
+                            'articles/rust/rust-tutorial-todo-app.md'
+                        ],
+                        link: 'articles/rust/README.md',
+                        title: 'Rust 篇'
                     },
                     'articles/THANKS.md'
                 ]

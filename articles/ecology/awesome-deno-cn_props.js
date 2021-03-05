@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "一个全新的技术会有怎样的生态？在对 Deno 的好奇和梳理过程中，基于已有的 Awesome Deno 英文列表全新出发，一个专注于中文技术圈的 Deno 资源列表呼之欲出。 为什么是 Awesome？ Github 集市上广受欢迎的仓库有这么几大类： ...",
     'cover': "http://qiniu.ningo.cloud/articles/1b0-01.jpg",
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

@@ -16,7 +16,7 @@ export default {
     'outputPath': "articles/document/deno-translation-dictionary.html",
     'title': "Deno 专业术语翻译手册",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>Deno 专业术语翻译手册</h1>\n<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
+            __html: '<h1>Deno 专业术语翻译手册</h1>\n<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-169223577-1" }),
@@ -27,7 +27,7 @@ export default {
         React.createElement("script", { src: "/index.js", type: "module" })),
     'contentTitle': React.createElement("h1", { key: "0" }, "Deno \u4E13\u4E1A\u672F\u8BED\u7FFB\u8BD1\u624B\u518C"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
+            __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
         } }),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#rust">Rust</a></li><li><a href="#%E7%9F%AD%E8%AF%AD">短语</a></li><li><a href="#%E5%85%B6%E5%AE%83">其它</a></li></ol></nav>'
@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': " - Incremental type checking - revamp - isolated Modules - test coverage：测试覆盖率 - breaking changes：破坏性更改 - incremental typechecking：增量类型检查 - benchmark system - compilation pipeline - technical...",
     'cover': undefined,
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

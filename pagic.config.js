@@ -97,6 +97,7 @@ export default {
                 title: '官方篇',
                 children: [
                     'articles/official/thoroughgoing-deno-in-2020.md',
+                    'articles/official/thoroughgoing-deno-1-8.md',
                 ],
             },
             {
@@ -109,6 +110,13 @@ export default {
                     'articles/translation/deno-oak-todo-api.md',
                     'articles/translation/deno-oak-mysql.md',
                     'articles/translation/why-deno-wrong.md',
+                ],
+            },
+            {
+                link: 'articles/rust/README.md',
+                title: 'Rust 篇',
+                children: [
+                    'articles/rust/rust-tutorial-todo-app.md',
                 ],
             },
             // {

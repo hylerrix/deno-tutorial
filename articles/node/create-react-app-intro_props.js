@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "本文差点难产而死。因为总结的过程中，多次怀疑本文是对官方文档的直接翻译和简单罗列；同时官方文档很全面，全范围的介绍无疑加深了写作的心智负担。但在最终的梳理中，发现走出了一条与众不同的路，于是坚持分享出来。 希望本...",
     'cover': "https://cdn.nlark.com/yuque/0/2020/png/86548/1578586685262-ca35e2db-94b8-4510-a922-8ef68ade06ee.png#align=left&display=inline&height=704&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1408&originWidth=2790&size=145496&status=done&style=none&width=1395",
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",

@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-02-22T04:11:42.000Z",
+    'date': "2021-03-05T08:57:05.000Z",
     'updated': null,
     'excerpt': "文章缩略图：一个包含希腊斯巴达头盔的罗马项目 Logo 二月的最后一天，我在为“开源爱好者月刊”搜寻本月最新的开源项目时，偶遇一个名叫 Rome 的仓库霸榜，眼前着实一亮。“一个实验性的 JavaScript 工具链”、“包括编译器、...",
     'cover': "https://cdn.nlark.com/yuque/0/2020/png/86548/1586250919893-28d3dc40-57d9-4a99-9023-50e8c259ffbd.png#align=left&display=inline&height=323&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1176&originWidth=1678&size=111441&status=done&style=none&width=461",
@@ -142,6 +142,11 @@ export default {
                     "text": "精读《Deno 2020 官方回顾及 2021 展望》",
                     "link": "articles/official/thoroughgoing-deno-in-2020.html",
                     "pagePath": "articles/official/thoroughgoing-deno-in-2020.md"
+                },
+                {
+                    "text": "精读《Deno v1.8 发布说明》",
+                    "link": "articles/official/thoroughgoing-deno-1-8.html",
+                    "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -184,6 +189,18 @@ export default {
             ],
             "pagePath": "articles/translation/README.md",
             "text": "翻译篇"
+        },
+        {
+            "link": "articles/rust/README.md",
+            "title": "Rust 篇",
+            "children": [
+                {
+                    "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+                    "link": "articles/rust/rust-tutorial-todo-app.html",
+                    "pagePath": "articles/rust/rust-tutorial-todo-app.md"
+                }
+            ],
+            "text": "articles/rust/README.md"
         },
         {
             "text": "感谢",
