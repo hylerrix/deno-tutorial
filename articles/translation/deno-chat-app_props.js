@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "Node.js 最初由 Ryan Dahl 于 2009 年基于 C++ 语言创建。到了 2012 年，Ryan 觉得自己或多或少地已经实现了当年的目标便离开了 Node.js 项目。 如今他的目标已大不相同：在意识到无法轻易在 Node.js 中修复某些当时的错误设计...",
     'cover': "http://qiniu.ningo.cloud/articles/1b1-01.jpg",

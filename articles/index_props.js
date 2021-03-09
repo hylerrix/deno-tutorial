@@ -33,7 +33,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "Deno 钻研之术官方网站：https://deno-tutorial.js.org。基于 Pagic 构建。 目录 目前规划的章节目录如下。 - 基础篇：循序渐进学 Deno 基础知识； - 标准库篇：深入标准库的内部世界； - CLI 篇：探索 CLI 命令行的知识； - W...",
     'cover': "https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square",

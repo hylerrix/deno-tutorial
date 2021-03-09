@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "随着 API 的稳定化改造、若干大型基础架构的重构，以及诸多备受关注功能的开放，Deno 1.0 版本正式发布。2020 年，Deno 迎来了众多的挑战和变化。 请填写这份 Deno 调查问卷来向我们反馈以让 Deno 在 2021 年变得更好。 下文是...",
     'cover': "https://cdn.nlark.com/yuque/0/2021/png/86548/1611115470568-57835cde-6644-4a07-b264-b398a4e1efa5.png#align=left&display=inline&height=400&margin=%5Bobject%20Object%5D&name=image.png&originHeight=800&originWidth=1714&size=125084&status=done&style=none&width=857",

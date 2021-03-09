@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "Rust 语言从 2015 年发布的首个开源版本开始，便获得了社区大量的关注。从 StackOverflow 上的开发者调查来看，Rust 也是 2016 年每年都最受开发者喜欢的编程语言。 Rust 由 Mozilla 设计，被定义为一个系统级编程语言（就像 C...",
     'cover': "https://cdn.nlark.com/yuque/0/2021/png/86548/1611302172869-1896d3be-0c1b-444b-a17f-e945faf3c05c.png#align=left&display=inline&height=800&margin=%5Bobject%20Object%5D&name=&originHeight=800&originWidth=1200&size=70280&status=done&style=none&width=1200",

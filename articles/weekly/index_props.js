@@ -28,7 +28,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "计划从 2021 年开始，撰写 Deno 周报。但是——一个人的力量远远不够，届时会在群内招募小伙伴一起搞事情！ - 一月 4 次周报，4 位伙伴分头搞。 - 周报内容可以先从简单的搞起来，但一定要学会科学上网 -> Discord Deno 社区中...",
     'cover': undefined,

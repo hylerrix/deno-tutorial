@@ -30,7 +30,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "I recently wrote about how to make a Todo API in Deno + Oak (without using a database). You can find the repo under chapter_1:oak on GitHub. This tutorial picks up where the other left off, and I'll go over how...",
     'cover': "https://images.unsplash.com/photo-1591509867461-d9f58becc082?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",

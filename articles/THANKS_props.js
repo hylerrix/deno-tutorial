@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "目前感谢每一位在 本仓库 和 awesome-deno-cn 仓库 中贡献任何代码的伙伴，感谢每一个关注公众号、加入微信群聊一起聊天的伙伴，同时感谢每个路过围观的你们...愿 Deno 社区越来越强壮！",
     'cover': undefined,

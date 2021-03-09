@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "今天我们发布了 Deno v1.8.0。此版本涵盖了大量的新功能和标准化工作： - 实验性支持 WebGPU API：在 Deno 中为开箱即用的 GPU 加速机器学习铺平道路。 - 启用内置的国际化 API：支持所有 JS 标准下的 Intl API 开箱即用。 - 翻...",
     'cover': "https://cdn.nlark.com/yuque/0/2021/png/86548/1614933956579-41955b43-0535-45fa-8548-f579a0a029eb.png#align=left&display=inline&height=247&margin=%5Bobject%20Object%5D&name=image.png&originHeight=492&originWidth=1156&size=92894&status=done&style=none&width=580",

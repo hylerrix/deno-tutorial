@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "序言 我是一位 JavaScript/Node 开发者，默默地喜欢甚至爱慕着 Deno。Deno 诞生之初就深深地吸引了我，此后我成为了 Deno 的忠实粉丝，期待着有朝一日能正式玩上 Deno。 本文专注于创造一个基于 REST API 设计的待做清单（Todo...",
     'cover': "http://qiniu.ningo.cloud/articles/1b4-01.jpg",

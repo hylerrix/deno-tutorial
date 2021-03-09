@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "本文差点难产而死。因为总结的过程中，多次怀疑本文是对官方文档的直接翻译和简单罗列；同时官方文档很全面，全范围的介绍无疑加深了写作的心智负担。但在最终的梳理中，发现走出了一条与众不同的路，于是坚持分享出来。 希望本...",
     'cover': "https://cdn.nlark.com/yuque/0/2020/png/86548/1578586685262-ca35e2db-94b8-4510-a922-8ef68ade06ee.png#align=left&display=inline&height=704&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1408&originWidth=2790&size=145496&status=done&style=none&width=1395",

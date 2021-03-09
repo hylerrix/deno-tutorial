@@ -30,7 +30,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "I haven't found any other developers on YouTube with a channel the size of codedamn (100K+ subscribers) who are not not \"super excited\" about the release of Deno. Last week, I released a video on my channel sta...",
     'cover': "https://images.unsplash.com/photo-1558519847-19fc2aa15a16?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",

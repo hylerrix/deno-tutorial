@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "我最近写了一篇关于 Deno + Oak 构建酷炫 Todo API 的文章 ，其中并没有使用数据库相关的知识点。您可以在我的 Github 仓库 adeelibr/deno-playground 的 chapter_1:oak 中查看当时的整套代码。 本文将进一步讲起，一起来学习如...",
     'cover': "http://qiniu.ningo.cloud/articles/1b6-01.jpg",

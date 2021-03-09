@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "译者序 在为《Deno 钻研之术》引入第一篇翻译文章的时候，就看到了这篇文章，那时还觉得驾驭不了，就重点先写了若干篇入门级别的 Deno 文章。 转眼到 2021 年，从《Deno 双周刊》第一期继续开启新的一年的 Deno 之旅，于是就回...",
     'cover': "https://cdn.nlark.com/yuque/0/2021/png/86548/1610538854285-bc5db817-2188-4013-ae19-a1ffe77923de.png#align=left&display=inline&height=497&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1333&originWidth=2000&size=4783066&status=done&style=none&width=746",

@@ -36,7 +36,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:46:04.000Z",
+    'date': "2021-03-09T09:47:13.000Z",
     'updated': null,
     'excerpt': "上周我发表了一篇关于 Deno 的文章：《Deno + WebSockets 打造聊天室应用》。在那之后，有很多困惑接踵而至——其中大部分都在思考如何在全新的 Deno 生态中来做 Node.js 上常做的工作。 所以我尝试整理一些 Node.js 中常见库在...",
     'cover': "http://qiniu.ningo.cloud/articles/1b3-01.jpg",
