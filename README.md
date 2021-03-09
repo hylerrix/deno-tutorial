@@ -1,7 +1,7 @@
 # Deno 钻研之术
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > :sauropod: 长期更新的《Deno 钻研之术》！循序渐进学 Deno & 先易后难补 Node & 面向未来的 Deno Web 应用开发。
@@ -126,11 +126,13 @@ $ ~/.deno/bin/pagic build --serve --watch
     <td align="center"><a href="http://xcatliu.com/"><img src="https://avatars0.githubusercontent.com/u/5453359?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xcatliu</b></sub></a><br /><a href="#infra-xcatliu" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://twitter.com/justjavac"><img src="https://avatars1.githubusercontent.com/u/359395?v=4?s=100" width="100px;" alt=""/><br /><sub><b>迷渡</b></sub></a><br /><a href="#infra-justjavac" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/AlvinMi"><img src="https://avatars3.githubusercontent.com/u/21032217?v=4?s=100" width="100px;" alt=""/><br /><sub><b>YuHui</b></sub></a><br /><a href="https://github.com/hylerrix/deno-tutorial/commits?author=AlvinMi" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://ahabhgk.github.io"><img src="https://avatars.githubusercontent.com/u/42857895?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ahab</b></sub></a><br /><a href="https://github.com/hylerrix/deno-tutorial/commits?author=ahabhgk" title="Documentation">📖</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 本项目贡献者列表遵循 [all-contributors](https://github.com/all-contributors/all-contributors) 规范。欢迎你的参与！
