@@ -88,7 +88,7 @@ $ deno eval "console.log(30933 + 404)"
 | 11 | 类型器 | deno types | 打印运行时 TypeScript 声明 |
 | 12 | 补全器 | deno completions | 生成 Shell 补全信息 |
 | 13 | 升级器 | deno upgrade | 将 Deno 可执行文件升级到给定版本 |
-| 14 | REPL 器 | deo repl | 读取/执行/打印/循环 |
+| 14 | REPL 器 | deno repl | 读取/执行/打印/循环 |
 
 具体工具会在“通读 Deno 内置工具包”章节进行深入了解。
 
