@@ -12,6 +12,8 @@
 * revamp：翻新
 * hard to reason about -> 难以理解
 * bundler
+* streamable bodies
+
 ## Rust
 
 * Rust crate
@@ -28,3 +30,5 @@
 * in a fortnight：两周内
 * Up to this point：与此之前
 * the dust had barely settled
+* take away
+* AKA: 也称为

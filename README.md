@@ -18,7 +18,7 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 
 同时，2021 年，开启全新的《Blitz.js + React 全栈开发手册》：
 
-* [fullstack-react-handbook](https://github.com/hylerrix/fullstack-react-handbook)：专注构建 Blitz.js 社区，探索 React 全栈更多的可能性。
+* [blitzjs-tutorial](https://github.com/hylerrix/blitzjs-tutorial)：专注构建 Blitz.js 社区，探索 React 全栈更多的可能性。
 
 ## 目录
 
@@ -75,6 +75,8 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 |007|[精读《Deno 2020 官方回顾及 2021 展望》](https://deno-tutorial.js.org/official/thoroughgoing-deno-in-2020.html)|2021-01-15|2021-01-22||
 |008|[精读《Deno v1.8 发布说明》](https://deno-tutorial.js.org/official/thoroughgoing-deno-1-8.html)|2021-03-02|2021-03-05||
 |...|...|...|...|...|
+
+> 还有很多来不及同步到 readme.md，直接看官网即可~
 
 同时更新在如下第三方平台：
 
