@@ -29,14 +29,19 @@ export default {
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
         } }),
-    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
-            __html: '<nav class="toc"><ol><li><a href="#rust">Rust</a></li><li><a href="#%E7%9F%AD%E8%AF%AD">短语</a></li><li><a href="#%E5%85%B6%E5%AE%83">其它</a></li></ol></nav>'
-        } }),
+    'toc': React.createElement("nav", { key: "0", className: "toc" },
+        React.createElement("ol", null,
+            React.createElement("li", null,
+                React.createElement("a", { href: "#rust" }, "Rust")),
+            React.createElement("li", null,
+                React.createElement("a", { href: "#%E7%9F%AD%E8%AF%AD" }, "\u77ED\u8BED")),
+            React.createElement("li", null,
+                React.createElement("a", { href: "#%E5%85%B6%E5%AE%83" }, "\u5176\u5B83")))),
     'author': "hylerrix",
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:47:13.000Z",
+    'date': "2021-03-23T03:11:47.000Z",
     'updated': null,
     'excerpt': " - Incremental type checking - revamp - isolated Modules - test coverage：测试覆盖率 - breaking changes：破坏性更改 - incremental typechecking：增量类型检查 - benchmark system - compilation pipeline - technical...",
     'cover': undefined,
@@ -117,24 +122,6 @@ export default {
             "text": "生态篇"
         },
         {
-            "link": "articles/node/index.html",
-            "title": "Node 篇",
-            "children": [
-                {
-                    "text": "深入浅出 Create React App",
-                    "link": "articles/node/create-react-app-intro.html",
-                    "pagePath": "articles/node/create-react-app-intro.md"
-                },
-                {
-                    "text": "欲取代绝大多 JavaScript 工具链？Rome 尝鲜",
-                    "link": "articles/node/javascript-toolchain-rome.html",
-                    "pagePath": "articles/node/javascript-toolchain-rome.md"
-                }
-            ],
-            "pagePath": "articles/node/README.md",
-            "text": "Node 篇"
-        },
-        {
             "link": "articles/official/index.html",
             "title": "官方篇",
             "children": [
@@ -191,7 +178,7 @@ export default {
             "text": "翻译篇"
         },
         {
-            "link": "articles/rust/README.md",
+            "link": "articles/rust/index.html",
             "title": "Rust 篇",
             "children": [
                 {
@@ -200,7 +187,13 @@ export default {
                     "pagePath": "articles/rust/rust-tutorial-todo-app.md"
                 }
             ],
-            "text": "articles/rust/README.md"
+            "pagePath": "articles/rust/README.md",
+            "text": "Rust 篇"
+        },
+        {
+            "text": "开发日志",
+            "link": "articles/TIMELINE.html",
+            "pagePath": "articles/TIMELINE.md"
         },
         {
             "text": "感谢",

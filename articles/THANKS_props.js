@@ -3,8 +3,8 @@ import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
     'prev': {
-        "text": "Rust 语言入门教程：从实战 To-Do App 开始",
-        "link": "articles/rust/rust-tutorial-todo-app.html"
+        "text": "开发日志",
+        "link": "articles/TIMELINE.html"
     },
     'next': undefined,
     config: { "root": "/", ...projectConfig, branch: 'main' },
@@ -31,7 +31,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:47:13.000Z",
+    'date': "2021-03-23T03:11:47.000Z",
     'updated': null,
     'excerpt': "目前感谢每一位在 本仓库 和 awesome-deno-cn 仓库 中贡献任何代码的伙伴，感谢每一个关注公众号、加入微信群聊一起聊天的伙伴，同时感谢每个路过围观的你们...愿 Deno 社区越来越强壮！",
     'cover': undefined,
@@ -112,24 +112,6 @@ export default {
             "text": "生态篇"
         },
         {
-            "link": "articles/node/index.html",
-            "title": "Node 篇",
-            "children": [
-                {
-                    "text": "深入浅出 Create React App",
-                    "link": "articles/node/create-react-app-intro.html",
-                    "pagePath": "articles/node/create-react-app-intro.md"
-                },
-                {
-                    "text": "欲取代绝大多 JavaScript 工具链？Rome 尝鲜",
-                    "link": "articles/node/javascript-toolchain-rome.html",
-                    "pagePath": "articles/node/javascript-toolchain-rome.md"
-                }
-            ],
-            "pagePath": "articles/node/README.md",
-            "text": "Node 篇"
-        },
-        {
             "link": "articles/official/index.html",
             "title": "官方篇",
             "children": [
@@ -186,7 +168,7 @@ export default {
             "text": "翻译篇"
         },
         {
-            "link": "articles/rust/README.md",
+            "link": "articles/rust/index.html",
             "title": "Rust 篇",
             "children": [
                 {
@@ -195,7 +177,13 @@ export default {
                     "pagePath": "articles/rust/rust-tutorial-todo-app.md"
                 }
             ],
-            "text": "articles/rust/README.md"
+            "pagePath": "articles/rust/README.md",
+            "text": "Rust 篇"
+        },
+        {
+            "text": "开发日志",
+            "link": "articles/TIMELINE.html",
+            "pagePath": "articles/TIMELINE.md"
         },
         {
             "text": "感谢",

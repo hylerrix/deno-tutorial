@@ -2,15 +2,21 @@ import projectConfig from '/pagic.config.js';
 import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
-    'prev': undefined,
-    'next': undefined,
+    'prev': {
+        "text": "为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？",
+        "link": "articles/translation/why-deno-wrong.html"
+    },
+    'next': {
+        "text": "Rust 语言入门教程：从实战 To-Do App 开始",
+        "link": "articles/rust/rust-tutorial-todo-app.html"
+    },
     config: { "root": "/", ...projectConfig, branch: 'main' },
-    'pagePath': "articles/ROADMAP.md",
+    'pagePath': "articles/rust/README.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "articles/ROADMAP.html",
-    'title': "未来规划",
+    'outputPath': "articles/rust/index.html",
+    'title': "Rust 篇",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>未来规划</h1>'
+            __html: '<h1>Rust 篇</h1>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-169223577-1" }),
@@ -19,7 +25,7 @@ export default {
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
         React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
-    'contentTitle': React.createElement("h1", { key: "0" }, "\u672A\u6765\u89C4\u5212"),
+    'contentTitle': React.createElement("h1", { key: "0" }, "Rust \u7BC7"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: ''
         } }),
@@ -28,7 +34,7 @@ export default {
     'contributors': [
         "hylerrix"
     ],
-    'date': "2021-03-09T09:47:13.000Z",
+    'date': "2021-03-23T03:11:47.000Z",
     'updated': null,
     'excerpt': "",
     'cover': undefined,
@@ -109,24 +115,6 @@ export default {
             "text": "生态篇"
         },
         {
-            "link": "articles/node/index.html",
-            "title": "Node 篇",
-            "children": [
-                {
-                    "text": "深入浅出 Create React App",
-                    "link": "articles/node/create-react-app-intro.html",
-                    "pagePath": "articles/node/create-react-app-intro.md"
-                },
-                {
-                    "text": "欲取代绝大多 JavaScript 工具链？Rome 尝鲜",
-                    "link": "articles/node/javascript-toolchain-rome.html",
-                    "pagePath": "articles/node/javascript-toolchain-rome.md"
-                }
-            ],
-            "pagePath": "articles/node/README.md",
-            "text": "Node 篇"
-        },
-        {
             "link": "articles/official/index.html",
             "title": "官方篇",
             "children": [
@@ -183,7 +171,7 @@ export default {
             "text": "翻译篇"
         },
         {
-            "link": "articles/rust/README.md",
+            "link": "articles/rust/index.html",
             "title": "Rust 篇",
             "children": [
                 {
@@ -192,7 +180,13 @@ export default {
                     "pagePath": "articles/rust/rust-tutorial-todo-app.md"
                 }
             ],
-            "text": "articles/rust/README.md"
+            "pagePath": "articles/rust/README.md",
+            "text": "Rust 篇"
+        },
+        {
+            "text": "开发日志",
+            "link": "articles/TIMELINE.html",
+            "pagePath": "articles/TIMELINE.md"
         },
         {
             "text": "感谢",
@@ -202,5 +196,5 @@ export default {
     ],
     'gitalk': React.createElement(Gitalk, { admin: [
             'hylerrix'
-        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/ROADMAP.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "\u672A\u6765\u89C4\u5212" })
+        ], clientID: "60180eea2c09238f8998", clientSecret: "e9ea0ff6555185eda28eff4dfd4b755b1764abf3", id: "articles/rust/index.html", owner: "hylerrix", pagerDirection: "first", repo: "deno-tutorial", title: "Rust \u7BC7" })
 };

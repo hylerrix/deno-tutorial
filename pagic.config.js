@@ -20,7 +20,7 @@ export default {
         },
         { text: '资源', target: '_blank', link: 'https://github.com/hylerrix/awesome-deno-cn' },
         { text: '镜像', target: '_blank', link: 'http://tutorial.deno.js.cn' },
-        { text: 'Deno 双周刊', target: '_blank', link: 'https://github.com/hylerrix/deno-feedly' },
+        { text: 'Blitz.js + React 全栈开发手册', target: '_blank', link: 'https://github.com/hylerrix/fullstack-react-handbook' },
         { text: '持续添加中...', target: '_blank', link: 'https://github.com/hylerrix' },
         {
             text: '凝果屋',
@@ -84,14 +84,12 @@ export default {
             //   title: '语言篇',
             //   children: [],
             // },
-            {
-                link: 'articles/node/README.md',
-                title: 'Node 篇',
-                children: [
-                    'articles/node/create-react-app-intro.md',
-                    'articles/node/javascript-toolchain-rome.md',
-                ],
-            },
+            // {
+            //   link: 'articles/official/README.md',
+            //   title: 'Node 篇',
+            //   children: [
+            //   ],
+            // },
             {
                 link: 'articles/official/README.md',
                 title: '官方篇',
@@ -124,6 +122,7 @@ export default {
             //   title: '转载篇',
             //   children: [],
             // },
+            'articles/TIMELINE.md',
             'articles/THANKS.md',
         ],
     },

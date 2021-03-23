@@ -63,9 +63,9 @@ export default {
                     text: '镜像'
                 },
                 {
-                    link: 'https://github.com/hylerrix/deno-feedly',
+                    link: 'https://github.com/hylerrix/fullstack-react-handbook',
                     target: '_blank',
-                    text: 'Deno 双周刊'
+                    text: 'Blitz.js + React 全栈开发手册'
                 },
                 {
                     link: 'https://github.com/hylerrix',
@@ -142,14 +142,6 @@ export default {
                     },
                     {
                         children: [
-                            'articles/node/create-react-app-intro.md',
-                            'articles/node/javascript-toolchain-rome.md'
-                        ],
-                        link: 'articles/node/README.md',
-                        title: 'Node 篇'
-                    },
-                    {
-                        children: [
                             'articles/official/thoroughgoing-deno-in-2020.md',
                             'articles/official/thoroughgoing-deno-1-8.md'
                         ],
@@ -175,6 +167,7 @@ export default {
                         link: 'articles/rust/README.md',
                         title: 'Rust 篇'
                     },
+                    'articles/TIMELINE.md',
                     'articles/THANKS.md'
                 ]
             },
