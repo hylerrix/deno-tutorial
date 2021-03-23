@@ -1,7 +1,5 @@
 # Deno 钻研之术
 
-<!-- 以下内容粘贴自根目录的 README.md，记得及时同步一下，期待 Pagic 未来支持直接读取根目录 README.md -->
-
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -10,9 +8,17 @@
 
 ![](http://qiniu.ningo.cloud/deno/deno-tutorial-background.png)
 
-> 《Deno 钻研之术》的配套仓库：[独家 Awesome Deno 资源清单](https://github.com/hylerrix/awesome-deno-cn)，构造 Deno 资源全图谱。
-
 Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tutorial.js.org)。基于 [Pagic](https://github.com/xcatliu/pagic) 构建。
+
+号外：《Deno 钻研之术》的生态仓库请查收！
+
+* [deno-tutorial](https://github.com/hylerrix/deno-tutorial)：核心仓库，电子书集中地，围绕 Deno 全生态的各种原创/翻译文章。 
+* [deno-algorithm](https://github.com/hylerrix/deno-algorithm)：想在 Deno 上用 TypeScript 刷 LeetCode 算法？或许可以看看这个（才开源不久，刷一定的题后再宣传）。
+* [awesome-deno-cn](https://github.com/hylerrix/awesome-deno-cn)：见名知意，中文社区下的 Deno 资源全图谱，求 PR。
+
+同时，2021 年，开启全新的《Blitz.js + React 全栈开发手册》：
+
+* [fullstack-react-handbook](https://github.com/hylerrix/fullstack-react-handbook)：专注构建 Blitz.js 社区，探索 React 全栈更多的可能性。
 
 ## 目录
 
@@ -29,6 +35,7 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 * 架构篇：深入到 Deno 底层读 V8，学架构；
 * 生态篇：介绍 Deno 生态的相关内容；
 * 翻译篇：翻译优质的、授权的英文一手博文。
+* 以及更多
 
 目前本仓库的文件结构如下。
 
@@ -44,17 +51,6 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 └── translations # 收录自己或和小伙伴们一起翻译的优质文章
 ```
 
-本仓库工作流大致如下。
-
-* `main` 分支：作为核心提供稳定版本，我直接工作在这里；
-* `Github Flow`：有兴趣的开发者 fork 后一起来 PR；
-* `Git Flow`：开放权限给和我一起翻译、一起写作的小伙伴（其实没怎么用）；
-  * `develop` 分支：用来对整个子分支进行统一管理；
-  * `trans/${name}-${user}` 分支：某 user 用来翻译某篇授权 name文章；
-  * `write/${name}-${user}` 分支：某 user 用来某篇 name 文章的写作。
-
-本仓库的[开发日志](./.ningowood/timeline.md)。
-
 ## 文章
 
 《Deno 钻研之术》文章内容重点维护在该项目中，以下列表内容根据发布时间排序。写作序号思路为：随心而动！
@@ -66,23 +62,18 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 |003|:heart: [从 CLI 指令通读 Deno v1.x 全特性](https://juejin.im/post/6857058738046861320)|2020-08-04|CLI 篇|掘金征文|
 |...|...|...|...|...|
 
-这里将 Node 篇抽离出来单独排序，记录在纯 Node 社区里的游玩过程（Deno 和 Node 同时提到的文章不会在这里）。
-
-|序号|文章名|发布时间|备注|
-|-|-|-|-|
-|001|[深入浅出 Create React App](https://deno-tutorial.js.org/articles/node/create-react-app-intro.html)|2020-01-10||
-|002|[欲取代绝大多 JavaScript 工具链？Rome 尝鲜](https://deno-tutorial.js.org/articles/node/javascript-toolchain-rome.html)|2020-04-10||
-|...|...|...|...|
-
 这里将翻译篇抽离出来单独排序，争取得到更多的授权翻译，还有欢迎你 issues/群里 推荐高质量的文章甚至一起翻译！
 
 |序号|文章名|原文发布时间|翻译发布时间|备注|
 |-|-|-|-|-|
-|001|[Deno 入门手册：附大量 TypeScript 代码实例](https://deno-tutorial.js.org/translations/the-deno-handbook.html)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
-|002|[Deno + WebSockets 打造聊天室应用](https://deno-tutorial.js.org/translations/deno-chat-app.html)|2020-05-10|2020-05-25||
-|003|[从 Node 到 Deno：探索各大主流库替代方案](https://deno-tutorial.js.org/translations/from-node-to-deno.html)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
-|004|[Deno + Oak 构建酷炫的 Todo API](https://deno-tutorial.js.org/translations/deno-oak-todo-api.html)|2020-05-29|2020-06-15||
-|005|[Deno + Oak 连接 MySQL 实战教程](https://deno-tutorial.js.org/translations/deno-oak-mysql.html)|2020-06-07|2020-07-06||
+|001|[Deno 入门手册：附大量 TypeScript 代码实例](https://deno-tutorial.js.org/articles/translations/the-deno-handbook.html)|2020-05-12|2020-05-18|其它译者：[@YunKou](http://github.com/yunkou)|
+|002|[Deno + WebSockets 打造聊天室应用](https://deno-tutorial.js.org/articles/translations/deno-chat-app.html)|2020-05-10|2020-05-25||
+|003|[从 Node 到 Deno：探索各大主流库替代方案](https://deno-tutorial.js.org/articles/translations/from-node-to-deno.html)|2020-05-17|2020-06-04|其它译者：[@YunKou](http://github.com/yunkou)|
+|004|[Deno + Oak 构建酷炫的 Todo API](https://deno-tutorial.js.org/articles/translations/deno-oak-todo-api.html)|2020-05-29|2020-06-15||
+|005|[Deno + Oak 连接 MySQL 实战教程](https://deno-tutorial.js.org/articles/translations/deno-oak-mysql.html)|2020-06-07|2020-07-06||
+|006|[为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？](https://deno-tutorial.js.org/articles/translations/why-deno-wrong.html)|2020-06-07|2020-07-06||
+|007|[精读《Deno 2020 官方回顾及 2021 展望》](https://deno-tutorial.js.org/official/thoroughgoing-deno-in-2020.html)|2021-01-15|2021-01-22||
+|008|[精读《Deno v1.8 发布说明》](https://deno-tutorial.js.org/official/thoroughgoing-deno-1-8.html)|2021-03-02|2021-03-05||
 |...|...|...|...|...|
 
 同时更新在如下第三方平台：
@@ -91,16 +82,14 @@ Deno 钻研之术官方网站：[https://deno-tutorial.js.org](https://deno-tuto
 * [知乎](https://zhuanlan.zhihu.com/deno-tutorial)。
 * [掘金](https://juejin.im/user/57e9fc052e958a0054509825/posts)。
 * [语雀](https://www.yuque.com/ningowood/beginning/record)。
+* ...
 
 ## 构建
 
 使用 [Pagic](https://github.com/xcatliu/pagic) 构建：
 
 ```bash
-# Deno v1 之前的直接运行，Pagic v0.9.1 -> Deno v1.3.3
-$ deno run --unstable --allow-read --allow-write --allow-net --allow-env https://deno.land/x/pagic@v0.9.1/mod.ts build --serve --watch
-# Deno v1 后的先安装再执行（暂时跑不通）
-$ deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
+$ deno install --unstable --allow-read --allow-write --allow-net -f --name=pagic https://deno.land/x/pagic/mod.ts
 $ ~/.deno/bin/pagic build --serve --watch
 ```
 
