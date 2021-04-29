@@ -16,7 +16,7 @@ export default {
     'outputPath': "articles/document/deno-translation-dictionary.html",
     'title': "Deno 专业术语翻译手册",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>Deno 专业术语翻译手册</h1>\n<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
+            __html: '<h1>Deno 专业术语翻译手册</h1>\n<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n<li>streamable bodies</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n<li>take away</li>\n<li>AKA: 也称为</li>\n</ul>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-169223577-1" }),
@@ -27,7 +27,7 @@ export default {
         React.createElement("script", { src: "/index.js", type: "module" })),
     'contentTitle': React.createElement("h1", { key: "0" }, "Deno \u4E13\u4E1A\u672F\u8BED\u7FFB\u8BD1\u624B\u518C"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n</ul>'
+            __html: '<ul>\n<li>Incremental type checking</li>\n<li>revamp</li>\n<li>isolated Modules</li>\n<li>test coverage：测试覆盖率</li>\n<li>breaking changes：破坏性更改</li>\n<li>incremental typechecking：增量类型检查</li>\n<li>benchmark system</li>\n<li>compilation pipeline</li>\n<li>technical debt.</li>\n<li>revamp：翻新</li>\n<li>hard to reason about -&gt; 难以理解</li>\n<li>bundler</li>\n<li>streamable bodies</li>\n</ul>\n<h2 id="rust">Rust<a class="anchor" href="#rust">§</a></h2>\n<ul>\n<li>Rust crate</li>\n<li>bindings</li>\n<li>manifest file</li>\n<li>marco</li>\n</ul>\n<h2 id="%E7%9F%AD%E8%AF%AD">短语<a class="anchor" href="#%E7%9F%AD%E8%AF%AD">§</a></h2>\n<ul>\n<li>facilitated an interface between V8 engine and Rust code in Deno</li>\n</ul>\n<h2 id="%E5%85%B6%E5%AE%83">其它<a class="anchor" href="#%E5%85%B6%E5%AE%83">§</a></h2>\n<ul>\n<li>in a fortnight：两周内</li>\n<li>Up to this point：与此之前</li>\n<li>the dust had barely settled</li>\n<li>take away</li>\n<li>AKA: 也称为</li>\n</ul>'
         } }),
     'toc': React.createElement("nav", { key: "0", className: "toc" },
         React.createElement("ol", null,
@@ -134,6 +134,11 @@ export default {
                     "text": "精读《Deno v1.8 发布说明》",
                     "link": "articles/official/thoroughgoing-deno-1-8.html",
                     "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
+                },
+                {
+                    "text": "译《Deno v1.9 发布说明》",
+                    "link": "articles/official/translate-deno-1-9.html",
+                    "pagePath": "articles/official/translate-deno-1-9.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -172,6 +177,21 @@ export default {
                     "text": "为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？",
                     "link": "articles/translation/why-deno-wrong.html",
                     "pagePath": "articles/translation/why-deno-wrong.md"
+                },
+                {
+                    "text": "为什么 Deno 没有众望所归？超越 Node.js 还要做些什么？",
+                    "link": "articles/translation/why-deno-flopped.html",
+                    "pagePath": "articles/translation/why-deno-flopped.md"
+                },
+                {
+                    "text": "如何在 Deno 中构建一个 URL 短链生成器",
+                    "link": "articles/translation/deno-url-shortener.html",
+                    "pagePath": "articles/translation/deno-url-shortener.md"
+                },
+                {
+                    "text": "如何在 Deno 下使用 AlpehJS 库构建 React 应用",
+                    "link": "articles/translation/deno-alpeh-react.html",
+                    "pagePath": "articles/translation/deno-alpeh-react.md"
                 }
             ],
             "pagePath": "articles/translation/README.md",

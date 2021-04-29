@@ -20,7 +20,7 @@ export default {
         },
         { text: '资源', target: '_blank', link: 'https://github.com/hylerrix/awesome-deno-cn' },
         { text: '镜像', target: '_blank', link: 'http://tutorial.deno.js.cn' },
-        { text: 'Blitz.js + React 全栈开发手册', target: '_blank', link: 'https://github.com/hylerrix/fullstack-react-handbook' },
+        { text: 'Blitz.js + React 全栈开发手册', target: '_blank', link: 'https://github.com/hylerrix/blitzjs-tutorial' },
         { text: '持续添加中...', target: '_blank', link: 'https://github.com/hylerrix' },
         {
             text: '凝果屋',
@@ -96,6 +96,7 @@ export default {
                 children: [
                     'articles/official/thoroughgoing-deno-in-2020.md',
                     'articles/official/thoroughgoing-deno-1-8.md',
+                    'articles/official/translate-deno-1-9.md',
                 ],
             },
             {
@@ -108,6 +109,9 @@ export default {
                     'articles/translation/deno-oak-todo-api.md',
                     'articles/translation/deno-oak-mysql.md',
                     'articles/translation/why-deno-wrong.md',
+                    'articles/translation/why-deno-flopped.md',
+                    'articles/translation/deno-url-shortener.md',
+                    'articles/translation/deno-alpeh-react.md',
                 ],
             },
             {

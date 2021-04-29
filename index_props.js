@@ -63,7 +63,7 @@ export default {
                     text: '镜像'
                 },
                 {
-                    link: 'https://github.com/hylerrix/fullstack-react-handbook',
+                    link: 'https://github.com/hylerrix/blitzjs-tutorial',
                     target: '_blank',
                     text: 'Blitz.js + React 全栈开发手册'
                 },
@@ -143,7 +143,8 @@ export default {
                     {
                         children: [
                             'articles/official/thoroughgoing-deno-in-2020.md',
-                            'articles/official/thoroughgoing-deno-1-8.md'
+                            'articles/official/thoroughgoing-deno-1-8.md',
+                            'articles/official/translate-deno-1-9.md'
                         ],
                         link: 'articles/official/README.md',
                         title: '官方篇'
@@ -155,7 +156,10 @@ export default {
                             'articles/translation/from-node-to-deno.md',
                             'articles/translation/deno-oak-todo-api.md',
                             'articles/translation/deno-oak-mysql.md',
-                            'articles/translation/why-deno-wrong.md'
+                            'articles/translation/why-deno-wrong.md',
+                            'articles/translation/why-deno-flopped.md',
+                            'articles/translation/deno-url-shortener.md',
+                            'articles/translation/deno-alpeh-react.md'
                         ],
                         link: 'articles/translation/README.md',
                         title: '翻译篇'

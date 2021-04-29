@@ -3,8 +3,8 @@ import Ga from '/_ga.js';
 import Gitalk from '/_gitalk.js';
 export default {
     'prev': {
-        "text": "精读《Deno v1.8 发布说明》",
-        "link": "articles/official/thoroughgoing-deno-1-8.html"
+        "text": "译《Deno v1.9 发布说明》",
+        "link": "articles/official/translate-deno-1-9.html"
     },
     'next': {
         "text": "Deno 入门手册：附大量 TypeScript 代码实例",
@@ -127,6 +127,11 @@ export default {
                     "text": "精读《Deno v1.8 发布说明》",
                     "link": "articles/official/thoroughgoing-deno-1-8.html",
                     "pagePath": "articles/official/thoroughgoing-deno-1-8.md"
+                },
+                {
+                    "text": "译《Deno v1.9 发布说明》",
+                    "link": "articles/official/translate-deno-1-9.html",
+                    "pagePath": "articles/official/translate-deno-1-9.md"
                 }
             ],
             "pagePath": "articles/official/README.md",
@@ -165,6 +170,21 @@ export default {
                     "text": "为什么我认为 Deno 是一个迈向错误方向的 JavaScript 运行时？",
                     "link": "articles/translation/why-deno-wrong.html",
                     "pagePath": "articles/translation/why-deno-wrong.md"
+                },
+                {
+                    "text": "为什么 Deno 没有众望所归？超越 Node.js 还要做些什么？",
+                    "link": "articles/translation/why-deno-flopped.html",
+                    "pagePath": "articles/translation/why-deno-flopped.md"
+                },
+                {
+                    "text": "如何在 Deno 中构建一个 URL 短链生成器",
+                    "link": "articles/translation/deno-url-shortener.html",
+                    "pagePath": "articles/translation/deno-url-shortener.md"
+                },
+                {
+                    "text": "如何在 Deno 下使用 AlpehJS 库构建 React 应用",
+                    "link": "articles/translation/deno-alpeh-react.html",
+                    "pagePath": "articles/translation/deno-alpeh-react.md"
                 }
             ],
             "pagePath": "articles/translation/README.md",
