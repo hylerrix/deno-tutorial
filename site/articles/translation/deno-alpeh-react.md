@@ -65,7 +65,6 @@ aleph start # runs built app
 
 你可以在 Deno 应用程序中导入这两种库：
 
-1. Importing Deno-Native Libraries: These libraries were either built for Deno, or ported over from npm to support Deno usage.
 1. 导入 Deno 原生库：这些库要么是为 Deno 构建的，要么是从 npm 移植过来的，均支持 Deno 的使用。
 1. 从 NPM 中导入：如果你最近使用过 JS，则很可能了解 npm。不了解的话：npm（node 包管理器背后的公司）是所有 JavaScript 库的一种标准托管库。幸运的是，Deno 对 npm 库有一定限度的支持。可以使用诸如 [esm.sh](http://esm.sh/) 或 skypack.dev 这样的工具，用户可以将 npm 库导入到 Deno 中。
 
